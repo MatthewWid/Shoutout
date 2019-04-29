@@ -32,7 +32,5 @@ db.on("error", (err) => {
 	console.error(`ERROR Database Connection: ${err}`);
 });
 db.on("open", () => {
-	app.listen(app.get("port"), () => {
-		console.log(`SERVER Listening on port ${app.get("port")}.`);
-	});
+	app.listen(app.get("port"), () => console.log(`SERVER Listening on port ${app.get("port")}.`));
 });

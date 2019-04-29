@@ -1,9 +1,6 @@
 const router = require("express").Router();
+const postController = require("../controllers/postController");
 
-router.get("/", (req, res) => {
-	res.render("home", {
-		title: "Homepage"
-	});
-});
+router.get("/", postController.homePage);
 
 module.exports = router;
