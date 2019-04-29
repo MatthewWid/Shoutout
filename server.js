@@ -1,7 +1,9 @@
+// Environment Variables
 require("dotenv").config({
 	path: "./variables.env"
 });
 
+// Imports
 const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
@@ -37,7 +39,7 @@ app.use("/", routes);
 // Port
 app.set("port", process.env.PORT || 80);
 
-// Connect to database and start server
+// Server
 db.on("error", (err) => {
 	console.error(`ERROR Database Connection: ${err}`);
 });
