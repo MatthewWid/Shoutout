@@ -5,6 +5,7 @@ require("dotenv").config({
 const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
+const bodyParser = require("body-parser");
 const routes = require("./routes");
 const app = express();
 
@@ -16,6 +17,15 @@ const {connection: db} = mongoose;
 
 // Models
 require("./models/Post");
+
+// Static Files
+app.use(express.static(path.join(__dirname, "./public")));
+
+// Body Parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 // View Engine
 app.set("views", path.join(__dirname, "/views"));
