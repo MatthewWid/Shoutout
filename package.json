@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "sass": "node-sass --output-style compressed ./scss -o ./public/css",
-    "sass:watch": "sass --style expanded --watch ./scss:./public/css",
+    "sass:watch": "node-sass --output-style expanded -w ./scss/ -o ./public/css/",
     "server": "node ./server.js",
     "server:watch": "nodemon ./server.js",
     "start": "npm-run-all --sequential sass server",
