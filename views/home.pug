@@ -1,10 +1,9 @@
 extends ./layouts/default
 
+include ./partials/post
+
 block content
 	h1 Home Page
-	
 
-	ul
-		each post in posts ? posts : []
-			li
-				p= post.text
+	each post in posts ? posts : []
+		+post(post)
