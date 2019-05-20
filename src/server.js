@@ -21,7 +21,7 @@ const {connection: db} = mongoose;
 require("./models/Post");
 
 // Static Files
-app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static(path.join(__dirname, "..", "./public")));
 
 // Body Parser
 app.use(bodyParser.json());

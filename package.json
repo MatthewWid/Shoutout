@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "sass": "node-sass --output-style compressed ./scss -o ./public/css",
-    "sass:watch": "node-sass --output-style expanded -w ./scss/ -o ./public/css/",
-    "server": "node ./server.js",
-    "server:watch": "nodemon ./server.js",
+    "sass": "node-sass --output-style compressed ./src/scss -o ./public/css",
+    "sass:watch": "node-sass --output-style expanded -w ./src/scss/ -o ./public/css/",
+    "server": "node ./src/server.js",
+    "server:watch": "nodemon ./src/server.js",
     "start": "npm-run-all --sequential sass server",
     "dev": "npm-run-all --parallel **:watch"
   },
