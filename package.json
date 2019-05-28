@@ -8,7 +8,7 @@
     "server": "node ./src/server.js",
     "server:watch": "nodemon ./src/server.js",
     "start": "npm-run-all --sequential sass server",
-    "dev": "npm-run-all --parallel **:watch"
+    "dev": "npm-run-all sass --parallel **:watch"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
