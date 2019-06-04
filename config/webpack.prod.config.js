@@ -1,6 +1,5 @@
 const config = {
-	mode: "development",
-	watch: true,
+	mode: "production"
 };
 
 module.exports = config;

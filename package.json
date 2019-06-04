@@ -7,8 +7,9 @@
     "sass:watch": "node-sass --output-style expanded -w ./src/scss/ -o ./public/css/",
     "server": "node ./src/server.js",
     "server:watch": "nodemon ./src/server.js",
-    "start": "npm-run-all --sequential sass server",
-    "dev": "npm-run-all sass --parallel **:watch"
+    "build": "webpack",
+    "start": "npm-run-all --sequential build sass server",
+    "dev": "npm-run-all --sequential build sass --parallel **:watch"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -20,7 +21,10 @@
     "npm-run-all": "^4.1.5",
     "pug": "^2.0.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"
