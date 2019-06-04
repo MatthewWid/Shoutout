@@ -1,9 +1,7 @@
 extends ./layouts/default
 
-include ./partials/post
-
 block content
 	h1 Home Page
 
-	each post in posts ? posts : []
-		+post(post)
+block scripts
+	script(src="./js/home.js")
