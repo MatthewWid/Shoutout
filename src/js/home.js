@@ -1,3 +1,3 @@
 import React from "react";
 
-console.log(react);
+console.log("first import");

@@ -7,6 +7,7 @@ const SRCDIR_SCSS = path.resolve(__dirname, "..", "./src/scss/");
 const config = {
 	entry: {
 		"js/home": path.resolve(SRCDIR_JS, "home.js"),
+		"js/profile": path.resolve(SRCDIR_JS, "profile.js"),
 		"css/main": path.resolve(SRCDIR_SCSS, "main.scss")
 	},
 	module: {
@@ -24,6 +25,18 @@ const config = {
 	output: {
 		path: path.resolve(__dirname, "..", "./public/"),
 		filename: "[name].js"
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /node_modules/,
+					chunks: "initial",
+					name: "js/vendor",
+					enforce: true
+				}
+			}
+		}
 	},
 	plugins: [
 		new FixStyleOnlyEntirePlugin(),
