@@ -1,5 +1,16 @@
 # Shoutout
 
-Twitter clone made with NodejS, MongoDB and Mongoose.
+News and social media site.  
+Users post to a central board and can share short messages with eachother.
 
-Incorporates a mobile-first front-end design.
+**Front-End Technologies**
+* React
+* Webpack
+* SASS
+
+**Back-End Technologies**
+* Node.js
+* MongoDB
+* Mongoose
+* Express
+* Pug
