@@ -3,5 +3,6 @@ node_modules/
 *.env
 
 .sass-cache/
-*.css
-*.css.map
+public/**/*.js
+public/**/*.css
+public/**/*.css.map

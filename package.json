@@ -3,18 +3,18 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "sass": "node-sass --output-style compressed ./src/scss -o ./public/css",
-    "sass:watch": "node-sass --output-style expanded -w ./src/scss/ -o ./public/css/",
     "server": "node ./src/server.js",
     "server:watch": "nodemon ./src/server.js",
     "build": "webpack",
-    "start": "npm-run-all --sequential build sass server",
-    "dev": "npm-run-all --sequential build sass --parallel **:watch"
+    "start": "npm-run-all --sequential build server",
+    "dev": "npm-run-all --parallel build **:watch"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "css-loader": "^2.1.1",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "mini-css-extract-plugin": "^0.7.0",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.4",
     "node-sass": "^4.12.0",
@@ -22,8 +22,10 @@
     "pug": "^2.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "sass-loader": "^7.1.0",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
+    "webpack-fix-style-only-entries": "^0.3.0",
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {

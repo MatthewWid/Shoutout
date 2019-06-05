@@ -1,6 +1,6 @@
 require("dotenv").config({path: "./variables.env"});
-const common = require("./config/webpack.common.config.js");
 const webpackMerge = require("webpack-merge");
+const common = require("./config/webpack.common.config.js");
 
 const envs = {
 	development: "dev",
