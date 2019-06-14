@@ -8,6 +8,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
+const getManifest = require("./middleware/getManifest.js");
 const routes = require("./routes");
 const app = express();
 
@@ -32,6 +33,9 @@ app.use(bodyParser.urlencoded({
 // View Engine
 app.set("views", path.join(__dirname, "/views/"));
 app.set("view engine", "pug");
+
+// Hashed File Names
+app.use(getManifest());
 
 // Routes
 app.use("/", routes);
