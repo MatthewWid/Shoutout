@@ -6,3 +6,5 @@ node_modules/
 public/**/*.js
 public/**/*.css
 public/**/*.css.map
+
+src/webpack-manifest.json

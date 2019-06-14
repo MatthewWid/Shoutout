@@ -26,7 +26,7 @@ const config = {
 	},
 	output: {
 		path: path.resolve(__dirname, "..", "./public/"),
-		filename: "[name].js"
+		filename: "[name].[contenthash].js"
 	},
 	optimization: {
 		splitChunks: {
@@ -41,6 +41,9 @@ const config = {
 		}
 	},
 	plugins: [
+		new ManifestPlugin({
+			fileName: path.join(SRCDIR, "./webpack-manifest.json")
+		}),
 		new FixStyleOnlyEntirePlugin(),
 		new MiniCssExtractPlugin({
 			filename: "[name].css"
