@@ -1,7 +1,7 @@
-const wrap = require("../helpers/wrapAsync");
 const router = require("express").Router();
 const postController = require("../controllers/postController");
+const wrap = require("../helpers/wrapAsync");
 
-router.get("/", wrap(postController.homePage));
+router.get("/", postController.indexPage);
 
 module.exports = router;
