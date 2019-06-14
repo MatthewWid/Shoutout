@@ -1,14 +1,16 @@
 const path = require("path");
+const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntirePlugin = require("webpack-fix-style-only-entries");
-const SRCDIR_JS = path.resolve(__dirname, "..", "./src/js/");
-const SRCDIR_SCSS = path.resolve(__dirname, "..", "./src/scss/");
+const SRCDIR = path.resolve(__dirname, "..", "./src/");
+const SRCDIR_JS = path.join(SRCDIR, "./js/");
+const SRCDIR_SCSS = path.join(SRCDIR, "./scss/");
 
 const config = {
 	entry: {
-		"js/home": path.resolve(SRCDIR_JS, "home.js"),
-		"js/profile": path.resolve(SRCDIR_JS, "profile.js"),
-		"css/main": path.resolve(SRCDIR_SCSS, "main.scss")
+		"js/home": path.join(SRCDIR_JS, "home.js"),
+		"js/profile": path.join(SRCDIR_JS, "profile.js"),
+		"css/main": path.join(SRCDIR_SCSS, "main.scss")
 	},
 	module: {
 		rules: [
