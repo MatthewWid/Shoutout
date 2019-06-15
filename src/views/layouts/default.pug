@@ -4,9 +4,10 @@ html(lang="en")
 		include ../includes/head
 		block head
 	body
-		main#content
+		div#container
 			block content
 		include ../includes/footer
+
 		if manifest
 			script(src=manifest["js/vendor.js"])
 		block scripts
