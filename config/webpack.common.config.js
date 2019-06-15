@@ -1,5 +1,4 @@
 const path = require("path");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntirePlugin = require("webpack-fix-style-only-entries");
@@ -44,10 +43,6 @@ const config = {
 		}
 	},
 	plugins: [
-		new CleanWebpackPlugin({
-			root: PUBDIR,
-			cleanOnceBeforeBuildPatterns: ["!.gitkeep"]
-		}),
 		new ManifestPlugin({
 			fileName: path.join(SRCDIR, "./webpack-manifest.json")
 		}),
