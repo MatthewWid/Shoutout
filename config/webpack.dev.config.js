@@ -3,7 +3,6 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 const config = {
 	mode: "development",
-	watch: true,
 	plugins: [
 		new CleanWebpackPlugin({
 			root: path.resolve(__dirname, "..", "/public/"),

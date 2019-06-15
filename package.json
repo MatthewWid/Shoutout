@@ -6,8 +6,9 @@
     "server": "node ./src/server.js",
     "server:watch": "nodemon --config nodemon.json ./src/server.js",
     "build": "webpack",
+    "build:watch": "webpack --watch",
     "start": "npm-run-all --sequential build server",
-    "dev": "npm-run-all --parallel build **:watch"
+    "dev": "npm-run-all --sequential build --parallel **:watch"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
