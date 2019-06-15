@@ -7,5 +7,6 @@ html(lang="en")
 		main#content
 			block content
 		include ../includes/footer
-		script(src=manifest["js/vendor.js"])
+		if manifest
+			script(src=manifest["js/vendor.js"])
 		block scripts
