@@ -3,6 +3,8 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntirePlugin = require("webpack-fix-style-only-entries");
+
+const PUBDIR = path.resolve(__dirname, "..", "./public/");
 const SRCDIR = path.resolve(__dirname, "..", "./src/");
 const SRCDIR_JS = path.join(SRCDIR, "./js/");
 const SRCDIR_SCSS = path.join(SRCDIR, "./scss/");
@@ -26,7 +28,7 @@ const config = {
 		]
 	},
 	output: {
-		path: path.resolve(__dirname, "..", "./public/"),
+		path: PUBDIR,
 		filename: "[name].[contenthash].js"
 	},
 	optimization: {
@@ -43,6 +45,7 @@ const config = {
 	},
 	plugins: [
 		new CleanWebpackPlugin({
+			root: PUBDIR,
 			cleanOnceBeforeBuildPatterns: ["!.gitkeep"]
 		}),
 		new ManifestPlugin({
