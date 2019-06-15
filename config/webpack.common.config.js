@@ -10,9 +10,8 @@ const SRCDIR_SCSS = path.join(SRCDIR, "./scss/");
 
 const config = {
 	entry: {
-		"js/home": path.join(SRCDIR_JS, "home.js"),
-		"js/profile": path.join(SRCDIR_JS, "profile.js"),
-		"css/main": path.join(SRCDIR_SCSS, "main.scss")
+		"js/main": path.join(SRCDIR_JS, "main.js"),
+		"css/global": path.join(SRCDIR_SCSS, "global.scss")
 	},
 	module: {
 		rules: [
@@ -53,7 +52,7 @@ const config = {
 		}),
 		new FixStyleOnlyEntirePlugin(),
 		new MiniCssExtractPlugin({
-			filename: "[name].css"
+			filename: "[name].[contenthash].css"
 		})
 	]
 };
