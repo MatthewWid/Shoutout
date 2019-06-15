@@ -8,7 +8,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
-const getManifest = require("./middleware/getManifest.js");
+const getManifest = require("./middlewares/getManifest.js");
 const routes = require("./routes");
 const app = express();
 
