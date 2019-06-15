@@ -3,6 +3,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntirePlugin = require("webpack-fix-style-only-entries");
 
+const FILENAME = process.env.NODE_ENV === "development" ? "[name]" : "[name].[contenthash]";
 const PUBDIR = path.resolve(__dirname, "..", "./public/");
 const SRCDIR = path.resolve(__dirname, "..", "./src/");
 const SRCDIR_JS = path.join(SRCDIR, "./js/");
@@ -32,7 +33,7 @@ const config = {
 	},
 	output: {
 		path: PUBDIR,
-		filename: "[name].[contenthash].js"
+		filename: `${FILENAME}.js`
 	},
 	optimization: {
 		splitChunks: {
@@ -52,7 +53,7 @@ const config = {
 		}),
 		new FixStyleOnlyEntirePlugin(),
 		new MiniCssExtractPlugin({
-			filename: "[name].[contenthash].css"
+			filename: `${FILENAME}.css`
 		})
 	]
 };
