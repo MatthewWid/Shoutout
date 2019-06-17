@@ -4,5 +4,5 @@ import Router from "./components/Router.js";
 
 ReactDOM.render(
 	<Router />,
-	document.getElementById("container")
+	document.getElementsByClassName("container")[0]
 );
