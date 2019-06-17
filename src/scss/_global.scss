@@ -2,18 +2,28 @@ body {
 	background-color: $bg-dark;
 	color: $text-bright;
 }
+
 .header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 40px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 56px;
 	background-color: $bg-primary;
 	color: $text-grey;
 
-	.header__logo {
-		font-weight: bold;
-	}
-	.header__icon {
-		font-size: 1.2em;
+	&__inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+		max-width: 60%;
+		margin: 0 auto;
+
+		.header__logo img {
+			width: 24px;
+			height: 24px;
+			transform: rotateZ(-36deg);
+		}
 	}
 }

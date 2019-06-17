@@ -1,8 +1,21 @@
-import React from "react";
+import React, {Fragment} from "react";
+import Header from "./Header.js";
 
 class App extends React.Component {
 	render() {
-		return (<p>App</p>);
+		return (
+			<Fragment>
+				<Header />
+				{/*
+				<ContentContainer>
+					<UserPanel />
+					<PostList />
+					<SiteStats />
+				</ContentContainer>
+				*/}
+				<p>App</p>
+			</Fragment>
+		);
 	}
 }
 
