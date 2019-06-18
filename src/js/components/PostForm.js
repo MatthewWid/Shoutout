@@ -1,8 +1,12 @@
 import React from "react";
 
-class MessageForm extends React.Component {
+const defaultState = {
+	text: ""
+};
+
+class PostForm extends React.Component {
 	state = {
-		text: ""
+		...defaultState
 	};
 
 	handleChange = ({target}) => {
@@ -19,6 +23,11 @@ class MessageForm extends React.Component {
 		const {text} = this.state;
 		this.props.postMessage({
 			text
+		});
+
+		// Clear form fields
+		this.setState({
+			...defaultState
 		});
 	}
 
@@ -39,4 +48,4 @@ class MessageForm extends React.Component {
 	}
 }
 
-export default MessageForm;
+export default PostForm;

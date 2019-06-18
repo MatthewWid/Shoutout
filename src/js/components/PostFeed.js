@@ -1,11 +1,11 @@
 import React from "react";
-import MessageForm from "./MessageForm.js";
+import PostForm from "./PostForm.js";
 
 class PostFeed extends React.Component {
 	render() {
 		return (
 			<main className="content__panel feed">
-				<MessageForm postMessage={this.props.postMessage} />
+				<PostForm postMessage={this.props.postMessage} />
 			</main>
 		);
 	}
