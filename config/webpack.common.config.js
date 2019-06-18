@@ -12,7 +12,7 @@ const SRCDIR_SCSS = path.join(SRCDIR, "./scss/");
 const config = {
 	entry: {
 		"js/main": path.join(SRCDIR_JS, "main.js"),
-		"css/global": path.join(SRCDIR_SCSS, "global.scss")
+		"css/main": path.join(SRCDIR_SCSS, "main.scss")
 	},
 	module: {
 		rules: [

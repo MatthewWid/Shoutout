@@ -1,3 +1,5 @@
+@import "./sections/_PostFeed.scss";
+
 body {
 	background-color: $bg-dark;
 	color: $text-bright;
@@ -38,5 +40,8 @@ body {
 	}
 	&__panel {
 		flex: 1;
+	}
+	.feed {
+		@include PostFeed;
 	}
 }
