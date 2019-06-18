@@ -1,4 +1,6 @@
+@import "./sections/_UserPanel.scss";
 @import "./sections/_PostFeed.scss";
+@import "./sections/_SiteInfo.scss";
 
 body {
 	background-color: $bg-dark;
@@ -40,8 +42,18 @@ body {
 	}
 	&__panel {
 		flex: 1;
+		padding: 10px;
+		background-color: $bg-panel;
+		border: 1px solid $border-panel;
+		border-radius: 2px;
+	}
+	.user {
+		@include UserPanel;
 	}
 	.feed {
 		@include PostFeed;
+	}
+	.site-info {
+		@include SiteInfo;
 	}
 }
