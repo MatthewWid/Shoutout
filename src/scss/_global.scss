@@ -46,7 +46,7 @@ body {
 		padding: 10px;
 		background-color: $bg-panel;
 		border: 1px solid $border-panel;
-		border-radius: 3px;
+		border-radius: 2px;
 	}
 	.user {
 		@include UserPanel;

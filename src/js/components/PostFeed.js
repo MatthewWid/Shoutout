@@ -5,6 +5,7 @@ class PostFeed extends React.Component {
 		return (
 			<main className="content__panel feed">
 				<p>Post Feed</p>
+				<p>{this.props.text}</p>
 			</main>
 		);
 	}
