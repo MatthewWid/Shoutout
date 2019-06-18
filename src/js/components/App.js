@@ -2,8 +2,8 @@ import React, {Fragment} from "react";
 import axios from "axios";
 import Header from "./Header.js";
 import UserPanel from "./UserPanel.js";
-import PostFeed from "./PostFeed.js";
-import SiteInfo from "./SiteInfo.js";
+import FeedPanel from "./FeedPanel.js";
+import SiteInfoPanel from "./SiteInfoPanel.js";
 
 class App extends React.Component {
 	state = {
@@ -36,11 +36,11 @@ class App extends React.Component {
 				<div className="content">
 					<div className="content__inner">
 						<UserPanel />
-						<PostFeed
+						<FeedPanel
 							posts={this.state.posts}
 							postMessage={this.postMessage}
 						/>
-						<SiteInfo />
+						<SiteInfoPanel />
 					</div>
 				</div>
 			</Fragment>

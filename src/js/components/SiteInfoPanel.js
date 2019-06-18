@@ -1,6 +1,6 @@
 import React from "react";
 
-const SiteInfo = () => {
+const SiteInfoPanel = () => {
 	return (
 		<div className="content__panel site-info">
 			<p>Site Info</p>
@@ -9,4 +9,4 @@ const SiteInfo = () => {
 	);
 };
 
-export default SiteInfo;
+export default SiteInfoPanel;
