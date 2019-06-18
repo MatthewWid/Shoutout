@@ -6,18 +6,10 @@ import PostFeed from "./PostFeed.js";
 import SiteInfo from "./SiteInfo.js";
 
 class App extends React.Component {
-	state = {
-		text: ""
+	postMessage = (message) => {
+		console.log("Posting a message:");
+		console.log(message);
 	};
-
-	componentDidMount() {
-		axios.get("/api/ping")
-			.then(({data: res}) => {
-				this.setState({
-					text: res
-				});
-			});
-	}
 
 	render() {
 		return (
@@ -26,7 +18,7 @@ class App extends React.Component {
 				<div className="content">
 					<div className="content__inner">
 						<UserPanel />
-						<PostFeed text={this.state.text} />
+						<PostFeed postMessage={this.postMessage} />
 						<SiteInfo />
 					</div>
 				</div>
