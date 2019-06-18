@@ -7,5 +7,6 @@ router.get("/ping", (req, res) => {
 });
 
 router.post("/post", wrap(postController.createPost));
+router.get("/posts", wrap(postController.getAllPosts));
 
 module.exports = router;

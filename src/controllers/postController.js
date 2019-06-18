@@ -14,3 +14,9 @@ exports.createPost = async (req, res) => {
 
 	res.json(post);
 };
+
+exports.getAllPosts = async (req, res) => {
+	const posts = await Post.find();
+
+	res.json(posts);
+};
