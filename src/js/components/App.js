@@ -22,7 +22,7 @@ class App extends React.Component {
 			});
 	}
 
-	// Send a post to the server to store
+	// Send a new Post to the server
 	postMessage = ({text}) => {
 		axios.post("/api/post", {
 			text
@@ -32,7 +32,7 @@ class App extends React.Component {
 			});
 	}
 
-	// Add a single post to state
+	// Add a single Post to state
 	addPost = (newPost) => {
 		const posts = [...this.state.posts];
 		posts.unshift(newPost);
@@ -41,7 +41,7 @@ class App extends React.Component {
 		});
 	}
 
-	// Add an array of posts to state
+	// Add an array of Posts to state
 	addPosts = (newPosts) => {
 		const posts = [...this.state.posts];
 		posts.push(...newPosts);

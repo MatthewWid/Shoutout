@@ -7,7 +7,7 @@ const defaultState = {
 class PostForm extends React.Component {
 	state = {
 		...defaultState
-	};
+	}
 
 	handleChange = ({target}) => {
 		const state = {...this.state};
@@ -20,6 +20,7 @@ class PostForm extends React.Component {
 	handleSubmit = (evt) => {
 		evt.preventDefault();
 
+		// Send data to the server
 		const {text} = this.state;
 		this.props.postMessage({
 			text
