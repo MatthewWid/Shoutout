@@ -13,17 +13,30 @@ body {
 	color: $text-grey;
 
 	&__inner {
+		max-width: $content-width;
+		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		height: 100%;
-		max-width: 60%;
-		margin: 0 auto;
 
 		.header__logo img {
 			width: 24px;
 			height: 24px;
 			transform: rotateZ(-36deg);
 		}
+	}
+}
+
+.content {
+	padding-top: 80px;
+
+	&__inner {
+		max-width: $content-width;
+		margin: 0 auto;
+		display: flex;
+	}
+	&__panel {
+		flex: 1;
 	}
 }
