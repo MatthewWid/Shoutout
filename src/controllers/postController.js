@@ -16,7 +16,10 @@ exports.createPost = async (req, res) => {
 };
 
 exports.getAllPosts = async (req, res) => {
-	const posts = await Post.find();
+	const posts = await Post.find()
+		.sort({
+			created: -1
+		});
 
 	res.json(posts);
 };

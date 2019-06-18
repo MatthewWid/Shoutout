@@ -35,7 +35,7 @@ class App extends React.Component {
 	// Add a single post to state
 	addPost = (newPost) => {
 		const posts = [...this.state.posts];
-		posts.push(newPost);
+		posts.unshift(newPost);
 		this.setState({
 			posts
 		});
