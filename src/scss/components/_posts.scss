@@ -1,0 +1,23 @@
+.post-list {
+	& > div:first-of-type {
+		border-top: 1px solid $border-panel;
+	}
+	& > div:not(:last-of-type) {
+		border-bottom: 1px solid $border-panel;
+	}
+}
+.post {
+	padding: 10px;
+
+	&__author, &__content, &__buttons {
+		padding-bottom: 10px;
+	}
+	&__content {
+		p {
+			font-size: 1rem;
+		}
+	}
+	&__buttons {
+		color: $text-grey;
+	}
+}

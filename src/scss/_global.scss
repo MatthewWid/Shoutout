@@ -43,7 +43,6 @@ body {
 	}
 	&__panel {
 		flex: 1;
-		padding: 10px;
 		background-color: $bg-panel;
 		border: 1px solid $border-panel;
 		border-radius: 2px;
@@ -58,3 +57,5 @@ body {
 		@include SiteInfo;
 	}
 }
+
+@import "./components/_posts.scss";

@@ -34,7 +34,7 @@ class PostForm extends React.Component {
 
 	render() {
 		return (
-			<div className="feed_message-form">
+			<div className="feed__post-form">
 				<form onSubmit={this.handleSubmit}>
 					<input
 						type="text"
