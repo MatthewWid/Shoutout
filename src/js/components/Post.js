@@ -1,4 +1,5 @@
 import React from "react";
+import InlineSvg from "react-inlinesvg";
 
 class Post extends React.Component {
 	render() {
@@ -12,7 +13,8 @@ class Post extends React.Component {
 				</div>
 				<div className="post__buttons">
 					<div className="post__button post__button-like">
-						{likes}
+						<InlineSvg className="post__button-icon" src="./images/icons/heart.svg"></InlineSvg>
+						<span className="post__button-number">{likes}</span>
 					</div>
 				</div>
 			</div>
