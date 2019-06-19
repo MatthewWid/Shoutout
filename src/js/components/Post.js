@@ -11,7 +11,12 @@ class Post extends React.Component {
 		return (
 			<div className="post">
 				<div className="post__info">
-					<div className="post__info-age">{dayjs(post.created).fromNow()}</div>
+					<div
+						className="post__info-age"
+						title={dayjs(post.created).format("dddd DD/MM/YYYY ss:mm:hh")}
+					>
+						{dayjs(post.created).fromNow()}
+					</div>
 				</div>
 				<div className="post__content">
 					<p className="post__text">{post.text}</p>
