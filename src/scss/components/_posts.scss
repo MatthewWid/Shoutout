@@ -9,8 +9,13 @@
 .post {
 	padding: 10px;
 
-	&__author, &__content, &__buttons {
+	&__info, &__content, &__buttons {
 		padding-bottom: 10px;
+	}
+	&__info {
+		&-age {
+			color: $text-grey;
+		}
 	}
 	&__content {
 		p {
