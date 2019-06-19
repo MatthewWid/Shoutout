@@ -1,0 +1,44 @@
+.feed__post-form {
+	padding: 10px;
+
+	.post-form {
+		input {
+			background: none;
+			border: none;
+			outline: none;
+			box-sizing: border-box;
+		}
+		input[name="text"] {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border-radius: 10px;
+			border: 1px solid $border-pink;
+			
+			color: $text-bright;
+			font-size: 1.1rem;
+
+			transition: border-radius .1s ease, padding-bottom .1s ease;
+
+			&:focus {
+				border-radius: 5px;
+				padding-bottom: 3rem;
+			}
+		}
+		&__toolbar {
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 10px;
+
+			input[type="submit"] {
+				cursor: pointer;
+				padding: 10px 20px;
+				border-radius: 20px;
+				background-color: $border-pink;
+
+				color: $text-bright;
+				font-weight: bold;
+			}
+		}
+	}
+}

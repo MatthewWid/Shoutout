@@ -35,14 +35,16 @@ class PostForm extends React.Component {
 	render() {
 		return (
 			<div className="feed__post-form">
-				<form onSubmit={this.handleSubmit}>
+				<form className="post-form" onSubmit={this.handleSubmit}>
 					<input
 						type="text"
 						name="text"
 						value={this.state.text}
 						onChange={this.handleChange}
 					/>
-					<input type="submit" value="Post" />
+					<div className="post-form__toolbar">
+						<input type="submit" value="Post" />
+					</div>
 				</form>
 			</div>
 		);
