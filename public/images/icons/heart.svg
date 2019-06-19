@@ -7,14 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="24"
-   height="24"
-   fill-rule="evenodd"
-   clip-rule="evenodd"
+   width="20.652956"
+   height="18.931875"
    version="1.1"
    id="svg4"
    sodipodi:docname="heart.svg"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   style="clip-rule:evenodd;fill-rule:evenodd">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -42,14 +41,15 @@
      id="namedview6"
      showgrid="false"
      inkscape:zoom="27.812867"
-     inkscape:cx="6.0629944"
-     inkscape:cy="12.436826"
+     inkscape:cx="5.3994689"
+     inkscape:cy="7.1290059"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4" />
   <path
-     d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"
+     d="M 10.326479,17.717546 C 6.0429059,13.503211 1.9571546,9.8830976 1.9571546,6.7598183 c 0,-2.884373 2.3342803,-3.9495597 4.0180359,-3.9495597 0.998232,0 3.158279,0.3811846 4.3512885,3.3910976 1.209746,-3.0190431 3.396423,-3.3834891 4.356613,-3.3834891 1.932552,0 4.012709,1.2333339 4.012709,3.9419512 0,3.0958883 -3.907712,6.5623107 -8.369322,10.9577277 M 14.683092,2.0570196 c -1.676148,0 -3.382729,0.7928031 -4.356613,2.4636244 C 9.3487895,2.8422143 7.6467725,2.0494111 5.9751905,2.0494111 c -2.4217777,0 -4.7788835,1.6639735 -4.7788835,4.7104072 0,3.5463117 4.2386818,7.1740327 9.130172,12.0282397 4.892249,-4.854207 9.13017,-8.481928 9.13017,-12.0282397 0,-3.0517595 -2.354823,-4.7027987 -4.773557,-4.7027987"
      id="path2"
-     style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none" />
+     style="stroke-width:0.07608476;stroke-miterlimit:4;stroke-dasharray:none"
+     inkscape:connector-curvature="0" />
 </svg>
