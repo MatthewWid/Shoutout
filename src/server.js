@@ -3,14 +3,19 @@ require("dotenv").config({
 	path: "./variables.env"
 });
 
+
 // Imports
 const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
+const serveFavicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const getManifest = require("./middlewares/getManifest.js");
 const routes = require("./routes");
 const app = express();
+
+// Constants
+const PUBDIR = path.resolve(__dirname, "..", "./public/");
 
 // Database
 mongoose.connect(process.env.DATABASE_URL, {
@@ -22,7 +27,10 @@ const {connection: db} = mongoose;
 require("./models/Post");
 
 // Static Files
-app.use(express.static(path.join(__dirname, "..", "./public/")));
+app.use(express.static(PUBDIR));
+
+// Favicon
+app.use(serveFavicon(path.join(PUBDIR, "./images/logo/", "./favicon.ico")));
 
 // Body Parser
 app.use(bodyParser.json());

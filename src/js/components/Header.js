@@ -7,7 +7,7 @@ class Header extends React.Component {
 				<div className="header__inner">
 					<nav className="header__nav">Navigation</nav>
 					<div className="header__logo">
-						<img src="./images/logo.png" alt="Shoutout" />
+						<img src="./images/logo/logo.png" alt="Shoutout" />
 					</div>
 					<div className="header__extra">Extra</div>
 				</div>
