@@ -1,14 +1,12 @@
-.feed__post-form {
+.post-form-container {
 	padding: 10px;
 
 	.post-form {
-		input, textarea {
+		&__text {
 			background: none;
-			border: none;
 			outline: none;
 			box-sizing: border-box;
-		}
-		textarea[name="text"] {
+
 			display: block;
 			width: 100%;
 			padding: 10px;
@@ -29,7 +27,7 @@
 				padding-bottom: 5rem;
 			}
 		}
-		&-toolbar {
+		&__toolbar {
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
@@ -38,14 +36,15 @@
 			> div:not(:last-of-type) {
 				margin-right: 10px;
 			}
-			&__length {
-				color: $text-grey;
+		}
+		&__length {
+			color: $text-grey;
 
-				&--disabled {
-					color: #fE1C1C;
-				}
+			&--disabled {
+				color: #fE1C1C;
 			}
-			&__submit input {
+		}
+		&__submit input {
 				cursor: pointer;
 				padding: 10px 20px;
 				border-radius: 20px;
@@ -61,6 +60,5 @@
 					opacity: .4;
 				}
 			}
-		}
 	}
 }
