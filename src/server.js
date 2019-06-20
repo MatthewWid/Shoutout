@@ -10,6 +10,7 @@ const express = require("express");
 const serveFavicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const routes = require("./middlewares/routes.js");
 const getManifest = require("./middlewares/getManifest.js");
 const errorHandler = require("./middlewares/errorHandler.js");
 const app = express();
@@ -55,7 +56,7 @@ app.set("view engine", "pug");
 app.use(getManifest());
 
 // Routes
-app.use("/", require("./routes"));
+app.use("/", routes());
 
 // Error Handling
 app.use(errorHandler);
