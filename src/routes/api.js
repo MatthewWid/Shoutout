@@ -7,7 +7,11 @@ const postController = require("../controllers/postController.js");
 
 router.get("/ping", (req, res) => res.send("pong"));
 
-router.post("/user/register",	userController.createUser);
+router.post("/user/register",
+	userController.createUser,
+	authController.login,
+	userController.getLoggedInUser
+);
 router.post("/user/login",
 	authController.login,
 	userController.getLoggedInUser
