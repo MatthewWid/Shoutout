@@ -20,7 +20,7 @@
 
 			transition: border-radius .1s ease, padding-bottom .1s ease;
 
-			&:focus {
+			&:focus, &:not([value=""]) {
 				border-radius: 5px;
 				padding-bottom: 3rem;
 			}
