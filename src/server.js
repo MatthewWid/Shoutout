@@ -44,11 +44,6 @@ passport.deserializeUser(userModel.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-	console.log(req.session);
-	next();
-});
-
 // Static Files
 app.use(express.static(PUBDIR));
 
