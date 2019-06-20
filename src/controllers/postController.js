@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Post = require("../models/Post.js");
+const Post = mongoose.model("Post");
 
 // Render the index page
 exports.indexPage = (req, res) => {

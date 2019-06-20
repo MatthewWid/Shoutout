@@ -9,7 +9,7 @@ class Header extends React.Component {
 					<div className="header__logo">
 						<img src="./images/logo/logo.png" alt="Shoutout" />
 					</div>
-					<div className="header__extra">Extra</div>
+					<div className="header__extra"></div>
 				</div>
 			</div>
 		);

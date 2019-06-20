@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const serveFavicon = require("serve-favicon");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 const getManifest = require("./middlewares/getManifest.js");
 const errorHandler = require("./middlewares/errorHandler.js");
 const app = express();
@@ -23,7 +24,18 @@ mongoose.connect(process.env.DATABASE_URL, {
 const {connection: db} = mongoose;
 
 // Models
-require("./models/Post");
+require("./models/User.js");
+const posts = require("./models/Post.js");
+console.log('SEVRER POSTS');
+console.log(posts);
+process.exit();
+
+// Authentication
+// passport.use(userModel.createStrategy());
+// passport.serializeUser(userModel.serializeUser());
+// passport.deserializeUser(userModel.deserializeUser());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Static Files
 app.use(express.static(PUBDIR));
