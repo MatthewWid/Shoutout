@@ -42,6 +42,8 @@ class PostForm extends React.Component {
 	}
 
 	render() {
+		const charsLeft = 140 - this.state.text.length;
+
 		return (
 			<div className="feed__post-form">
 				<form className="post-form" onSubmit={this.handleSubmit}>
@@ -54,8 +56,11 @@ class PostForm extends React.Component {
 						value={this.state.text}
 						onChange={this.handleChange}
 					></textarea>
-					<div className="post-form__toolbar">
-						<input type="submit" value="Post" disabled={!this.canSubmit()} />
+					<div className="post-form-toolbar">
+						<div className={`post-form-toolbar__length ${charsLeft < 0 ? "post-form-toolbar__length--disabled" : ""}`}>{charsLeft}</div>
+						<div className="post-form-toolbar__submit">
+							<input type="submit" value="Post" disabled={!this.canSubmit()} />
+						</div>
 					</div>
 				</form>
 			</div>

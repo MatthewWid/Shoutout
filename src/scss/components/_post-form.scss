@@ -29,12 +29,23 @@
 				padding-bottom: 5rem;
 			}
 		}
-		&__toolbar {
+		&-toolbar {
 			display: flex;
 			justify-content: flex-end;
+			align-items: center;
 			margin-top: 10px;
+			
+			> div:not(:last-of-type) {
+				margin-right: 10px;
+			}
+			&__length {
+				color: $text-grey;
 
-			input[type="submit"] {
+				&--disabled {
+					color: #fE1C1C;
+				}
+			}
+			&__submit input {
 				cursor: pointer;
 				padding: 10px 20px;
 				border-radius: 20px;
