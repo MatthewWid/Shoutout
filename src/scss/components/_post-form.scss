@@ -39,10 +39,10 @@
 				color: $text-bright;
 				font-weight: bold;
 
-				transition: background-color .2s ease;
+				transition: opacity .2s ease;
 
 				&[disabled] {
-					background-color: darken($border-pink, 15%);
+					opacity: .4;
 				}
 			}
 		}
