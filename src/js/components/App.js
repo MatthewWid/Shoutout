@@ -54,8 +54,8 @@ class App extends React.Component {
 		return (
 			<Fragment>
 				<Header />
-				<div className="content">
-					<div className="content__inner">
+				<div className="content-container">
+					<div className="content">
 						<UserPanel />
 						<FeedPanel
 							posts={this.state.posts}
