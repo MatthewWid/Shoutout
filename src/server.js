@@ -3,7 +3,6 @@ require("dotenv").config({
 	path: "./variables.env"
 });
 
-
 // Imports
 const path = require("path");
 const mongoose = require("mongoose");

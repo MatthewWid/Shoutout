@@ -38,6 +38,12 @@
 
 				color: $text-bright;
 				font-weight: bold;
+
+				transition: background-color .2s ease;
+
+				&[disabled] {
+					background-color: darken($border-pink, 15%);
+				}
 			}
 		}
 	}
