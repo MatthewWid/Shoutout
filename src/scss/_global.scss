@@ -1,41 +1,14 @@
-@import "./sections/_UserPanel.scss";
-@import "./sections/_PostFeed.scss";
-@import "./sections/_SiteInfo.scss";
-
 body {
 	background-color: $bg-dark;
 	font-family: "Arial", sans-serif;
 	color: $text-bright;
 }
 
-@import "./components/_header.scss";
+@import "./sections/_UserPanel.scss";
+@import "./sections/_PostFeed.scss";
+@import "./sections/_SiteInfo.scss";
+@import "./sections/content.scss";
 
-.content-container {
-	padding-top: 80px;
-
-	.content {
-		max-width: $content-width;
-		margin: 0 auto;
-		display: flex;
-		align-items: flex-start;
-
-		&__panel {
-			flex: 1;
-			background-color: $bg-panel;
-			border: 1px solid $border-panel;
-			border-radius: 2px;
-		}
-		.user {
-			@include UserPanel;
-		}
-		.feed {
-			@include PostFeed;
-		}
-		.site-info {
-			@include SiteInfo;
-		}
-	}
-}
-
-@import "./components/_post-form.scss";
-@import "./components/_post.scss";
+@import "./components/_Header.scss";
+@import "./components/_PostForm.scss";
+@import "./components/_Post.scss";

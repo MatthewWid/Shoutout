@@ -1,0 +1,26 @@
+.content-container {
+	padding-top: 80px;
+
+	.content {
+		max-width: $content-width;
+		margin: 0 auto;
+		display: flex;
+		align-items: flex-start;
+
+		&__panel {
+			flex: 1;
+			background-color: $bg-panel;
+			border: 1px solid $border-panel;
+			border-radius: 2px;
+		}
+		.user {
+			@include UserPanel;
+		}
+		.feed {
+			@include PostFeed;
+		}
+		.site-info {
+			@include SiteInfo;
+		}
+	}
+}
