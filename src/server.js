@@ -25,17 +25,15 @@ const {connection: db} = mongoose;
 
 // Models
 require("./models/User.js");
-const posts = require("./models/Post.js");
-console.log('SEVRER POSTS');
-console.log(posts);
-process.exit();
+require("./models/Post.js");
 
 // Authentication
-// passport.use(userModel.createStrategy());
-// passport.serializeUser(userModel.serializeUser());
-// passport.deserializeUser(userModel.deserializeUser());
-// app.use(passport.initialize());
-// app.use(passport.session());
+const userModel = mongoose.model("User");
+passport.use(userModel.createStrategy());
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Static Files
 app.use(express.static(PUBDIR));
