@@ -12,7 +12,7 @@ class Post extends React.Component {
 			<div className="post">
 				<div className="post__info">
 					<div
-						className="post__info-age"
+						className="post__age"
 						title={dayjs(post.created).format("dddd DD/MM/YYYY ss:mm:hh")}
 					>
 						{dayjs(post.created).fromNow()}
