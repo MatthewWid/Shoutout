@@ -2,27 +2,31 @@
 	padding: 10px;
 
 	.post-form {
-		input {
+		input, textarea {
 			background: none;
 			border: none;
 			outline: none;
 			box-sizing: border-box;
 		}
-		input[name="text"] {
+		textarea[name="text"] {
 			display: block;
 			width: 100%;
 			padding: 10px;
 			border-radius: 10px;
 			border: 1px solid $border-pink;
+			resize: none;
+			overflow: hidden;
 			
-			color: $text-bright;
 			font-size: 1.1rem;
+			line-height: 1.1rem;
+			font-family: inherit;
+			color: $text-bright;
 
 			transition: border-radius .1s ease, padding-bottom .1s ease;
 
-			&:focus, &:not([value=""]) {
+			&:focus, &:valid {
 				border-radius: 5px;
-				padding-bottom: 3rem;
+				padding-bottom: 5rem;
 			}
 		}
 		&__toolbar {

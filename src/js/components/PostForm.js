@@ -16,8 +16,6 @@ class PostForm extends React.Component {
 	handleChange = ({target}) => {
 		const state = {...this.state};
 
-		console.log(target.value, target.value.length);
-
 		this.setState({
 			[target.name]: target.value
 		});
@@ -47,13 +45,15 @@ class PostForm extends React.Component {
 		return (
 			<div className="feed__post-form">
 				<form className="post-form" onSubmit={this.handleSubmit}>
-					<input
+					<textarea
 						type="text"
 						name="text"
+						required
 						placeholder="News, politics, cats..."
+						rows="1"
 						value={this.state.text}
 						onChange={this.handleChange}
-					/>
+					></textarea>
 					<div className="post-form__toolbar">
 						<input type="submit" value="Post" disabled={!this.canSubmit()} />
 					</div>
