@@ -28,23 +28,14 @@ class App extends React.Component {
 			text
 		})
 			.then((res) => {
-				this.addPost(res.data);
+				this.addPosts([res.data]);
 			});
 	}
 
-	// Add a single Post to state
-	addPost = (newPost) => {
-		const posts = [...this.state.posts];
-		posts.unshift(newPost);
-		this.setState({
-			posts
-		});
-	}
-
 	// Add an array of Posts to state
-	addPosts = (newPosts) => {
+	addPosts = (newPosts = []) => {
 		const posts = [...this.state.posts];
-		posts.push(...newPosts);
+		posts.unshift(...newPosts);
 		this.setState({
 			posts
 		});
