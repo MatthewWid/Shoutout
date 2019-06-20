@@ -12,6 +12,29 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.getAllPosts();
+
+		// // Create Account
+		// axios.post("/api/user/register", {
+		// 	username: "Matthew",
+		// 	email: "mianamal14@gmail.com",
+		// 	password: "hunter2"
+		// }, {
+		// 	withCredentials: true
+		// })
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 	});
+
+		// // Login
+		// axios.post("/api/user/login", {
+		// 	email: "mianamal14@gmail.com",
+		// 	password: "hunter2"
+		// }, {
+		// 	withCredentials: true
+		// })
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 	});
 	}
 
 	// Retrieve array of all posts from the server

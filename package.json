@@ -23,6 +23,7 @@
     "dayjs": "^1.8.14",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-session": "^1.16.2",
     "jsonfile": "^5.0.0",
     "mini-css-extract-plugin": "^0.7.0",
     "mongodb": "^3.2.3",

@@ -10,5 +10,20 @@ exports.createUser = async (req, res, next) => {
 	});
 	const registeredUser = await User.register(newUser, password);
 
-	return next();
+	res.json(registeredUser);
+};
+
+exports.getLoggedInUser = async (req, res) => {
+	if (!req.user) {
+		return res.json({user: null});
+	}
+
+	const {_id: id, name, email} = req.user;
+	res.json({
+		user: {
+			id,
+			name,
+			email
+		}
+	});
 };

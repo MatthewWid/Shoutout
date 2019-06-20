@@ -8,6 +8,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const serveFavicon = require("serve-favicon");
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const routes = require("./middlewares/routes.js");
@@ -28,6 +29,13 @@ const {connection: db} = mongoose;
 require("./models/User.js");
 require("./models/Post.js");
 
+// Sessions
+app.use(session({
+	secret: "itsfreerealestate",
+	resave: false,
+	saveUninitialized: false
+}));
+
 // Authentication
 const userModel = mongoose.model("User");
 passport.use(userModel.createStrategy());
@@ -35,6 +43,11 @@ passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+	console.log(req.session);
+	next();
+});
 
 // Static Files
 app.use(express.static(PUBDIR));

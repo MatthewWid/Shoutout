@@ -1,9 +1,11 @@
 const passport = require("passport");
 
+exports.login = passport.authenticate("local");
+
 exports.isLoggedIn = (req, res, next) => {
 	if (req.isAuthenticated()) {
-		console.log("SERVER Is authenticated");
 		return next();
+	} else {
+		console.error("SERVER User is not authenticated.");
 	}
-	console.log("SERVER Is not authenticated");
 }
