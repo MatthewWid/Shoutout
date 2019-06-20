@@ -3,8 +3,8 @@ import React from "react";
 class Header extends React.Component {
 	render() {
 		return (
-			<div className="header">
-				<div className="header__inner">
+			<div className="header-container">
+				<div className="header">
 					<nav className="header__nav">Navigation</nav>
 					<div className="header__logo">
 						<img src="./images/logo/logo.png" alt="Shoutout" />

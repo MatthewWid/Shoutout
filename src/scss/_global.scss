@@ -8,30 +8,7 @@ body {
 	color: $text-bright;
 }
 
-.header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 56px;
-	background-color: $bg-primary;
-	color: $text-grey;
-
-	&__inner {
-		max-width: $content-width;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: 100%;
-
-		.header__logo img {
-			width: 24px;
-			height: 24px;
-			transform: rotateZ(-36deg);
-		}
-	}
-}
+@import "./components/_header.scss";
 
 .content-container {
 	padding-top: 80px;
