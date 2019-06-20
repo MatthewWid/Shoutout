@@ -2,11 +2,14 @@
 	padding: 10px;
 
 	.post-form {
-		&__text {
+		// Resets
+		&__text, &__submit input {
 			background: none;
+			border: none;
 			outline: none;
 			box-sizing: border-box;
-
+		}
+		&__text {
 			display: block;
 			width: 100%;
 			padding: 10px;
