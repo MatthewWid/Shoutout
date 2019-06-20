@@ -11,7 +11,6 @@ const serveFavicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const getManifest = require("./middlewares/getManifest.js");
 const errorHandler = require("./middlewares/errorHandler.js");
-const routes = require("./routes");
 const app = express();
 
 // Constants
@@ -46,7 +45,7 @@ app.set("view engine", "pug");
 app.use(getManifest());
 
 // Routes
-app.use("/", routes);
+app.use("/", require("./routes"));
 
 // Error Handling
 app.use(errorHandler);
