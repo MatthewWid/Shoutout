@@ -39,6 +39,7 @@ class PostForm extends React.Component {
 					<input
 						type="text"
 						name="text"
+						placeholder="News, politics, cats..."
 						value={this.state.text}
 						onChange={this.handleChange}
 					/>
