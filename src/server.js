@@ -11,6 +11,7 @@ const express = require("express");
 const serveFavicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const getManifest = require("./middlewares/getManifest.js");
+const errorHandler = require("./middlewares/errorHandler.js");
 const routes = require("./routes");
 const app = express();
 
@@ -47,6 +48,9 @@ app.use(getManifest());
 
 // Routes
 app.use("/", routes);
+
+// Error Handling
+app.use(errorHandler);
 
 // Port
 app.set("port", process.env.PORT || 80);
