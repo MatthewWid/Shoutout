@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const serveFavicon = require("serve-favicon");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const routes = require("./middlewares/routes.js");
@@ -33,7 +34,10 @@ require("./models/Post.js");
 app.use(session({
 	secret: "itsfreerealestate",
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: true,
+	store: new MongoStore({
+		mongooseConnection: db
+	})
 }));
 
 // Authentication
