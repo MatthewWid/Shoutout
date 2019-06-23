@@ -41,6 +41,12 @@ class PostForm extends React.Component {
 		});
 	}
 
+	handleKeyPress = (evt) => {
+		if (evt.charCode === 13 && !evt.shiftKey) {
+			this.handleSubmit(evt);
+		}
+	}
+
 	render() {
 		const charsLeft = 140 - this.state.text.length;
 
@@ -49,13 +55,13 @@ class PostForm extends React.Component {
 				<form className="post-form" onSubmit={this.handleSubmit}>
 					<textarea
 						className="post-form__text"
-						type="text"
 						name="text"
 						required
 						placeholder="News, politics, cats..."
 						rows="1"
 						value={this.state.text}
 						onChange={this.handleChange}
+						onKeyPress={this.handleKeyPress}
 					></textarea>
 					<div className="post-form__toolbar">
 						<div className={`post-form__length ${charsLeft < 0 ? "post-form__length--disabled" : ""}`}>{charsLeft}</div>
