@@ -1,10 +1,11 @@
+const path = require("path");
+
 // Environment Variables
 require("dotenv").config({
-	path: "./variables.env"
+	path: path.resolve(__dirname, "..", "./variables.env")
 });
 
 // Imports
-const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const serveFavicon = require("serve-favicon");
