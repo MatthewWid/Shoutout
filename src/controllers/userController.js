@@ -10,7 +10,7 @@ exports.createUser = async (req, res, next) => {
 	});
 	const registeredUser = await User.register(newUser, password);
 
-	res.json(registeredUser);
+	next();
 };
 
 exports.getLoggedInUser = async (req, res) => {
