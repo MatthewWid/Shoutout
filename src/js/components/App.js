@@ -7,34 +7,57 @@ import SiteInfoPanel from "./SiteInfoPanel.js";
 
 class App extends React.Component {
 	state = {
+		user: null,
 		posts: []
 	}
 
 	componentDidMount() {
+		this.auth();
 		this.getAllPosts();
+	}
 
-		// // Create Account
-		// axios.post("/api/user/register", {
-		// 	username: "Matthew",
-		// 	email: "mianamal14@gmail.com",
-		// 	password: "hunter2"
-		// }, {
-		// 	withCredentials: true
-		// })
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	});
+	auth = () => {
+		axios.get("/api/user/auth", {
+			withCredentials: true
+		})
+			.then((res) => {
+				console.log(res.data);
+				this.setUser(res.data.user);
+				return res.data;
+			});
+	}
 
-		// // Login
-		// axios.post("/api/user/login", {
-		// 	email: "mianamal14@gmail.com",
-		// 	password: "hunter2"
-		// }, {
-		// 	withCredentials: true
-		// })
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	});
+	signup = (username, email, password) => {
+		axios.post("/api/user/register", {
+			username,
+			email,
+			password
+		}, {
+			withCredentials: true
+		})
+			.then((res) => {
+				this.setUser(res.data.user);
+				return res.data;
+			});
+	}
+
+	login = (email, password) => {
+		axios.post("/api/user/login", {
+			email,
+			password
+		}, {
+			withCredentials: true
+		})
+			.then((res) => {
+				this.setUser(res.data.user);
+				return res.data;
+			});
+	}
+
+	setUser = (user) => {
+		this.setState({
+			user
+		});
 	}
 
 	// Retrieve array of all posts from the server
@@ -67,7 +90,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				<Header />
+				<Header user={this.state.user} />
 				<div className="content-container">
 					<div className="content">
 						<UserPanel />

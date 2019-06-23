@@ -33,7 +33,7 @@ require("./models/Post.js");
 app.use(session({
 	secret: "itsfreerealestate",
 	resave: false,
-	saveUninitialized: false
+	saveUninitialized: true
 }));
 
 // Authentication
