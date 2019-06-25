@@ -3,6 +3,15 @@ body {
 	font-family: "Arial", sans-serif;
 	color: $text-bright;
 }
+b {
+	font-weight: bold;
+}
+i {
+	font-style: italic;
+}
+u {
+	text-decoration: underline;
+}
 
 @import "./sections/_UserPanel.scss";
 @import "./sections/_PostFeed.scss";
