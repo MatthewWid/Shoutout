@@ -1,8 +1,14 @@
 import React from "react";
+import SessionDetails from "./SessionDetails.js";
 
 class Header extends React.Component {
 	render() {
-		const isLoggedIn = this.props.user !== null;
+		const {user} = this.props;
+		let sessionElement;
+
+		if (user) {} else {
+			sessionElement = <SessionDetails />;
+		}
 
 		return (
 			<div className="header-container">
@@ -11,7 +17,7 @@ class Header extends React.Component {
 					<div className="header__logo">
 						<img src="./images/logo/logo.png" alt="Shoutout" />
 					</div>
-					<div className="header__extra">{isLoggedIn}</div>
+					<div className="header__extra">{sessionElement}</div>
 				</div>
 			</div>
 		);

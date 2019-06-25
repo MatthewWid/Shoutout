@@ -21,7 +21,6 @@ class App extends React.Component {
 			withCredentials: true
 		})
 			.then((res) => {
-				console.log(res.data);
 				this.setUser(res.data.user);
 				return res.data;
 			});
