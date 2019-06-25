@@ -8,12 +8,18 @@ import SiteInfoPanel from "./SiteInfoPanel.js";
 class App extends React.Component {
 	state = {
 		user: null,
-		posts: []
+		posts: [],
+		stats: {
+			posts: 0,
+			users: 0,
+			likes: 0
+		}
 	}
 
 	componentDidMount() {
 		this.auth();
 		this.getAllPosts();
+		this.getSiteStats();
 	}
 
 	// Authenticate if the user is logged in or not (using a cookie) on page load
@@ -44,7 +50,7 @@ class App extends React.Component {
 		this.setUser(user);
 	}
 
-	// Helper to set the currently logged in user in the component state
+	// Set the currently logged in user in the component state
 	setUser = (user) => {
 		this.setState({
 			user
@@ -71,6 +77,20 @@ class App extends React.Component {
 		posts.unshift(...newPosts);
 		this.setState({
 			posts
+		});
+	}
+
+	getSiteStats = async () => {
+		const res = await axios.get("/api/stats");
+
+		const stats = {
+			...this.state.stats,
+			...res.data
+		};
+		console.log(stats);
+
+		this.setState({
+			stats
 		});
 	}
 

@@ -36,4 +36,8 @@ router.get("/posts",
 	wrap(postController.getAllPosts)
 );
 
+router.get("/stats",
+	wrap(homeController.getStats)
+);
+
 module.exports = router;

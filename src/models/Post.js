@@ -19,6 +19,21 @@ const postSchema = new mongoose.Schema({
 	}
 });
 
+postSchema.statics.getTotalLikes = async function() {
+	const [{totalLikes}] = await this.aggregate([
+		{
+			$group: {
+				_id: null,
+				totalLikes: {
+					$sum: "$likes"
+				}
+			}
+		}
+	]);
+
+	return totalLikes;
+};
+
 const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;
