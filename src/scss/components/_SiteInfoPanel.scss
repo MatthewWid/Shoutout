@@ -1,0 +1,11 @@
+.site-info {
+	padding: 10px;
+
+	> div:not(:last-of-type) {
+		margin-bottom: 10px;
+	}
+	&__copyright {
+		color: $text-grey;
+		text-align: center;
+	}
+}

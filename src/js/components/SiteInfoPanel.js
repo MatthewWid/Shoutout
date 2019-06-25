@@ -1,10 +1,13 @@
 import React from "react";
+import SiteStats from "./SiteStats.js";
 
-const SiteInfoPanel = () => {
+const SiteInfoPanel = (props) => {
 	return (
 		<div className="content__panel site-info">
-			<p>Site Info</p>
-			<p>&copy; {(new Date()).getFullYear()} Matthew W.</p>
+			<SiteStats stats={props.stats} />
+			<div className="site-info__copyright">
+				<p>&copy; {(new Date()).getFullYear()} Matthew W.</p>
+			</div>
 		</div>
 	);
 };

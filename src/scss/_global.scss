@@ -12,6 +12,24 @@ i {
 u {
 	text-decoration: underline;
 }
+h1 {
+	font-size: 2rem;
+}
+h2 {
+	font-size: 1.5rem;
+}
+h3 {
+	font-size: 1.17rem;
+}
+h4 {
+	font-size: 1rem;
+}
+h5 {
+	font-size: .83rem;
+}
+h6 {
+	font-size: .75rem;
+}
 
 @import "./sections/_UserPanel.scss";
 @import "./sections/_PostFeed.scss";
@@ -22,3 +40,5 @@ u {
 @import "./components/_SessionDetails.scss";
 @import "./components/_PostForm.scss";
 @import "./components/_Post.scss";
+@import "./components/_SiteInfoPanel.scss";
+@import "./components/_SiteStats.scss";

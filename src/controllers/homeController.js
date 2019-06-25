@@ -10,13 +10,13 @@ exports.indexPage = (req, res) => {
 
 exports.getStats = async (req, res) => {
 	const stats = {
-		posts: 0,
 		users: 0,
+		posts: 0,
 		likes: 0
 	};
 
-	stats.posts = await Post.countDocuments();
 	stats.users = await User.countDocuments();
+	stats.posts = await Post.countDocuments();
 	stats.likes = await Post.getTotalLikes();
 
 	res.json(stats);

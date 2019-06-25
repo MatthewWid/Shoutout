@@ -10,8 +10,8 @@ class App extends React.Component {
 		user: null,
 		posts: [],
 		stats: {
-			posts: 0,
 			users: 0,
+			posts: 0,
 			likes: 0
 		}
 	}
@@ -80,6 +80,7 @@ class App extends React.Component {
 		});
 	}
 
+	// Get website statistics (total posts, users and likes) and set them in state
 	getSiteStats = async () => {
 		const res = await axios.get("/api/stats");
 
@@ -87,7 +88,6 @@ class App extends React.Component {
 			...this.state.stats,
 			...res.data
 		};
-		console.log(stats);
 
 		this.setState({
 			stats
@@ -105,7 +105,7 @@ class App extends React.Component {
 							posts={this.state.posts}
 							postMessage={this.postMessage}
 						/>
-						<SiteInfoPanel />
+						<SiteInfoPanel stats={this.state.stats} />
 					</div>
 				</div>
 			</Fragment>
