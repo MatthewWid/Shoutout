@@ -7,7 +7,9 @@ const userController = require("../controllers/userController.js");
 const postController = require("../controllers/postController.js");
 
 // Debug API test response
-router.get("/ping", (req, res) => res.send("pong"));
+router.get("/ping",
+	homeController.ping
+);
 
 // Authenticate and return the user from a given session if the session is valid
 router.get("/user/auth",
@@ -26,8 +28,12 @@ router.post("/user/login",
 );
 
 // Create a new post
-router.post("/post", wrap(postController.createPost));
+router.post("/post",
+	wrap(postController.createPost)
+);
 // Get an array of all existing posts
-router.get("/posts", wrap(postController.getAllPosts));
+router.get("/posts",
+	wrap(postController.getAllPosts)
+);
 
 module.exports = router;
