@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 const Post = mongoose.model("Post");
 
-// Render the index page
-exports.indexPage = (req, res) => {
-	res.render("index");
-};
-
 // Create a single new post
 exports.createPost = async (req, res) => {
 	const {text} = req.body;

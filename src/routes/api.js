@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const wrap = require("../helpers/wrapAsync");
 
+const homeController = require("../controllers/homeController.js");
 const authController = require("../controllers/authController.js");
 const userController = require("../controllers/userController.js");
 const postController = require("../controllers/postController.js");
