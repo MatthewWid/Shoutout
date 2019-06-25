@@ -17,7 +17,7 @@ router.get("/user/auth",
 );
 // Register a new user with a name, email and password
 router.post("/user/register",
-	userController.createUser,
+	wrap(userController.createUser),
 	authController.login,
 	userController.getLoggedInUser
 );

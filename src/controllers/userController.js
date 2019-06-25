@@ -13,7 +13,7 @@ exports.createUser = async (req, res, next) => {
 	next();
 };
 
-exports.getLoggedInUser = async (req, res) => {
+exports.getLoggedInUser = (req, res) => {
 	if (!req.user) {
 		return res.json({user: null});
 	}
