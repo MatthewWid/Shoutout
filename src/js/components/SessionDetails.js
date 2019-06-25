@@ -6,8 +6,10 @@ class SessionDetails extends React.Component {
 	}
 
 	toggleForm = () => {
+		const formOpen = !this.state.formOpen;
+
 		this.setState({
-			formOpen: !this.state.formOpen
+			formOpen
 		});
 	}
 
