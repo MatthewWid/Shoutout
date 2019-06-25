@@ -16,12 +16,14 @@ class App extends React.Component {
 		this.getAllPosts();
 	}
 
+	// Authenticate if the user is logged in or not (using a cookie) on page load
 	auth = async () => {
 		const {data: {user}} = await axios.get("/api/user/auth", {withCredentials: true});
 
 		this.setUser(user);
 	}
 
+	// Create a new user and log them in
 	signup = async (username, email, password) => {
 		const {data: {user}} = await	axios.post("/api/user/register", {
 			username,
@@ -32,6 +34,7 @@ class App extends React.Component {
 		this.setUser(user);
 	}
 
+	// Log in existing user
 	login = async (email, password) => {
 		const {data: {user}} = await axios.post("/api/user/login", {
 			email,
@@ -41,8 +44,11 @@ class App extends React.Component {
 		this.setUser(user);
 	}
 
+	// Helper to set the currently logged in user in the component state
 	setUser = (user) => {
-		this.setState({user});
+		this.setState({
+			user
+		});
 	}
 
 	// Retrieve array of all posts from the server
