@@ -16,65 +16,47 @@ class App extends React.Component {
 		this.getAllPosts();
 	}
 
-	auth = () => {
-		axios.get("/api/user/auth", {
-			withCredentials: true
-		})
-			.then((res) => {
-				this.setUser(res.data.user);
-				return res.data;
-			});
+	auth = async () => {
+		const {data: {user}} = await axios.get("/api/user/auth", {withCredentials: true});
+
+		this.setUser(user);
 	}
 
-	signup = (username, email, password) => {
-		axios.post("/api/user/register", {
+	signup = async (username, email, password) => {
+		const {data: {user}} = await	axios.post("/api/user/register", {
 			username,
 			email,
 			password
-		}, {
-			withCredentials: true
-		})
-			.then((res) => {
-				this.setUser(res.data.user);
-				return res.data;
-			});
+		}, {withCredentials: true});
+
+		this.setUser(user);
 	}
 
-	login = (email, password) => {
-		axios.post("/api/user/login", {
+	login = async (email, password) => {
+		const {data: {user}} = await axios.post("/api/user/login", {
 			email,
 			password
-		}, {
-			withCredentials: true
-		})
-			.then((res) => {
-				this.setUser(res.data.user);
-				return res.data;
-			});
+		}, {withCredentials: true});
+
+		this.setUser(user);
 	}
 
 	setUser = (user) => {
-		this.setState({
-			user
-		});
+		this.setState({user});
 	}
 
 	// Retrieve array of all posts from the server
-	getAllPosts = () => {
-		axios.get("/api/posts")
-			.then((res) => {
-				this.addPosts(res.data);
-			});
+	getAllPosts = async () => {
+		const {data} = await axios.get("/api/posts");
+
+		this.addPosts(data);
 	}
 
 	// Send a new Post to the server
-	postMessage = ({text}) => {
-		axios.post("/api/post", {
-			text
-		})
-			.then((res) => {
-				this.addPosts([res.data]);
-			});
+	postMessage = async ({text}) => {
+		const {data} = await axios.post("/api/post", {text});
+
+		this.addPosts([data]);
 	}
 
 	// Add an array of Posts to state
