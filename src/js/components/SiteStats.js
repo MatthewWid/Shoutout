@@ -6,7 +6,6 @@ const SiteStats = (props) => {
 
 	return (
 		<div className="stats">
-			<h1>Site Stats</h1>
 			<div className="stats__list">
 				<SiteStat stat="Users" number={users} />
 				<SiteStat stat="Posts" number={posts} />
