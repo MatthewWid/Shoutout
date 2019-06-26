@@ -1,9 +1,9 @@
 .post-list {
 	& > div:first-of-type {
-		border-top: 1px solid $border-panel;
+		border-top: 1px solid $blue-dark;
 	}
 	& > div:not(:last-of-type) {
-		border-bottom: 1px solid $border-panel;
+		border-bottom: 1px solid $blue-dark;
 	}
 }
 .post {
