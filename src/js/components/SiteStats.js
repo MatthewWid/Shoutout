@@ -1,4 +1,5 @@
 import React from "react";
+import SiteStat from "./SiteStat.js";
 
 const SiteStats = (props) => {
 	const {users, posts, likes} = props.stats;
@@ -7,9 +8,9 @@ const SiteStats = (props) => {
 		<div className="stats">
 			<h1>Site Stats</h1>
 			<div className="stats__list">
-				<div className="stats__stat">Site Stat</div>
-				<div className="stats__stat">Site Stat</div>
-				<div className="stats__stat">Site Stat</div>
+				<SiteStat stat="Users" number={users} />
+				<SiteStat stat="Posts" number={posts} />
+				<SiteStat stat="Likes" number={likes} />
 			</div>
 		</div>
 	);
