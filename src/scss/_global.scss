@@ -30,6 +30,12 @@ h5 {
 h6 {
 	font-size: .75rem;
 }
+input, textarea {
+	background: none;
+	border: none;
+	outline: none;
+	box-sizing: border-box;
+}
 
 @import "./sections/_UserPanel.scss";
 @import "./sections/_PostFeed.scss";

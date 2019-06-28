@@ -1,5 +1,16 @@
 .session {
+	position: relative;
+	display: flex;
+	align-items: center;
+
 	&__login-link {
 		cursor: pointer;
+	}
+	&__dropdown {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		background-color: $bg-primary;
+		padding: 10px;
 	}
 }
