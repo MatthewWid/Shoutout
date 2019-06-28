@@ -12,13 +12,13 @@ class Header extends React.Component {
 
 		return (
 			<div className="header-container">
-				<div className="header">
+				<header className="header">
 					<nav className="header__nav">Navigation</nav>
 					<div className="header__logo">
 						<img src="./images/logo/logo.png" alt="Shoutout" />
 					</div>
 					<div className="header__extra">{sessionElement}</div>
-				</div>
+				</header>
 			</div>
 		);
 	}
