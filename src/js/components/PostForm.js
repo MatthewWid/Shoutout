@@ -66,7 +66,7 @@ class PostForm extends React.Component {
 					<div className="post-form__toolbar">
 						<div className={`post-form__length ${charsLeft < 0 ? "post-form__length--disabled" : ""}`}>{charsLeft}</div>
 						<input
-							className="post-form__submit"
+							className="post-form__submit button button--primary"
 							type="submit"
 							value="Post"
 							disabled={!this.canSubmit()}

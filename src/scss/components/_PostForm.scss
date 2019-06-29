@@ -40,21 +40,5 @@
 				color: #fE1C1C;
 			}
 		}
-		&__submit {
-				cursor: pointer;
-				padding: 10px 20px;
-				border-radius: 20px;
-				background-color: $accent-pink;
-
-				color: $text-bright;
-				font-weight: bold;
-
-				transition: opacity .2s ease;
-
-				&[disabled] {
-					cursor: not-allowed;
-					opacity: .4;
-				}
-			}
 	}
 }

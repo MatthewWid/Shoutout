@@ -37,11 +37,13 @@ input, textarea {
 	box-sizing: border-box;
 }
 
+// Sections
 @import "./sections/_UserPanel.scss";
 @import "./sections/_PostFeed.scss";
 @import "./sections/_SiteInfo.scss";
 @import "./sections/content.scss";
 
+// React Components
 @import "./components/_Header.scss";
 @import "./components/_LoginForm.scss";
 @import "./components/_SessionDetails.scss";
@@ -49,3 +51,6 @@ input, textarea {
 @import "./components/_Post.scss";
 @import "./components/_SiteInfoPanel.scss";
 @import "./components/_SiteStats.scss";
+
+// Partials
+@import "./partials/_button.scss";
