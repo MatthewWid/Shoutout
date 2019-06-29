@@ -28,6 +28,7 @@ class LoginForm extends React.Component {
 					required
 					placeholder="Email"
 					value={this.state.username}
+					onChange={this.handleChange}
 				/>
 			</form>
 		);
