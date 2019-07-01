@@ -1,7 +1,4 @@
 .post-list {
-	& > div:first-of-type {
-		border-top: 1px solid $blue-mid;
-	}
 	& > div:not(:last-of-type) {
 		border-bottom: 1px solid $blue-mid;
 	}
