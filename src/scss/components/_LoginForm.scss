@@ -2,17 +2,4 @@
 	:not(:last-child) {
 		margin-bottom: 10px;
 	}
-	&__input {
-		width: 100%;
-		font-size: 1rem;
-		color: $text-bright;
-		border: 1px solid $grey-mid;
-		border-radius: 3px;
-		padding: 4px 10px;
-	}
-	&__submit {
-		display: block;
-		margin-left: auto;
-		margin-right: 0;
-	}
 }

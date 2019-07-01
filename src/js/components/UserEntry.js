@@ -4,7 +4,7 @@ import SignupForm from "./SignupForm.js";
 
 class UserEntry extends React.Component {
 	state = {
-		login: true
+		login: false
 	}
 
 	render() {

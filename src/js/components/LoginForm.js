@@ -1,7 +1,7 @@
 import React from "react";
 
 const defaultState = {
-	username: "",
+	email: "",
 	password: ""
 };
 
@@ -23,16 +23,16 @@ class LoginForm extends React.Component {
 			<form className="login-form">
 				<p>Log in to your account</p>
 				<input
-					className="login-form__input login-form__email"
+					className="user-entry__input login-form__email"
 					type="text"
-					name="username"
+					name="email"
 					required
 					placeholder="Email"
-					value={this.state.username}
+					value={this.state.email}
 					onChange={this.handleChange}
 				/>
 				<input
-					className="login-form__input login-form__password"
+					className="user-entry__input login-form__password"
 					type="password"
 					name="password"
 					required
@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<input
-					className="login-form__submit button button--primary"
+					className="user-entry__submit button button--primary"
 					type="submit"
 					value="Log In"
 				/>
