@@ -5,13 +5,15 @@ class SignupForm extends React.Component {
 		return (
 			<form className="signup-form">
 				<p>Create an account</p>
-				<input
-					className="user-entry__input signup-form__username"
-					type="text"
-					name="username"
-					required
-					placeholder="Username"
-				/>
+				<div className="signup-form__username-container">
+					<input
+						className="user-entry__input signup-form__username"
+						type="text"
+						name="username"
+						required
+						placeholder="Username"
+					/>
+				</div>
 				<input
 					className="user-entry__input signup-form__email"
 					type="text"

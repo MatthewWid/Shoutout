@@ -1,5 +1,30 @@
 .signup-form {
 	:not(:last-child) {
-		margin-bottom: 10px;
+		margin-bottom: 12px;
+	}
+	&__username-container {
+		position: relative;
+
+		&:before {
+			content: "@";
+			color: $text-bright;
+			background-color: $blue-mid;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: -1px;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 40px;
+		}
+	}
+	&__username {
+		padding-left: 45px;
 	}
 }
