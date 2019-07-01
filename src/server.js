@@ -32,13 +32,19 @@ require("./models/User.js");
 require("./models/Post.js");
 
 // Sessions
+const maxAge = 1000 * 60 * 60 * 24 * 30 * 3; // 3 Months
 app.use(session({
+	name: "session",
+	cookie: {
+		maxAge
+	},
 	secret: "itsfreerealestate",
 	resave: false,
 	saveUninitialized: true,
 	store: new MongoStore({
 		mongooseConnection: db
-	})
+	}),
+	maxAge
 }));
 
 // Authentication
