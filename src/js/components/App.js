@@ -31,7 +31,7 @@ class App extends React.Component {
 
 	// Create a new user and log them in
 	signup = async (username, email, password) => {
-		const {data: {user}} = await	axios.post("/api/user/register", {
+		const {data: {user}} = await axios.post("/api/user/register", {
 			username,
 			email,
 			password
@@ -97,7 +97,12 @@ class App extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				<Header user={this.state.user} />
+				{/* Redux? */}
+				<Header
+					user={this.state.user}
+					login={this.login}
+					signup={this.signup}
+				/>
 				<div className="content-container">
 					<div className="content">
 						<UserPanel />

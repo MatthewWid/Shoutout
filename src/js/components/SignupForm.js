@@ -1,9 +1,41 @@
 import React from "react";
 
+const defaultState = {
+	username: "",
+	email: "",
+	password: ""
+};
+
 class SignupForm extends React.Component {
+	state = {
+		...defaultState
+	}
+
+	handleChange = ({target}) => {
+		const state = {...this.state};
+
+		this.setState({
+			[target.name]: target.value
+		});
+	}
+
+	handleSubmit = (evt) => {
+		evt.preventDefault();
+
+		const {username, email, password} = this.state;
+		this.props.signup(username, email, password);
+
+		this.setState({
+			...defaultState
+		});
+	}
+
 	render() {
 		return (
-			<form className="signup-form">
+			<form
+				className="signup-form"
+				onSubmit={this.handleSubmit}
+			>
 				<p>Create an account</p>
 				<div className="signup-form__username-container">
 					<input
@@ -12,6 +44,8 @@ class SignupForm extends React.Component {
 						name="username"
 						required
 						placeholder="Username"
+						value={this.state.username}
+						onChange={this.handleChange}
 					/>
 				</div>
 				<input
@@ -20,6 +54,8 @@ class SignupForm extends React.Component {
 					name="email"
 					required
 					placeholder="Email Address"
+					value={this.state.email}
+					onChange={this.handleChange}
 				/>
 				<input
 					className="user-entry__input signup-form__password"
@@ -27,6 +63,8 @@ class SignupForm extends React.Component {
 					name="password"
 					required
 					placeholder="Password"
+					value={this.state.password}
+					onChange={this.handleChange}
 				/>
 				<input
 					className="user-entry__submit button button--primary"

@@ -21,7 +21,10 @@ class SessionDetails extends React.Component {
 					Have an account? <b>Log in</b>
 				</p>
 				<div className={`session__dropdown ${this.state.formOpen ? "session__dropdown--open" : ""}`}>
-					<UserEntry />
+					<UserEntry
+						login={this.props.login}
+						signup={this.props.signup}
+					/>
 				</div>
 			</div>
 		);

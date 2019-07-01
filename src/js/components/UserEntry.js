@@ -18,10 +18,10 @@ class UserEntry extends React.Component {
 	render() {
 		let form, prompt;
 		if (this.state.login) {
-			form = <LoginForm />
+			form = <LoginForm login={this.props.login} />
 			prompt = <p className="user-entry__prompt" onClick={this.toggleForm}>New to the site? <b>Sign Up</b></p>;
 		} else {
-			form = <SignupForm />
+			form = <SignupForm signup={this.props.signup} />
 			prompt = <p className="user-entry__prompt" onClick={this.toggleForm}>Already have an account? <b>Log In</b></p>;
 		}
 

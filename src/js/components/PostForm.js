@@ -52,7 +52,10 @@ class PostForm extends React.Component {
 
 		return (
 			<div className="post-form-container">
-				<form className="post-form" onSubmit={this.handleSubmit}>
+				<form
+					className="post-form"
+					onSubmit={this.handleSubmit}
+				>
 					<textarea
 						className="post-form__text"
 						name="text"

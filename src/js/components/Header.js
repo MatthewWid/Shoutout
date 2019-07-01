@@ -3,11 +3,15 @@ import SessionDetails from "./SessionDetails.js";
 
 class Header extends React.Component {
 	render() {
-		const {user} = this.props;
 		let sessionElement;
 
-		if (user) {} else {
-			sessionElement = <SessionDetails />;
+		if (this.props.user) {} else {
+			sessionElement = (
+				<SessionDetails
+					login={this.props.login}
+					signup={this.props.signup}
+				/>
+			);
 		}
 
 		return (
