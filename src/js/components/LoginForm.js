@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
 			<form className="login-form">
 				<p>Log in to your account</p>
 				<input
-					className="login-form__input login-form__username"
+					className="login-form__input login-form__email"
 					type="text"
 					name="username"
 					required
