@@ -7,20 +7,28 @@ class UserEntry extends React.Component {
 		login: false
 	}
 
+	toggleForm = () => {
+		const login = !this.state.login;
+
+		this.setState({
+			login
+		});
+	}
+
 	render() {
 		let form, prompt;
 		if (this.state.login) {
 			form = <LoginForm />
-			prompt = <p className="user-entry__prompt">New to the site? <b>Sign Up</b></p>;
+			prompt = <p className="user-entry__prompt" onClick={this.toggleForm}>New to the site? <b>Sign Up</b></p>;
 		} else {
 			form = <SignupForm />
-			prompt = <p className="user-entry__prompt">Already have an account? <b>Log In</b></p>;
+			prompt = <p className="user-entry__prompt" onClick={this.toggleForm}>Already have an account? <b>Log In</b></p>;
 		}
 
 		return (
 			<div className="user-entry">
 				{form}
-				<hr classname="user-entry__divider" />
+				<hr className="user-entry__divider" />
 				{prompt}
 			</div>
 		);
