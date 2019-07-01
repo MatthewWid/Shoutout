@@ -14,6 +14,7 @@
 		right: 0;
 		min-width: 300px;
 		background-color: $blue-darker;
+		box-shadow: 0 0 12px 4px $grey-darkest;
 		
 		&:before {
 			content: "";

@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "./LoginForm.js";
+import UserEntry from "./UserEntry.js";
 
 class SessionDetails extends React.Component {
 	state = {
@@ -21,7 +21,7 @@ class SessionDetails extends React.Component {
 					Have an account? <b>Log in</b>
 				</p>
 				<div className={`session__dropdown ${this.state.formOpen ? "session__dropdown--open" : ""}`}>
-					<LoginForm />
+					<UserEntry />
 				</div>
 			</div>
 		);

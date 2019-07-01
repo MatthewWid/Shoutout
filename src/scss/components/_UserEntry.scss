@@ -1,0 +1,12 @@
+.user-entry {
+	padding: 15px;
+	
+	> :not(:last-child) {
+		margin-bottom: 15px;
+	}
+	hr {
+		border: none;
+		height: 1px;
+		background-color: $blue-mid;
+	}
+}

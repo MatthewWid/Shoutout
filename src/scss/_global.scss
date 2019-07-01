@@ -45,10 +45,15 @@ input, textarea {
 
 // React Components
 @import "./components/_Header.scss";
-@import "./components/_LoginForm.scss";
+
 @import "./components/_SessionDetails.scss";
+@import "./components/_UserEntry.scss";
+@import "./components/_LoginForm.scss";
+@import "./components/_SignupForm.scss";
+
 @import "./components/_PostForm.scss";
 @import "./components/_Post.scss";
+
 @import "./components/_SiteInfoPanel.scss";
 @import "./components/_SiteStats.scss";
 
