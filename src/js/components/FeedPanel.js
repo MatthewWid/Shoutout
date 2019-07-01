@@ -5,7 +5,7 @@ import PostList from "./PostList.js";
 const FeedPanel = (props) => {
 	return (
 		<main className="content__panel feed">
-			{props.user && <PostForm postMessage={props.postMessage} />}
+			{props.user && <PostForm user={props.user} postMessage={props.postMessage} />}
 			<PostList posts={props.posts} />
 		</main>
 	);

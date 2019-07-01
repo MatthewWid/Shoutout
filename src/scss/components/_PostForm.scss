@@ -1,45 +1,54 @@
-.post-form-container {
-	padding: 10px;
+.post-form {
 	border-bottom: 1px solid $blue-mid;
+	
+	&__form, &__author {
+		margin: 10px;
+	}
+	&__author {
+		color: $text-grey;
+		margin-bottom: 10px;
 
-	.post-form {
-		&__text {
-			display: block;
-			width: 100%;
-			padding: 10px;
-			border-radius: 10px;
-			border: 1px solid $accent-pink;
-			resize: none;
-			overflow: hidden;
-			
-			font-size: 1.1rem;
-			line-height: 1.1rem;
-			font-family: inherit;
+		b {
 			color: $text-bright;
-
-			transition: border-radius .1s ease, padding-bottom .1s ease;
-
-			&:focus, &:valid {
-				border-radius: 5px;
-				padding-bottom: 5rem;
-			}
+			font-weight: normal;
 		}
-		&__toolbar {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			margin-top: 10px;
-			
-			:not(:last-child) {
-				margin-right: 10px;
-			}
-		}
-		&__length {
-			color: $text-grey;
+	}
+	&__text {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		border-radius: 10px;
+		border: 1px solid $accent-pink;
+		resize: none;
+		overflow: hidden;
+		
+		font-size: 1.1rem;
+		line-height: 1.1rem;
+		font-family: inherit;
+		color: $text-bright;
 
-			&--disabled {
-				color: $red;
-			}
+		transition: border-radius .1s ease, padding-bottom .1s ease;
+
+		&:focus, &:valid {
+			border-radius: 5px;
+			padding-bottom: 5rem;
+		}
+	}
+	&__toolbar {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-top: 10px;
+		
+		:not(:last-child) {
+			margin-right: 10px;
+		}
+	}
+	&__length {
+		color: $text-grey;
+
+		&--disabled {
+			color: $red;
 		}
 	}
 }

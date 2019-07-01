@@ -51,9 +51,10 @@ class PostForm extends React.Component {
 		const charsLeft = 140 - this.state.text.length;
 
 		return (
-			<div className="post-form-container">
+			<div className="post-form">
+				<p className="post-form__author">Post as <b>@{this.props.user.name}</b></p>
 				<form
-					className="post-form"
+					className="post-form__form"
 					onSubmit={this.handleSubmit}
 				>
 					<textarea
