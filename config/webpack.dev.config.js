@@ -8,7 +8,8 @@ const config = {
 			root: path.resolve(__dirname, "..", "/public/"),
 			cleanOnceBeforeBuildPatterns: ["!.gitkeep"]
 		})
-	]
+	],
+	stats: "minimal"
 };
 
 module.exports = config;

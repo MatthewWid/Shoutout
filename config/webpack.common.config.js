@@ -51,7 +51,9 @@ const config = {
 		new ManifestPlugin({
 			fileName: path.join(SRCDIR, "./webpack-manifest.json")
 		}),
-		new FixStyleOnlyEntirePlugin(),
+		new FixStyleOnlyEntirePlugin({
+			silent: true
+		}),
 		new MiniCssExtractPlugin({
 			filename: `${FILENAME}.css`
 		})

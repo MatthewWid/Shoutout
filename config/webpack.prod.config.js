@@ -1,5 +1,6 @@
 const config = {
-	mode: "production"
+	mode: "production",
+	stats: "errors-only"
 };
 
 module.exports = config;
