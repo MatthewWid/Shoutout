@@ -18,9 +18,23 @@ class LoginForm extends React.Component {
 		});
 	}
 
+	handleSubmit = (evt) => {
+		evt.preventDefault();
+
+		const {email, password} = this.state;
+		this.props.login(email, password);
+
+		this.setState({
+			...defaultState
+		});
+	}
+
 	render() {
 		return (
-			<form className="login-form">
+			<form
+				className="login-form"
+				onSubmit={this.handleSubmit}
+			>
 				<p>Log in to your account</p>
 				<input
 					className="user-entry__input login-form__email"
