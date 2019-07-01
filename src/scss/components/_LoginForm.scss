@@ -1,6 +1,6 @@
 .login-form {
 	padding: 15px;
-	box-shadow: 0 0 12px 4px #1a1a1a;
+	box-shadow: 0 0 12px 4px $grey-darkest;
 
 	:not(:last-child) {
 		margin-bottom: 10px;

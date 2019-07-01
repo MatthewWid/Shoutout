@@ -7,13 +7,30 @@
 		cursor: pointer;
 	}
 	&__dropdown {
+		$dim: 20px;
 		display: none;
 		position: absolute;
-		top: 100%;
+		top: 56px + $dim / 2;
 		right: 0;
 		min-width: 300px;
 		background-color: $blue-darker;
+		
+		&:before {
+			content: "";
+			width: 0;
+			height: 0;
 
+			position: absolute;
+			bottom: 100%;
+			right: 10%;
+
+			border-top: $dim solid transparent;
+			border-left: $dim solid transparent;
+			border-right: $dim solid transparent;
+			border-bottom: $dim solid $blue-darker;
+
+			filter: drop-shadow(0px -5px 6px $grey-darkest);
+		}
 		&--open {
 			display: block;
 		}
