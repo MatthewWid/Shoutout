@@ -1,4 +1,10 @@
 {
-	"ignore": ["node_modules/*", "public/*", "webpack-manifest.json"],
+	"ignore": [
+		"node_modules/*",
+		"public/*",
+		"webpack-manifest.json",
+		"src/js/*",
+		"src/scss/*"
+	],
 	"ext": "js,jsx,json,pug,scss,sass"
 }
