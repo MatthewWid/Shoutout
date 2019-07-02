@@ -2,6 +2,10 @@ const passport = require("passport");
 
 exports.login = passport.authenticate("local");
 
+exports.logout = (req, res, next) => {
+	req.logout();
+};
+
 exports.isLoggedIn = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
@@ -11,4 +15,4 @@ exports.isLoggedIn = (req, res, next) => {
 			error: "User is not logged in"
 		});
 	}
-}
+};
