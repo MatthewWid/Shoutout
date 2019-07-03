@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Schema
 const postSchema = new mongoose.Schema({
 	text: {
 		type: String,
@@ -26,6 +27,7 @@ const postSchema = new mongoose.Schema({
 	}
 });
 
+// Statics
 postSchema.statics.getTotalLikes = async function() {
 	const [aggregate = {totalLikes: 0}] = await this.aggregate([
 		{
@@ -42,6 +44,16 @@ postSchema.statics.getTotalLikes = async function() {
 	return totalLikes;
 };
 
+// Middleware
+function autopopulate(next) {
+	this.populate("author", "name email");
+	next();
+}
+postSchema.pre("find", autopopulate);
+postSchema.pre("findOne", autopopulate);
+postSchema.pre("findById", autopopulate);
+
+// Model
 const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;
