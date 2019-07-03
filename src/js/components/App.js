@@ -43,7 +43,8 @@ class App extends React.Component {
 	}
 
 	// Log in existing user
-	login = async (email, password) => {
+	login = async (loginInfo) => {
+		const {email, password} = loginInfo;
 		const {data: {user}} = await axios.post("/api/user/login", {
 			email,
 			password
