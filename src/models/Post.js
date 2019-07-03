@@ -10,12 +10,19 @@ const postSchema = new mongoose.Schema({
 	},
 	likes: {
 		type: Number,
+		required: true,
 		default: 0,
 		min: 0
 	},
 	created: {
 		type: Date,
+		required: true,
 		default: Date.now
+	},
+	author: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: "Posts must have an author.",
+		ref: "User"
 	}
 });
 
