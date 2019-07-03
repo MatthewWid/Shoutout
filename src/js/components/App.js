@@ -72,6 +72,12 @@ class App extends React.Component {
 		const {data} = await axios.post("/api/post", {text});
 
 		this.addPosts([data]);
+
+		const {stats} = this.state;
+		stats.posts++;
+		this.setState({
+			stats
+		});
 	}
 
 	// Add an array of Posts to state
