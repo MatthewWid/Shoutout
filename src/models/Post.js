@@ -20,7 +20,7 @@ const postSchema = new mongoose.Schema({
 });
 
 postSchema.statics.getTotalLikes = async function() {
-	const [{totalLikes}] = await this.aggregate([
+	const [aggregate = {totalLikes: 0}] = await this.aggregate([
 		{
 			$group: {
 				_id: null,
@@ -30,6 +30,7 @@ postSchema.statics.getTotalLikes = async function() {
 			}
 		}
 	]);
+	const {totalLikes} = aggregate;
 
 	return totalLikes;
 };
