@@ -20,12 +20,13 @@ exports.getLoggedInUser = (req, res) => {
 		});
 	}
 
-	const {_id: id, name, email} = req.user;
+	const {_id: id, name, email, isAdmin} = req.user;
 	res.json({
 		user: {
 			id,
 			name,
-			email
+			email,
+			isAdmin
 		}
 	});
 };

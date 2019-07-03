@@ -3,7 +3,6 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 // Schema
 const userSchema = new mongoose.Schema({
-
 	name: {
 		type: String,
 		required: true,
@@ -13,6 +12,10 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		trim: true
+	},
+	isAdmin: {
+		type: Boolean,
+		default: false
 	}
 });
 
