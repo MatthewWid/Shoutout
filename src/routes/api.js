@@ -26,6 +26,11 @@ router.post("/user/login",
 	authController.login,
 	userController.getLoggedInUser
 );
+// Log out of a user session
+router.post("/user/logout",
+	authController.logout,
+	userController.getLoggedInUser
+);
 
 // Create a new post
 router.post("/post",

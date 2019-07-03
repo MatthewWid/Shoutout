@@ -4,6 +4,7 @@ exports.login = passport.authenticate("local");
 
 exports.logout = (req, res, next) => {
 	req.logout();
+	next();
 };
 
 exports.isLoggedIn = (req, res, next) => {
