@@ -7,16 +7,26 @@ dayjs.extend(relativeTime);
 class Post extends React.Component {
 	render() {
 		const {post} = this.props;
+		const {author} = post;
 
 		return (
 			<div className="post">
 				<div className="post__info">
-					<div
+					<span className="post__author-nick">
+						Matthew W.
+					</span>
+					<span className="post__author-name">
+						@{author.name}
+					</span>
+					<span className="post__spacer">
+						&middot;
+					</span>
+					<span
 						className="post__age"
 						title={dayjs(post.created).format("dddd DD/MM/YYYY ss:mm:hh")}
 					>
 						{dayjs(post.created).fromNow()}
-					</div>
+					</span>
 				</div>
 				<div className="post__content">
 					<p className="post__text">{post.text}</p>

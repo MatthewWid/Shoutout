@@ -9,9 +9,22 @@
 	> div:not(:last-of-type) {
 		margin-bottom: 10px;
 	}
-	&__age {
+
+	&__info {
 		color: $text-grey;
+
+		> span {
+			margin-right: 5px;
+		}
 	}
+	&__author-nick {
+		color: $text-bright;
+		font-weight: bold;
+	}
+	&__spacer {
+		font-weight: bold;
+	}
+
 	&__content {
 		p {
 			font-size: 1rem;
