@@ -3,14 +3,19 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 // Schema
 const userSchema = new mongoose.Schema({
+	nick: {
+		type: String,
+		default: "",
+		trim: true
+	},
 	name: {
 		type: String,
-		required: true,
+		required: "Accounts require a valid username.",
 		trim: true
 	},
 	email: {
 		type: String,
-		required: true,
+		required: "Accounts require a valid email address.",
 		trim: true
 	},
 	isAdmin: {
@@ -22,6 +27,15 @@ const userSchema = new mongoose.Schema({
 // Plugins
 userSchema.plugin(passportLocalMongoose, {
 	usernameField: "email"
+});
+
+// Hooks
+userSchema.pre("save", function(next) {
+	if (!this.nick || this.nick.length === 0) {
+		this.nick = this.name;
+	}
+
+	next();
 });
 
 // Model

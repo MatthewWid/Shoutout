@@ -58,6 +58,8 @@ function autopopulate(next) {
 	this.populate("author", "name email");
 	next();
 }
+
+// Hooks
 postSchema.pre("find", autopopulate);
 postSchema.pre("findOne", autopopulate);
 postSchema.pre("findById", autopopulate);
