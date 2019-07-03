@@ -54,6 +54,4 @@ postSchema.pre("findOne", autopopulate);
 postSchema.pre("findById", autopopulate);
 
 // Model
-const Post = mongoose.model("Post", postSchema);
-
-module.exports = Post;
+module.exports = mongoose.model("Post", postSchema);
