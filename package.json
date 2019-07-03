@@ -35,6 +35,7 @@
     "passport": "^0.4.0",
     "passport-local-mongoose": "^5.0.1",
     "pug": "^2.0.3",
+    "randomstring": "^1.1.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-inlinesvg": "^0.8.4",

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const randomstring = require("randomstring");
 
 // Schema
 const postSchema = new mongoose.Schema({
@@ -24,6 +25,14 @@ const postSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: "Posts must have an author.",
 		ref: "User"
+	},
+	shortId: {
+		type: String,
+		required: true,
+		default: () => randomstring.generate({
+			length: 6,
+			capitalization: "lowercase"
+		})
 	}
 });
 
