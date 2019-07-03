@@ -1,6 +1,7 @@
 import React from "react";
 
 const defaultState = {
+	nick: "",
 	username: "",
 	email: "",
 	password: ""
@@ -22,8 +23,12 @@ class SignupForm extends React.Component {
 	handleSubmit = (evt) => {
 		evt.preventDefault();
 
-		const {username, email, password} = this.state;
-		this.props.signup(username, email, password);
+		this.props.signup({
+			nick: this.state.nick,
+			username: this.state.username,
+			email: this.state.email,
+			password: this.state.password
+		});
 
 		this.setState({
 			...defaultState
@@ -37,6 +42,14 @@ class SignupForm extends React.Component {
 				onSubmit={this.handleSubmit}
 			>
 				<p>Create an account</p>
+				<input
+					className="user-entry__input signup-form__nick"
+					type="text"
+					name="nick"
+					placeholder="Nickname (Optional)"
+					value={this.state.nick}
+					onChange={this.handleChange}
+				/>
 				<div className="signup-form__username-container">
 					<input
 						className="user-entry__input signup-form__username"

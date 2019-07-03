@@ -13,7 +13,7 @@ class Post extends React.Component {
 			<div className="post">
 				<div className="post__info">
 					<span className="post__author-nick">
-						Matthew W.
+						{author.nick}
 					</span>
 					<span className="post__author-name">
 						@{author.name}
