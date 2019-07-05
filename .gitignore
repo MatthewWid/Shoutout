@@ -10,4 +10,4 @@ public/**/*.css.map
 src/webpack-manifest.json
 
 changelog.txt
-notes.txt
+mongod.txt
