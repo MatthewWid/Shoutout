@@ -1,0 +1,10 @@
+.avatar {
+	cursor: pointer;
+	
+	&__image {
+		width: 48px;
+		height: 48px;
+		border: 2px solid $blue-mid;
+		border-radius: 50%;
+	}
+}
