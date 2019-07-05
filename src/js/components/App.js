@@ -40,6 +40,12 @@ class App extends React.Component {
 		}, {withCredentials: true});
 
 		this.setUser(user);
+
+		const {stats} = this.state;
+		stats.users++;
+		this.setState({
+			stats
+		});
 	}
 
 	// Log in existing user
