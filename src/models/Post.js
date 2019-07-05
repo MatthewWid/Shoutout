@@ -55,7 +55,7 @@ postSchema.statics.getTotalLikes = async function() {
 
 // Middleware
 function autopopulate(next) {
-	this.populate("author", "name email");
+	this.populate("author", "nick name email");
 	next();
 }
 
