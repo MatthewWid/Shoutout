@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import Avatar from "./Avatar.js";
 import UserEntry from "./UserEntry.js";
 
 class SessionDetails extends React.Component {
@@ -17,7 +18,7 @@ class SessionDetails extends React.Component {
 	render() {
 		let details;
 		if (this.props.user) {
-			details = <p>Now logged in</p>;
+			details = <Avatar user={this.props.user} />;
 		} else {
 			details = (
 				<Fragment>
