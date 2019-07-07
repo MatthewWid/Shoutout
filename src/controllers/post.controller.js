@@ -37,6 +37,32 @@ exports.getPost = async (req, res) => {
 	})
 };
 
+// Update a single post
+exports.editPost = async (req, res) => {
+	const {postId} = req.params;
+	const {text} = req.body;
+
+	const post = await Post.findByIdAndUpdate(postId, {
+		text
+	}, {
+		new: true
+	});
+
+	if (post === null) {
+		return res
+			.status(404)
+			.json({
+				success: false,
+				msg: "Post not found or does not exist."
+			});
+	}
+
+	res.json({
+		success: true,
+		post
+	});
+};
+
 // Delete a single post
 exports.deletePost = async (req, res) => {
 	const {deletedCount} = await Post.deleteOne({
@@ -90,6 +116,7 @@ exports.ensurePostAuthor = async (req, res, next) => {
 	next();
 };
 
+// Ensure that the given post ID parameter is a valid Mongoose SchemaType.
 exports.ensureValidId = (req, res, next) => {
 	const {postId} = req.params;
 

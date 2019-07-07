@@ -42,6 +42,13 @@ router.get("/post/:postId",
 	post.ensureValidId,
 	wrap(post.getPost)
 );
+// Update a single post
+router.put("/post/:postId",
+	post.ensureValidId,
+	auth.ensureLoggedIn,
+	wrap(post.ensurePostAuthor),
+	wrap(post.editPost)
+);
 // Delete a post
 router.delete("/post/:postId",
 	post.ensureValidId,
