@@ -37,11 +37,14 @@ router.post("/post",
 	auth.ensureLoggedIn,
 	wrap(post.createPost)
 );
+// Get a single post
 router.get("/post/:postId",
+	post.ensureValidId,
 	wrap(post.getPost)
 );
 // Delete a post
 router.delete("/post/:postId",
+	post.ensureValidId,
 	auth.ensureLoggedIn,
 	wrap(post.ensurePostAuthor),
 	wrap(post.deletePost)

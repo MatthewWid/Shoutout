@@ -19,14 +19,6 @@ exports.createPost = async (req, res) => {
 // Get a single post by its ID
 exports.getPost = async (req, res) => {
 	const {postId} = req.params;
-	if (postId && !mongoose.Types.ObjectId.isValid(postId)) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				msg: "Post ID parameter contains invalid syntax."
-			});
-	}
 
 	const post = await Post.findById(postId, "_id likes text author created shortId");
 
@@ -43,6 +35,32 @@ exports.getPost = async (req, res) => {
 		success: true,
 		post
 	})
+};
+
+// Delete a single post
+exports.deletePost = async (req, res) => {
+	const {deletedCount} = await Post.deleteOne({
+		_id: req.params.postId
+	});
+
+	res
+		.json({
+			success: true,
+			foundPost: deletedCount && true || false
+		});
+};
+
+// Get all posts sorted by date
+exports.getAllPosts = async (req, res) => {
+	const posts = await Post.find()
+		.sort({
+			created: -1
+		});
+
+	res.json({
+		success: true,
+		posts
+	});
 };
 
 // Ensure that the currently authenticated user is the author of the given post
@@ -72,28 +90,25 @@ exports.ensurePostAuthor = async (req, res, next) => {
 	next();
 };
 
-// Delete a single post
-exports.deletePost = async (req, res) => {
-	const {deletedCount} = await Post.deleteOne({
-		_id: req.params.postId
-	});
+exports.ensureValidId = (req, res, next) => {
+	const {postId} = req.params;
 
-	res
-		.json({
-			success: true,
-			foundPost: deletedCount && true || false
-		});
-};
+	if (!postId) {
+		return res
+			.status(400)
+			.json({
+				success: false,
+				msg: "No post ID given."
+			});
+	}
+	if (!mongoose.Types.ObjectId.isValid(postId)) {
+		return res
+			.status(400)
+			.json({
+				success: false,
+				msg: "Post ID parameter contains invalid syntax."
+			});
+	}
 
-// Get all posts sorted by date
-exports.getAllPosts = async (req, res) => {
-	const posts = await Post.find()
-		.sort({
-			created: -1
-		});
-
-	res.json({
-		success: true,
-		posts
-	});
+	next();
 };
