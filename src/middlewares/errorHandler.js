@@ -5,8 +5,12 @@ const errorHandler = (err, req, res, next) => {
 	console.log("SERVER Validation error reached:");
 	console.error(err.errors);
 
-	res.status(500)
-		.send("500 Internal Server Error");
+	res
+		.status(500)
+		.json({
+			success: false,
+			msg: "500 Internal server error."
+		});
 };
 
 module.exports = errorHandler;
