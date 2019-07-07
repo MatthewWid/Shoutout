@@ -37,11 +37,18 @@ router.post("/post",
 	auth.ensureLoggedIn,
 	wrap(post.createPost)
 );
+// Delete a post
+router.delete("/post/:postId",
+	auth.ensureLoggedIn,
+	wrap(post.ensurePostAuthor),
+	wrap(post.deletePost)
+);
 // Get an array of all existing posts
 router.get("/posts",
 	wrap(post.getAllPosts)
 );
 
+// Get the site statistics
 router.get("/stats",
 	wrap(home.getStats)
 );
