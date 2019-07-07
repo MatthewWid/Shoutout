@@ -1,0 +1,31 @@
+.dropdown {
+	position: absolute;
+	background-color: $blue-darker;
+	box-shadow: 0 0 12px 4px $grey-darkest;
+
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(-10px);
+	transition: opacity .2s ease, transform .2s ease;
+	
+	&:before {
+		content: "";
+		width: 0;
+		height: 0;
+
+		position: absolute;
+		bottom: 100%;
+
+		border-top: 20px solid transparent;
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+		border-bottom: 20px solid $blue-darker;
+
+		filter: drop-shadow(0px -5px 6px $grey-darkest);
+	}
+	&--open {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0px);
+	}
+}

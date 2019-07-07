@@ -1,5 +1,6 @@
 import React, {Fragment} from "react";
 import Avatar from "./Avatar.js";
+import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
 
 class SessionDetails extends React.Component {
@@ -25,12 +26,12 @@ class SessionDetails extends React.Component {
 					<p className="session__login-link" onClick={this.toggleForm}>
 						Have an account? <b>Log in</b>
 					</p>
-					<div className={`session__dropdown ${this.state.formOpen ? "session__dropdown--open" : ""}`}>
+					<Dropdown open={this.state.formOpen}>
 						<UserEntry
 							login={this.props.login}
 							signup={this.props.signup}
 						/>
-					</div>
+					</Dropdown>
 				</Fragment>
 			);
 		}
