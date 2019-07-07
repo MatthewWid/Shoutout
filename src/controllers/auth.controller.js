@@ -15,7 +15,7 @@ exports.ensureLoggedIn = (req, res, next) => {
 			.status(401)
 			.json({
 				success: false,
-				msg: "You need to be logged in to do that."
+				msg: "User failed to authenticate."
 			});
 	}
 };
