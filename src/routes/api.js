@@ -34,6 +34,7 @@ router.post("/user/logout",
 
 // Create a new post
 router.post("/post",
+	authController.isLoggedIn,
 	wrap(postController.createPost)
 );
 // Get an array of all existing posts
