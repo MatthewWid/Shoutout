@@ -19,7 +19,7 @@ exports.createPost = async (req, res) => {
 exports.ensurePostAuthor = async (req, res, next) => {
 	const post = await Post.findById(req.params.postId);
 	
-	// If the post is not found / does not exist
+	// ERROR If the post is not found / does not exist
 	if (!post) {
 		return res
 			.status(404)
@@ -28,8 +28,9 @@ exports.ensurePostAuthor = async (req, res, next) => {
 				msg: "Post does not exist."
 			});
 	}
-	// If the logged in user is not the author of the post
-	if (!post.author._id.equals(req.user._id)) {
+	// ERROR If the logged in user is not the author of the post
+	// Bypass this check if the logged in user is an administrator
+	if (!post.author._id.equals(req.user._id) && !req.user.isAdmin) {
 		return res
 			.status(401)
 			.json({
