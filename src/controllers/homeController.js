@@ -19,5 +19,8 @@ exports.getStats = async (req, res) => {
 	stats.posts = await Post.countDocuments();
 	stats.likes = await Post.getTotalLikes();
 
-	res.json(stats);
+	res.json({
+		success: true,
+		stats
+	});
 };

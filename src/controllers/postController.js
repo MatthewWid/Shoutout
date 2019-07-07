@@ -10,7 +10,10 @@ exports.createPost = async (req, res) => {
 		author: req.user
 	})).save();
 
-	res.json(post);
+	res.json({
+		success: true,
+		post
+	});
 };
 
 // Get all posts sorted by date
@@ -20,5 +23,8 @@ exports.getAllPosts = async (req, res) => {
 			created: -1
 		});
 
-	res.json(posts);
+	res.json({
+		success: true,
+		posts
+	});
 };

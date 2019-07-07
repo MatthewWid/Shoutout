@@ -17,12 +17,14 @@ exports.createUser = async (req, res, next) => {
 exports.getLoggedInUser = (req, res) => {
 	if (!req.user) {
 		return res.json({
+			success: true,
 			user: null
 		});
 	}
 
 	const {_id: id, nick, name, email, isAdmin, avatarUrl} = req.user;
 	res.json({
+		success: true,
 		user: {
 			id,
 			nick,

@@ -70,14 +70,14 @@ class App extends React.Component {
 	getAllPosts = async () => {
 		const {data} = await axios.get("/api/posts");
 
-		this.addPosts(data);
+		this.addPosts(data.posts);
 	}
 
 	// Send a new Post to the server
 	postMessage = async ({text}) => {
 		const {data} = await axios.post("/api/post", {text});
 
-		this.addPosts([data]);
+		this.addPosts([data.post]);
 
 		const {stats} = this.state;
 		stats.posts++;
@@ -101,7 +101,7 @@ class App extends React.Component {
 
 		const stats = {
 			...this.state.stats,
-			...res.data
+			...res.data.stats
 		};
 
 		this.setState({
