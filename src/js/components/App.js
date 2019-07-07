@@ -24,9 +24,9 @@ class App extends React.Component {
 
 	// Authenticate if the user is logged in or not (using a cookie) on page load
 	auth = async () => {
-		const {data: {user}} = await axios.get("/api/user/auth", {withCredentials: true});
+		const {data} = await axios.get("/api/user/auth", {withCredentials: true});
 
-		this.setUser(user);
+		this.setUser(data.user);
 	}
 
 	// Create a new user and log them in

@@ -1,49 +1,49 @@
 const router = require("express").Router();
 const wrap = require("../helpers/wrapAsync");
 
-const homeController = require("../controllers/homeController.js");
-const authController = require("../controllers/authController.js");
-const userController = require("../controllers/userController.js");
-const postController = require("../controllers/postController.js");
+const home = require("../controllers/home.controller.js");
+const auth = require("../controllers/auth.controller.js");
+const user = require("../controllers/user.controller.js");
+const post = require("../controllers/post.controller.js");
 
 // Debug API test response
 router.get("/ping",
-	homeController.ping
+	home.ping
 );
 
 // Authenticate and return the user from a given session if the session is valid
 router.get("/user/auth",
-	userController.getLoggedInUser
+	user.getLoggedInUser
 );
 // Register a new user with a name, email and password
 router.post("/user/register",
-	wrap(userController.createUser),
-	authController.login,
-	userController.getLoggedInUser
+	wrap(user.createUser),
+	auth.login,
+	user.getLoggedInUser
 );
 // Log in as a user with a name and password
 router.post("/user/login",
-	authController.login,
-	userController.getLoggedInUser
+	auth.login,
+	user.getLoggedInUser
 );
 // Log out of a user session
 router.post("/user/logout",
-	authController.logout,
-	userController.getLoggedInUser
+	auth.logout,
+	user.getLoggedInUser
 );
 
 // Create a new post
 router.post("/post",
-	authController.isLoggedIn,
-	wrap(postController.createPost)
+	auth.isLoggedIn,
+	wrap(post.createPost)
 );
 // Get an array of all existing posts
 router.get("/posts",
-	wrap(postController.getAllPosts)
+	wrap(post.getAllPosts)
 );
 
 router.get("/stats",
-	wrap(homeController.getStats)
+	wrap(home.getStats)
 );
 
 module.exports = router;
