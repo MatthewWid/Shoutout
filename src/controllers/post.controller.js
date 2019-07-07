@@ -16,6 +16,35 @@ exports.createPost = async (req, res) => {
 	});
 };
 
+// Get a single post by its ID
+exports.getPost = async (req, res) => {
+	const {postId} = req.params;
+	if (postId && !mongoose.Types.ObjectId.isValid(postId)) {
+		return res
+			.status(400)
+			.json({
+				success: false,
+				msg: "Post ID parameter contains invalid syntax."
+			});
+	}
+
+	const post = await Post.findById(postId, "_id likes text author created shortId");
+
+	if (post === null) {
+		return res
+			.status(404)
+			.json({
+				success: false,
+				msg: "Post not found or does not exist."
+			});
+	}
+
+	res.json({
+		success: true,
+		post
+	})
+};
+
 // Ensure that the currently authenticated user is the author of the given post
 exports.ensurePostAuthor = async (req, res, next) => {
 	const post = await Post.findById(req.params.postId);

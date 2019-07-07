@@ -37,6 +37,9 @@ router.post("/post",
 	auth.ensureLoggedIn,
 	wrap(post.createPost)
 );
+router.get("/post/:postId",
+	wrap(post.getPost)
+);
 // Delete a post
 router.delete("/post/:postId",
 	auth.ensureLoggedIn,
