@@ -11,9 +11,11 @@ exports.isLoggedIn = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	} else {
-		return next({
-			type: "auth",
-			error: "User is not logged in"
-		});
+		res
+			.status(401)
+			.json({
+				success: false,
+				msg: "You need to be logged in to do that."
+			});
 	}
 };
