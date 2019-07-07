@@ -7,7 +7,7 @@ exports.logout = (req, res, next) => {
 	next();
 };
 
-exports.isLoggedIn = (req, res, next) => {
+exports.ensureLoggedIn = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	} else {
