@@ -1,4 +1,3 @@
-
 # Shoutout
 
 News and social media site.  
@@ -19,10 +18,10 @@ Users post to a central board and can share short messages with eachother.
 This project was started with the objective to learn:
 
 * Full-stack development with React, Node and MongoDB
-* Scalable MVC application architecture
-* User sessions and authentication (with Passport.js)
+* Scalable application architecture
+* REST API design, development and best practices
+* User sessions and authentication with Passport.js
 * Custom webpack configuration for development and production modes
-* Best practice code and webpack organisation
 * CSS-BEM naming and styling methodologies
 * Interactive user interface web design
 * Modular and single-responsibility programming patterns
@@ -40,3 +39,18 @@ DATABASE_URL=<URL_TO_MONGODB_DATABASE>
 ```
 3. Ensure your MongoDB server is running (mLab, Atlas or locally with `mongod`).
 4. Run with `npm run dev` or `yarn dev`.
+
+# API Testing
+
+API debugging and testing is done with **Postman**.
+
+[Download the Postman collection.](https://www.getpostman.com/collections/cdd565f02c4d6cb41066)
+
+You will need the following environment variables:
+
+|Variable|Example Value|
+|--|--|
+|`url`|`http://localhost:8080`|
+|`apiurl`|`http://localhost:8080/api`|
+
+Once the Node and MongoDB servers are up and running as outlined in the [installation and usage](#installation-and-usage) section then you are ready to consume the API with Postman.
