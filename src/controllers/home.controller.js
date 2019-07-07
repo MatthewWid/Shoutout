@@ -4,10 +4,12 @@ const User = mongoose.model("User");
 
 exports.ping = (req, res) => res.send("pong");
 
+// Render the 'index' view
 exports.indexPage = (req, res) => {
 	res.render("index");
 };
 
+// Get an object of overall site statistics
 exports.getStats = async (req, res) => {
 	const stats = {
 		users: 0,

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
+// Create a single user
 exports.createUser = async (req, res, next) => {
 	const {nick, username, email, password} = req.body;
 
@@ -14,6 +15,7 @@ exports.createUser = async (req, res, next) => {
 	next();
 };
 
+// Return the currently authenticated / logged in user
 exports.getLoggedInUser = (req, res) => {
 	if (!req.user) {
 		return res.json({

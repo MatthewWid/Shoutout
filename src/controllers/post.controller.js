@@ -16,6 +16,7 @@ exports.createPost = async (req, res) => {
 	});
 };
 
+// Ensure that the currently authenticated user is the author of the given post
 exports.ensurePostAuthor = async (req, res, next) => {
 	const post = await Post.findById(req.params.postId);
 	
@@ -42,6 +43,7 @@ exports.ensurePostAuthor = async (req, res, next) => {
 	next();
 };
 
+// Delete a single post
 exports.deletePost = async (req, res) => {
 	const {deletedCount} = await Post.deleteOne({
 		_id: req.params.postId

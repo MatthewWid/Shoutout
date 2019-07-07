@@ -7,6 +7,7 @@ exports.logout = (req, res, next) => {
 	next();
 };
 
+// Ensure that the current session contains an authenticated user
 exports.ensureLoggedIn = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
