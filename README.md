@@ -44,7 +44,9 @@ DATABASE_URL=<URL_TO_MONGODB_DATABASE>
 
 API debugging and testing is done with **Postman**.
 
-[Download the Postman collection.](https://www.getpostman.com/collections/cdd565f02c4d6cb41066)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/cdd565f02c4d6cb41066)
+
+[(or download as JSON)](https://www.getpostman.com/collections/cdd565f02c4d6cb41066)
 
 You will need the following environment variables:
 
