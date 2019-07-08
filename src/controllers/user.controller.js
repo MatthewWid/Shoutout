@@ -37,3 +37,27 @@ exports.getLoggedInUser = (req, res) => {
 		}
 	});
 };
+
+// Ensure that the given user ID parameter is a valid Mongoose SchemaType.
+exports.ensureValidId = (req, res, next) => {
+	const {userId} = req.params;
+
+	if (!userId) {
+		return res
+			.status(400)
+			.json({
+				success: false,
+				msg: "No user ID given."
+			});
+	}
+	if (!mongoose.Types.ObjectId.isValid(userId)) {
+		return res
+			.status(400)
+			.json({
+				success: false,
+				msg: "User ID parameter contains invalid syntax."
+			});
+	}
+
+	next();
+};
