@@ -1,6 +1,27 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
+// Get a single user by its ID
+exports.getUser = async (req, res) => {
+	const {userId} = req.params;
+
+	const user = await User.findById(userId, "_id nick name email isAdmin avatarUrl");
+
+	if (user === null) {
+		return res
+			.status(404)
+			.json({
+				success: false,
+				msg: "User not found or does not exist."
+			});
+	}
+
+	res.json({
+		success: true,
+		user
+	})
+};
+
 // Create a single user
 exports.createUser = async (req, res, next) => {
 	const {nick, username, email, password} = req.body;

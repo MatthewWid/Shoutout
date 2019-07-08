@@ -15,6 +15,11 @@ router.get("/ping",
 router.get("/user/auth",
 	user.getLoggedInUser
 );
+// Get a single user
+router.get("/user/:userId",
+	user.ensureValidId,
+	wrap(user.getUser)
+);
 // Register a new user with a name, email and password
 router.post("/user/register",
 	wrap(user.createUser),
