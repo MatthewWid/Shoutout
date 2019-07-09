@@ -19,13 +19,18 @@ const UserSchema = new mongoose.Schema({
 		required: "Accounts require a valid email address.",
 		trim: true
 	},
-	isAdmin: {
-		type: Boolean,
-		default: false
+	created: {
+		type: Date,
+		required: true,
+		default: Date.now
 	},
 	avatarUrl: {
 		type: String,
 		trim: true
+	},
+	isAdmin: {
+		type: Boolean,
+		default: false
 	}
 });
 
