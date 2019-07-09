@@ -33,6 +33,8 @@ exports.createUser = async (req, res, next) => {
 	});
 	const registeredUser = await User.register(newUser, password);
 
+	res.status(201);
+
 	next();
 };
 

@@ -19,6 +19,7 @@ const LikeSchema = new mongoose.Schema({
 	}
 });
 
+// Indexes
 LikeSchema.index({
 	userId: 1,
 	postId: 1

@@ -12,10 +12,12 @@ exports.createPost = async (req, res) => {
 		author: req.user
 	});
 
-	res.json({
-		success: true,
-		post
-	});
+	res
+		.status(201)
+		.json({
+			success: true,
+			post
+		});
 };
 
 // Get a single post by its ID
@@ -103,18 +105,22 @@ exports.addLike = async (req, res) => {
 			userId
 		});
 	} catch (err) {
-		return res.json({
-			success: false,
-			msg: "Post already liked."
-		});
+		return res
+			.status(409)
+			.json({
+				success: false,
+				msg: "Post already liked."
+			});
 	}
 
 	const post = await Post.findById(postId);
 
-	res.json({
-		success: true,
-		post
-	});
+	res
+		.status(201)
+		.json({
+			success: true,
+			post
+		});
 };
 
 // Ensure that the currently authenticated user is the author of the given post
