@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const constants = require("../helpers/constants.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 
@@ -21,7 +22,7 @@ exports.createPost = async (req, res) => {
 exports.getPost = async (req, res) => {
 	const {postId} = req.params;
 
-	const post = await Post.findById(postId);
+	const post = await Post.findById(postId, constants.PROJECTION_POST);
 
 	if (post === null) {
 		return res
@@ -46,6 +47,7 @@ exports.editPost = async (req, res) => {
 	const post = await Post.findByIdAndUpdate(postId, {
 		text
 	}, {
+		fields: constants.PROJECTION_POST,
 		new: true
 	});
 

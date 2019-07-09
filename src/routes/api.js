@@ -65,6 +65,7 @@ router.delete("/post/:postId",
 router.get("/posts",
 	wrap(post.getAllPosts)
 );
+// Add a like to a single post
 router.post("/post/:postId/like",
 	post.ensureValidId,
 	auth.ensureLoggedIn,

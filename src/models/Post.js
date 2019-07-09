@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const constants = require("../helpers/constants.js");
 const randomstring = require("randomstring");
 
 // Schema
@@ -57,7 +58,7 @@ PostSchema.statics.getTotalLikes = async function() {
 // Middleware
 function autopopulate(next) {
 	this
-		.populate("author", "nick name email avatarUrl")
+		.populate("author", constants.PROJECTION_USER)
 		.populate("likes");
 	next();
 }
@@ -66,6 +67,7 @@ function autopopulate(next) {
 PostSchema.pre("find", autopopulate);
 PostSchema.pre("findOne", autopopulate);
 PostSchema.pre("findById", autopopulate);
+PostSchema.pre("findOneAndUpdate", autopopulate);
 
 // Virtuals
 PostSchema.virtual("likes", {
