@@ -21,7 +21,7 @@ exports.createPost = async (req, res) => {
 exports.getPost = async (req, res) => {
 	const {postId} = req.params;
 
-	const post = await Post.findById(postId, "_id likes text author created shortId");
+	const post = await Post.findById(postId);
 
 	if (post === null) {
 		return res
@@ -107,7 +107,7 @@ exports.addLike = async (req, res) => {
 		});
 	}
 
-	const post = await Post.findById(postId, "_id likes text author created shortId");
+	const post = await Post.findById(postId);
 
 	res.json({
 		success: true,

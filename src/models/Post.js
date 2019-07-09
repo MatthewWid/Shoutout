@@ -10,12 +10,6 @@ const PostSchema = new mongoose.Schema({
 		maxlength: 140,
 		trim: true
 	},
-	likes: {
-		type: Number,
-		required: true,
-		default: 0,
-		min: 0
-	},
 	created: {
 		type: Date,
 		required: true,
@@ -33,6 +27,13 @@ const PostSchema = new mongoose.Schema({
 			length: 6,
 			capitalization: "lowercase"
 		})
+	}
+}, {
+	toJSON: {
+		virtuals: true
+	},
+	toObject: {
+		virtuals: true
 	}
 });
 
@@ -55,7 +56,9 @@ PostSchema.statics.getTotalLikes = async function() {
 
 // Middleware
 function autopopulate(next) {
-	this.populate("author", "nick name email avatarUrl");
+	this
+		.populate("author", "nick name email avatarUrl")
+		.populate("likes");
 	next();
 }
 
@@ -63,6 +66,14 @@ function autopopulate(next) {
 PostSchema.pre("find", autopopulate);
 PostSchema.pre("findOne", autopopulate);
 PostSchema.pre("findById", autopopulate);
+
+// Virtuals
+PostSchema.virtual("likes", {
+	ref: "Like",
+	localField: "_id",
+	foreignField: "postId",
+	count: true
+});
 
 // Model
 module.exports = mongoose.model("Post", PostSchema);
