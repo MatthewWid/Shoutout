@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Post = mongoose.model("Post");
+const Like = mongoose.model("Like");
 
 // Create a single new post
 exports.createPost = async (req, res) => {
@@ -86,6 +87,28 @@ exports.getAllPosts = async (req, res) => {
 	res.json({
 		success: true,
 		posts
+	});
+};
+
+// Add a like to a single post
+exports.addLike = async (req, res) => {
+	const {postId} = req.params;
+	const {_id: userId} = req.user;
+
+	// TODO: Check that post exists first
+	// TODO: Check that post is not already liked
+
+	const like = await Like.create({
+		postId,
+		userId
+	});
+
+	// TODO: Add virtual/aggregate to count total likes when getting a post
+	const post = await Post.findById(postId, "_id likes text author created shortId");
+
+	res.json({
+		success: true,
+		post
 	});
 };
 

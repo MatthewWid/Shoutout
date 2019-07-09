@@ -7,15 +7,15 @@ const LikeSchema = new mongoose.Schema({
 		required: true,
 		default: Date.now
 	},
-	userId: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true,
-		ref: "User"
-	},
 	postId: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 		ref: "Post"
+	},
+	userId: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "User"
 	}
 });
 

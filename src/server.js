@@ -22,6 +22,7 @@ const app = express();
 const PUBDIR = path.resolve(__dirname, "..", "./public/");
 
 // Database
+mongoose.set("useCreateIndex", true);
 mongoose.connect(process.env.DATABASE_URL, {
 	useNewUrlParser: true
 });
@@ -30,6 +31,7 @@ const {connection: db} = mongoose;
 // Models
 require("./models/User.js");
 require("./models/Post.js");
+require("./models/Like.js");
 
 // Sessions
 const maxAge = 1000 * 60 * 60 * 24 * 30 * 3; // 3 Months

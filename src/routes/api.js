@@ -65,6 +65,11 @@ router.delete("/post/:postId",
 router.get("/posts",
 	wrap(post.getAllPosts)
 );
+router.post("/post/:postId/like",
+	post.ensureValidId,
+	auth.ensureLoggedIn,
+	wrap(post.addLike)
+);
 
 // Get the site statistics
 router.get("/stats",
