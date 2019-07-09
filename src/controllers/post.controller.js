@@ -5,10 +5,10 @@ const Post = mongoose.model("Post");
 exports.createPost = async (req, res) => {
 	const {text} = req.body;
 
-	const post = await (new Post({
+	const post = await Post.create({
 		text,
 		author: req.user
-	})).save();
+	});
 
 	res.json({
 		success: true,
