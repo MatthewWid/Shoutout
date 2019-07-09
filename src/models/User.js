@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: "Accounts require a valid username.",
+		unique: true,
 		trim: true
 	},
 	email: {
