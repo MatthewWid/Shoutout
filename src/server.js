@@ -23,6 +23,7 @@ const PUBDIR = path.resolve(__dirname, "..", "./public/");
 
 // Database
 mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.DATABASE_URL, {
 	useNewUrlParser: true
 });
