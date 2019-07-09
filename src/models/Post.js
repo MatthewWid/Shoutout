@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const randomstring = require("randomstring");
 
 // Schema
-const postSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
 	text: {
 		type: String,
 		required: "Post must contain text.",
@@ -37,7 +37,7 @@ const postSchema = new mongoose.Schema({
 });
 
 // Statics
-postSchema.statics.getTotalLikes = async function() {
+PostSchema.statics.getTotalLikes = async function() {
 	const [aggregate = {totalLikes: 0}] = await this.aggregate([
 		{
 			$group: {
@@ -60,9 +60,9 @@ function autopopulate(next) {
 }
 
 // Hooks
-postSchema.pre("find", autopopulate);
-postSchema.pre("findOne", autopopulate);
-postSchema.pre("findById", autopopulate);
+PostSchema.pre("find", autopopulate);
+PostSchema.pre("findOne", autopopulate);
+PostSchema.pre("findById", autopopulate);
 
 // Model
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Post", PostSchema);

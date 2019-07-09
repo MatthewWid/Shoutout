@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 // Schema
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
 	nick: {
 		type: String,
 		default: "",
@@ -29,12 +29,12 @@ const userSchema = new mongoose.Schema({
 });
 
 // Plugins
-userSchema.plugin(passportLocalMongoose, {
+UserSchema.plugin(passportLocalMongoose, {
 	usernameField: "email"
 });
 
 // Hooks
-userSchema.pre("save", function(next) {
+UserSchema.pre("save", function(next) {
 	if (!this.nick || this.nick.length === 0) {
 		this.nick = this.name;
 	}
@@ -43,4 +43,4 @@ userSchema.pre("save", function(next) {
 });
 
 // Model
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", UserSchema);
