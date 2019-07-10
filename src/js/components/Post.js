@@ -38,7 +38,7 @@ class Post extends React.Component {
 					</div>
 					<div className="post__toolbar">
 						<div className="post__button post__button-like">
-							<InlineSvg className="post__button-icon" src="./images/icons/heart.svg"></InlineSvg>
+							<InlineSvg className="post__button-icon" src="./images/icons/heart.svg" cacheGetRequests></InlineSvg>
 							<span className="post__button-number">{post.likes}</span>
 						</div>
 					</div>
