@@ -71,6 +71,12 @@ router.post("/post/:postId/like",
 	auth.ensureLoggedIn,
 	wrap(post.addLike)
 );
+// Remove a like from a single post
+router.delete("/post/:postId/like",
+	post.ensureValidId,
+	auth.ensureLoggedIn,
+	wrap(post.removeLike)
+);
 
 // Get the site statistics
 router.get("/stats",

@@ -100,7 +100,7 @@ exports.addLike = async (req, res) => {
 	const {_id: userId} = req.user;
 
 	try {
-		const like = await Like.create({
+		await Like.create({
 			postId,
 			userId
 		});
@@ -117,6 +117,24 @@ exports.addLike = async (req, res) => {
 		.status(201)
 		.json({
 			success: true
+		});
+};
+
+// Remove a like from a single post
+exports.removeLike = async (req, res) => {
+	const {postId} = req.params;
+	const {_id: userId} = req.user;
+
+	const {deletedCount} = await Like.deleteOne({
+		postId,
+		userId
+	});
+
+	res
+		.status(200)
+		.json({
+			success: true,
+			foundLike: deletedCount && true || false
 		});
 };
 
