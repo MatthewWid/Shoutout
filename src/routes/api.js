@@ -33,8 +33,7 @@ router.post("/user/login",
 );
 // Log out of a user session
 router.post("/user/logout",
-	auth.logout,
-	user.getLoggedInUser
+	auth.logout
 );
 
 // Create a new post

@@ -61,9 +61,11 @@ class App extends React.Component {
 
 	// Log out existing user
 	logout = async () => {
-		const {data: {user}} = await axios.post("/api/user/logout", {withCredentials: true});
+		const {data} = await axios.post("/api/user/logout");
 
-		this.setUser(user);
+		if (data.success) {
+			this.setUser(null);
+		}
 	}
 
 	// Set the currently logged in user in the component state

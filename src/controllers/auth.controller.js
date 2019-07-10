@@ -2,9 +2,12 @@ const passport = require("passport");
 
 exports.login = passport.authenticate("local");
 
-exports.logout = (req, res, next) => {
+exports.logout = (req, res) => {
 	req.logout();
-	next();
+	
+	res.json({
+		success: true
+	});
 };
 
 // Ensure that the current session contains an authenticated user
