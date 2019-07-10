@@ -59,6 +59,13 @@ class App extends React.Component {
 		this.setUser(user);
 	}
 
+	// Log out existing user
+	logout = async () => {
+		const {data: {user}} = await axios.post("/api/user/logout", {withCredentials: true});
+
+		this.setUser(user);
+	}
+
 	// Set the currently logged in user in the component state
 	setUser = (user) => {
 		this.setState({
@@ -116,6 +123,7 @@ class App extends React.Component {
 				<Header
 					user={this.state.user}
 					login={this.login}
+					logout={this.logout}
 					signup={this.signup}
 				/>
 				<div className="content-container">

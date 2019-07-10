@@ -13,6 +13,7 @@ const Header = (props) => {
 					<SessionDetails
 						user={props.user}
 						login={props.login}
+						logout={props.logout}
 						signup={props.signup}
 					/>
 				</div>

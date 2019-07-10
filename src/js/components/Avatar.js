@@ -4,7 +4,7 @@ const Avatar = (props) => {
 	const {user: {avatarUrl, nick}} = props;
 
 	return (
-		<div className="avatar">
+		<div className="avatar" onClick={props.onClick}>
 			<img
 				className="avatar__image"
 				src={avatarUrl || "./images/avatar-default.png"}

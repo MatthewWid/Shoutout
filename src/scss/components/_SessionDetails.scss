@@ -9,10 +9,23 @@
 	.dropdown {
 		top: 56px + 20px / 2;
 		right: 0;
-		min-width: 300px;
+	}
+	&--logged-out {
+		.dropdown {
+			min-width: 300px;
 
-		&:before {
-			right: 10%;
+			&:before {
+				right: 10%;
+			}
+		}
+	}
+	&--logged-in {
+		.dropdown {
+			min-width: 240px;
+
+			&:before {
+				right: 2%;
+			}
 		}
 	}
 }

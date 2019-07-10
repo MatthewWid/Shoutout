@@ -16,10 +16,35 @@ class SessionDetails extends React.Component {
 		});
 	}
 
+	// Trigger a method and close the form
+	finalAction = (func) => {
+		const action = func;
+
+		return (...args) => {
+			this.setState({
+				formOpen: false
+			});
+
+			action(...args);
+		};
+	}
+
 	render() {
 		let details;
 		if (this.props.user) {
-			details = <Avatar user={this.props.user} />;
+			details = (
+				<Fragment>
+					<Avatar user={this.props.user} onClick={this.toggleForm} />
+					<Dropdown open={this.state.formOpen}>
+						<button
+							className="dropdown__link"
+							onClick={this.finalAction(this.props.logout)}
+						>
+							Log Out
+						</button>
+					</Dropdown>
+				</Fragment>
+			);
 		} else {
 			details = (
 				<Fragment>
@@ -28,8 +53,8 @@ class SessionDetails extends React.Component {
 					</p>
 					<Dropdown open={this.state.formOpen}>
 						<UserEntry
-							login={this.props.login}
-							signup={this.props.signup}
+							login={this.finalAction(this.props.login)}
+							signup={this.finalAction(this.props.signup)}
 						/>
 					</Dropdown>
 				</Fragment>
@@ -37,7 +62,7 @@ class SessionDetails extends React.Component {
 		}
 
 		return (
-			<div className="session">
+			<div className={`session ${this.props.user ? "session--logged-in" : "session--logged-out"}`}>
 				{details}
 			</div>
 		);
