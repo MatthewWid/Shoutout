@@ -113,13 +113,10 @@ exports.addLike = async (req, res) => {
 			});
 	}
 
-	const post = await Post.findById(postId);
-
 	res
 		.status(201)
 		.json({
-			success: true,
-			post
+			success: true
 		});
 };
 
