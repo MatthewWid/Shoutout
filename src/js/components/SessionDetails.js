@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
@@ -8,15 +9,7 @@ class SessionDetails extends React.Component {
 		dropdownOpen: false
 	}
 
-	dropdownAction = (change) => {
-		const action = change;
-
-		return () => {
-			this.setState({
-				dropdownOpen: action
-			});
-		};
-	}
+	dropdownSetOpen = dropdownSetOpen.bind(this);
 
 	// Trigger a method and close the form
 	finalAction = (func) => {
@@ -36,10 +29,10 @@ class SessionDetails extends React.Component {
 		if (this.props.user) {
 			details = (
 				<Fragment>
-					<Avatar user={this.props.user} onClick={this.dropdownAction(true)} />
+					<Avatar user={this.props.user} onClick={this.dropdownSetOpen(true)} />
 					<Dropdown
 						isOpen={this.state.dropdownOpen}
-						close={this.dropdownAction(false)}
+						close={this.dropdownSetOpen(false)}
 					>
 						<button
 							className="dropdown__link"
@@ -53,12 +46,12 @@ class SessionDetails extends React.Component {
 		} else {
 			details = (
 				<Fragment>
-					<p className="session__login-link" onClick={this.dropdownAction(true)}>
+					<p className="session__login-link" onClick={this.dropdownSetOpen(true)}>
 						Have an account? <b>Log in</b>
 					</p>
 					<Dropdown
 						isOpen={this.state.dropdownOpen}
-						close={this.dropdownAction(false)}
+						close={this.dropdownSetOpen(false)}
 					>
 						<UserEntry
 							login={this.finalAction(this.props.login)}
