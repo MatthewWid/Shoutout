@@ -5,15 +5,17 @@ import UserEntry from "./UserEntry.js";
 
 class SessionDetails extends React.Component {
 	state = {
-		formOpen: false
+		dropdownOpen: false
 	}
 
-	toggleForm = () => {
-		const formOpen = !this.state.formOpen;
+	dropdownAction = (change) => {
+		const action = change;
 
-		this.setState({
-			formOpen
-		});
+		return () => {
+			this.setState({
+				dropdownOpen: action
+			});
+		};
 	}
 
 	// Trigger a method and close the form
@@ -22,7 +24,7 @@ class SessionDetails extends React.Component {
 
 		return (...args) => {
 			this.setState({
-				formOpen: false
+				dropdownOpen: false
 			});
 
 			action(...args);
@@ -34,8 +36,11 @@ class SessionDetails extends React.Component {
 		if (this.props.user) {
 			details = (
 				<Fragment>
-					<Avatar user={this.props.user} onClick={this.toggleForm} />
-					<Dropdown open={this.state.formOpen}>
+					<Avatar user={this.props.user} onClick={this.dropdownAction(true)} />
+					<Dropdown
+						isOpen={this.state.dropdownOpen}
+						close={this.dropdownAction(false)}
+					>
 						<button
 							className="dropdown__link"
 							onClick={this.finalAction(this.props.logout)}
@@ -48,10 +53,13 @@ class SessionDetails extends React.Component {
 		} else {
 			details = (
 				<Fragment>
-					<p className="session__login-link" onClick={this.toggleForm}>
+					<p className="session__login-link" onClick={this.dropdownAction(true)}>
 						Have an account? <b>Log in</b>
 					</p>
-					<Dropdown open={this.state.formOpen}>
+					<Dropdown
+						isOpen={this.state.dropdownOpen}
+						close={this.dropdownAction(false)}
+					>
 						<UserEntry
 							login={this.finalAction(this.props.login)}
 							signup={this.finalAction(this.props.signup)}
