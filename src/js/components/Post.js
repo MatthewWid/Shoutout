@@ -5,6 +5,13 @@ import InlineSvg from "react-inlinesvg";
 import Avatar from "./Avatar.js";
 dayjs.extend(relativeTime);
 
+/*
+	Heart SVGs from Font Awesome
+	fontawesome.com/license/free
+		fontawesome.com/icons/heart?style=regular
+		fontawesome.com/icons/heart?style=solid
+*/
+
 class Post extends React.Component {
 	render() {
 		const {post} = this.props;
@@ -38,7 +45,11 @@ class Post extends React.Component {
 					</div>
 					<div className="post__toolbar">
 						<div className="post__button post__button-like">
-							<InlineSvg className="post__button-icon" src="./images/icons/heart.svg" cacheGetRequests></InlineSvg>
+							<InlineSvg
+								className="post__button-icon"
+								src={`./images/icons/heart-${"regular"}.svg`}
+								cacheGetRequests
+							></InlineSvg>
 							<span className="post__button-number">{post.likes || "0"}</span>
 						</div>
 					</div>
