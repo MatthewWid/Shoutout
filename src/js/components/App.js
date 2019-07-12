@@ -17,6 +17,10 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
+		this.refresh();
+	}
+
+	refresh = () => {
 		this.auth();
 		this.getAllPosts();
 		this.getSiteStats();
@@ -38,13 +42,7 @@ class App extends React.Component {
 			password
 		}, {withCredentials: true});
 
-		this.setUser(user);
-
-		const {stats} = this.state;
-		stats.users++;
-		this.setState({
-			stats
-		});
+		this.refresh();
 	}
 
 	// Log in existing user
@@ -54,7 +52,7 @@ class App extends React.Component {
 			password
 		}, {withCredentials: true});
 
-		this.setUser(user);
+		this.refresh();
 	}
 
 	// Log out existing user
@@ -62,7 +60,7 @@ class App extends React.Component {
 		const {data} = await axios.post("/api/user/logout");
 
 		if (data.success) {
-			this.setUser(null);
+			this.refresh();
 		}
 	}
 
@@ -74,10 +72,13 @@ class App extends React.Component {
 	}
 
 	// Retrieve array of all posts from the server
-	getAllPosts = async () => {
-		const {data} = await axios.get("/api/posts");
-
-		this.addPosts(data.posts);
+	getAllPosts = () => {
+		this.setState({
+			posts: []
+		}, async () => {
+			const {data} = await axios.get("/api/posts");
+			this.addPosts(data.posts);
+		});
 	}
 
 	// Send a new Post to the server
@@ -138,6 +139,7 @@ class App extends React.Component {
 		});
 	}
 
+	// Remove a single like from a post
 	removeLike = async (postId) => {
 		const {data} = await axios.delete(`/api/post/${postId}/like`, {withCredentials: true});
 
