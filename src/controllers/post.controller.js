@@ -76,11 +76,15 @@ exports.deletePost = async (req, res) => {
 	const {deletedCount} = await Post.deleteOne({
 		_id: req.params.postId
 	});
+	const {deletedCount: deletedLikes} = await Like.deleteMany({
+		postId: req.params.postId
+	});
 
 	res
 		.json({
 			success: true,
-			foundPost: deletedCount && true || false
+			foundPost: deletedCount && true || false,
+			foundLikes: deletedLikes
 		});
 };
 
