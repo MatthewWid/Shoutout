@@ -45,7 +45,7 @@ PostSchema.statics.getTotalLikes = async function() {
 			$group: {
 				_id: null,
 				totalLikes: {
-					$sum: "$likes"
+					$sum: "$totalLikes"
 				}
 			}
 		}
@@ -59,7 +59,7 @@ PostSchema.statics.getTotalLikes = async function() {
 function autopopulate(next) {
 	this
 		.populate("author", constants.PROJECTION_USER)
-		.populate("likes");
+		.populate("totalLikes");
 	next();
 }
 
@@ -70,7 +70,7 @@ PostSchema.pre("findById", autopopulate);
 PostSchema.pre("findOneAndUpdate", autopopulate);
 
 // Virtuals
-PostSchema.virtual("likes", {
+PostSchema.virtual("totalLikes", {
 	ref: "Like",
 	localField: "_id",
 	foreignField: "postId",

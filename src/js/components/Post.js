@@ -50,7 +50,7 @@ class Post extends React.Component {
 								src={`./images/icons/heart-${"regular"}.svg`}
 								cacheGetRequests
 							></InlineSvg>
-							<span className="post__button-number">{post.likes || "0"}</span>
+							<span className="post__button-number">{post.totalLikes || "0"}</span>
 						</div>
 					</div>
 				</div>
