@@ -102,6 +102,7 @@ class App extends React.Component {
 		});
 	}
 
+	// Add a single like to a post
 	addLike = async (postId) => {
 		let didLike = true;
 
@@ -125,11 +126,35 @@ class App extends React.Component {
 
 		// Increment post like count and set like indicator
 		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
-		updatedPost.totalLikes++;
 		updatedPost.isLiked = didLike;
+		updatedPost.totalLikes++;
 
 		// Increment site stats like count
 		stats.likes++;
+
+		this.setState({
+			posts,
+			stats
+		});
+	}
+
+	removeLike = async (postId) => {
+		const {data} = await axios.delete(`/api/post/${postId}/like`, {withCredentials: true});
+
+		// Update state
+		const posts = [...this.state.posts];
+		const {stats} = this.state;
+
+		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
+		// Set to 'unliked' regardless of if a post was found or not
+		if (data.success) {
+			updatedPost.isLiked = false;
+		}
+		// If a like existed and was deleted decrement like counts
+		if (data.foundLike) {
+			updatedPost.totalLikes--;
+			stats.likes--;
+		}
 
 		this.setState({
 			posts,
@@ -169,6 +194,7 @@ class App extends React.Component {
 							posts={this.state.posts}
 							postMessage={this.postMessage}
 							addLike={this.addLike}
+							removeLike={this.removeLike}
 						/>
 						<SiteInfoPanel stats={this.state.stats} />
 					</div>

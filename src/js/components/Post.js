@@ -14,7 +14,11 @@ dayjs.extend(relativeTime);
 
 class Post extends React.Component {
 	handleLikeClick = () => {
-		this.props.addLike(this.props.post._id);
+		if (!this.props.post.isLiked) {
+			this.props.addLike(this.props.post._id);
+		} else {
+			this.props.removeLike(this.props.post._id);
+		}
 	}
 
 	render() {

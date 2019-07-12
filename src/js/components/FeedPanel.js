@@ -9,6 +9,7 @@ const FeedPanel = (props) => {
 			<PostList
 				posts={props.posts}
 				addLike={props.addLike}
+				removeLike={props.removeLike}
 			/>
 		</main>
 	);
