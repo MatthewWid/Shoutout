@@ -38,23 +38,6 @@ const PostSchema = new mongoose.Schema({
 	}
 });
 
-// Statics
-PostSchema.statics.getTotalLikes = async function() {
-	const [aggregate = {totalLikes: 0}] = await this.aggregate([
-		{
-			$group: {
-				_id: null,
-				totalLikes: {
-					$sum: "$totalLikes"
-				}
-			}
-		}
-	]);
-	const {totalLikes} = aggregate;
-
-	return totalLikes;
-};
-
 // Middleware
 function autopopulate(next) {
 	this
