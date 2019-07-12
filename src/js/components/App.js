@@ -30,8 +30,7 @@ class App extends React.Component {
 	}
 
 	// Create a new user and log them in
-	signup = async (registrationInfo) => {
-		const {nick, username, email, password} = registrationInfo;
+	signup = async ({nick, username, email, password}) => {
 		const {data: {user}} = await axios.post("/api/user/register", {
 			nick,
 			username,
@@ -49,8 +48,7 @@ class App extends React.Component {
 	}
 
 	// Log in existing user
-	login = async (loginInfo) => {
-		const {email, password} = loginInfo;
+	login = async ({email, password}) => {
 		const {data: {user}} = await axios.post("/api/user/login", {
 			email,
 			password
@@ -104,6 +102,41 @@ class App extends React.Component {
 		});
 	}
 
+	addLike = async (postId) => {
+		let didLike = true;
+
+		// Send POST request to like post
+		await axios.post(`/api/post/${postId}/like`, {withCredentials: true})
+		.then(({data: {success}}) => {
+			didLike = success ? true : false;
+		})
+		.catch((err) => {
+			didLike = false;
+		});
+
+		// If the attempt like the post failed abort the function
+		if (!didLike) {
+			return;
+		}
+
+		// Update state
+		const posts = [...this.state.posts];
+		const {stats} = this.state;
+
+		// Increment post like count and set like indicator
+		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
+		updatedPost.totalLikes++;
+		updatedPost.isLiked = didLike;
+
+		// Increment site stats like count
+		stats.likes++;
+
+		this.setState({
+			posts,
+			stats
+		});
+	}
+
 	// Get website statistics (total posts, users and likes) and set them in state
 	getSiteStats = async () => {
 		const res = await axios.get("/api/stats");
@@ -135,6 +168,7 @@ class App extends React.Component {
 							user={this.state.user}
 							posts={this.state.posts}
 							postMessage={this.postMessage}
+							addLike={this.addLike}
 						/>
 						<SiteInfoPanel stats={this.state.stats} />
 					</div>

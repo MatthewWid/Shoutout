@@ -13,6 +13,10 @@ dayjs.extend(relativeTime);
 */
 
 class Post extends React.Component {
+	handleLikeClick = () => {
+		this.props.addLike(this.props.post._id);
+	}
+
 	render() {
 		const {post} = this.props;
 		const {author} = post;
@@ -44,7 +48,10 @@ class Post extends React.Component {
 						<p className="post__text">{post.text}</p>
 					</div>
 					<div className="post__toolbar">
-						<div className="post__button post__button-like">
+						<div
+							className="post__button post__button-like"
+							onClick={this.handleLikeClick}
+						>
 							<InlineSvg
 								className="post__button-icon"
 								src={`./images/icons/heart-${post.isLiked ? "solid" : "regular"}.svg`}

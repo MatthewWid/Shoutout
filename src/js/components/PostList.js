@@ -1,9 +1,15 @@
 import React from "react";
 import Post from "./Post.js";
 
-const PostList = ({posts}) => (
+const PostList = (props) => (
 	<div className="post-list">
-		{posts.map((post, index) => <Post key={index} post={post} />)}
+		{props.posts.map((post, index) => (
+			<Post
+				key={index}
+				post={post}
+				addLike={props.addLike}
+			/>
+		))}
 	</div>
 );
 

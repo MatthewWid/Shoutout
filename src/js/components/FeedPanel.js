@@ -6,7 +6,10 @@ const FeedPanel = (props) => {
 	return (
 		<main className="content__panel feed">
 			{props.user && <PostForm user={props.user} postMessage={props.postMessage} />}
-			<PostList posts={props.posts} />
+			<PostList
+				posts={props.posts}
+				addLike={props.addLike}
+			/>
 		</main>
 	);
 };
