@@ -27,5 +27,21 @@ LikeSchema.index({
 	unique: true
 });
 
+// Statics
+// If the user is logged in attach a boolean indicating
+// whether they have liked the post or not
+LikeSchema.statics.userLikedPost = async function(post, user) {
+	if (!user) {
+		return false;
+	}
+
+	const isLiked = await this.countDocuments({
+		postId: post._id,
+		userId: user._id
+	});
+
+	return isLiked ? true : false;
+};
+
 // Model
 module.exports = mongoose.model("Like", LikeSchema);

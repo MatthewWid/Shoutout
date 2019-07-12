@@ -24,7 +24,7 @@ exports.createPost = async (req, res) => {
 exports.getPost = async (req, res) => {
 	const {postId} = req.params;
 
-	const post = await Post.findById(postId, constants.PROJECTION_POST);
+	let post = await Post.findById(postId, constants.PROJECTION_POST);
 
 	if (post === null) {
 		return res
@@ -34,6 +34,9 @@ exports.getPost = async (req, res) => {
 				msg: "Post not found or does not exist."
 			});
 	}
+
+	post = post.toObject();
+	post.isLiked = await Like.userLikedPost(post, req.user);
 
 	res.json({
 		success: true,
@@ -83,10 +86,22 @@ exports.deletePost = async (req, res) => {
 
 // Get all posts sorted by date
 exports.getAllPosts = async (req, res) => {
-	const posts = await Post.find()
+	let posts = await Post.find()
 		.sort({
 			created: -1
 		});
+
+	// Set 'isLiked' property on each post
+	// Run in parallel and wait for all count operations to complete
+	posts = await Promise.all(
+		posts.map(async (post) => {
+			post = post.toObject();
+
+			post.isLiked = await Like.userLikedPost(post, req.user);
+
+			return post;
+		})
+	);
 
 	res.json({
 		success: true,
