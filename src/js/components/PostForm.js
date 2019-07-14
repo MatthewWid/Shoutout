@@ -10,7 +10,7 @@ class PostForm extends React.Component {
 	}
 
 	canSubmit = () => {
-		return this.state.text.length > 2 && this.state.text.length <= 140;
+		return this.state.text.length >= 1 && this.state.text.length <= 140;
 	}
 
 	handleChange = ({target}) => {

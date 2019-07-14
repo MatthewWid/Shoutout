@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
+const validator = require("express-validator");
 const constants = require("../constants.js");
+const valErrMsg = require("../helpers/validationErrorMsg.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 
@@ -206,4 +208,22 @@ exports.ensureValidId = (req, res, next) => {
 	}
 
 	next();
+};
+
+exports.validate = (method) => {
+	switch (method) {
+		case "createPost":
+			return [
+				validator.body("text")
+					.exists()
+					.isString()
+					.isAscii().withMessage(valErrMsg.chars("Post text"))
+					.isLength({
+						min: 1,
+						max: 140
+					}).withMessage(valErrMsg.len("Post text", 1, 140))
+			];
+		default:
+			return [];
+	}
 };

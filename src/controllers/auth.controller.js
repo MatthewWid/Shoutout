@@ -38,7 +38,7 @@ exports.validate = (method) => {
 				validator.body("password")
 					.exists()
 					.isString()
-			]
+			];
 		default:
 			return [];
 	}

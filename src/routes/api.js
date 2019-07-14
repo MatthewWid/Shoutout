@@ -42,6 +42,7 @@ router.post("/user/logout",
 
 // Create a new post
 router.post("/post",
+	validate(post, "createPost"),
 	auth.ensureLoggedIn,
 	wrap(post.createPost)
 );
