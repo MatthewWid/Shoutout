@@ -33,7 +33,8 @@ exports.validate = (method) => {
 				validator.body("email")
 					.exists()
 					.isString()
-					.isEmail().withMessage(valErrMsg.notValid("Email")),
+					.isEmail()
+						.withMessage(valErrMsg.notValid("Email")),
 
 				validator.body("password")
 					.exists()

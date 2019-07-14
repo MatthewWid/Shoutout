@@ -214,14 +214,16 @@ exports.validate = (method) => {
 	switch (method) {
 		case "createPost":
 			return [
-				validator.body("text")
+				validator.body("text", valErrMsg.notExists("Post text"))
 					.exists()
 					.isString()
-					.isAscii().withMessage(valErrMsg.chars("Post text"))
+					.isAscii()
+						.withMessage(valErrMsg.chars("Post text"))
 					.isLength({
 						min: 1,
 						max: 140
-					}).withMessage(valErrMsg.len("Post text", 1, 140))
+					})
+						.withMessage(valErrMsg.len("Post text", 1, 140))
 			];
 		default:
 			return [];

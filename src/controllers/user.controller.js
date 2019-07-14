@@ -81,21 +81,25 @@ exports.validate = (method) => {
 					.isLength({
 						min: 1,
 						max: 50
-					}).withMessage(valErrMsg.len("Nickname", 1, 50)),
+					})
+						.withMessage(valErrMsg.len("Nickname", 1, 50)),
 				
 				validator.body("username", valErrMsg.notExists("Username"))
 					.exists()
 					.isString()
-					.isAlphanumeric().withMessage(valErrMsg.alphaNum("Username"))
+					.isAlphanumeric()
+						.withMessage(valErrMsg.alphaNum("Username"))
 					.isLength({
 						min: 1,
 						max: 50
-					}).withMessage(valErrMsg.len("Username", 3, 50)),
+					})
+						.withMessage(valErrMsg.len("Username", 3, 50)),
 
 				validator.body("email", valErrMsg.notExists("Email"))
 					.exists()
 					.isString()
-					.isEmail().withMessage(valErrMsg.notValid("Email")),
+					.isEmail()
+						.withMessage(valErrMsg.notValid("Email")),
 
 				validator.body("password", valErrMsg.notExists("Password"))
 					.exists()
