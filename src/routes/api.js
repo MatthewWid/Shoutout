@@ -21,7 +21,7 @@ router.get("/user/:userId",
 	wrap(user.getUser)
 );
 // Register a new user with a name, email and password
-router.post("/user/register",
+router.post("/user",
 	wrap(user.createUser),
 	auth.login,
 	user.getLoggedInUser

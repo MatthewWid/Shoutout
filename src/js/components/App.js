@@ -35,7 +35,7 @@ class App extends React.Component {
 
 	// Create a new user and log them in
 	signup = async ({nick, username, email, password}) => {
-		const {data: {user}} = await axios.post("/api/user/register", {
+		const {data: {user}} = await axios.post("/api/user", {
 			nick,
 			username,
 			email,
