@@ -86,7 +86,7 @@ exports.validate = (method) => {
 				validator.body("username", valErrMsg.notExists("Username"))
 					.exists()
 					.isString()
-					.isAlphanumeric().withMessage("Username can only contain alphanumeric characters.")
+					.isAlphanumeric().withMessage(valErrMsg.alphaNum("Username"))
 					.isLength({
 						min: 1,
 						max: 50

@@ -31,6 +31,7 @@ router.post("/user",
 );
 // Log in as a user with a name and password
 router.post("/user/login",
+	validate(auth, "login"),
 	auth.login,
 	user.getLoggedInUser
 );
