@@ -31,6 +31,10 @@ exports.getUser = async (req, res) => {
 
 // Create a single user
 exports.createUser = async (req, res, next) => {
+	if (checkValidationErrors(req, res)) {
+		return;
+	}
+
 	const {nick, username, email, password} = req.body;
 
 	const newUser = new User({
@@ -77,7 +81,35 @@ exports.validate = (method) => {
 					.exists()
 					.custom(ensureValidId)
 			];
+		case "createUser":
+			return [
+				validator.body("nick", "Nickname is too long or is not alphanumeric.")
+					.optional()
+					.isString()
+					.isLength({
+						min: 1,
+						max: 50
+					}).withMessage("Nickname must be between 1 - 50 characters."),
+				
+				validator.body("username", "Username is not given or is not valid.")
+					.exists()
+					.isString()
+					.isAlphanumeric().withMessage("Username can only contain alphanumeric characters.")
+					.isLength({
+						min: 1,
+						max: 50
+					}).withMessage("Username must be between 1 - 50 characters."),
+
+				validator.body("email", "Email is not given or is invalid.")
+					.exists()
+					.isString()
+					.isEmail().withMessage("Email address is not valid."),
+
+				validator.body("password", "Password is not given or is invalid.")
+					.exists()
+					.isString()
+			]
 		default:
 			return [];
 	}
-}
+};
