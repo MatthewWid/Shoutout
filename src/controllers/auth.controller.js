@@ -39,5 +39,7 @@ exports.validate = (method) => {
 					.exists()
 					.isString()
 			]
+		default:
+			return [];
 	}
 };
