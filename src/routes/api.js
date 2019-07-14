@@ -48,19 +48,19 @@ router.post("/post",
 );
 // Get a single post
 router.get("/post/:postId",
-	post.ensureValidId,
+	validate(post, "getPost"),
 	wrap(post.getPost)
 );
 // Update a single post
 router.put("/post/:postId",
-	post.ensureValidId,
+	validate(post, "editPost"),
 	auth.ensureLoggedIn,
 	wrap(post.ensurePostAuthor),
 	wrap(post.editPost)
 );
 // Delete a post
 router.delete("/post/:postId",
-	post.ensureValidId,
+	validate(post, "deletePost"),
 	auth.ensureLoggedIn,
 	wrap(post.ensurePostAuthor),
 	wrap(post.deletePost)
@@ -71,13 +71,13 @@ router.get("/posts",
 );
 // Add a like to a single post
 router.post("/post/:postId/like",
-	post.ensureValidId,
+	validate(post, "addLike"),
 	auth.ensureLoggedIn,
 	wrap(post.addLike)
 );
 // Remove a like from a single post
 router.delete("/post/:postId/like",
-	post.ensureValidId,
+	validate(post, "removeLike"),
 	auth.ensureLoggedIn,
 	wrap(post.removeLike)
 );

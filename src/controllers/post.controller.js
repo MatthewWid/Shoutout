@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
 const constants = require("../constants.js");
+const ensureValidId = require("../helpers/ensureValidId.js");
 const valErrMsg = require("../helpers/validationErrorMsg.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
@@ -224,6 +225,47 @@ exports.validate = (method) => {
 						max: 140
 					})
 						.withMessage(valErrMsg.len("Post text", 1, 140))
+			];
+		case "getPost":
+			return [
+				validator.param("postId", valErrMsg.notExists("Post ID"))
+					.exists()
+					.custom(ensureValidId)
+			];
+		case "editPost":
+			return [
+				validator.param("postId", valErrMsg.notExists("Post ID"))
+					.exists()
+					.custom(ensureValidId),
+
+				validator.body("text", valErrMsg.notExists("Post text"))
+					.exists()
+					.isString()
+					.isAscii()
+						.withMessage(valErrMsg.chars("Post text"))
+					.isLength({
+						min: 1,
+						max: 140
+					})
+						.withMessage(valErrMsg.len("Post text", 1, 140))
+			];
+		case "deletePost":
+			return [
+				validator.param("postId", valErrMsg.notExists("Post Id"))
+					.exists()
+					.custom(ensureValidId)
+			];
+		case "addLike":
+			return [
+				validator.param("postId", valErrMsg.notExists("Post ID"))
+					.exists()
+					.custom(ensureValidId)
+			];
+		case "removeLike":
+			return [
+				validator.param("postId", valErrMsg.notExists("Post ID"))
+					.exists()
+					.custom(ensureValidId)
 			];
 		default:
 			return [];
