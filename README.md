@@ -21,10 +21,11 @@ This project was started with the objective to learn:
 * Scalable application architecture
 * REST API design, development and best practices
 * User sessions and authentication with Passport.js
+* Modular and single-responsibility programming patterns
+* Comprehensive client and server-side input validation
 * Custom webpack configuration for development and production modes
 * CSS-BEM naming and styling methodologies
 * Interactive user interface web design
-* Modular and single-responsibility programming patterns
 
 # Installation and Usage
 
