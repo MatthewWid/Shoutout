@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
 const ensureValidId = require("../helpers/ensureValidId.js");
+const valErrMsg = require("../helpers/validationErrorMsg.js");
 const User = mongoose.model("User");
 
 // Get a single user by its ID
@@ -68,35 +69,35 @@ exports.validate = (method) => {
 	switch (method) {
 		case "getUser":
 			return [
-				validator.param("userId", "User ID is not given or is invalid.")
+				validator.param("userId", valErrMsg.notExists("User ID"))
 					.exists()
 					.custom(ensureValidId)
 			];
 		case "createUser":
 			return [
-				validator.body("nick", "Nickname is too long or is not alphanumeric.")
+				validator.body("nick", valErrMsg.notExists("Nickname"))
 					.optional()
 					.isString()
 					.isLength({
 						min: 1,
 						max: 50
-					}).withMessage("Nickname must be between 1 - 50 characters."),
+					}).withMessage(valErrMsg.len("Nickname", 1, 50)),
 				
-				validator.body("username", "Username is not given or is not valid.")
+				validator.body("username", valErrMsg.notExists("Username"))
 					.exists()
 					.isString()
 					.isAlphanumeric().withMessage("Username can only contain alphanumeric characters.")
 					.isLength({
 						min: 1,
 						max: 50
-					}).withMessage("Username must be between 1 - 50 characters."),
+					}).withMessage(valErrMsg.len("Username", 3, 50)),
 
-				validator.body("email", "Email is not given or is invalid.")
+				validator.body("email", valErrMsg.notExists("Email"))
 					.exists()
 					.isString()
-					.isEmail().withMessage("Email address is not valid."),
+					.isEmail().withMessage(valErrMsg.notValid("Email")),
 
-				validator.body("password", "Password is not given or is invalid.")
+				validator.body("password", valErrMsg.notExists("Password"))
 					.exists()
 					.isString()
 			]
