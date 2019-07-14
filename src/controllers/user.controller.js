@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
+const ensureValidId = require("../helpers/ensureValidId.js");
 const User = mongoose.model("User");
 
 // Get a single user by its ID
@@ -73,36 +74,14 @@ exports.getLoggedInUser = (req, res) => {
 	});
 };
 
-// Ensure that the given user ID parameter is a valid Mongoose SchemaType.
-exports.ensureValidId = (req, res, next) => {
-	const {userId} = req.params;
-
-	if (!userId) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				msg: "No user ID given."
-			});
-	}
-	if (!mongoose.Types.ObjectId.isValid(userId)) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				msg: "User ID parameter contains invalid syntax."
-			});
-	}
-
-	next();
-};
-
 // Validation middleware for all user controllers
 exports.validate = (method) => {
 	switch (method) {
 		case "getUser":
 			return [
-				validator.param("userId", "A user ID must be supplied.").not().exists()
+				validator.param("userId", "User ID is not given or is invalid.")
+					.exists()
+					.custom(ensureValidId)
 			];
 		default:
 			return [];
