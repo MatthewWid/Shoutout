@@ -1,18 +1,12 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
+const checkValidationErrors = require("../helpers/checkValidationErrors.js");
 const ensureValidId = require("../helpers/ensureValidId.js");
 const User = mongoose.model("User");
 
 // Get a single user by its ID
 exports.getUser = async (req, res) => {
-	const errors = validator.validationResult(req);
-	if (!errors.isEmpty()) {
-		res
-			.status(400)
-			.json({
-				success: false,
-				errors: errors.array()
-			});
+	if (checkValidationErrors(req, res)) {
 		return;
 	}
 
