@@ -17,6 +17,7 @@ router.get("/user/auth",
 );
 // Get a single user
 router.get("/user/:userId",
+	user.validate("getUser"),
 	user.ensureValidId,
 	wrap(user.getUser)
 );

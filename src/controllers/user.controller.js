@@ -1,8 +1,20 @@
 const mongoose = require("mongoose");
+const validator = require("express-validator");
 const User = mongoose.model("User");
 
 // Get a single user by its ID
 exports.getUser = async (req, res) => {
+	const errors = validator.validationResult(req);
+	if (!errors.isEmpty()) {
+		res
+			.status(400)
+			.json({
+				success: false,
+				errors: errors.array()
+			});
+		return;
+	}
+
 	const {userId} = req.params;
 
 	const user = await User.findById(userId, "_id nick name email isAdmin avatarUrl");
@@ -84,3 +96,15 @@ exports.ensureValidId = (req, res, next) => {
 
 	next();
 };
+
+// Validation middleware for all user controllers
+exports.validate = (method) => {
+	switch (method) {
+		case "getUser":
+			return [
+				validator.param("userId", "A user ID must be supplied.").not().exists()
+			];
+		default:
+			return [];
+	}
+}
