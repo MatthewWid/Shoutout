@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const constants = require("../helpers/constants.js");
+const constants = require("../constants.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 

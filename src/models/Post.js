@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const constants = require("../helpers/constants.js");
+const constants = require("../constants.js");
 const randomstring = require("randomstring");
 
 // Schema
