@@ -6,6 +6,8 @@ const auth = require("../controllers/auth.controller.js");
 const user = require("../controllers/user.controller.js");
 const post = require("../controllers/post.controller.js");
 
+const validate = require("../middlewares/validate.js");
+
 // Debug API test response
 router.get("/ping",
 	home.ping
@@ -17,12 +19,12 @@ router.get("/user/auth",
 );
 // Get a single user
 router.get("/user/:userId",
-	user.validate("getUser"),
+	validate(user, "getUser"),
 	wrap(user.getUser)
 );
 // Register a new user with a name, email and password
 router.post("/user",
-	user.validate("createUser"),
+	validate(user, "createUser"),
 	wrap(user.createUser),
 	auth.login,
 	user.getLoggedInUser

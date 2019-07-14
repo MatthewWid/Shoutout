@@ -1,7 +1,7 @@
 const validator = require("express-validator");
 
 // Check if validation errors exist and if so return a 400 with the errors attached
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
 	const errors = validator.validationResult(req);
 	if (!errors.isEmpty()) {
 		res
@@ -11,8 +11,8 @@ module.exports = (req, res) => {
 				msg: "Validation error.",
 				errors: errors.array()
 			});
-		return true;
+		return;
 	}
 
-	return false;
+	return next();
 };

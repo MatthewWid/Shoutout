@@ -1,15 +1,10 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
-const checkValidationErrors = require("../helpers/checkValidationErrors.js");
 const ensureValidId = require("../helpers/ensureValidId.js");
 const User = mongoose.model("User");
 
 // Get a single user by its ID
 exports.getUser = async (req, res) => {
-	if (checkValidationErrors(req, res)) {
-		return;
-	}
-
 	const {userId} = req.params;
 
 	const user = await User.findById(userId, "_id nick name email isAdmin avatarUrl");
@@ -31,10 +26,6 @@ exports.getUser = async (req, res) => {
 
 // Create a single user
 exports.createUser = async (req, res, next) => {
-	if (checkValidationErrors(req, res)) {
-		return;
-	}
-
 	const {nick, username, email, password} = req.body;
 
 	const newUser = new User({
