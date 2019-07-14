@@ -187,30 +187,6 @@ exports.ensurePostAuthor = async (req, res, next) => {
 	next();
 };
 
-// Ensure that the given post ID parameter is a valid Mongoose SchemaType.
-exports.ensureValidId = (req, res, next) => {
-	const {postId} = req.params;
-
-	if (!postId) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				msg: "No post ID given."
-			});
-	}
-	if (!mongoose.Types.ObjectId.isValid(postId)) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				msg: "Post ID parameter contains invalid syntax."
-			});
-	}
-
-	next();
-};
-
 exports.validate = (method) => {
 	switch (method) {
 		case "createPost":
