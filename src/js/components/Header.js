@@ -11,9 +11,7 @@ const Header = (props) => {
 				</div>
 				<div className="header__extra">
 					<SessionDetails
-						user={props.user}
 						login={props.login}
-						logout={props.logout}
 						signup={props.signup}
 					/>
 				</div>

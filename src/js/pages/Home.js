@@ -7,12 +7,14 @@ import FeedPanel from "../components/FeedPanel.js";
 import SiteInfoPanel from "../components/SiteInfoPanel.js";
 
 class Home extends React.Component {
+	static contextType = UserContext;
+
 	state = {
 		posts: []
 	}
 
 	componentDidMount() {
-		// this.refresh();
+		this.refresh();
 	}
 
 	refresh = () => {
@@ -24,7 +26,7 @@ class Home extends React.Component {
 	auth = async () => {
 		const {data} = await axios.get("/api/user/auth", {withCredentials: true});
 
-		this.setUser(data.user);
+		this.context.setUser(data.user);
 	}
 
 	// Create a new user and log them in
@@ -47,15 +49,6 @@ class Home extends React.Component {
 		}, {withCredentials: true});
 
 		this.refresh();
-	}
-
-	// Log out existing user
-	logout = async () => {
-		const {data} = await axios.post("/api/user/logout");
-
-		if (data.success) {
-			this.refresh();
-		}
 	}
 
 	// Retrieve array of all posts from the server
