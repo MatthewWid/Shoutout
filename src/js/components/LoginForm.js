@@ -22,20 +22,16 @@ class LoginForm extends React.Component {
 		});
 	}
 
-	handleSubmit = (evt) => {
+	handleSubmit = async (evt) => {
+		const {waitCompleteAction} = this.props;
 		evt.preventDefault();
 
-		this.loginUser({
+		const {data: {user}} = await axios.post("/api/user/login", {
 			email: this.state.email,
 			password: this.state.password
-		});
-	}
-
-	loginUser = async ({email, password}) => {
-		const {data: {user}} = await axios.post("/api/user/login", {
-			email,
-			password
 		}, {withCredentials: true});
+
+		waitCompleteAction && await waitCompleteAction();
 
 		this.context.setUser(user);
 	}

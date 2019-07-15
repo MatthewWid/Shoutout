@@ -24,25 +24,18 @@ class SignupForm extends React.Component {
 		});
 	}
 
-	handleSubmit = (evt) => {
+	handleSubmit = async (evt) => {
+		const {waitCompleteAction} = this.props;
 		evt.preventDefault();
 
-		this.signupUser({
+		const {data: {user}} = await axios.post("/api/user", {
 			nick: this.state.nick,
 			username: this.state.username,
 			email: this.state.email,
 			password: this.state.password
-		});
-	}
-
-	// Create a new user and log them in
-	signupUser = async ({nick, username, email, password}) => {
-		const {data: {user}} = await axios.post("/api/user", {
-			nick,
-			username,
-			email,
-			password
 		}, {withCredentials: true});
+
+		waitCompleteAction && await waitCompleteAction();
 
 		this.context.setUser(user);
 	}
