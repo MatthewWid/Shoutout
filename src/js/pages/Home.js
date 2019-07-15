@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import axios from "axios";
 import UserContext from "../contexts/user.context.js";
-import Header from "../components/Header.js";
 import UserPanel from "../components/UserPanel.js";
 import FeedPanel from "../components/FeedPanel.js";
 import SiteInfoPanel from "../components/SiteInfoPanel.js";
