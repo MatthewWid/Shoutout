@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import UserContext from "../contexts/user.context.js";
 
 const defaultState = {
 	nick: "",
@@ -8,6 +10,8 @@ const defaultState = {
 };
 
 class SignupForm extends React.Component {
+	static contextType = UserContext;
+
 	state = {
 		...defaultState
 	}
@@ -23,16 +27,24 @@ class SignupForm extends React.Component {
 	handleSubmit = (evt) => {
 		evt.preventDefault();
 
-		this.props.signup({
+		this.signupUser({
 			nick: this.state.nick,
 			username: this.state.username,
 			email: this.state.email,
 			password: this.state.password
 		});
+	}
 
-		this.setState({
-			...defaultState
-		});
+	// Create a new user and log them in
+	signupUser = async ({nick, username, email, password}) => {
+		const {data: {user}} = await axios.post("/api/user", {
+			nick,
+			username,
+			email,
+			password
+		}, {withCredentials: true});
+
+		this.context.setUser(user);
 	}
 
 	render() {

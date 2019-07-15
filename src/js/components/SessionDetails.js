@@ -66,10 +66,7 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<UserEntry
-							login={this.finalAction(this.props.login)}
-							signup={this.finalAction(this.props.signup)}
-						/>
+						<UserEntry />
 					</Dropdown>
 				</Fragment>
 			);

@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import UserContext from "../contexts/user.context.js";
 
 const defaultState = {
 	email: "",
@@ -6,6 +8,8 @@ const defaultState = {
 };
 
 class LoginForm extends React.Component {
+	static contextType = UserContext;
+
 	state = {
 		...defaultState
 	}
@@ -21,14 +25,19 @@ class LoginForm extends React.Component {
 	handleSubmit = (evt) => {
 		evt.preventDefault();
 
-		this.props.login({
+		this.loginUser({
 			email: this.state.email,
 			password: this.state.password
 		});
+	}
 
-		this.setState({
-			...defaultState
-		});
+	loginUser = async ({email, password}) => {
+		const {data: {user}} = await axios.post("/api/user/login", {
+			email,
+			password
+		}, {withCredentials: true});
+
+		this.context.setUser(user);
 	}
 
 	render() {
