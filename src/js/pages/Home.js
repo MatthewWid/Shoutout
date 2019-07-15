@@ -29,16 +29,6 @@ class Home extends React.Component {
 		this.context.setUser(data.user);
 	}
 
-	// Log in existing user
-	login = async ({email, password}) => {
-		const {data: {user}} = await axios.post("/api/user/login", {
-			email,
-			password
-		}, {withCredentials: true});
-
-		this.refresh();
-	}
-
 	// Retrieve array of all posts from the server
 	getAllPosts = () => {
 		this.setState({
