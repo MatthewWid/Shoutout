@@ -124,7 +124,6 @@ class Home extends React.Component {
 				<div className="content">
 					<UserPanel />
 					<FeedPanel
-						user={this.state.user}
 						posts={this.state.posts}
 						postMessage={this.postMessage}
 						addLike={this.addLike}

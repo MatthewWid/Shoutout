@@ -1,7 +1,7 @@
 import React from "react";
 import UserContext from "./contexts/user.context.js";
 import Header from "./components/Header.js";
-import MainRouter from "./Router.js";
+import MainRouter from "./MainRouter.js";
 
 // Global App component that holds ubiquitously required state and functions
 class App extends React.Component {
