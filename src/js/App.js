@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "./contexts/user.context.js";
 import Header from "./components/Header.js";
 import MainRouter from "./Router.js";
 
@@ -8,9 +9,21 @@ class App extends React.Component {
 		user: null
 	}
 
+	// Set the currently logged in user
+	setUser = (user) => {
+		this.setState({
+			user
+		});
+	}
+
 	render() {
 		return (
-			<MainRouter />
+			<UserContext.Provider value={{
+				user: this.state.user,
+				setUser: this.setUser
+			}}>
+				<MainRouter />
+			</UserContext.Provider>
 		);
 	}
 }

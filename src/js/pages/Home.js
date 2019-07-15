@@ -1,5 +1,6 @@
 import React, {Fragment} from "react";
 import axios from "axios";
+import UserContext from "../contexts/user.context.js";
 import Header from "../components/Header.js";
 import UserPanel from "../components/UserPanel.js";
 import FeedPanel from "../components/FeedPanel.js";
@@ -7,12 +8,11 @@ import SiteInfoPanel from "../components/SiteInfoPanel.js";
 
 class Home extends React.Component {
 	state = {
-		user: null,
 		posts: []
 	}
 
 	componentDidMount() {
-		this.refresh();
+		// this.refresh();
 	}
 
 	refresh = () => {
@@ -56,13 +56,6 @@ class Home extends React.Component {
 		if (data.success) {
 			this.refresh();
 		}
-	}
-
-	// Set the currently logged in user in the component state
-	setUser = (user) => {
-		this.setState({
-			user
-		});
 	}
 
 	// Retrieve array of all posts from the server
@@ -146,29 +139,19 @@ class Home extends React.Component {
 
 	render() {
 		return (
-			<Fragment>
-				{/*
-				<Header
-					user={this.state.user}
-					login={this.login}
-					logout={this.logout}
-					signup={this.signup}
-				/>
-				*/}
-				<div className="content-container">
-					<div className="content">
-						<UserPanel />
-						<FeedPanel
-							user={this.state.user}
-							posts={this.state.posts}
-							postMessage={this.postMessage}
-							addLike={this.addLike}
-							removeLike={this.removeLike}
-						/>
-						<SiteInfoPanel />
-					</div>
+			<div className="content-container">
+				<div className="content">
+					<UserPanel />
+					<FeedPanel
+						user={this.state.user}
+						posts={this.state.posts}
+						postMessage={this.postMessage}
+						addLike={this.addLike}
+						removeLike={this.removeLike}
+					/>
+					<SiteInfoPanel />
 				</div>
-			</Fragment>
+			</div>
 		);
 	}
 }
