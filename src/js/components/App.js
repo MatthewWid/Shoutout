@@ -8,12 +8,7 @@ import SiteInfoPanel from "./SiteInfoPanel.js";
 class App extends React.Component {
 	state = {
 		user: null,
-		posts: [],
-		stats: {
-			users: 0,
-			posts: 0,
-			likes: 0
-		}
+		posts: []
 	}
 
 	componentDidMount() {
@@ -23,7 +18,6 @@ class App extends React.Component {
 	refresh = () => {
 		this.auth();
 		this.getAllPosts();
-		this.getSiteStats();
 	}
 
 	// Authenticate if the user is logged in or not (using a cookie) on page load
@@ -86,12 +80,6 @@ class App extends React.Component {
 		const {data} = await axios.post("/api/post", {text});
 
 		this.addPosts([data.post]);
-
-		const {stats} = this.state;
-		stats.posts++;
-		this.setState({
-			stats
-		});
 	}
 
 	// Add an array of Posts to state
@@ -123,19 +111,14 @@ class App extends React.Component {
 
 		// Update state
 		const posts = [...this.state.posts];
-		const {stats} = this.state;
 
 		// Increment post like count and set like indicator
 		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
 		updatedPost.isLiked = didLike;
 		updatedPost.totalLikes++;
 
-		// Increment site stats like count
-		stats.likes++;
-
 		this.setState({
-			posts,
-			stats
+			posts
 		});
 	}
 
@@ -145,7 +128,6 @@ class App extends React.Component {
 
 		// Update state
 		const posts = [...this.state.posts];
-		const {stats} = this.state;
 
 		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
 		// Set to 'unliked' regardless of if a post was found or not
@@ -155,26 +137,10 @@ class App extends React.Component {
 		// If a like existed and was deleted decrement like counts
 		if (data.foundLike) {
 			updatedPost.totalLikes--;
-			stats.likes--;
 		}
 
 		this.setState({
-			posts,
-			stats
-		});
-	}
-
-	// Get website statistics (total posts, users and likes) and set them in state
-	getSiteStats = async () => {
-		const res = await axios.get("/api/stats");
-
-		const stats = {
-			...this.state.stats,
-			...res.data.stats
-		};
-
-		this.setState({
-			stats
+			posts
 		});
 	}
 
@@ -198,7 +164,7 @@ class App extends React.Component {
 							addLike={this.addLike}
 							removeLike={this.removeLike}
 						/>
-						<SiteInfoPanel stats={this.state.stats} />
+						<SiteInfoPanel />
 					</div>
 				</div>
 			</Fragment>
