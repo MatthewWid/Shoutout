@@ -1,11 +1,11 @@
 import React, {Fragment} from "react";
 import axios from "axios";
-import Header from "./Header.js";
-import UserPanel from "./UserPanel.js";
-import FeedPanel from "./FeedPanel.js";
-import SiteInfoPanel from "./SiteInfoPanel.js";
+import Header from "../components/Header.js";
+import UserPanel from "../components/UserPanel.js";
+import FeedPanel from "../components/FeedPanel.js";
+import SiteInfoPanel from "../components/SiteInfoPanel.js";
 
-class App extends React.Component {
+class Home extends React.Component {
 	state = {
 		user: null,
 		posts: []
@@ -147,13 +147,14 @@ class App extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				{/* Redux? */}
+				{/*
 				<Header
 					user={this.state.user}
 					login={this.login}
 					logout={this.logout}
 					signup={this.signup}
 				/>
+				*/}
 				<div className="content-container">
 					<div className="content">
 						<UserPanel />
@@ -172,4 +173,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default Home;

@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Router from "./components/Router.js";
+import App from "./App.js";
 
 ReactDOM.render(
-	<Router />,
+	<App />,
 	document.getElementsByClassName("container")[0]
 );
