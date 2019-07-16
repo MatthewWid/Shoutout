@@ -7,12 +7,7 @@
 	position: relative;
 	display: flex;
 	padding: 10px;
-	
-	&:hover &, &--drop-open & {
-		&__menu {
-			display: flex;
-		}
-	}
+
 	> div:last-of-type {
 		flex: 1;
 	}
@@ -40,11 +35,11 @@
 		font-weight: bold;
 	}
 	&__menu {
-		display: none;
 		position: absolute;
 		top: 6px;
 		right: 6px;
 		
+		// Click hit area
 		&-icon-container {
 			display: flex;
 			justify-content: center;
@@ -53,6 +48,7 @@
 			height: 30px;
 			cursor: pointer;
 		}
+		// Actual icon SVG container
 		&-icon {
 			display: inline-block;
 			width: 16px;

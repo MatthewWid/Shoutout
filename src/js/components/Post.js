@@ -94,7 +94,7 @@ class Post extends React.Component {
 		const {author} = post;
 
 		return (
-			<div className={`post ${this.state.dropdownOpen ? "post--drop-open" : ""}`}>
+			<div className={"post"}>
 				<div className="post__section">
 					<Avatar user={author} />
 				</div>
@@ -115,29 +115,32 @@ class Post extends React.Component {
 						>
 							{dayjs(post.created).fromNow()}
 						</span>
-						<span className="post__menu">
-							<div
-								className="post__menu-icon-container"
-								onClick={this.dropdownSetOpen(true)}
-							>
-								<InlineSvg
-									className="svg post__menu-icon"
-									src={"./images/icons/menu-ellipsis.svg"}
-									cacheGetRequests
-								></InlineSvg>
-							</div>
-							<Dropdown
-								isOpen={this.state.dropdownOpen}
-								close={this.dropdownSetOpen(false)}
-							>
-								{/*
-									TODO:
-										Click button to delete post if the current user
-										is the owner of the post.
-								*/}
-								<button className="dropdown__link">Delete Post</button>
-							</Dropdown>
-						</span>
+						{
+							this.context.user &&
+							<span className="post__menu">
+								<div
+									className="post__menu-icon-container"
+									onClick={this.dropdownSetOpen(true)}
+								>
+									<InlineSvg
+										className="svg post__menu-icon"
+										src={"./images/icons/menu-ellipsis.svg"}
+										cacheGetRequests
+									></InlineSvg>
+								</div>
+								<Dropdown
+									isOpen={this.state.dropdownOpen}
+									close={this.dropdownSetOpen(false)}
+								>
+									{/*
+										TODO:
+											Click button to delete post if the current user
+											is the owner of the post.
+									*/}
+									<button className="dropdown__link">Delete Post</button>
+								</Dropdown>
+							</span>
+						}
 					</div>
 					<div className="post__content">
 						<p className="post__text">{post.text}</p>
