@@ -15,16 +15,9 @@ class SessionDetails extends React.Component {
 
 	dropdownSetOpen = dropdownSetOpen.bind(this);
 
-	closeDropdown = async () => {
-		this.setState({
-			dropdownOpen: false
-		});
-		await new Promise (r => setTimeout(r, 200));
-	};
-
 	// Log out the existing user
 	logout = async () => {
-		await this.closeDropdown();
+		await this.dropdownSetOpen(false)();
 
 		const {data} = await axios.post("/api/user/logout");
 
@@ -62,7 +55,7 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<UserEntry waitCompleteAction={this.closeDropdown} />
+						<UserEntry waitCompleteAction={this.dropdownSetOpen(false)} />
 					</Dropdown>
 				</Fragment>
 			);
