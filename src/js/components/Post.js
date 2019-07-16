@@ -94,7 +94,7 @@ class Post extends React.Component {
 		const {author} = post;
 
 		return (
-			<div className="post">
+			<div className={`post ${this.state.dropdownOpen ? "post--drop-open" : ""}`}>
 				<div className="post__section">
 					<Avatar user={author} />
 				</div>
