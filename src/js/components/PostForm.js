@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import UserContext from "../contexts/user.context.js";
 
 const defaultState = {
@@ -33,9 +34,8 @@ class PostForm extends React.Component {
 		}
 
 		// Send data to the server
-		const {text} = this.state;
-		this.props.postMessage({
-			text
+		this.postMessage({
+			text: this.state.text
 		});
 
 		// Clear form fields
@@ -44,9 +44,20 @@ class PostForm extends React.Component {
 		});
 	}
 
+	// Submit the form when pressing Enter unless simultaneously holding Shift, too
 	handleKeyPress = (evt) => {
 		if (evt.charCode === 13 && !evt.shiftKey) {
 			this.handleSubmit(evt);
+		}
+	}
+
+	// Send a new Post to the server
+	postMessage = async ({text}) => {
+		const {data} = await axios.post("/api/post", {text});
+
+		if (data.success) {
+			const {addPosts} = this.props;
+			addPosts && addPosts([data.post]);
 		}
 	}
 

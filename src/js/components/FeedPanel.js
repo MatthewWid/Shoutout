@@ -1,21 +1,51 @@
 import React from "react";
+import axios from "axios";
 import UserContext from "../contexts/user.context.js";
 import PostForm from "./PostForm.js";
 import PostList from "./PostList.js";
 
-const FeedPanel = (props) => {
-	const context = React.useContext(UserContext);
+class FeedPanel extends React.Component {
+	static contextType = UserContext;
 
-	return (
-		<main className="content__panel feed">
-			{context.user && <PostForm postMessage={props.postMessage} />}
-			<PostList
-				posts={props.posts}
-				addLike={props.addLike}
-				removeLike={props.removeLike}
-			/>
-		</main>
-	);
-};
+	state = {
+		posts: []
+	}
+
+	componentDidMount() {
+		this.getAllPosts();
+	}
+
+	// Retrieve array of all posts from the server
+	getAllPosts = () => {
+		this.setState({
+			posts: []
+		}, async () => {
+			const {data} = await axios.get("/api/posts");
+			this.addPosts(data.posts);
+		});
+	}
+
+	// Add an array of Posts to state
+	addPosts = (newPosts = []) => {
+		const posts = [...this.state.posts];
+		posts.unshift(...newPosts);
+		this.setState({
+			posts
+		});
+	}
+
+	render() {
+		return (
+			<main className="content__panel feed">
+				{this.context.user && <PostForm addPosts={this.addPosts} />}
+				<PostList
+					posts={this.state.posts}
+					addLike={this.props.addLike}
+					removeLike={this.props.removeLike}
+				/>
+			</main>
+		);
+	}
+}
 
 export default FeedPanel;

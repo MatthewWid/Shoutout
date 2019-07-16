@@ -8,17 +8,8 @@ import SiteInfoPanel from "../components/SiteInfoPanel.js";
 class Home extends React.Component {
 	static contextType = UserContext;
 
-	state = {
-		posts: []
-	}
-
 	componentDidMount() {
-		this.refresh();
-	}
-
-	refresh = () => {
 		this.auth();
-		this.getAllPosts();
 	}
 
 	// Authenticate if the user is logged in or not (using a cookie) on page load
@@ -26,32 +17,6 @@ class Home extends React.Component {
 		const {data} = await axios.get("/api/user/auth", {withCredentials: true});
 
 		this.context.setUser(data.user);
-	}
-
-	// Retrieve array of all posts from the server
-	getAllPosts = () => {
-		this.setState({
-			posts: []
-		}, async () => {
-			const {data} = await axios.get("/api/posts");
-			this.addPosts(data.posts);
-		});
-	}
-
-	// Send a new Post to the server
-	postMessage = async ({text}) => {
-		const {data} = await axios.post("/api/post", {text});
-
-		this.addPosts([data.post]);
-	}
-
-	// Add an array of Posts to state
-	addPosts = (newPosts = []) => {
-		const posts = [...this.state.posts];
-		posts.unshift(...newPosts);
-		this.setState({
-			posts
-		});
 	}
 
 	// Add a single like to a post
@@ -113,8 +78,6 @@ class Home extends React.Component {
 				<div className="content">
 					<UserPanel />
 					<FeedPanel
-						posts={this.state.posts}
-						postMessage={this.postMessage}
 						addLike={this.addLike}
 						removeLike={this.removeLike}
 					/>
