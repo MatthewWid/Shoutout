@@ -19,68 +19,12 @@ class Home extends React.Component {
 		this.context.setUser(data.user);
 	}
 
-	// Add a single like to a post
-	addLike = async (postId) => {
-		let didLike = true;
-
-		// Send POST request to like post
-		await axios.post(`/api/post/${postId}/like`, {withCredentials: true})
-		.then(({data: {success}}) => {
-			didLike = success ? true : false;
-		})
-		.catch((err) => {
-			didLike = false;
-		});
-
-		// If the attempt like the post failed abort the function
-		if (!didLike) {
-			return;
-		}
-
-		// Update state
-		const posts = [...this.state.posts];
-
-		// Increment post like count and set like indicator
-		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
-		updatedPost.isLiked = didLike;
-		updatedPost.totalLikes++;
-
-		this.setState({
-			posts
-		});
-	}
-
-	// Remove a single like from a post
-	removeLike = async (postId) => {
-		const {data} = await axios.delete(`/api/post/${postId}/like`, {withCredentials: true});
-
-		// Update state
-		const posts = [...this.state.posts];
-
-		const updatedPost = posts[posts.findIndex((post) => post._id === postId)];
-		// Set to 'unliked' regardless of if a post was found or not
-		if (data.success) {
-			updatedPost.isLiked = false;
-		}
-		// If a like existed and was deleted decrement like counts
-		if (data.foundLike) {
-			updatedPost.totalLikes--;
-		}
-
-		this.setState({
-			posts
-		});
-	}
-
 	render() {
 		return (
 			<div className="content-container">
 				<div className="content">
 					<UserPanel />
-					<FeedPanel
-						addLike={this.addLike}
-						removeLike={this.removeLike}
-					/>
+					<FeedPanel />
 					<SiteInfoPanel />
 				</div>
 			</div>

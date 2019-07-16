@@ -34,14 +34,24 @@ class FeedPanel extends React.Component {
 		});
 	}
 
+	updatePost = (newPost = {}) => {
+		const posts = [...this.state.posts];
+
+		// Increment post like count and set like indiciator
+		posts[posts.findIndex((post) => post._id === newPost._id)] = newPost;
+
+		this.setState({
+			posts
+		});
+	}
+
 	render() {
 		return (
 			<main className="content__panel feed">
 				{this.context.user && <PostForm addPosts={this.addPosts} />}
 				<PostList
 					posts={this.state.posts}
-					addLike={this.props.addLike}
-					removeLike={this.props.removeLike}
+					updatePost={this.updatePost}
 				/>
 			</main>
 		);

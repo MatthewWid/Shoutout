@@ -1,7 +1,9 @@
 import React from "react";
+import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
+import UserContext from "../contexts/user.context.js";
 import Avatar from "./Avatar.js";
 dayjs.extend(relativeTime);
 
@@ -13,12 +15,66 @@ dayjs.extend(relativeTime);
 */
 
 class Post extends React.Component {
+	static contextType = UserContext;
+
 	handleLikeClick = () => {
-		if (!this.props.post.isLiked) {
-			this.props.addLike(this.props.post._id);
-		} else {
-			this.props.removeLike(this.props.post._id);
+		if (!this.context.user) {
+			alert("You need to have an account to like a post");
+			return;
 		}
+		if (!this.props.post.isLiked) {
+			this.addLike(this.props.post._id);
+		} else {
+			this.removeLike(this.props.post._id);
+		}
+	}
+
+	addLike = async () => {
+		const {post} = this.props;
+		const {updatePost} = this.props;
+		let didLike = true;
+
+		// Send POST request to like post
+		await axios.post(`/api/post/${post._id}/like`, {withCredentials: true})
+		.then(({data: {success}}) => {
+			didLike = success ? true : false;
+		})
+		.catch((err) => {
+			didLike = false;
+		});
+
+		// If the attempt like the post failed abort the function
+		if (!didLike) {
+			return;
+		}
+
+		const newPost = {...post};
+		newPost.isLiked = didLike;
+		newPost.totalLikes++;
+
+		updatePost && updatePost(newPost);
+	}
+
+	removeLike = async () => {
+		const {post} = this.props;
+		const {updatePost} = this.props;
+		let didLike = true;
+
+		// Send DELETE request to unlike post
+		const {data} = await axios.delete(`/api/post/${post._id}/like`, {withCredentials: true});
+
+		const newPost = {...post};
+		// Set to 'unliked' regardless of if a post was found or not
+		if (data.success) {
+			newPost.isLiked = false;
+
+			// If a like existed and was deleted decrement like counts
+			if (data.foundLike) {
+				newPost.totalLikes--;
+			}
+		}
+
+		updatePost && updatePost(newPost);
 	}
 
 	render() {

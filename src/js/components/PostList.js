@@ -7,8 +7,7 @@ const PostList = (props) => (
 			<Post
 				key={index}
 				post={post}
-				addLike={props.addLike}
-				removeLike={props.removeLike}
+				updatePost={props.updatePost}
 			/>
 		))}
 	</div>
