@@ -4,6 +4,7 @@
 	}
 }
 .post {
+	position: relative;
 	display: flex;
 	padding: 10px;
 
@@ -19,9 +20,10 @@
 		}
 	}
 	&__info {
+		display: flex;
 		color: $text-grey;
 
-		> span {
+		> span:not(:last-of-type) {
 			margin-right: 5px;
 		}
 	}
@@ -32,7 +34,38 @@
 	&__spacer {
 		font-weight: bold;
 	}
+	&__menu {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
+		position: absolute;
+		top: 6px;
+		right: 6px;
+		width: 30px;
+		height: 30px;
+
+		&-icon {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+
+			svg {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.dropdown {
+			top: 25px + 20px / 2;
+			right: -20px;
+			min-width: 240px;
+
+			&:before {
+				right: 15px;
+			}
+		}
+	}
 	&__content {
 		p {
 			font-size: 1rem;

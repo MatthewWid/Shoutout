@@ -4,7 +4,9 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
 import UserContext from "../contexts/user.context.js";
+import Dropdown from "./Dropdown.js";
 import Avatar from "./Avatar.js";
+import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 dayjs.extend(relativeTime);
 
 /*
@@ -12,10 +14,20 @@ dayjs.extend(relativeTime);
 	fontawesome.com/license/free
 		fontawesome.com/icons/heart?style=regular
 		fontawesome.com/icons/heart?style=solid
+
+	Ellipsis Menu SVG from Font Awesome
+		fontawesome.com/license/free
+			fontawesome.com/icons/ellipsis-v?style=solid
 */
 
 class Post extends React.Component {
 	static contextType = UserContext;
+
+	state = {
+		dropdownOpen: false
+	}
+
+	dropdownSetOpen = dropdownSetOpen.bind(this);
 
 	handleLikeClick = () => {
 		if (!this.context.user) {
@@ -103,6 +115,29 @@ class Post extends React.Component {
 						>
 							{dayjs(post.created).fromNow()}
 						</span>
+						<span className="post__menu">
+							<div
+								className="post__menu-icon-container"
+								onClick={this.dropdownSetOpen(true)}
+							>
+								<InlineSvg
+									className="svg post__menu-icon"
+									src={"./images/icons/menu-ellipsis.svg"}
+									cacheGetRequests
+								></InlineSvg>
+							</div>
+							<Dropdown
+								isOpen={this.state.dropdownOpen}
+								close={this.dropdownSetOpen(false)}
+							>
+								{/*
+									TODO:
+										Click button to delete post if the current user
+										is the owner of the post.
+								*/}
+								<button className="dropdown__link">Delete Post</button>
+							</Dropdown>
+						</span>
 					</div>
 					<div className="post__content">
 						<p className="post__text">{post.text}</p>
@@ -113,7 +148,7 @@ class Post extends React.Component {
 							onClick={this.handleLikeClick}
 						>
 							<InlineSvg
-								className="post__button-icon"
+								className="svg post__button-icon"
 								src={`./images/icons/heart-${post.isLiked ? "solid" : "regular"}.svg`}
 								cacheGetRequests
 							></InlineSvg>
