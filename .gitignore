@@ -7,7 +7,7 @@ public/**/*.js
 public/**/*.css
 public/**/*.css.map
 
-src/webpack-manifest.json
+src/server/webpack-manifest.json
 
 /*.txt
 mongod.sh

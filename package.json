@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "server": "node ./src/server.js",
-    "server:watch": "nodemon --config nodemon.json ./src/server.js",
+    "server": "node ./src/server/server.js",
+    "server:watch": "nodemon --config nodemon.json ./src/server/server.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "start": "npm-run-all --sequential build server",
