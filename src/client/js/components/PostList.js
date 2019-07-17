@@ -8,6 +8,7 @@ const PostList = (props) => (
 				key={index}
 				post={post}
 				updatePost={props.updatePost}
+				removePost={props.removePost}
 			/>
 		))}
 	</div>

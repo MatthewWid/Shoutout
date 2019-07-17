@@ -45,6 +45,16 @@ class FeedPanel extends React.Component {
 		});
 	}
 
+	removePost = (delPost) => {
+		const posts = [...this.state.posts]
+			.filter((post) => post._id !== delPost._id);
+			// .splice(posts.findIndex((post) => post._id === delPost._id), 1);
+
+		this.setState({
+			posts
+		});
+	}
+
 	render() {
 		return (
 			<main className="content__panel feed">
@@ -52,6 +62,7 @@ class FeedPanel extends React.Component {
 				<PostList
 					posts={this.state.posts}
 					updatePost={this.updatePost}
+					removePost={this.removePost}
 				/>
 			</main>
 		);

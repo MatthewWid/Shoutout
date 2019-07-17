@@ -42,8 +42,7 @@ class Post extends React.Component {
 	}
 
 	addLike = async () => {
-		const {post} = this.props;
-		const {updatePost} = this.props;
+		const {post, updatePost} = this.props;
 		let didLike = true;
 
 		// Send POST request to like post
@@ -68,8 +67,7 @@ class Post extends React.Component {
 	}
 
 	removeLike = async () => {
-		const {post} = this.props;
-		const {updatePost} = this.props;
+		const {post, updatePost} = this.props;
 		let didLike = true;
 
 		// Send DELETE request to unlike post
@@ -87,6 +85,27 @@ class Post extends React.Component {
 		}
 
 		updatePost && updatePost(newPost);
+	}
+
+	handleDeleteClick = async () => {
+		const {post, removePost} = this.props;
+
+		if (!this.context.user) {
+			alert("You need to be logged in to do that.");
+			return;
+		}
+		if (this.context.user._id !== post.author._id) {
+			alert("You cannot delete a post you do not own!");
+			return;
+		}
+
+
+		const {data} = await axios.delete(`/api/post/${post._id}`, {withCredentials: true});
+
+		if (data.success) {
+			removePost && removePost(post);
+			this.dropdownSetOpen(false)();
+		}
 	}
 
 	render() {
@@ -132,12 +151,10 @@ class Post extends React.Component {
 									isOpen={this.state.dropdownOpen}
 									close={this.dropdownSetOpen(false)}
 								>
-									{/*
-										TODO:
-											Click button to delete post if the current user
-											is the owner of the post.
-									*/}
-									<button className="dropdown__link">Delete Post</button>
+									<button
+										className="dropdown__link"
+										onClick={this.handleDeleteClick}
+									>Delete Post</button>
 								</Dropdown>
 							</span>
 						}
