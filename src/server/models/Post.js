@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
 	text: {
 		type: String,
 		required: "Post must contain text.",
-		minlength: 3,
+		minlength: 1,
 		maxlength: 140,
 		trim: true
 	},
