@@ -50,11 +50,11 @@ exports.getLoggedInUser = (req, res) => {
 		});
 	}
 
-	const {_id: id, nick, name, email, isAdmin, avatarUrl} = req.user;
+	const {_id, nick, name, email, isAdmin, avatarUrl} = req.user;
 	res.json({
 		success: true,
 		user: {
-			id,
+			_id,
 			nick,
 			name,
 			email,

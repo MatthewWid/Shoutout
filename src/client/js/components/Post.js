@@ -99,7 +99,6 @@ class Post extends React.Component {
 			return;
 		}
 
-
 		const {data} = await axios.delete(`/api/post/${post._id}`, {withCredentials: true});
 
 		if (data.success) {
@@ -111,6 +110,7 @@ class Post extends React.Component {
 	render() {
 		const {post} = this.props;
 		const {author} = post;
+		const ownsPost = author._id === this.context.user._id;
 
 		return (
 			<div className={"post"}>
@@ -151,10 +151,13 @@ class Post extends React.Component {
 									isOpen={this.state.dropdownOpen}
 									close={this.dropdownSetOpen(false)}
 								>
-									<button
-										className="dropdown__link"
-										onClick={this.handleDeleteClick}
-									>Delete Post</button>
+									{
+										ownsPost &&
+										<button
+											className="dropdown__link"
+											onClick={this.handleDeleteClick}
+										>Delete Post</button>
+									}
 								</Dropdown>
 							</span>
 						}
