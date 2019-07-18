@@ -110,7 +110,7 @@ class Post extends React.Component {
 	render() {
 		const {post} = this.props;
 		const {author} = post;
-		const ownsPost = author._id === this.context.user._id;
+		const ownsPost = author._id === (this.context.user || {})._id;
 
 		return (
 			<div className={"post"}>
