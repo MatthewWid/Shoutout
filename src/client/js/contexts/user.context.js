@@ -9,7 +9,7 @@ const UserContext = React.createContext({
 const withUserContext = (WrappedComponent) => {
 	return (props) => (
 		<UserContext.Consumer>
-			{(context) => <WrappedComponent UserContext={UserContext} {...props} />}
+			{(context) => <WrappedComponent UserContext={context} {...props} />}
 		</UserContext.Consumer>
 	);
 };
