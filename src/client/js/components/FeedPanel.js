@@ -1,12 +1,10 @@
 import React from "react";
 import axios from "axios";
-import UserContext from "../contexts/user.context.js";
+import {withUserContext} from "../contexts/user.context.js";
 import PostForm from "./PostForm.js";
 import PostList from "./PostList.js";
 
 class FeedPanel extends React.Component {
-	static contextType = UserContext;
-
 	state = {
 		posts: []
 	}
@@ -58,7 +56,7 @@ class FeedPanel extends React.Component {
 	render() {
 		return (
 			<main className="content__panel feed">
-				{this.context.user && <PostForm addPosts={this.addPosts} />}
+				{this.props.UserContext.user && <PostForm addPosts={this.addPosts} />}
 				<PostList
 					posts={this.state.posts}
 					updatePost={this.updatePost}
@@ -69,4 +67,4 @@ class FeedPanel extends React.Component {
 	}
 }
 
-export default FeedPanel;
+export default withUserContext(FeedPanel);

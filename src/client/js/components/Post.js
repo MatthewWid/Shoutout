@@ -3,7 +3,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
-import UserContext from "../contexts/user.context.js";
+import {withUserContext} from "../contexts/user.context.js";
 import Dropdown from "./Dropdown.js";
 import Avatar from "./Avatar.js";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
@@ -21,8 +21,6 @@ dayjs.extend(relativeTime);
 */
 
 class Post extends React.Component {
-	static contextType = UserContext;
-
 	state = {
 		dropdownOpen: false
 	}
@@ -30,7 +28,7 @@ class Post extends React.Component {
 	dropdownSetOpen = dropdownSetOpen.bind(this);
 
 	handleLikeClick = () => {
-		if (!this.context.user) {
+		if (!this.props.UserContext.user) {
 			alert("You need to have an account to like a post");
 			return;
 		}
@@ -88,13 +86,13 @@ class Post extends React.Component {
 	}
 
 	handleDeleteClick = async () => {
-		const {post, removePost} = this.props;
+		const {post, removePost, UserContext: {user}} = this.props;
 
-		if (!this.context.user) {
+		if (!user) {
 			alert("You need to be logged in to do that.");
 			return;
 		}
-		if (this.context.user._id !== post.author._id) {
+		if (user._id !== post.author._id) {
 			alert("You cannot delete a post you do not own!");
 			return;
 		}
@@ -108,9 +106,9 @@ class Post extends React.Component {
 	}
 
 	render() {
-		const {post} = this.props;
+		const {post, UserContext: {user}} = this.props;
 		const {author} = post;
-		const ownsPost = author._id === (this.context.user || {})._id;
+		const ownsPost = author._id === (user || {})._id;
 
 		return (
 			<div className={"post"}>
@@ -135,7 +133,7 @@ class Post extends React.Component {
 							{dayjs(post.created).fromNow()}
 						</span>
 						{
-							this.context.user &&
+							user &&
 							<span className="post__menu">
 								<div
 									className="post__menu-icon-container"
@@ -184,4 +182,4 @@ class Post extends React.Component {
 	}
 }
 
-export default Post;
+export default withUserContext(Post);

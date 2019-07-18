@@ -1,14 +1,12 @@
 import React, {Fragment} from "react";
 import axios from "axios";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
-import UserContext from "../contexts/user.context.js";
+import {withUserContext} from "../contexts/user.context.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
 
 class SessionDetails extends React.Component {
-	static contextType = UserContext;
-
 	state = {
 		dropdownOpen: false
 	}
@@ -22,16 +20,17 @@ class SessionDetails extends React.Component {
 		const {data} = await axios.post("/api/user/logout");
 
 		if (data.success) {
-			this.context.setUser(null);
+			this.props.UserContext.setUser(null);
 		}
 	}
 
 	render() {
+		const {UserContext: {user}} = this.props;
 		let details;
-		if (this.context.user) {
+		if (user) {
 			details = (
 				<Fragment>
-					<Avatar user={this.context.user} onClick={this.dropdownSetOpen(true)} />
+					<Avatar user={user} onClick={this.dropdownSetOpen(true)} />
 					<Dropdown
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
@@ -62,11 +61,11 @@ class SessionDetails extends React.Component {
 		}
 
 		return (
-			<div className={`session ${this.context.user ? "session--logged-in" : "session--logged-out"}`}>
+			<div className={`session ${user ? "session--logged-in" : "session--logged-out"}`}>
 				{details}
 			</div>
 		);
 	}
 }
 
-export default SessionDetails;
+export default withUserContext(SessionDetails);

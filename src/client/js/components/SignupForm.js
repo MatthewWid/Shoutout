@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import UserContext from "../contexts/user.context.js";
+import {withUserContext} from "../contexts/user.context.js";
 
 const defaultState = {
 	nick: "",
@@ -10,8 +10,6 @@ const defaultState = {
 };
 
 class SignupForm extends React.Component {
-	static contextType = UserContext;
-
 	state = {
 		...defaultState
 	}
@@ -37,7 +35,7 @@ class SignupForm extends React.Component {
 
 		waitCompleteAction && await waitCompleteAction();
 
-		this.context.setUser(user);
+		this.props.UserContext.setUser(user);
 	}
 
 	render() {
@@ -94,4 +92,4 @@ class SignupForm extends React.Component {
 	}
 }
 
-export default SignupForm;
+export default withUserContext(SignupForm);

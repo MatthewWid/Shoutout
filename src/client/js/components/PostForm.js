@@ -1,14 +1,12 @@
 import React from "react";
 import axios from "axios";
-import UserContext from "../contexts/user.context.js";
+import {withUserContext} from "../contexts/user.context.js";
 
 const defaultState = {
 	text: ""
 };
 
 class PostForm extends React.Component {
-	static contextType = UserContext;
-
 	state = {
 		...defaultState
 	}
@@ -66,7 +64,7 @@ class PostForm extends React.Component {
 
 		return (
 			<div className="post-form">
-				<p className="post-form__author">Post as <b>@{this.context.user.name}</b></p>
+				<p className="post-form__author">Post as <b>@{this.props.UserContext.user.name}</b></p>
 				<form
 					className="post-form__form"
 					onSubmit={this.handleSubmit}
@@ -96,4 +94,4 @@ class PostForm extends React.Component {
 	}
 }
 
-export default PostForm;
+export default withUserContext(PostForm);
