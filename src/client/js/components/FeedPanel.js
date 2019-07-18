@@ -32,7 +32,6 @@ class FeedPanel extends React.Component {
 
 	// Retrieve array of all posts from the server
 	getAllPosts = () => {
-		console.log("GET ALL POSTS");
 		this.setState({
 			posts: []
 		}, async () => {
