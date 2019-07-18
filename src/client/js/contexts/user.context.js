@@ -6,4 +6,12 @@ const UserContext = React.createContext({
 	authUser: () => {}
 });
 
-export default UserContext;
+const withUserContext = (WrappedComponent) => {
+	return (props) => (
+		<UserContext.Consumer>
+			{(context) => <WrappedComponent UserContext={UserContext} {...props} />}
+		</UserContext.Consumer>
+	);
+};
+
+export {UserContext as default, withUserContext};
