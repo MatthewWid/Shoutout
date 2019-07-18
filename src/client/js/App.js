@@ -11,7 +11,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.auth();
+		this.authUser();
 	}
 
 	// Set the currently logged in user
@@ -22,7 +22,7 @@ class App extends React.Component {
 	}
 
 	// Authenticate if the user is logged in or not (using a cookie) on page load
-	auth = async () => {
+	authUser = async () => {
 		const {data} = await axios.get("/api/user/auth", {withCredentials: true});
 
 		this.setUser(data.user);
