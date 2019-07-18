@@ -7,7 +7,13 @@ import MainRouter from "./MainRouter.js";
 // Global App component that holds ubiquitously required state and functions
 class App extends React.Component {
 	state = {
-		user: null
+		user: null,
+		/*
+			0 = Not attempted auth yet
+			1 = Not logged in / Failed login
+			2 = Successfully logged in
+		*/
+		loginStatus: 0
 	}
 
 	componentDidMount() {
@@ -16,8 +22,14 @@ class App extends React.Component {
 
 	// Set the currently logged in user
 	setUser = (user) => {
+		let loginStatus = 1;
+		if (user !== null) {
+			loginStatus = 2;
+		}
+
 		this.setState({
-			user
+			user,
+			loginStatus
 		});
 	}
 
@@ -32,6 +44,7 @@ class App extends React.Component {
 		return (
 			<UserContext.Provider value={{
 				user: this.state.user,
+				loginStatus: this.state.loginStatus,
 				setUser: this.setUser,
 				authUser: this.authUser
 			}}>

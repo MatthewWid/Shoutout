@@ -13,8 +13,26 @@ class FeedPanel extends React.Component {
 		this.getAllPosts();
 	}
 
+	componentDidUpdate(prevProps) {
+		const {UserContext: {loginStatus: prevLoginStatus}} = prevProps;
+		const {UserContext: {loginStatus}} = this.props;
+
+		// If the user logs in or out (Except logging in from the initial auth)
+		// Reload all of the posts (Switching between global/personalised post feed)
+		if (
+			prevLoginStatus != loginStatus &&
+			(
+				loginStatus === 1 ||
+				loginStatus === 2
+			)
+		) {
+			this.getAllPosts();
+		}
+	}
+
 	// Retrieve array of all posts from the server
 	getAllPosts = () => {
+		console.log("GET ALL POSTS");
 		this.setState({
 			posts: []
 		}, async () => {

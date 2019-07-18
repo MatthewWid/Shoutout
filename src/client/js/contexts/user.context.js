@@ -2,6 +2,7 @@ import React from "react";
 
 const UserContext = React.createContext({
 	user: null,
+	loginStatus: 0,
 	setUser: () => {},
 	authUser: () => {}
 });
