@@ -38,10 +38,7 @@ input, textarea, button {
 }
 
 // Sections
-@import "./sections/_UserPanel.scss";
-@import "./sections/_PostFeed.scss";
-@import "./sections/_SiteInfo.scss";
-@import "./sections/content.scss";
+@import "./partials/_content.scss";
 
 // React Components
 @import "./components/_Header.scss";
@@ -57,7 +54,6 @@ input, textarea, button {
 @import "./components/_PostList.scss";
 @import "./components/_Post.scss";
 
-@import "./components/_SiteInfoPanel.scss";
 @import "./components/_SiteStats.scss";
 
 // Partials

@@ -13,14 +13,7 @@
 			border: 1px solid $blue-mid;
 			border-radius: 2px;
 		}
-		.user {
-			@include UserPanel;
-		}
-		.feed {
-			@include PostFeed;
-		}
-		.site-info {
-			@include SiteInfo;
-		}
+		@import "../components/_SiteInfoPanel.scss";
+		@import "../components/_FeedPanel.scss";
 	}
 }
