@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
 const constants = require("../constants.js");
+const {POSTS_PER_PAGE: perPage} = constants;
 const ensureValidId = require("../helpers/ensureValidId.js");
 const valErrMsg = require("../helpers/validationErrorMsg.js");
 const Post = mongoose.model("Post");
@@ -135,6 +136,7 @@ exports.getManyPosts = async (req, res) => {
 
 	// Get results
 	let posts = await Post.find(findParams)
+		.limit(perPage)
 		.sort(sort);
 
 	// Set 'isLiked' property on each post
