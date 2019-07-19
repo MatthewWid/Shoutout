@@ -37,8 +37,10 @@ input, textarea, button {
 	box-sizing: border-box;
 }
 
-// Sections
+// Partials
 @import "./partials/_content.scss";
+@import "./partials/_button.scss";
+@import "./partials/_divider.scss";
 
 // React Components
 @import "./components/_Header.scss";
@@ -55,6 +57,3 @@ input, textarea, button {
 @import "./components/_Post.scss";
 
 @import "./components/_SiteStats.scss";
-
-// Partials
-@import "./partials/_button.scss";

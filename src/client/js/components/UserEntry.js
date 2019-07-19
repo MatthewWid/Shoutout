@@ -28,7 +28,7 @@ class UserEntry extends React.Component {
 		return (
 			<div className="user-entry">
 				{form}
-				<hr className="user-entry__divider" />
+				<hr className="divider" />
 				{prompt}
 			</div>
 		);

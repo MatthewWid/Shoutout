@@ -4,11 +4,6 @@
 	> :not(:last-child) {
 		margin-bottom: 15px;
 	}
-	hr {
-		border: none;
-		height: 1px;
-		background-color: $blue-mid;
-	}
 	&__input {
 		width: 100%;
 		font-size: 1rem;
