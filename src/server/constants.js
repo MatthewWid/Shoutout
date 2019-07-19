@@ -4,4 +4,4 @@ exports.PROJECTION_POST = "text created author shortId";
 
 exports.PROJECTION_LIKE = "created postId userId";
 
-exports.POSTS_PER_PAGE = 10;
+exports.POSTS_PER_PAGE = 2;

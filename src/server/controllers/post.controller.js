@@ -111,6 +111,13 @@ exports.serializeSearchParams = (req, res, next) => {
 		searchParams.sort = "new";
 	}
 
+	// Page number
+	if (req.query["page"]) {
+		searchParams.page = req.query["page"];
+	} else {
+		searchParams.page = 0;
+	}
+
 	req.searchParams = searchParams;
 
 	next();
@@ -124,6 +131,9 @@ exports.getManyPosts = async (req, res) => {
 		findParams.author = req.searchParams.author;
 	}
 
+	// Pagination
+	const pageSkip = perPage * req.searchParams.page;
+
 	// Sort results
 	const {sort: sortType} = req.searchParams;
 	const sort = {};
@@ -136,6 +146,7 @@ exports.getManyPosts = async (req, res) => {
 
 	// Get results
 	let posts = await Post.find(findParams)
+		.skip(pageSkip)
 		.limit(perPage)
 		.sort(sort);
 
@@ -280,7 +291,11 @@ exports.validate = (method) => {
 
 				validator.query("sort", valErrMsg.notValid("Sort order type"))
 					.optional()
-					.isIn(["top", "trending", "new", "old"])
+					.isIn(["top", "trending", "new", "old"]),
+
+				validator.query("page", valErrMsg.notValid("Page number"))
+					.optional()
+					.isInt({min: 0})
 			]
 		case "addLike":
 			return [
