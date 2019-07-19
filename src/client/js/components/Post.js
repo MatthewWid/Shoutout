@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -149,12 +149,16 @@ class Post extends React.Component {
 									isOpen={this.state.dropdownOpen}
 									close={this.dropdownSetOpen(false)}
 								>
+									<p className="post__menu-id">{post.shortId}</p>
 									{
 										ownsPost &&
-										<button
-											className="dropdown__link"
-											onClick={this.handleDeleteClick}
-										>Delete Post</button>
+										<Fragment>
+											<hr className="divider" />
+											<button
+												className="dropdown__link"
+												onClick={this.handleDeleteClick}
+											>Delete Post</button>
+										</Fragment>
 									}
 								</Dropdown>
 							</span>

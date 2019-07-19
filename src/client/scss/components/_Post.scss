@@ -38,7 +38,7 @@
 		position: absolute;
 		top: 6px;
 		right: 6px;
-		
+
 		// Click hit area
 		&-icon-container {
 			display: flex;
@@ -58,6 +58,12 @@
 				width: 100%;
 				height: 100%;
 			}
+		}
+		&-id {
+			color: $text-bright;
+			text-align: center;
+			font-weight: bold;
+			padding: 12px 0;
 		}
 		.dropdown {
 			top: 25px + 20px / 2;
