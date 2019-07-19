@@ -9,10 +9,6 @@ class FeedPanel extends React.Component {
 		posts: []
 	}
 
-	componentDidMount() {
-		this.getAllPosts();
-	}
-
 	componentDidUpdate(prevProps) {
 		const {UserContext: {loginStatus: prevLoginStatus}} = prevProps;
 		const {UserContext: {loginStatus}} = this.props;
@@ -20,22 +16,24 @@ class FeedPanel extends React.Component {
 		// If the user logs in or out (Except logging in from the initial auth)
 		// Reload all of the posts (Switching between global/personalised post feed)
 		if (
-			prevLoginStatus != loginStatus &&
+			prevLoginStatus !== loginStatus &&
 			(
 				loginStatus === 1 ||
 				loginStatus === 2
 			)
 		) {
-			this.getAllPosts();
+			this.fetchPosts();
 		}
 	}
 
 	// Retrieve array of all posts from the server
-	getAllPosts = () => {
+	fetchPosts = () => {
 		this.setState({
 			posts: []
 		}, async () => {
-			const {data} = await axios.get("/api/posts");
+			const {query: q} = this.props;
+			const req = `/api/posts${q && `?${q}` || ""}`;
+			const {data} = await axios.get(req);
 			this.addPosts(data.posts);
 		});
 	}
