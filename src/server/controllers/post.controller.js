@@ -107,6 +107,8 @@ exports.serializeSearchParams = (req, res, next) => {
 	// Sort results (Top, trending, new, old, etc.)
 	if (req.query["sort"]) {
 		searchParams.sort = req.query["sort"];
+	} else {
+		searchParams.sort = "new";
 	}
 
 	req.searchParams = searchParams;
@@ -123,10 +125,8 @@ exports.getManyPosts = async (req, res) => {
 	}
 
 	// Sort results
-	const {sort: sortType} = req.query;
-	const sort = {
-		created: -1
-	};
+	const {sort: sortType} = req.searchParams;
+	const sort = {};
 	if (sortType === "new") {
 		sort.created = -1;
 	}
