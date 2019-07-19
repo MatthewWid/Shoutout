@@ -67,7 +67,9 @@ router.delete("/post/:postId",
 );
 // Get an array of all existing posts
 router.get("/posts",
-	wrap(post.getAllPosts)
+	validate(post, "getManyPosts"),
+	post.serializeSearchParams,
+	wrap(post.getManyPosts)
 );
 // Add a like to a single post
 router.post("/post/:postId/like",

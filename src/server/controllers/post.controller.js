@@ -44,7 +44,7 @@ exports.getPost = async (req, res) => {
 	res.json({
 		success: true,
 		post
-	})
+	});
 };
 
 // Update a single post
@@ -91,9 +91,39 @@ exports.deletePost = async (req, res) => {
 		});
 };
 
+// Serialize query parameters and
+// attach to `searchParams` property on the request object
+exports.serializeSearchParams = (req, res, next) => {
+	const searchParams = {};
+
+	// Filter by author ID
+	if (req.query["authorid"]) {
+		// Attach 'author' object to filter if searching by author
+		searchParams.author = searchParams.author || {};
+
+		searchParams.author._id = req.query["authorid"];
+	}
+
+	// Sort results (Top, trending, new, old, etc.)
+	if (req.query["sort"]) {
+		searchParams.sort = req.query["sort"];
+	}
+
+	req.searchParams = searchParams;
+
+	next();
+};
+
 // Get all posts sorted by date
-exports.getAllPosts = async (req, res) => {
-	let posts = await Post.find()
+exports.getManyPosts = async (req, res) => {
+	// Filter results
+	const findParams = {};
+	if (req.searchParams.author) {
+		findParams.author = req.searchParams.author;
+	}
+
+	// Get results
+	let posts = await Post.find(findParams)
 		.sort({
 			created: -1
 		});
@@ -231,6 +261,16 @@ exports.validate = (method) => {
 					.exists()
 					.custom(ensureValidId)
 			];
+		case "getManyPosts":
+			return [
+				validator.query("authorid", valErrMsg.notValid("Author ID"))
+					.optional()
+					.custom(ensureValidId),
+
+				validator.query("sort", valErrMsg.notValid("Sort order type"))
+					.optional()
+					.isIn(["top", "trending", "new", "old"])
+			]
 		case "addLike":
 			return [
 				validator.param("postId", valErrMsg.notExists("Post ID"))
