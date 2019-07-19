@@ -91,8 +91,7 @@ exports.deletePost = async (req, res) => {
 		});
 };
 
-// Serialize query parameters and
-// attach to `searchParams` property on the request object
+// Serialize query parameters and attach to `searchParams` property on the request object
 exports.serializeSearchParams = (req, res, next) => {
 	const searchParams = {};
 
@@ -122,11 +121,21 @@ exports.getManyPosts = async (req, res) => {
 		findParams.author = req.searchParams.author;
 	}
 
+	// Sort results
+	const {sort: sortType} = req.query;
+	const sort = {
+		created: -1
+	};
+	if (sortType === "new") {
+		sort.created = -1;
+	}
+	if (sortType === "old") {
+		sort.created = 1;
+	}
+
 	// Get results
 	let posts = await Post.find(findParams)
-		.sort({
-			created: -1
-		});
+		.sort(sort);
 
 	// Set 'isLiked' property on each post
 	// Run in parallel and wait for all count operations to complete
