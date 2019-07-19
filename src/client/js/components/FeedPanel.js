@@ -3,6 +3,7 @@ import axios from "axios";
 import {withUserContext} from "../contexts/user.context.js";
 import PostForm from "./PostForm.js";
 import PostList from "./PostList.js";
+import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 
 class FeedPanel extends React.Component {
 	state = {
@@ -31,9 +32,15 @@ class FeedPanel extends React.Component {
 		this.setState({
 			posts: []
 		}, async () => {
-			const {query: q} = this.props;
-			const req = `/api/posts${q && `?${q}` || ""}`;
-			const {data} = await axios.get(req);
+			let request = "/api/posts";
+			const {query} = this.props;
+
+			if (query) {
+				const params = serializeObjectToUri(query);
+				request = `${request}?${params}`;
+			}
+
+			const {data} = await axios.get(request);
 			this.addPosts(data.posts);
 		});
 	}
