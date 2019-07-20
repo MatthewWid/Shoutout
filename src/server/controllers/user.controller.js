@@ -23,7 +23,7 @@ exports.getUser = async (req, res) => {
 	res.json({
 		success: true,
 		user
-	})
+	});
 };
 
 // Get a single user by their unique username and attach it to the `request` object

@@ -76,9 +76,14 @@ class FeedPanel extends React.Component {
 	}
 
 	render() {
+		let form = null;
+		if (this.props.UserContext.user && this.props.hasForm !== false) {
+			form = <PostForm addPosts={this.addPosts} />;
+		}
+
 		return (
 			<main className="content__panel feed">
-				{this.props.UserContext.user && <PostForm addPosts={this.addPosts} />}
+				{form}
 				<PostList
 					posts={this.state.posts}
 					updatePost={this.updatePost}
