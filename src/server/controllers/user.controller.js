@@ -143,7 +143,9 @@ exports.validate = (method) => {
 						min: 1,
 						max: 50
 					})
-						.withMessage(valErrMsg.len("Username", 3, 50)),
+						.withMessage(valErrMsg.len("Username", 3, 50))
+					.custom((name) => !constants.FORBIDDEN_NAMES.includes(name.toLowerCase()))
+						.withMessage(valErrMsg.notValid("Username")),
 
 				validator.body("email", valErrMsg.notExists("Email"))
 					.exists()
