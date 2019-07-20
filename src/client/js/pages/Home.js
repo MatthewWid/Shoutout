@@ -6,13 +6,11 @@ import SiteInfoPanel from "../components/SiteInfoPanel.js";
 class Home extends React.Component {
 	render() {
 		return (
-			<div className="content-container">
-				<div className="content">
-					<UserPanel />
-					<FeedPanel />
-					<SiteInfoPanel />
-				</div>
-			</div>
+			<Fragment>
+				<UserPanel />
+				<FeedPanel />
+				<SiteInfoPanel />
+			</Fragment>
 		);
 	}
 }
