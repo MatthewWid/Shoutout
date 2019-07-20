@@ -45,7 +45,7 @@ exports.findUserByName = async (req, res, next) => {
 		userName = req.query["username"];
 
 	// Else get it from the paramater directly as 'userName'
-	} else if (query.param["userName"]) {
+	} else if (req.param["userName"]) {
 		userName = req.param["userName"]
 	}
 
