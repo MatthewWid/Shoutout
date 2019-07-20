@@ -28,6 +28,10 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
+	bannerUrl: {
+		type: String,
+		trim: true
+	},
 	isAdmin: {
 		type: Boolean,
 		default: false

@@ -1,4 +1,4 @@
-exports.PROJECTION_USER = "_id nick name email avatarUrl isAdmin created";
+exports.PROJECTION_USER = "_id nick name email avatarUrl bannerUrl isAdmin created";
 
 exports.PROJECTION_POST = "_id text created author shortId";
 
