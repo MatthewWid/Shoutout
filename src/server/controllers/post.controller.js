@@ -255,6 +255,7 @@ exports.ensurePostAuthor = async (req, res, next) => {
 	next();
 };
 
+// Validation middleware for all post controllers
 exports.validate = (method) => {
 	switch (method) {
 		case "createPost":

@@ -109,6 +109,20 @@ exports.validate = (method) => {
 					.exists()
 					.custom(ensureValidId)
 			];
+		case "findUserByName":
+			return [
+				validator.query("authorname", valErrMsg.notValid("Author name"))
+					.optional()
+					.isString(),
+
+				validator.query("username", valErrMsg.notValid("Username query"))
+					.optional()
+					.isString(),
+
+				validator.param("userName", valErrMsg.notValid("Username paramater"))
+					.optional()
+					.isString()
+			]
 		case "createUser":
 			return [
 				validator.body("nick", valErrMsg.notExists("Nickname"))

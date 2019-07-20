@@ -26,6 +26,7 @@ exports.ensureLoggedIn = (req, res, next) => {
 	}
 };
 
+// Validation middleware for all auth controllers
 exports.validate = (method) => {
 	switch (method) {
 		case "login":

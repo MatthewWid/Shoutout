@@ -67,6 +67,7 @@ router.delete("/post/:postId",
 );
 // Get an array of all existing posts
 router.get("/posts",
+	validate(user, "findUserByName"),
 	validate(post, "getManyPosts"),
 	post.serializeSearchParams,
 	user.findUserByName,
