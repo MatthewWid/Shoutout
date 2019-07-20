@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("express-validator");
+const constants = require("../constants.js");
 const ensureValidId = require("../helpers/ensureValidId.js");
 const valErrMsg = require("../helpers/validationErrorMsg.js");
 const User = mongoose.model("User");
@@ -8,7 +9,7 @@ const User = mongoose.model("User");
 exports.getUser = async (req, res) => {
 	const {userId} = req.params;
 
-	const user = await User.findById(userId, "_id nick name email isAdmin avatarUrl");
+	const user = await User.findById(userId, constants.PROJECTION_USER);
 
 	if (user === null) {
 		return res
