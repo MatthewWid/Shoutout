@@ -39,6 +39,7 @@ input, textarea, button {
 
 // Partials
 @import "./partials/_content.scss";
+@import "./partials/_card.scss";
 @import "./partials/_button.scss";
 @import "./partials/_divider.scss";
 
@@ -51,6 +52,8 @@ input, textarea, button {
 @import "./components/_UserEntry.scss";
 @import "./components/_LoginForm.scss";
 @import "./components/_SignupForm.scss";
+
+@import "./components/_DashboardProfileCard.scss";
 
 @import "./components/_PostForm.scss";
 @import "./components/_PostList.scss";

@@ -82,7 +82,7 @@ class FeedPanel extends React.Component {
 		}
 
 		return (
-			<main className="content__panel feed">
+			<main className="content__panel card feed">
 				{form}
 				<PostList
 					posts={this.state.posts}

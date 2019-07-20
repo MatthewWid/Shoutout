@@ -9,9 +9,6 @@
 
 		&__panel {
 			flex: 1;
-			background-color: $blue-dark;
-			border: 1px solid $blue-mid;
-			border-radius: 2px;
 		}
 		@import "../components/_SiteInfoPanel.scss";
 		@import "../components/_FeedPanel.scss";
