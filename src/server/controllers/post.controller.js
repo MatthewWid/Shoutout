@@ -104,6 +104,12 @@ exports.serializeSearchParams = (req, res, next) => {
 		searchParams.author._id = req.query["authorid"];
 	}
 
+	if (req.query["authorname"]) {
+		searchParams.author = searchParams.author || {};
+
+		searchParams.author.name = req.query["authorname"];
+	}
+
 	// Sort results (Top, trending, new, old, etc.)
 	if (req.query["sort"]) {
 		searchParams.sort = req.query["sort"];
@@ -127,8 +133,18 @@ exports.serializeSearchParams = (req, res, next) => {
 exports.getManyPosts = async (req, res) => {
 	// Filter results
 	const findParams = {};
-	if (req.searchParams.author) {
-		findParams.author = req.searchParams.author;
+	if ((req.searchParams.author || {})._id) {
+		findParams.author = {
+			_id: req.searchParams.author._id
+		};
+	}
+	if (
+		(req.searchParams.author || {}).name &&
+		req.foundUser
+	) {
+		findParams.author = {
+			_id: req.foundUser._id
+		};
 	}
 
 	// Pagination

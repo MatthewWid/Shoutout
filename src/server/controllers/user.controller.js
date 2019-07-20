@@ -26,6 +26,41 @@ exports.getUser = async (req, res) => {
 	})
 };
 
+// Get a single user by their unique username and attach it to the `request` object
+exports.findUserByName = async (req, res, next) => {
+	let userName = null;
+	// If the search parameters have been serialized get the username from there
+	if (
+		((req.searchParams || {}).author || {})
+			.name
+	) {
+		userName = req.searchParams.author.name;
+
+	// Else get it from the query directly as 'authorname'
+	} else if (req.query["authorname"]) {
+		userName = req.query["authorname"];
+
+	// Else get it from the query directly as 'username'
+	} else if (req.query["username"]) {
+		userName = req.query["username"];
+
+	// Else get it from the paramater directly as 'userName'
+	} else if (query.param["userName"]) {
+		userName = req.param["userName"]
+	}
+
+	const user = await User.findOne({
+		name: userName
+	}, constants.PROJECTION_USER);
+
+
+	if (user !== null) {
+		req.foundUser = user;
+	}
+
+	next();
+};
+
 // Create a single user
 exports.createUser = async (req, res, next) => {
 	const {nick, username, email, password} = req.body;

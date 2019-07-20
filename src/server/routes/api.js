@@ -17,7 +17,7 @@ router.get("/ping",
 router.get("/user/auth",
 	user.getLoggedInUser
 );
-// Get a single user
+// Get a single user by their ID
 router.get("/user/:userId",
 	validate(user, "getUser"),
 	wrap(user.getUser)
@@ -69,6 +69,7 @@ router.delete("/post/:postId",
 router.get("/posts",
 	validate(post, "getManyPosts"),
 	post.serializeSearchParams,
+	user.findUserByName,
 	wrap(post.getManyPosts)
 );
 // Add a like to a single post
