@@ -1,5 +1,5 @@
 .signup-form {
-	:not(:last-child) {
+	> :not(:last-child) {
 		margin-bottom: 12px;
 	}
 	&__username-container {

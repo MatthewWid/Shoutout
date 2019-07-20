@@ -40,7 +40,7 @@
 		align-items: center;
 		margin-top: 10px;
 		
-		:not(:last-child) {
+		> :not(:last-child) {
 			margin-right: 10px;
 		}
 	}
