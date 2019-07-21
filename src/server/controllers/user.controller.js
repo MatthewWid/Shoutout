@@ -53,9 +53,7 @@ exports.findUserByName = async (req, res, next) => {
 		name: userName
 	}, constants.PROJECTION_USER);
 
-	if (user !== null) {
-		req.foundUser = user;
-	}
+	req.foundUser = user || null;
 
 	next();
 };

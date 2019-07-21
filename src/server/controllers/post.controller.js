@@ -142,6 +142,13 @@ exports.getManyPosts = async (req, res) => {
 		findParams.author = {
 			_id: req.foundUser._id
 		};
+	} else if (req.foundUser === null) {
+		return res
+			.status(404)
+			.json({
+				success: false,
+				msg: "User not found or does not exist"
+			});
 	}
 
 	// Pagination
