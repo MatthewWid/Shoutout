@@ -138,10 +138,7 @@ exports.getManyPosts = async (req, res) => {
 			_id: req.searchParams.author._id
 		};
 	}
-	if (
-		(req.searchParams.author || {}).name &&
-		req.foundUser
-	) {
+	if (req.foundUser) {
 		findParams.author = {
 			_id: req.foundUser._id
 		};
