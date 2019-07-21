@@ -1,10 +1,10 @@
 import React, {Fragment} from "react";
-import axios from "axios";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import {withUserContext} from "../contexts/user.context.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
+import LogoutForm from "./LogoutForm.js";
 import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "../constants.js";
 
@@ -14,18 +14,6 @@ class SessionDetails extends React.Component {
 	}
 
 	dropdownSetOpen = dropdownSetOpen.bind(this);
-
-	// Log out the existing user
-	logout = async () => {
-		this.dropdownSetOpen(false)();
-		await asyncWait(DROP_ANIM_TIME);
-
-		const {data} = await axios.post("/api/user/logout");
-
-		if (data.success) {
-			this.props.UserContext.setUser(null);
-		}
-	}
 
 	render() {
 		const {UserContext: {user}} = this.props;
@@ -42,12 +30,7 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<button
-							className="dropdown__link"
-							onClick={this.logout}
-						>
-							Log Out
-						</button>
+						<LogoutForm completedAction={this.dropdownSetOpen(false)} />
 					</Dropdown>
 				</Fragment>
 			);
