@@ -1,12 +1,11 @@
 import React, {Fragment} from "react";
-import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
+import {withRouter} from "react-router-dom";
 import {withUserContext} from "../contexts/user.context.js";
+import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
 import LogoutForm from "./LogoutForm.js";
-import asyncWait from "../helpers/asyncWait.js";
-import {DROP_ANIM_TIME} from "../constants.js";
 
 class SessionDetails extends React.Component {
 	state = {
@@ -14,6 +13,11 @@ class SessionDetails extends React.Component {
 	}
 
 	dropdownSetOpen = dropdownSetOpen.bind(this);
+
+	closeAndRedirect = () => {
+		this.dropdownSetOpen(false)();
+		this.props.history && this.props.history.push("/");
+	}
 
 	render() {
 		const {UserContext: {user}} = this.props;
@@ -30,7 +34,7 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<LogoutForm completedAction={this.dropdownSetOpen(false)} />
+						<LogoutForm completedAction={this.closeAndRedirect} />
 					</Dropdown>
 				</Fragment>
 			);
@@ -44,7 +48,7 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<UserEntry completedAction={this.dropdownSetOpen(false)} />
+						<UserEntry completedAction={this.closeAndRedirect} />
 					</Dropdown>
 				</Fragment>
 			);
@@ -58,4 +62,4 @@ class SessionDetails extends React.Component {
 	}
 }
 
-export default withUserContext(SessionDetails);
+export default withRouter(withUserContext(SessionDetails));

@@ -7,7 +7,7 @@ import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 
 class FeedPanel extends React.Component {
 	state = {
-		posts: []
+		posts: [],
 	}
 
 	componentDidUpdate(prevProps) {
@@ -15,13 +15,11 @@ class FeedPanel extends React.Component {
 		const {UserContext: {loginStatus}} = this.props;
 
 		// If the user logs in or out (Except logging in from the initial auth)
+		// And posts are not waiting to be loaded
 		// Reload all of the posts (Switching between global/personalised post feed)
 		if (
 			prevLoginStatus !== loginStatus &&
-			(
-				loginStatus === 1 ||
-				loginStatus === 2
-			)
+			(loginStatus === 1 || loginStatus === 2)
 		) {
 			this.fetchPosts();
 		}
