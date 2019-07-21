@@ -30,7 +30,11 @@ class SessionDetails extends React.Component {
 		if (user) {
 			details = (
 				<Fragment>
-					<Avatar user={user} onClick={this.dropdownSetOpen(true)} />
+					<Avatar
+						user={user}
+						withLink={false}
+						onClick={this.dropdownSetOpen(true)}
+					/>
 					<Dropdown
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}

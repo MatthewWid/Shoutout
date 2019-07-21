@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import Avatar from "./Avatar";
 
 const DashboardProfileCard = (props) => {
@@ -14,8 +15,10 @@ const DashboardProfileCard = (props) => {
 			<div className="dash-profile__info">
 				<Avatar user={user} />
 				<div className="dash-profile__names">
-					<p className="dash-profile__nick">{user.nick}</p>
-					<p className="dash-profile__name">@{user.name}</p>
+					<Link to={`/${user.name}`}>
+						<p className="dash-profile__nick">{user.nick}</p>
+						<p className="dash-profile__name">@{user.name}</p>
+					</Link>
 				</div>
 			</div>
 			<div className="dash-profile__stats"></div>

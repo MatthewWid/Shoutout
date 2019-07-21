@@ -1,12 +1,13 @@
 import React, {Fragment} from "react";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
+import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Dropdown from "./Dropdown.js";
 import Avatar from "./Avatar.js";
-import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 dayjs.extend(relativeTime);
 
 /*
@@ -118,10 +119,14 @@ class Post extends React.Component {
 				<div className="post__section">
 					<div className="post__info">
 						<span className="post__author-nick">
-							{author.nick}
+							<Link to={`/${author.name}`}>
+								{author.nick}
+							</Link>
 						</span>
 						<span className="post__author-name">
-							@{author.name}
+							<Link to={`/${author.name}`}>
+								@{author.name}
+							</Link>
 						</span>
 						<span className="post__spacer">
 							&middot;

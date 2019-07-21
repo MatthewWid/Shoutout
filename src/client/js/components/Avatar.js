@@ -1,15 +1,28 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Avatar = (props) => {
-	const {user: {avatarUrl, nick}} = props;
+	const {user} = props;
+
+	let component = (
+		<img
+			className="avatar__image"
+			src={user.avatarUrl || "./images/avatar-default.png"}
+			alt={user.nick}
+		/>
+	);
+
+	if (props.withLink !== false) {
+		component = (
+			<Link to={`/${user.name}`}>
+				{component}
+			</Link>
+		);
+	}
 
 	return (
 		<div className="avatar" onClick={props.onClick}>
-			<img
-				className="avatar__image"
-				src={avatarUrl || "./images/avatar-default.png"}
-				alt={nick}
-			/>
+			{component}
 		</div>
 	);
 };
