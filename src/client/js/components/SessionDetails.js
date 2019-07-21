@@ -5,6 +5,8 @@ import {withUserContext} from "../contexts/user.context.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
+import asyncWait from "../helpers/asyncWait.js";
+import {DROP_ANIM_TIME} from "../constants.js";
 
 class SessionDetails extends React.Component {
 	state = {
@@ -15,7 +17,8 @@ class SessionDetails extends React.Component {
 
 	// Log out the existing user
 	logout = async () => {
-		await this.dropdownSetOpen(false)();
+		this.dropdownSetOpen(false)();
+		await asyncWait(DROP_ANIM_TIME);
 
 		const {data} = await axios.post("/api/user/logout");
 
@@ -58,7 +61,7 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<UserEntry waitCompleteAction={this.dropdownSetOpen(false)} />
+						<UserEntry completedAction={this.dropdownSetOpen(false)} />
 					</Dropdown>
 				</Fragment>
 			);

@@ -11,6 +11,5 @@ export default function(change) {
 		this.setState({
 			dropdownOpen: action
 		});
-		await new Promise (r => setTimeout(r, 200));
 	};
 };

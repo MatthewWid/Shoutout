@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import {withUserContext} from "../contexts/user.context.js";
+import asyncWait from "../helpers/asyncWait.js";
+import {DROP_ANIM_TIME} from "../constants.js";
 
 const defaultState = {
 	email: "",
@@ -21,7 +23,7 @@ class LoginForm extends React.Component {
 	}
 
 	handleSubmit = async (evt) => {
-		const {waitCompleteAction} = this.props;
+		const {completedAction} = this.props;
 		evt.preventDefault();
 
 		const {data: {user}} = await axios.post("/api/user/login", {
@@ -29,7 +31,8 @@ class LoginForm extends React.Component {
 			password: this.state.password
 		}, {withCredentials: true});
 
-		waitCompleteAction && await waitCompleteAction();
+		completedAction && completedAction();
+		await asyncWait(DROP_ANIM_TIME);
 
 		this.props.UserContext.setUser(user);
 	}
