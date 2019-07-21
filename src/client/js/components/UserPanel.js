@@ -6,12 +6,13 @@ class UserPanel extends React.Component {
 	render() {
 		const {user} = this.props.UserContext;
 
+		if (!user) {
+			return null;
+		}
+
 		return (
 			<div className="content__panel card user">
-			{
-				user &&
 				<DashboardProfileCard user={user} />
-			}
 			</div>
 		);
 	}
