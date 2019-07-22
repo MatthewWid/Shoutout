@@ -1,8 +1,8 @@
 import React, {Fragment} from "react";
 import FeedPanel from "../components/FeedPanel.js";
 
-const Profile = (props) => {
-	return <Fragment>
+const Profile = (props) => (
+	<Fragment>
 		<FeedPanel
 			hasForm={false}
 			query={{
@@ -10,6 +10,6 @@ const Profile = (props) => {
 			}}
 		/>
 	</Fragment>
-};
+);
 
 export default Profile;
