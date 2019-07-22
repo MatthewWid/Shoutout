@@ -7,7 +7,7 @@ const Avatar = (props) => {
 	let component = (
 		<img
 			className="avatar__image"
-			src={user.avatarUrl || "./images/avatar-default.png"}
+			src={user.avatarUrl}
 			alt={user.nick}
 		/>
 	);

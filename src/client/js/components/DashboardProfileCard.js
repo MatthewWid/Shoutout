@@ -9,7 +9,7 @@ const DashboardProfileCard = (props) => {
 		<div className="dash-profile">
 			<img
 				className="dash-profile__banner"
-				src={user.bannerUrl || "./images/banner-default.png"}
+				src={user.bannerUrl}
 				alt=""
 			/>
 			<div className="dash-profile__info">

@@ -26,10 +26,12 @@ const UserSchema = new mongoose.Schema({
 	},
 	avatarUrl: {
 		type: String,
+		default: "/images/avatar-default.png",
 		trim: true
 	},
 	bannerUrl: {
 		type: String,
+		default: "/images/banner-default.png",
 		trim: true
 	},
 	isAdmin: {
