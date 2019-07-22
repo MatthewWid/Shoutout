@@ -2,6 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Avatar from "./Avatar";
 
+/*
+	Profile card displaying the currently logged in users'
+	information/statistics on the homepage.
+*/
 const DashboardProfileCard = (props) => {
 	const {user} = props;
 

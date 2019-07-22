@@ -5,6 +5,7 @@ import Header from "./components/Header.js";
 import MainRouter from "./MainRouter.js";
 
 // Global App component that holds ubiquitously required state and functions
+// Wraps global state and holds information on the currently logged in user
 class App extends React.Component {
 	state = {
 		user: null,

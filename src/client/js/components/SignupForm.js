@@ -11,6 +11,8 @@ const defaultState = {
 	password: ""
 };
 
+// Takes an optional `completedAction` function prop that is called
+// once the user successfully signs up and logs in
 class SignupForm extends React.Component {
 	state = {
 		...defaultState

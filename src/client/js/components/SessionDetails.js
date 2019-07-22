@@ -7,6 +7,15 @@ import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
 import LogoutForm from "./LogoutForm.js";
 
+/*
+	Displays the users' "session" in the header.
+
+	If the user is logged in will display their avatar with a dropdown menu
+	containing quick links to user-specific pages.
+
+	If the user is not logged in will render the UserEntry component and
+	prompt them to log in or make an account.
+*/
 class SessionDetails extends React.Component {
 	state = {
 		dropdownOpen: false

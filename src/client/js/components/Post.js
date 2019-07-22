@@ -21,6 +21,21 @@ dayjs.extend(relativeTime);
 		fontawesome.com/icons/ellipsis-v?style=solid
 */
 
+/*
+	Renders a single post.
+	
+	The actual post object should be managed by the parent component
+	(such as a list of multiple posts) and a single post object should
+	be passed into this component to render it.
+
+	Requires a prop `post` that holds a single post object.
+
+	An optional `updatePost` function prop can provided that takes
+	the newly updated post object as its first parameter.
+
+	An optional `removePost` function prop can be provided that takes
+	the removed post object as its first paramter.
+*/
 class Post extends React.Component {
 	state = {
 		dropdownOpen: false

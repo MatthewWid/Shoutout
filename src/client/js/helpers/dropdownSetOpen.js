@@ -1,3 +1,6 @@
+// Passed to child components of the component that contains the dropdown
+// to close the dropdown in the parent when the child completes an action
+// such as a click or a data fetch
 export default function(change) {
 	const action = change;
 

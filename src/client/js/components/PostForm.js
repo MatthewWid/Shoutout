@@ -6,6 +6,16 @@ const defaultState = {
 	text: ""
 };
 
+/*
+	Form for creating a new post.
+	Handles client-side validation.
+
+	Takes an optional `addPosts` function prop that takes
+	an array of posts as its first argument.
+		This can be used to add the newly made post to a rendered
+		list of posts as it is submitted instead of needing the page
+		to be refresh.
+*/
 class PostForm extends React.Component {
 	state = {
 		...defaultState

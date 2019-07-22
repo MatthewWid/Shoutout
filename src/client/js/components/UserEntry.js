@@ -2,6 +2,13 @@ import React from "react";
 import LoginForm from "./LoginForm.js";
 import SignupForm from "./SignupForm.js";
 
+/*
+	Login and Signup form - how the user "enters" the site
+	with an account.
+
+	Takes an optional `completedAction` function prop that is called
+	once the user successfully logs in or signs up.
+*/
 class UserEntry extends React.Component {
 	state = {
 		login: true

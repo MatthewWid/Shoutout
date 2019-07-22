@@ -1,5 +1,7 @@
 import React from "react";
 
+// Context that holds the state of and functions related to
+// the logged in user and authentication
 const UserContext = React.createContext({
 	user: null,
 	loginStatus: 0,

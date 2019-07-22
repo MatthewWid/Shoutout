@@ -4,6 +4,8 @@ import {withUserContext} from "../contexts/user.context.js";
 import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "../constants.js";
 
+// Takes an optional `completedAction` function prop that is called
+// once the user successfully logs out
 class LogoutForm extends React.Component {
 	// Log out the existing user
 	handleSubmit = async () => {

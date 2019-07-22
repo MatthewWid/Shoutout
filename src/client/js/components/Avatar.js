@@ -1,6 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+/*
+	Generic Avatar for the given users' profile picture.
+
+	If `withLink` is not `false` then the Avatar can be clicked
+	to go to the given users' profile page.
+*/
 const Avatar = (props) => {
 	const {user} = props;
 
