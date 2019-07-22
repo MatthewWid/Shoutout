@@ -49,11 +49,13 @@ exports.findUserByName = async (req, res, next) => {
 		userName = req.param["userName"]
 	}
 
-	const user = await User.findOne({
-		name: userName
-	}, constants.PROJECTION_USER);
+	if (userName) {
+		const user = await User.findOne({
+			name: userName
+		}, constants.PROJECTION_USER);
 
-	req.foundUser = user || null;
+		req.foundUser = user || null;
+	}
 
 	next();
 };
