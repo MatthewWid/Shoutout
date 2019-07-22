@@ -11,10 +11,12 @@ const Like = mongoose.model("Like");
 exports.createPost = async (req, res) => {
 	const {text} = req.body;
 
-	const post = await Post.create({
+	const {_id: postId} = await Post.create({
 		text,
 		author: req.user
 	});
+
+	const post = await Post.findById(postId, constants.PROJECTION_POST);
 
 	res
 		.status(201)
