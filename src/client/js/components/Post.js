@@ -17,8 +17,8 @@ dayjs.extend(relativeTime);
 		fontawesome.com/icons/heart?style=solid
 
 	Ellipsis Menu SVG from Font Awesome
-		fontawesome.com/license/free
-			fontawesome.com/icons/ellipsis-v?style=solid
+	fontawesome.com/license/free
+		fontawesome.com/icons/ellipsis-v?style=solid
 */
 
 class Post extends React.Component {
