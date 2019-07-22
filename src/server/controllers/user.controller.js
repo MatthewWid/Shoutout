@@ -5,7 +5,7 @@ const ensureValidId = require("../helpers/ensureValidId.js");
 const valErrMsg = require("../helpers/validationErrorMsg.js");
 const User = mongoose.model("User");
 
-// Get a single user by its ID
+// Get a single user by their ID
 exports.getUser = async (req, res) => {
 	const {userId} = req.params;
 

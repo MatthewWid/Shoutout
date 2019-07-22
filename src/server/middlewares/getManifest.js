@@ -2,6 +2,9 @@ const path = require("path");
 const jsonfile = require("jsonfile");
 const MANIFEST_FILE = path.resolve(__dirname, "..", "./webpack-manifest.json");
 
+// Get and parse the contents of the generated webpack
+// manifest file `webpack-manifest.json` and insert it into
+// a local view variable to be included into a page.
 function getManifest() {
 	let file = null;
 

@@ -47,6 +47,8 @@ UserSchema.plugin(passportLocalMongoose, {
 
 // Hooks
 UserSchema.pre("save", function(next) {
+	// If the user did not give an initial nickname
+	// set their nickname to their username
 	if (!this.nick || this.nick.length === 0) {
 		this.nick = this.name;
 	}

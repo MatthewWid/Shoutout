@@ -106,6 +106,7 @@ exports.serializeSearchParams = (req, res, next) => {
 		searchParams.author._id = req.query["authorid"];
 	}
 
+	// Filter by author username
 	if (req.query["authorname"]) {
 		searchParams.author = searchParams.author || {};
 
@@ -140,10 +141,12 @@ exports.getManyPosts = async (req, res) => {
 			_id: req.searchParams.author._id
 		};
 	}
+	// If an author was found by username
 	if (req.foundUser) {
 		findParams.author = {
 			_id: req.foundUser._id
 		};
+	// If an author was searched for but not found
 	} else if (req.foundUser === null) {
 		return res
 			.status(404)

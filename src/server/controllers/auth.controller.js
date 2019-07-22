@@ -2,6 +2,7 @@ const passport = require("passport");
 const validator = require("express-validator");
 const valErrMsg = require("../helpers/validationErrorMsg.js");
 
+// Log the user in given a username and password
 exports.login = (req, res, next) => {
 	passport.authenticate("local", (err, user, info) => {
 		if (err) {
@@ -20,6 +21,7 @@ exports.login = (req, res, next) => {
 	})(req, res, next);
 };
 
+// Log the user out
 exports.logout = (req, res) => {
 	req.logout();
 	
