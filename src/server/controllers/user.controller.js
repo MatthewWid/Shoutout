@@ -85,17 +85,11 @@ exports.getLoggedInUser = (req, res) => {
 		});
 	}
 
-	const {_id, nick, name, email, isAdmin, avatarUrl, bannerUrl} = req.user;
+	const user = {...req.user};
+	delete user.__v;
 	res.json({
 		success: true,
-		user: {
-			_id,
-			nick,
-			name,
-			email,
-			isAdmin,
-			avatarUrl
-		}
+		user: req.user
 	});
 };
 
