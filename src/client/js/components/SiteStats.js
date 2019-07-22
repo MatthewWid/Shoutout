@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import SiteStat from "./SiteStat.js";
 
 class SiteStats extends React.Component {
 	state = {
@@ -26,12 +25,21 @@ class SiteStats extends React.Component {
 	}
 
 	render() {
+		const {users, posts, likes} = this.state;
+
+		const stat = (name, number) => (
+			<div className="stat">
+				<div className="stat__number">{number}</div>
+				<div className="stat__text">{name}</div>
+			</div>
+		);
+
 		return (
 			<div className="stats">
 				<div className="stats__list">
-					<SiteStat stat="Users" number={this.state.users} />
-					<SiteStat stat="Posts" number={this.state.posts} />
-					<SiteStat stat="Likes" number={this.state.likes} />
+					{stat("Users", users)}
+					{stat("Posts", posts)}
+					{stat("Likes", likes)}
 				</div>
 			</div>
 		);
