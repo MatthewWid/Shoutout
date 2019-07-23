@@ -11,13 +11,6 @@ import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 	By default will fetch a list of all posts sorted by newest to oldest.
 	An optional `query` object prop can be passed to attach query parameters
 	to the API URL.
-
-	Eg,
-		<FeedPanel
-			query={{
-				username: "johnsmith"
-			}}
-		/>
 */
 class FeedPanel extends React.Component {
 	state = {
