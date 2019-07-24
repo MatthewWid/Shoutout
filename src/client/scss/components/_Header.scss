@@ -27,12 +27,28 @@
 	&__link {
 		display: flex;
 		align-items: center;
+		position: relative;
 		padding: 0 20px;
 		color: $text-grey;
 		transition: color .1s ease;
 
-		&:hover {
+		&:hover:not(&--current) {
 			color: $text-bright;
+		}
+		&--current {
+			color: $accent-pink;
+
+			&:after {
+				content: "";
+				background-color: $accent-pink;
+
+				display: block;
+				position: absolute;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
 		}
 	}
 	&__logo {

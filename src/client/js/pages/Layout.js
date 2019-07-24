@@ -10,7 +10,7 @@ import Header from "../components/Header.js";
 */
 const Layout = (props) => (
 	<Fragment>
-		<Header />
+		<Header page={props.page} />
 		<div className={`content-container ${props.page ? `page-${props.page}` : ""}`}>
 			<div className="content">
 				{props.children}

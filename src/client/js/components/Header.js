@@ -5,24 +5,29 @@ import SessionDetails from "./SessionDetails.js";
 const links = [
 	{
 		text: "Home",
-		name: "home",
+		page: "home",
 		to: "/"
 	},
 	{
 		text: "Notifications",
-		name: "notifications",
+		page: "notifications",
 		to: "/notifications"
 	},
 	{
 		text: "Messages",
-		name: "messages",
+		page: "messages",
 		to: "/messages"
 	}
 ];
 
 const Header = (props) => {
 	const linkEls = links.map((link) => (
-		<Link className="header__link" to={link.to}>{link.text}</Link>
+		<Link
+			className={`header__link ${props.page === link.page ? "header__link--current" : ""}`}
+			to={link.to}
+		>
+				{link.text}
+		</Link>
 	));
 
 	return (
