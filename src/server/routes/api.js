@@ -24,6 +24,7 @@ router.get("/user/:userId",
 );
 // Get a single user
 router.get("/user",
+	validate(user, "getUser"),
 	wrap(user.findUserByName),
 	wrap(user.getUser)
 );
