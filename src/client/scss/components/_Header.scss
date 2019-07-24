@@ -16,18 +16,29 @@
 	justify-content: space-between;
 	height: 100%;
 	
+	&__section {
+		flex: 1;
+	}
 	&__nav {
 		display: flex;
 		align-items: stretch;
+		justify-content: flex-start;
 	}
 	&__link {
 		display: flex;
 		align-items: center;
+		padding: 0 20px;
 		color: $text-grey;
+		transition: color .1s ease;
+
+		&:hover {
+			color: $text-bright;
+		}
 	}
 	&__logo {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 
 		img {
 			width: 24px;
@@ -37,5 +48,6 @@
 	}
 	&__extra {
 		display: flex;
+		justify-content: flex-end;
 	}
 }
