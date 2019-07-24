@@ -26,6 +26,61 @@ exports.getUserById = async (req, res) => {
 	});
 };
 
+// Get a single user by any given properties
+exports.getUser = async (req, res) => {
+	// If the user has been looked up and found by `findUserByName` then immediately
+	// send back the found user instead of doing a second redundant lookup
+	if (req.foundUser) {
+		return res
+			.json({
+				success: true,
+				user: req.foundUser
+			});
+	}
+
+	// Filtering
+	const findParams = {};
+
+	// Username
+	if (req.query.username) {
+		findParams.name = req.query.username;
+	}
+	// Nickname
+	if (req.query.nickname) {
+		findParams.nick = req.query.nickname;
+	}
+	// Unique ID
+	if (req.query.id) {
+		findParams._id = req.query.id;
+	}
+
+	// If no filters were given abort the operation
+	if (Object.keys(findParams).length === 0) {
+		return res
+			.status(400)
+			.json({
+				success: false,
+				msg: "No filter parameters provided to user lookup."
+			});
+	}
+
+	const user = await User.findOne(findParams, constants.PROJECTION_USER);
+
+	if (user === null) {
+		return res
+			.status(404)
+			.json({
+				success: false,
+				msg: "User not found or does not exist."
+			});
+	}
+
+	res.json({
+		success: true,
+		user
+	});
+};
+
 // Get a single user by their unique username and attach it to the `request` object
 exports.findUserByName = async (req, res, next) => {
 	let userName = null;
