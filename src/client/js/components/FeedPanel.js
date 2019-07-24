@@ -17,6 +17,14 @@ class FeedPanel extends React.Component {
 		posts: [],
 	}
 
+	componentDidMount() {
+		if (this.props.UserContext.loginStatus === 0) {
+			return;
+		}
+
+		this.fetchPosts();
+	}
+
 	componentDidUpdate(prevProps) {
 		const {UserContext: {loginStatus: prevLoginStatus}} = prevProps;
 		const {UserContext: {loginStatus}} = this.props;
