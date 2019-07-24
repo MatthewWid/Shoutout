@@ -7,30 +7,35 @@
 	z-index: 1;
 	background-color: $blue-darker;
 	color: $text-grey;
+}
 
-	.header {
-		max-width: $content-width;
-		margin: 0 auto;
+.header {
+	max-width: $content-width;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+	
+	&__nav {
 		display: flex;
-		justify-content: space-between;
-		height: 100%;
-		
-		&__nav {
-			display: flex;
-			align-items: center;
-		}
-		&__logo {
-			display: flex;
-			align-items: center;
+		align-items: stretch;
+	}
+	&__link {
+		display: flex;
+		align-items: center;
+		color: $text-grey;
+	}
+	&__logo {
+		display: flex;
+		align-items: center;
 
-			img {
-				width: 24px;
-				height: 24px;
-				transform: rotateZ(-36deg);
-			}
+		img {
+			width: 24px;
+			height: 24px;
+			transform: rotateZ(-36deg);
 		}
-		&__extra {
-			display: flex;
-		}
+	}
+	&__extra {
+		display: flex;
 	}
 }

@@ -18,6 +18,7 @@ class FeedPanel extends React.Component {
 	}
 
 	componentDidMount() {
+		// Fetch posts if the route changes after the initial page load
 		if (this.props.UserContext.loginStatus === 0) {
 			return;
 		}
@@ -30,7 +31,6 @@ class FeedPanel extends React.Component {
 		const {UserContext: {loginStatus}} = this.props;
 
 		// If the user logs in or out (Except logging in from the initial auth)
-		// And posts are not waiting to be loaded
 		// Reload all of the posts (Switching between global/personalised post feed)
 		if (
 			prevLoginStatus !== loginStatus &&
