@@ -21,10 +21,11 @@ const links = [
 ];
 
 const Header = (props) => {
-	const linkEls = links.map((link) => (
+	const linkEls = links.map((link, index) => (
 		<Link
 			className={`header__link ${props.page === link.page ? "header__link--current" : ""}`}
 			to={link.to}
+			key={index}
 		>
 				{link.text}
 		</Link>
