@@ -27,7 +27,7 @@ exports.createPost = async (req, res) => {
 };
 
 // Get a single post by its ID
-exports.getPost = async (req, res) => {
+exports.getPostById = async (req, res) => {
 	const {postId} = req.params;
 
 	let post = await Post.findById(postId, constants.PROJECTION_POST);
@@ -280,7 +280,7 @@ exports.validate = (method) => {
 					})
 						.withMessage(valErrMsg.len("Post text", 1, 140))
 			];
-		case "getPost":
+		case "getPostById":
 			return [
 				validator.param("postId", valErrMsg.notExists("Post ID"))
 					.exists()

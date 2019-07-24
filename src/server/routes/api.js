@@ -48,8 +48,8 @@ router.post("/post",
 );
 // Get a single post
 router.get("/post/:postId",
-	validate(post, "getPost"),
-	wrap(post.getPost)
+	validate(post, "getPostById"),
+	wrap(post.getPostById)
 );
 // Update a single post
 router.put("/post/:postId",
