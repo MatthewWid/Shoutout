@@ -6,7 +6,7 @@ const valErrMsg = require("../helpers/validationErrorMsg.js");
 const User = mongoose.model("User");
 
 // Get a single user by their ID
-exports.getUser = async (req, res) => {
+exports.getUserById = async (req, res) => {
 	const {userId} = req.params;
 
 	const user = await User.findById(userId, constants.PROJECTION_USER);
@@ -96,7 +96,7 @@ exports.getLoggedInUser = (req, res) => {
 // Validation middleware for all user controllers
 exports.validate = (method) => {
 	switch (method) {
-		case "getUser":
+		case "getUserById":
 			return [
 				validator.param("userId", valErrMsg.notExists("User ID"))
 					.exists()

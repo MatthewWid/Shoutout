@@ -19,8 +19,8 @@ router.get("/user/auth",
 );
 // Get a single user by their ID
 router.get("/user/:userId",
-	validate(user, "getUser"),
-	wrap(user.getUser)
+	validate(user, "getUserById"),
+	wrap(user.getUserById)
 );
 // Register a new user with a name, email and password
 router.post("/user",
