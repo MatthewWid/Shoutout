@@ -1,16 +1,21 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Avatar from "./Avatar";
+import Avatar from "./Avatar.js";
 
 /*
-	Profile card displaying the currently logged in users'
-	information/statistics on the homepage.
+	Presentational component to render a users' profile card.
+
+	Requires a `user` object prop that represents the given user.
 */
-const ProfileDashboard = (props) => {
+const ProfileCard = (props) => {
 	const {user} = props;
 
+	if (!user) {
+		return null;
+	}
+
 	return (
-		<div className="profile-card">
+		<div className="profile-card card">
 			<img
 				className="profile-card__banner"
 				src={user.bannerUrl}
@@ -25,8 +30,9 @@ const ProfileDashboard = (props) => {
 					</Link>
 				</div>
 			</div>
+			{props.children}
 		</div>
 	);
 };
 
-export default ProfileDashboard;
+export default ProfileCard;
