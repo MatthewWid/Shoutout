@@ -6,7 +6,7 @@ import Avatar from "./Avatar";
 	Profile card displaying the currently logged in users'
 	information/statistics on the homepage.
 */
-const DashboardProfileCard = (props) => {
+const ProfileDashboard = (props) => {
 	const {user} = props;
 
 	return (
@@ -25,9 +25,8 @@ const DashboardProfileCard = (props) => {
 					</Link>
 				</div>
 			</div>
-			<div className="dash-profile__stats"></div>
 		</div>
 	);
 };
 
-export default DashboardProfileCard;
+export default ProfileDashboard;

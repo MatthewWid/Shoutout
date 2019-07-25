@@ -1,6 +1,6 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
-import DashboardProfileCard from "./DashboardProfileCard.js";
+import ProfileDashboard from "./ProfileDashboard.js";
 
 /*
 	Panel that displays user information such as a
@@ -11,7 +11,7 @@ import DashboardProfileCard from "./DashboardProfileCard.js";
 */
 const UserPanel = ({UserContext: {user}}) => !user ? null : (
 	<div className="content__panel card user">
-		<DashboardProfileCard user={user} />
+		<ProfileDashboard user={user} />
 	</div>
 );
 
