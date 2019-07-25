@@ -1,20 +1,18 @@
 .content-container {
 	padding-top: 56px;
+}
 
-	.content {
-		max-width: $content-width;
-		margin: 0 auto;
-		padding-top: 24px;
-		display: flex;
-		align-items: flex-start;
-		
-		> :not(:last-child) {
-			margin-right: 10px;
-		}
-		&__panel {
-			flex: 1;
-		}
-		@import "../components/_SiteInfoPanel.scss";
-		@import "../components/_FeedPanel.scss";
+.content {
+	max-width: $content-width;
+	margin: 0 auto;
+	padding-top: 24px;
+	display: flex;
+	align-items: flex-start;
+	
+	> :not(:last-child) {
+		margin-right: 10px;
+	}
+	&__panel {
+		flex: 1;
 	}
 }

@@ -41,13 +41,19 @@ input, textarea, button {
 	box-sizing: border-box;
 }
 
+// Pages
+@import "./pages/_Profile.scss";
+
 // Partials
 @import "./partials/_content.scss";
 @import "./partials/_card.scss";
 @import "./partials/_button.scss";
 @import "./partials/_divider.scss";
 
-// React Components
+// Components
+@import "./components/_SiteInfoPanel.scss";
+@import "./components/_FeedPanel.scss";
+
 @import "./components/_Header.scss";
 @import "./components/_Dropdown.scss";
 @import "./components/_Avatar.scss";
