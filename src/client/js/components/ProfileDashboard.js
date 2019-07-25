@@ -10,18 +10,18 @@ const ProfileDashboard = (props) => {
 	const {user} = props;
 
 	return (
-		<div className="dash-profile">
+		<div className="profile-card">
 			<img
-				className="dash-profile__banner"
+				className="profile-card__banner"
 				src={user.bannerUrl}
 				alt={user.nick}
 			/>
-			<div className="dash-profile__info">
+			<div className="profile-card__info">
 				<Avatar user={user} />
-				<div className="dash-profile__names">
+				<div className="profile-card__names">
 					<Link to={`/${user.name}`}>
-						<p className="dash-profile__nick">{user.nick}</p>
-						<p className="dash-profile__name">@{user.name}</p>
+						<p className="profile-card__nick">{user.nick}</p>
+						<p className="profile-card__name">@{user.name}</p>
 					</Link>
 				</div>
 			</div>
