@@ -15,7 +15,8 @@ const ProfileCard = (props) => {
 	}
 
 	return (
-		<div className="profile-card card">
+		<div className={`${props.className && (`${props.className} `) || ""}card profile-card`}>
+		{/* If the `className` prop is supplied then add the classNames to this component. */}
 			<img
 				className="profile-card__banner"
 				src={user.bannerUrl}

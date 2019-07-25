@@ -26,7 +26,10 @@ const ProfileUser = (props) => {
 	}
 
 	return (
-		<ProfileCard user={user} />
+		<ProfileCard
+			user={user}
+			className="content__panel"
+		/>
 	);
 };
 
