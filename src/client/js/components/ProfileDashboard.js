@@ -14,7 +14,7 @@ const ProfileDashboard = (props) => {
 			<img
 				className="dash-profile__banner"
 				src={user.bannerUrl}
-				alt=""
+				alt={user.nick}
 			/>
 			<div className="dash-profile__info">
 				<Avatar user={user} />
