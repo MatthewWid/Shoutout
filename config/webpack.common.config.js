@@ -31,6 +31,15 @@ const config = {
 			}
 		]
 	},
+	resolve: {
+		alias: {
+			"api$": path.join(SRCDIR_JS, "api.js")
+		},
+		extensions: [
+			".js",
+			".jsx"
+		]
+	},
 	output: {
 		path: PUBDIR,
 		filename: `${FILENAME}.js`

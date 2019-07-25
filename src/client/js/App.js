@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import UserContext from "./contexts/user.context.js";
+import api from "api";
 import Header from "./components/Header.js";
 import MainRouter from "./MainRouter.js";
 
@@ -36,7 +36,7 @@ class App extends React.Component {
 
 	// Authenticate if the user is logged in or not (using a cookie) on page load
 	authUser = async () => {
-		const {data} = await axios.get("/api/user/auth", {withCredentials: true});
+		const {data} = await api.get("/user/auth");
 
 		this.setUser(data.user);
 	}
