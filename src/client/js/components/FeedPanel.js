@@ -95,7 +95,7 @@ class FeedPanel extends React.Component {
 		}
 
 		return (
-			<main className="content__panel card feed">
+			<main className="content__panel card panel-feed">
 				{form}
 				<PostList
 					posts={this.state.posts}

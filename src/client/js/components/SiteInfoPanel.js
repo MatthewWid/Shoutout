@@ -3,9 +3,9 @@ import SiteStats from "./SiteStats.js";
 
 const SiteInfoPanel = (props) => {
 	return (
-		<div className="content__panel card site-info">
+		<div className="content__panel card panel-site-info">
 			<SiteStats />
-			<div className="site-info__copyright">
+			<div className="panel-site-info__copyright">
 				<p>&copy; {(new Date()).getFullYear()} Matthew W.</p>
 			</div>
 		</div>

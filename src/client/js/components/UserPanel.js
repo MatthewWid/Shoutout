@@ -10,7 +10,7 @@ import ProfileCard from "./ProfileCard.js";
 	Will not render anything if the user is not logged in.
 */
 const UserPanel = ({UserContext: {user}}) => !user ? null : (
-	<div className="content__panel card user">
+	<div className="content__panel card panel-user">
 		<ProfileCard user={user} />
 	</div>
 );
