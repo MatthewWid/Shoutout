@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import {withUserContext} from "../contexts/user.context.js";
+import api from "api";
 import PostForm from "./PostForm.js";
 import PostList from "./PostList.js";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
@@ -45,7 +45,7 @@ class FeedPanel extends React.Component {
 		this.setState({
 			posts: []
 		}, async () => {
-			let request = "/api/posts";
+			let request = "/posts";
 			const {query} = this.props;
 
 			if (query) {
@@ -53,7 +53,7 @@ class FeedPanel extends React.Component {
 				request = `${request}?${params}`;
 			}
 
-			const {data} = await axios.get(request);
+			const {data} = await api.get(request);
 			this.addPosts(data.posts);
 		});
 	}

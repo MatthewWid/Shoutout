@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import api from "api";
 
 class SiteStats extends React.Component {
 	state = {
@@ -14,7 +14,7 @@ class SiteStats extends React.Component {
 
 	// Get website statistics (total posts, users and likes) and set them in state
 	getSiteStats = async () => {
-		const res = await axios.get("/api/stats");
+		const res = await api.get("/stats");
 
 		const stats = {
 			...this.state,

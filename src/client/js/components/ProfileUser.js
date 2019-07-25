@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+import api from "api";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 import ProfileCard from "./ProfileCard.js";
 
@@ -9,8 +9,7 @@ const ProfileUser = (props) => {
 	// Fetch the user given the search query
 	async function getUser() {
 		const params = serializeObjectToUri(props.query);
-		const request = `/api/user?${params}`;
-		const {data: {success, user}} = await axios.get(request);
+		const {data: {success, user}} = await api.get(`/user?${params}`);
 
 		if (success && user) {
 			setUser(user);

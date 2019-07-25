@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import {withUserContext} from "../contexts/user.context.js";
+import api from "api";
 import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "../constants.js";
 
@@ -28,10 +28,10 @@ class LoginForm extends React.Component {
 		const {completedAction} = this.props;
 		evt.preventDefault();
 
-		const {data: {user}} = await axios.post("/api/user/login", {
+		const {data: {user}} = await api.post("/user/login", {
 			email: this.state.email,
 			password: this.state.password
-		}, {withCredentials: true});
+		});
 
 		completedAction && completedAction();
 		await asyncWait(DROP_ANIM_TIME);

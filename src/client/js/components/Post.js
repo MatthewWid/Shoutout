@@ -1,10 +1,10 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
-import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
+import api from "api";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Dropdown from "./Dropdown.js";
 import Avatar from "./Avatar.js";
@@ -60,7 +60,7 @@ class Post extends React.Component {
 		let didLike = true;
 
 		// Send POST request to like post
-		await axios.post(`/api/post/${post._id}/like`, {withCredentials: true})
+		await api.post(`/post/${post._id}/like`)
 		.then(({data: {success}}) => {
 			didLike = success ? true : false;
 		})
@@ -85,7 +85,7 @@ class Post extends React.Component {
 		let didLike = true;
 
 		// Send DELETE request to unlike post
-		const {data} = await axios.delete(`/api/post/${post._id}/like`, {withCredentials: true});
+		const {data} = await api.delete(`/post/${post._id}/like`);
 
 		const newPost = {...post};
 		// Set to 'unliked' regardless of if a post was found or not
@@ -113,7 +113,7 @@ class Post extends React.Component {
 			return;
 		}
 
-		const {data} = await axios.delete(`/api/post/${post._id}`, {withCredentials: true});
+		const {data} = await api.delete(`/post/${post._id}`);
 
 		if (data.success) {
 			removePost && removePost(post);

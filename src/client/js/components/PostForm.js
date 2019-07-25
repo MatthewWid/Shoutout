@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import {withUserContext} from "../contexts/user.context.js";
+import api from "api";
 
 const defaultState = {
 	text: ""
@@ -61,7 +61,7 @@ class PostForm extends React.Component {
 
 	// Send a new Post to the server
 	postMessage = async ({text}) => {
-		const {data} = await axios.post("/api/post", {text});
+		const {data} = await api.post("/post", {text});
 
 		if (data.success) {
 			const {addPosts} = this.props;
