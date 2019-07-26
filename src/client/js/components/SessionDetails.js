@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {withUserContext} from "../contexts/user.context.js";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Avatar from "./Avatar.js";
@@ -43,6 +43,9 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
+						<Link to="/settings">
+							<button className="dropdown__link">Settings</button>
+						</Link>
 						<LogoutForm
 							className="dropdown__link"
 							completedAction={this.closeAndRedirect}

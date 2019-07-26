@@ -67,8 +67,9 @@ input, textarea, button {
 @import "./components/_LoginForm.scss";
 @import "./components/_SignupForm.scss";
 
-// Profiles
+// Users
 @import "./components/_ProfileCard.scss";
+@import "./components/_SettingsForm.scss";
 
 // Posts
 @import "./components/_PostForm.scss";
