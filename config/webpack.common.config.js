@@ -33,7 +33,8 @@ const config = {
 	},
 	resolve: {
 		alias: {
-			"api$": path.join(SRCDIR_JS, "api.js")
+			"api$": path.join(SRCDIR_JS, "./helpers/api.js"),
+			"constants$": path.join(SRCDIR_JS, "./helpers/constants.js")
 		},
 		extensions: [
 			".js",

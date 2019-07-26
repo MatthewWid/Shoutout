@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// Initialize API config singleton
-import "./api.js";
 import App from "./App.js";
+// Initialize API interface singleton object
+import "api";
 
 ReactDOM.render(
 	<App />,
