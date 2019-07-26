@@ -189,7 +189,8 @@ exports.getLoggedInUser = (req, res) => {
 exports.ensureOwnUser = (req, res, next) => {
 	const {userId} = req.params;
 
-	if (!req.user._id.equals(userId)) {
+	// Check if the logged in user is editing themselves unless they are an admin
+	if (!req.user._id.equals(userId) && !req.user.isAdmin) {
 		return res
 			.status(401)
 			.json({
