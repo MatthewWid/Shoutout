@@ -131,6 +131,43 @@ exports.createUser = async (req, res, next) => {
 	next();
 };
 
+// Update profile settings and preferences of a single user
+exports.editUser = async (req, res) => {
+	const {userId} = req.params;
+
+	const newFields = {};
+	if (req.body.nick) {
+		newFields.nick = req.body.nick;
+	}
+	if (req.body.avatarUrl) {
+		newFields.avatarUrl = req.body.avatarUrl;
+	}
+	if (req.body.bannerUrl) {
+		newFields.bannerUrl = req.body.bannerUrl;
+	}
+
+	const user = await User.findByIdAndUpdate(userId, {
+		...newFields
+	}, {
+		select: constants.PROJECTION_USER,
+		new: true
+	});
+
+	if (user === null) {
+		return res
+			.status(404)
+			.json({
+				success: false,
+				msg: "User not found or does not exist."
+			});
+	}
+
+	res.json({
+		success: true,
+		user
+	});
+};
+
 // Return the currently authenticated / logged in user
 exports.getLoggedInUser = (req, res) => {
 	if (!req.user) {
@@ -146,6 +183,22 @@ exports.getLoggedInUser = (req, res) => {
 		success: true,
 		user: req.user
 	});
+};
+
+// Ensure the currently logged in user owns the account they are attempting to manipulate
+exports.ensureOwnUser = (req, res, next) => {
+	const {userId} = req.params;
+
+	if (!req.user._id.equals(userId)) {
+		return res
+			.status(401)
+			.json({
+				success: false,
+				msg: "Not authorised to operate on user."
+			});
+	}
+
+	next();
 };
 
 // Validation middleware for all user controllers

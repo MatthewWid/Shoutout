@@ -35,6 +35,11 @@ router.post("/user",
 	auth.login,
 	user.getLoggedInUser
 );
+router.put("/user/:userId",
+	auth.ensureLoggedIn,
+	user.ensureOwnUser,
+	wrap(user.editUser)
+);
 // Log in as a user with a name and password
 router.post("/user/login",
 	validate(auth, "login"),
