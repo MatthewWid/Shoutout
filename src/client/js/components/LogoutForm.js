@@ -24,7 +24,7 @@ class LogoutForm extends React.Component {
 	render() {
 		return (
 			<button
-				className="dropdown__link"
+				className={this.props.className}
 				onClick={this.handleSubmit}
 			>
 				Log Out

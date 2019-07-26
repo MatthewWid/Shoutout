@@ -43,7 +43,10 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<LogoutForm completedAction={this.closeAndRedirect} />
+						<LogoutForm
+							className="dropdown__link"
+							completedAction={this.closeAndRedirect}
+						/>
 					</Dropdown>
 				</Fragment>
 			);
