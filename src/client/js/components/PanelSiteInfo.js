@@ -1,7 +1,7 @@
 import React from "react";
 import SiteStats from "./SiteStats.js";
 
-const SiteInfoPanel = (props) => {
+const PanelSiteInfo = (props) => {
 	return (
 		<div className="content__panel card panel-site-info">
 			<SiteStats />
@@ -12,4 +12,4 @@ const SiteInfoPanel = (props) => {
 	);
 };
 
-export default SiteInfoPanel;
+export default PanelSiteInfo;

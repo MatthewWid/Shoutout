@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import Layout from "./Layout.js";
-import UserPanel from "../components/UserPanel.js";
-import FeedPanel from "../components/FeedPanel.js";
-import SiteInfoPanel from "../components/SiteInfoPanel.js";
+import PanelUser from "../components/PanelUser.js";
+import PanelFeed from "../components/PanelFeed.js";
+import PanelSiteInfo from "../components/PanelSiteInfo.js";
 
 const Home = (props) => {
 	useEffect(() => {
@@ -11,9 +11,9 @@ const Home = (props) => {
 
 	return (
 		<Layout page="home">
-			<UserPanel />
-			<FeedPanel />
-			<SiteInfoPanel />
+			<PanelUser />
+			<PanelFeed />
+			<PanelSiteInfo />
 		</Layout>
 	);
 };

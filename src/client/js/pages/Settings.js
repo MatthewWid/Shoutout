@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Layout from "./Layout.js";
-import UserPanel from "../components/UserPanel.js";
-import SettingsPanel from "../components/SettingsPanel.js";
+import PanelUser from "../components/PanelUser.js";
+import PanelSettings from "../components/PanelSettings.js";
 
 const Settings = (props) => {
 	useEffect(() => {
@@ -10,8 +10,8 @@ const Settings = (props) => {
 
 	return (
 		<Layout page="settings">
-			<UserPanel />
-			<SettingsPanel />
+			<PanelUser />
+			<PanelSettings />
 		</Layout>
 	);
 };

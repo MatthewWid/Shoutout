@@ -52,22 +52,28 @@ input, textarea, button {
 @import "./partials/_divider.scss";
 
 // Components
-@import "./components/_SiteInfoPanel.scss";
-@import "./components/_FeedPanel.scss";
+// Panels
+@import "./components/_PanelSiteInfo.scss";
+@import "./components/_PanelFeed.scss";
 
+// Multi-use
 @import "./components/_Header.scss";
 @import "./components/_Dropdown.scss";
 @import "./components/_Avatar.scss";
 
+// User entry (Login/Logout)
 @import "./components/_SessionDetails.scss";
 @import "./components/_UserEntry.scss";
 @import "./components/_LoginForm.scss";
 @import "./components/_SignupForm.scss";
 
+// Profiles
 @import "./components/_ProfileCard.scss";
 
+// Posts
 @import "./components/_PostForm.scss";
 @import "./components/_PostList.scss";
 @import "./components/_Post.scss";
 
+// Stats
 @import "./components/_SiteStats.scss";

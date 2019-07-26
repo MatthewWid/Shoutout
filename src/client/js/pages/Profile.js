@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Layout from "./Layout.js";
-import FeedPanel from "../components/FeedPanel.js";
+import PanelFeed from "../components/PanelFeed.js";
 import ProfileUser from "../components/ProfileUser.js";
 
 const Profile = (props) => {
@@ -17,7 +17,7 @@ const Profile = (props) => {
 					username
 				}}
 			/>
-			<FeedPanel
+			<PanelFeed
 				hasForm={false}
 				query={{
 					username

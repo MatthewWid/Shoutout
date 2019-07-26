@@ -1,6 +1,6 @@
 import React from "react";
 
-class SettingsPanel extends React.Component {
+class PanelSettings extends React.Component {
 	render() {
 		return (
 			<div className="content__panel card panel-settings">
@@ -10,4 +10,4 @@ class SettingsPanel extends React.Component {
 	}
 }
 
-export default SettingsPanel;
+export default PanelSettings;

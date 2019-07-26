@@ -12,7 +12,7 @@ import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 	An optional `query` object prop can be passed to attach query parameters
 	to the API URL.
 */
-class FeedPanel extends React.Component {
+class PanelFeed extends React.Component {
 	state = {
 		posts: [],
 	}
@@ -107,4 +107,4 @@ class FeedPanel extends React.Component {
 	}
 }
 
-export default withUserContext(FeedPanel);
+export default withUserContext(PanelFeed);
