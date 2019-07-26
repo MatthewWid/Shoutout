@@ -55,6 +55,8 @@ class SignupForm extends React.Component {
 					type="text"
 					name="nick"
 					placeholder="Nickname (Optional)"
+					autocorrect="off"
+					autocapitalize="none"
 					value={this.state.nick}
 					onChange={this.handleChange}
 				/>
@@ -65,6 +67,8 @@ class SignupForm extends React.Component {
 						name="username"
 						required
 						placeholder="Username"
+						autocorrect="off"
+						autocapitalize="none"
 						value={this.state.username}
 						onChange={this.handleChange}
 					/>
@@ -75,6 +79,8 @@ class SignupForm extends React.Component {
 					name="email"
 					required
 					placeholder="Email Address"
+					autocorrect="off"
+					autocapitalize="none"
 					value={this.state.email}
 					onChange={this.handleChange}
 				/>
