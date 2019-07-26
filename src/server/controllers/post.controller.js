@@ -58,7 +58,7 @@ exports.editPost = async (req, res) => {
 	const post = await Post.findByIdAndUpdate(postId, {
 		text
 	}, {
-		fields: constants.PROJECTION_POST,
+		select: constants.PROJECTION_POST,
 		new: true
 	});
 
