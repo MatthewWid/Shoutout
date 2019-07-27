@@ -1,3 +1,10 @@
-.settings {
-	margin: 10px;
+.settings-form {
+	margin: 15px;
+	
+	> :not(:last-child) {
+		margin-bottom: 22px;
+	}
+	&__input-text {
+		min-width: 240px;
+	}
 }
