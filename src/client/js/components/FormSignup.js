@@ -51,7 +51,7 @@ class SignupForm extends React.Component {
 			>
 				<p>Create an account</p>
 				<input
-					className="user-entry__input signup-form__nick"
+					className="input-text signup-form__nick"
 					type="text"
 					name="nick"
 					placeholder="Nickname (Optional)"
@@ -62,7 +62,7 @@ class SignupForm extends React.Component {
 				/>
 				<div className="signup-form__username-container">
 					<input
-						className="user-entry__input signup-form__username"
+						className="input-text signup-form__username"
 						type="text"
 						name="username"
 						required
@@ -74,7 +74,7 @@ class SignupForm extends React.Component {
 					/>
 				</div>
 				<input
-					className="user-entry__input signup-form__email"
+					className="input-text signup-form__email"
 					type="text"
 					name="email"
 					required
@@ -85,7 +85,7 @@ class SignupForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<input
-					className="user-entry__input signup-form__password"
+					className="input-text signup-form__password"
 					type="password"
 					name="password"
 					required

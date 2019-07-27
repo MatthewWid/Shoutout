@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
 			>
 				<p>Log in to your account</p>
 				<input
-					className="user-entry__input login-form__email"
+					className="input-text login-form__email"
 					type="text"
 					name="email"
 					required
@@ -58,7 +58,7 @@ class LoginForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<input
-					className="user-entry__input login-form__password"
+					className="input-text login-form__password"
 					type="password"
 					name="password"
 					required

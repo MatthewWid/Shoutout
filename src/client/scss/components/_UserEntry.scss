@@ -4,13 +4,8 @@
 	> :not(:last-child) {
 		margin-bottom: 15px;
 	}
-	&__input {
+	.input-text {
 		width: 100%;
-		font-size: 1rem;
-		color: $text-bright;
-		border: 1px solid $grey-mid;
-		border-radius: 5px;
-		padding: 4px 10px;
 	}
 	&__submit {
 		display: block;
