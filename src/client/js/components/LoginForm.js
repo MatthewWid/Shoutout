@@ -52,8 +52,8 @@ class LoginForm extends React.Component {
 					name="email"
 					required
 					placeholder="Email"
-					autocorrect="off"
-					autocapitalize="none"
+					autoCorrect="off"
+					autoCapitalize="none"
 					value={this.state.email}
 					onChange={this.handleChange}
 				/>
