@@ -322,7 +322,7 @@ exports.validate = (method) => {
 				validator.query("page", valErrMsg.notValid("Page number"))
 					.optional()
 					.isInt({min: 0})
-			]
+			];
 		case "addLike":
 			return [
 				validator.param("postId", valErrMsg.notExists("Post ID"))

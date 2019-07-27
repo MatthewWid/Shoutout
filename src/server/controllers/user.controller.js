@@ -215,17 +215,15 @@ exports.validate = (method) => {
 			return [
 				validator.oneOf([
 					validator.query("username", valErrMsg.notValid("Username"))
-						.optional()
 						.isString(),
 
 					validator.query("nickname", valErrMsg.notValid("Nickname"))
-						.optional()
 						.isString(),
 
 					validator.query("id", valErrMsg.notValid("User ID"))
 						.custom(ensureValidId)
-				], valErrMsg.filters("user"))
-			]
+				], valErrMsg.filters("User"))
+			];
 		case "findUserByName":
 			return [
 				validator.query("authorname", valErrMsg.notValid("Author name"))
@@ -239,7 +237,7 @@ exports.validate = (method) => {
 				validator.param("userName", valErrMsg.notValid("Username paramater"))
 					.optional()
 					.isString()
-			]
+			];
 		case "createUser":
 			return [
 				validator.body("nick", valErrMsg.notExists("Nickname"))
@@ -273,7 +271,26 @@ exports.validate = (method) => {
 				validator.body("password", valErrMsg.notExists("Password"))
 					.exists()
 					.isString()
-			]
+			];
+		case "editUser":
+			return [
+				validator.body("nick", valErrMsg.notValid("Nickname"))
+					.optional()
+					.isString()
+					.isLength({
+						min: 1,
+						max: 50
+					})
+						.withMessage(valErrMsg.len("Nickname", 1, 50)),
+
+				validator.body("avatarUrl", valErrMsg.notValid("Avatar URL"))
+					.optional()
+					.isURL(),
+
+				validator.body("bannerUrl", valErrMsg.notValid("Banner URL"))
+					.optional()
+					.isURL()
+			];
 		default:
 			return [];
 	}

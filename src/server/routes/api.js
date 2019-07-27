@@ -35,7 +35,9 @@ router.post("/user",
 	auth.login,
 	user.getLoggedInUser
 );
+// Update a single users' settings
 router.put("/user/:userId",
+	validate(user, "editUser"),
 	auth.ensureLoggedIn,
 	user.ensureOwnUser,
 	wrap(user.editUser)
