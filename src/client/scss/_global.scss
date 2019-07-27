@@ -64,15 +64,15 @@ input, textarea, button {
 // User entry (Login/Logout)
 @import "./components/_SessionDetails.scss";
 @import "./components/_UserEntry.scss";
-@import "./components/_LoginForm.scss";
-@import "./components/_SignupForm.scss";
+@import "./components/_FormLogin.scss";
+@import "./components/_FormSignup.scss";
 
 // Users
 @import "./components/_ProfileCard.scss";
-@import "./components/_SettingsForm.scss";
+@import "./components/_FormSettings.scss";
 
 // Posts
-@import "./components/_PostForm.scss";
+@import "./components/_FormPost.scss";
 @import "./components/_PostList.scss";
 @import "./components/_Post.scss";
 

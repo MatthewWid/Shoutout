@@ -5,7 +5,7 @@ import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserEntry from "./UserEntry.js";
-import LogoutForm from "./LogoutForm.js";
+import FormLogout from "./FormLogout.js";
 
 /*
 	Displays the users' "session" in the header.
@@ -46,7 +46,7 @@ class SessionDetails extends React.Component {
 						<Link to="/settings">
 							<button className="dropdown__link">Settings</button>
 						</Link>
-						<LogoutForm
+						<FormLogout
 							className="dropdown__link"
 							completedAction={this.closeAndRedirect}
 						/>

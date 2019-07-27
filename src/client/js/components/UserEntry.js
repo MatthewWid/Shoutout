@@ -1,6 +1,6 @@
 import React from "react";
-import LoginForm from "./LoginForm.js";
-import SignupForm from "./SignupForm.js";
+import FormLogin from "./FormLogin.js";
+import FormSignup from "./FormSignup.js";
 
 /*
 	Login and Signup form - how the user "enters" the site
@@ -25,10 +25,10 @@ class UserEntry extends React.Component {
 	render() {
 		let form, prompt;
 		if (this.state.login) {
-			form = <LoginForm completedAction={this.props.completedAction} />
+			form = <FormLogin completedAction={this.props.completedAction} />
 			prompt = <p className="user-entry__prompt" onClick={this.toggleForm}>New to the site? <b>Sign Up</b></p>;
 		} else {
-			form = <SignupForm completedAction={this.props.completedAction} />
+			form = <FormSignup completedAction={this.props.completedAction} />
 			prompt = <p className="user-entry__prompt" onClick={this.toggleForm}>Already have an account? <b>Log In</b></p>;
 		}
 

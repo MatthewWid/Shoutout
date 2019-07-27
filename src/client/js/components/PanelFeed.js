@@ -1,7 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
-import PostForm from "./PostForm.js";
+import FormPost from "./FormPost.js";
 import PostList from "./PostList.js";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 
@@ -91,7 +91,7 @@ class PanelFeed extends React.Component {
 	render() {
 		let form = null;
 		if (this.props.UserContext.user && this.props.hasForm !== false) {
-			form = <PostForm addPosts={this.addPosts} />;
+			form = <FormPost addPosts={this.addPosts} />;
 		}
 
 		return (
