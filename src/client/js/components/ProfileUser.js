@@ -27,7 +27,7 @@ const ProfileUser = (props) => {
 	return (
 		<ProfileCard
 			user={user}
-			className="content__panel"
+			className="content__panel card"
 		/>
 	);
 };
