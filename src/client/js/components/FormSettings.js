@@ -1,5 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
+import api from "api";
+import {DEFAULT_AVATAR_URL, DEFAULT_BANNER_URL} from "constants";
 
 class SettingsForm extends React.Component {
 	state = {
@@ -16,7 +18,9 @@ class SettingsForm extends React.Component {
 		}
 
 		this.setState({
-			nick: user.nick
+			nick: user.nick,
+			avatarUrl: user.avatarUrl || "",
+			bannerUrl: user.bannerUrl || ""
 		});
 	}
 
@@ -24,12 +28,51 @@ class SettingsForm extends React.Component {
 		const {state} = {...this.state};
 
 		this.setState({
-			[target.name]: [target.value]
+			[target.name]: target.value
 		});
 	}
 
 	handleSubmit = async (evt) => {
 		evt.preventDefault();
+
+		const {user, setUser} = this.props.UserContext;
+		const {nick, avatarUrl, bannerUrl} = this.state;
+
+		// Send newly edited profile settings if they are added,
+		// they are not the default and they are different from
+		// the existing settings
+		const body = {};
+		if (
+			nick &&
+			nick !== user.nick
+		) {
+			body.nick = nick;
+		}
+		if (
+			avatarUrl &&
+			avatarUrl !== DEFAULT_AVATAR_URL &&
+			avatarUrl !== user.avatarUrl
+		) {
+			body.avatarUrl = avatarUrl;
+		}
+		if (
+			bannerUrl &&
+			bannerUrl !== DEFAULT_BANNER_URL &&
+			bannerUrl !== user.bannerUrl
+		) {
+			body.bannerUrl = bannerUrl;
+		}
+
+		// If no values have been updated abort the operation
+		if (Object.keys(body).length === 0) {
+			return;
+		}
+
+		const {data} = await api.put(`/user/${user._id}`, body);
+
+		if (data.success) {
+			setUser(data.user);
+		}
 	}
 
 	render() {
@@ -54,7 +97,7 @@ class SettingsForm extends React.Component {
 				<label className="input-label">
 					Avatar URL
 					<input
-						className="input-text settings-form__input-text"
+						className="input-text settings-form__input-text settings-form__avatar"
 						type="text"
 						name="avatarUrl"
 						placeholder="Avatar URL"
@@ -67,7 +110,7 @@ class SettingsForm extends React.Component {
 				<label className="input-label">
 					Banner URL
 					<input
-						className="input-text settings-form__input-text"
+						className="input-text settings-form__input-text settings-form__banner"
 						type="text"
 						name="bannerUrl"
 						placeholder="Banner URL"
