@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {DEFAULT_AVATAR_URL} from "constants";
 
 /*
 	Generic Avatar for the given users' profile picture.
@@ -13,7 +14,7 @@ const Avatar = (props) => {
 	let component = (
 		<img
 			className="avatar__image"
-			src={user.avatarUrl}
+			src={user.avatarUrl || DEFAULT_AVATAR_URL}
 			alt={user.nick}
 		/>
 	);
