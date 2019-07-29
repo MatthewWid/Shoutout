@@ -27,20 +27,27 @@ class SignupForm extends React.Component {
 	}
 
 	handleSubmit = async (evt) => {
+		const {nick, username, email, password} = this.state;
 		const {completedAction} = this.props;
 		evt.preventDefault();
 
-		const {data: {user}} = await api.post("/user", {
-			nick: this.state.nick,
-			username: this.state.username,
-			email: this.state.email,
-			password: this.state.password
+		const {data} = await api.post("/user", {
+			nick,
+			username,
+			email,
+			password
 		});
 
-		completedAction && completedAction();
-		await asyncWait(DROP_ANIM_TIME);
+		if (data.success) {
+			completedAction && completedAction();
+			await asyncWait(DROP_ANIM_TIME);
 
-		this.props.UserContext.setUser(user);
+			this.props.UserContext.setUser(data.user);
+		} else {
+			this.setState({
+				password: ""
+			});
+		}
 	}
 
 	render() {
