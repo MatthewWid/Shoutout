@@ -32,12 +32,16 @@ class SignupForm extends React.Component {
 		const {completedAction} = this.props;
 		evt.preventDefault();
 
-		const {data} = await api.post("/user", {
-			nick,
+		const body = {
 			username,
 			email,
 			password
-		});
+		};
+		if (nick) {
+			body.nick = nick;
+		}
+
+		const {data} = await api.post("/user", body);
 
 		if (data.success) {
 			completedAction && completedAction();
