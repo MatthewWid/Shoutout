@@ -1,6 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import ErrorList from "./ErrorList.js";
 
 const defaultState = {
 	text: ""
@@ -18,7 +19,8 @@ const defaultState = {
 */
 class PostForm extends React.Component {
 	state = {
-		...defaultState
+		...defaultState,
+		errors: []
 	}
 
 	canSubmit = () => {
@@ -66,6 +68,18 @@ class PostForm extends React.Component {
 		if (data.success) {
 			const {addPosts} = this.props;
 			addPosts && addPosts([data.post]);
+		} else {
+			if (data.errors) {
+				const errors = data.errors.map((error) => error.msg);
+
+				this.setState({
+					errors
+				});
+			} else if (data.msg) {
+				this.setState({
+					errors: [data.msg || "Invalid input."],
+				});
+			}
 		}
 	}
 
@@ -89,6 +103,7 @@ class PostForm extends React.Component {
 						onChange={this.handleChange}
 						onKeyPress={this.handleKeyPress}
 					></textarea>
+					<ErrorList errors={this.state.errors} />
 					<div className="post-form__toolbar">
 						<div className={`post-form__length ${charsLeft < 0 ? "post-form__length--disabled" : ""}`}>{charsLeft}</div>
 						<input

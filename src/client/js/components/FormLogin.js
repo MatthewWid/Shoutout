@@ -48,7 +48,7 @@ class LoginForm extends React.Component {
 				});
 			} else if (data.msg) {
 				this.setState({
-					errors: [data.msg || "Invalid credentials."],
+					errors: [data.msg || "Invalid input."],
 				});
 			}
 			this.setState({

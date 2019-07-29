@@ -1,16 +1,20 @@
 .post-form {
 	border-bottom: 1px solid $blue-mid;
-	
-	&__form, &__author {
+
+	&__author, &__form {
 		margin: 10px;
 	}
 	&__author {
 		color: $text-grey;
-		margin-bottom: 10px;
 
 		b {
 			color: $text-bright;
 			font-weight: normal;
+		}
+	}
+	&__form {
+		> :not(:last-child) {
+			margin-bottom: 10px;
 		}
 	}
 	&__text {
@@ -38,7 +42,6 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		margin-top: 10px;
 		
 		> :not(:last-child) {
 			margin-right: 10px;
