@@ -14,12 +14,11 @@ const defaultState = {
 // once the user successfully logs in
 class LoginForm extends React.Component {
 	state = {
-		...defaultState
+		...defaultState,
+		errors: []
 	}
 
 	handleChange = ({target}) => {
-		const state = {...this.state};
-
 		this.setState({
 			[target.name]: target.value
 		});
@@ -38,9 +37,20 @@ class LoginForm extends React.Component {
 		if (data.success) {
 			completedAction && completedAction();
 			await asyncWait(DROP_ANIM_TIME);
-			
+
 			this.props.UserContext.setUser(data.user);
 		} else {
+			if (data.errors) {
+				const errors = data.errors.map((error) => error.msg);
+
+				this.setState({
+					errors
+				});
+			} else if (data.msg) {
+				this.setState({
+					errors: [data.msg || "Invalid credentials."],
+				});
+			}
 			this.setState({
 				password: ""
 			});
@@ -79,7 +89,7 @@ class LoginForm extends React.Component {
 					type="submit"
 					value="Log In"
 				/>
-				<ErrorsList />
+				<ErrorsList errors={this.state.errors} />
 			</form>
 		);
 	}

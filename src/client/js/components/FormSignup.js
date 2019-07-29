@@ -1,6 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import ErrorsList from "./ErrorsList.js";
 import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "constants";
 
@@ -15,12 +16,11 @@ const defaultState = {
 // once the user successfully signs up and logs in
 class SignupForm extends React.Component {
 	state = {
-		...defaultState
+		...defaultState,
+		errors: []
 	}
 
 	handleChange = ({target}) => {
-		const state = {...this.state};
-
 		this.setState({
 			[target.name]: target.value
 		});
@@ -44,6 +44,13 @@ class SignupForm extends React.Component {
 
 			this.props.UserContext.setUser(data.user);
 		} else {
+			if (data.errors) {
+				const errors = data.errors.map((error) => error.msg);
+
+				this.setState({
+					errors
+				});
+			}
 			this.setState({
 				password: ""
 			});
@@ -105,6 +112,7 @@ class SignupForm extends React.Component {
 					type="submit"
 					value="Sign Up"
 				/>
+				<ErrorsList errors={this.state.errors} />
 			</form>
 		);
 	}
