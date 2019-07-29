@@ -1,13 +1,16 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import extractErrors from "../helpers/extractErrors.js";
+import ErrorList from "./ErrorList.js";
 import {DEFAULT_AVATAR_URL, DEFAULT_BANNER_URL} from "constants";
 
 class SettingsForm extends React.Component {
 	state = {
 		nick: "",
 		avatarUrl: "",
-		bannerUrl: ""
+		bannerUrl: "",
+		errors: []
 	}
 
 	componentDidMount() {
@@ -72,6 +75,10 @@ class SettingsForm extends React.Component {
 
 		if (data.success) {
 			setUser(data.user);
+		} else {
+			this.setState({
+				errors: extractErrors(data)
+			});
 		}
 	}
 
@@ -120,6 +127,7 @@ class SettingsForm extends React.Component {
 						onChange={this.handleChange}
 					/>
 				</label>
+				<ErrorList errors={this.state.errors} />
 				<input
 					className="button button--primary"
 					type="submit"
