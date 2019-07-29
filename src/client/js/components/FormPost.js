@@ -1,6 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import extractErrors from "../helpers/extractErrors.js";
 import ErrorList from "./ErrorList.js";
 
 const defaultState = {
@@ -69,17 +70,7 @@ class PostForm extends React.Component {
 			const {addPosts} = this.props;
 			addPosts && addPosts([data.post]);
 		} else {
-			if (data.errors) {
-				const errors = data.errors.map((error) => error.msg);
-
-				this.setState({
-					errors
-				});
-			} else if (data.msg) {
-				this.setState({
-					errors: [data.msg || "Invalid input."],
-				});
-			}
+			this.setState({errors: extractErrors(data)});
 		}
 	}
 

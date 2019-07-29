@@ -1,6 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import extractErrors from "../helpers/extractErrors.js";
 import ErrorList from "./ErrorList.js";
 import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "constants";
@@ -40,18 +41,8 @@ class LoginForm extends React.Component {
 
 			this.props.UserContext.setUser(data.user);
 		} else {
-			if (data.errors) {
-				const errors = data.errors.map((error) => error.msg);
-
-				this.setState({
-					errors
-				});
-			} else if (data.msg) {
-				this.setState({
-					errors: [data.msg || "Invalid input."],
-				});
-			}
 			this.setState({
+				errors: extractErrors(data),
 				password: ""
 			});
 		}
