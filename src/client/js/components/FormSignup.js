@@ -1,7 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
-import ErrorsList from "./ErrorsList.js";
+import ErrorList from "./ErrorList.js";
 import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "constants";
 
@@ -112,7 +112,7 @@ class SignupForm extends React.Component {
 					type="submit"
 					value="Sign Up"
 				/>
-				<ErrorsList errors={this.state.errors} />
+				<ErrorList errors={this.state.errors} />
 			</form>
 		);
 	}

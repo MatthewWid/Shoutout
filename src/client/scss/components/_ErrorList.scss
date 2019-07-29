@@ -1,0 +1,10 @@
+.errors {
+	&__list {
+		> :not(:last-child) {
+			margin-bottom: 12px;
+		}
+	}
+	&__error {
+		color: $red;
+	}
+}

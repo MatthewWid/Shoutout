@@ -57,10 +57,11 @@ input, textarea, button {
 @import "./components/_PanelSiteInfo.scss";
 @import "./components/_PanelFeed.scss";
 
-// Multi-use
+// Modular
 @import "./components/_Header.scss";
 @import "./components/_Dropdown.scss";
 @import "./components/_Avatar.scss";
+@import "./components/_ErrorList.scss";
 
 // User entry (Login/Logout)
 @import "./components/_SessionDetails.scss";
