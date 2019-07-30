@@ -1,5 +1,5 @@
 .panel-site-info {
-	> div {
+	> :not(:last-child) {
 		margin-bottom: 10px;
 	}
 	&__copyright {

@@ -35,7 +35,7 @@ class SiteStats extends React.Component {
 		);
 
 		return (
-			<div className="stats">
+			<div className="stats card">
 				<div className="stats__list">
 					{stat("Users", users)}
 					{stat("Posts", posts)}
