@@ -2,9 +2,25 @@
 	> :not(:last-child) {
 		margin-bottom: 10px;
 	}
-	&__copyright {
-		padding: 10px 0;
+	&__section {
+		padding: 16px 0;
 		color: $text-grey;
 		text-align: center;
+	}
+	&__links {
+		font-size: .9rem;
+
+		:not(:last-child) {
+			&:after {
+				content: "\2022";
+				display: inline-block;
+				margin: 0 5px;
+			}
+		}
+	}
+	&__link {
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
