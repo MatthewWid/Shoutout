@@ -1,4 +1,6 @@
-# Shoutout
+<p align="center">
+  <img src="/public/images/logo/logo-maxres-text-white.png?raw=true" alt="Shoutout Logo" width="600px" />
+</p>
 
 News and social media site.  
 Users post to a central board and can share short messages with eachother.
