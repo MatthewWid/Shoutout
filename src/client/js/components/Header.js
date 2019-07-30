@@ -38,7 +38,7 @@ const Header = (props) => {
 					{linkEls}
 				</nav>
 				<div className="header__section header__logo">
-					<img src="./images/logo/logo-maxres-icon-transparent.png" alt="Shoutout" />
+					<img src="./images/logo/logo-maxres-text-transparent.png" alt="Shoutout" />
 				</div>
 				<div className="header__section header__extra">
 					<SessionDetails
