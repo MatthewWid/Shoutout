@@ -83,6 +83,12 @@ class SettingsForm extends React.Component {
 	}
 
 	render() {
+		const {user} = this.props.UserContext;
+
+		if (!user) {
+			return null;
+		}
+
 		return (
 			<form
 				className="settings-form"
@@ -99,6 +105,32 @@ class SettingsForm extends React.Component {
 						autoCapitalize="none"
 						value={this.state.nick}
 						onChange={this.handleChange}
+					/>
+				</label>
+				<label className="input-label">
+					Username
+					<input
+						className="input-text settings-form__input-text settings-form__name"
+						type="text"
+						name="name"
+						placeholder="Username"
+						autoCorrect="off"
+						autoCapitalize="none"
+						disabled
+						value={user.name}
+					/>
+				</label>
+				<label className="input-label">
+					Email
+					<input
+						className="input-text settings-form__input-text settings-form__email"
+						type="text"
+						name="email"
+						placeholder="Email Address"
+						autoCorrect="off"
+						autoCapitalize="none"
+						disabled
+						value={user.email}
 					/>
 				</label>
 				<label className="input-label">

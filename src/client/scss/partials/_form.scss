@@ -5,6 +5,11 @@
 	border: 1px solid $grey-mid;
 	border-radius: 5px;
 	padding: 4px 10px;
+
+	&[disabled] {
+		background-color: $blue-darkest;
+		cursor: not-allowed;
+	}
 }
 
 .input-label {
