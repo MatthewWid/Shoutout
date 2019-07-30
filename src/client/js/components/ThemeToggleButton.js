@@ -4,7 +4,7 @@ import InlineSvg from "react-inlinesvg";
 // Toggle the theme between light and dark mode
 // When a change occurs save into local storage and retrieve
 // the value to remember theme settings between sessions
-const ThemeToggle = (props) => {
+const ThemeToggleButton = (props) => {
 	const [themeDark, setThemeDark] = useState(false);
 
 	useEffect(() => {
@@ -42,4 +42,4 @@ const ThemeToggle = (props) => {
 	);
 };
 
-export default ThemeToggle;
+export default ThemeToggleButton;
