@@ -1,4 +1,13 @@
+// Resets and content variables
 @import "./_reset.scss";
 @import "./_variables.scss";
-@import "./_colours.scss";
+
+// Light theme
+@import "./themes/theme-light.scss";
 @import "./_global.scss";
+
+// Dark theme
+html.theme-dark {
+	@import "./themes/theme-dark.scss";
+	@import "./_global.scss";
+}
