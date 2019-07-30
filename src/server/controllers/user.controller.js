@@ -176,9 +176,7 @@ exports.getLoggedInUser = (req, res) => {
 			user: null
 		});
 	}
-
-	const user = {...req.user};
-	delete user.__v;
+	
 	res.json({
 		success: true,
 		user: req.user
