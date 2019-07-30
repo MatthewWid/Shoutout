@@ -10,7 +10,7 @@
 	&__links {
 		font-size: .9rem;
 
-		:not(:last-child) {
+		> :not(:last-child) {
 			&:after {
 				content: "\2022";
 				display: inline-block;

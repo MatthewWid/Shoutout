@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {Redirect} from "react-router-dom";
 import api from "api";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 import ProfileCard from "./ProfileCard.js";
@@ -21,7 +22,7 @@ const ProfileUser = (props) => {
 	}, [props.query.username, props.query.nickname, props.query.id]);
 
 	if (!user) {
-		return null;
+		return <Redirect to="/404" />;
 	}
 
 	return (
