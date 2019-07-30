@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import SessionDetails from "./SessionDetails.js";
+import ThemeToggle from "./ThemeToggle.js";
 
 const links = [
 	{
@@ -41,6 +42,7 @@ const Header = (props) => {
 					<img src="./images/logo/logo-maxres-text-transparent.png" alt="Shoutout" />
 				</div>
 				<div className="header__section header__extra">
+					<ThemeToggle />
 					<SessionDetails
 						login={props.login}
 						signup={props.signup}

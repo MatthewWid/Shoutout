@@ -150,7 +150,7 @@ class Post extends React.Component {
 								>
 									<InlineSvg
 										className="svg post__menu-icon"
-										src={"./images/icons/menu-ellipsis.svg"}
+										src="./images/icons/menu-ellipsis.svg"
 										cacheGetRequests
 									></InlineSvg>
 								</div>
