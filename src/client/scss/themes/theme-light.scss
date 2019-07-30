@@ -16,3 +16,10 @@ $red: #E02453;
 // Text
 $text-bright: #1F2729;
 $text-grey: #4E5255;
+
+// Override button colour as primary accent doesn't
+// change between themes resulting in poor contrast
+// between the text and background in light mode
+.button--primary {
+	color: lighten(invert($text-bright), 10%) !important;
+}
