@@ -20,11 +20,25 @@ class SettingsForm extends React.Component {
 			return;
 		}
 
-		this.setState({
-			nick: user.nick,
-			avatarUrl: user.avatarUrl || "",
-			bannerUrl: user.bannerUrl || ""
-		});
+		const {nick, avatarUrl, bannerUrl} = user;
+
+		const initialValues = {
+			nick: nick
+		};
+		// If the users' avatarUrl or bannerUrl is the default
+		// then display nothing.
+		if (avatarUrl && avatarUrl !== DEFAULT_AVATAR_URL) {
+			initialValues.avatarUrl = avatarUrl;
+		} else {
+			initialValues.avatarUrl = "";
+		}
+		if (bannerUrl && bannerUrl !== DEFAULT_BANNER_URL) {
+			initialValues.bannerUrl = bannerUrl;
+		} else {
+			initialValues.bannerUrl = "";
+		}
+
+		this.setState(initialValues);
 	}
 
 	handleChange = ({target}) => {
