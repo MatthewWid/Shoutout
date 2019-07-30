@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrorsList = ({errors}) => {
+const ErrorList = ({errors}) => {
 	if (!errors) {
 		return null;
 	}
@@ -23,4 +23,4 @@ const ErrorsList = ({errors}) => {
 	);
 };
 
-export default ErrorsList;
+export default ErrorList;
