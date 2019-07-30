@@ -16,7 +16,7 @@ const ThemeToggleButton = (props) => {
 		>
 			<InlineSvg
 				className="theme-toggle__icon svg"
-				src="./images/icons/moon-regular.svg"
+				src={`./images/icons/moon-${theme.isDark ? "solid" : "regular"}.svg`}
 				cacheGetRequests
 			></InlineSvg>
 		</div>
