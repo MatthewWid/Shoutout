@@ -11,17 +11,6 @@ import Avatar from "./Avatar.js";
 dayjs.extend(relativeTime);
 
 /*
-	Heart SVGs from Font Awesome
-	fontawesome.com/license/free
-		fontawesome.com/icons/heart?style=regular
-		fontawesome.com/icons/heart?style=solid
-
-	Ellipsis Menu SVG from Font Awesome
-	fontawesome.com/license/free
-		fontawesome.com/icons/ellipsis-v?style=solid
-*/
-
-/*
 	Renders a single post.
 	
 	The actual post object should be managed by the parent component

@@ -1,0 +1,19 @@
+.page-attribution {
+	.attribution {
+		padding: 20px;
+
+		a {
+			color: $accent-pink;
+		}
+		&__header {
+			font-size: 3rem;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		&__list {
+			> :not(:last-child) {
+				margin-bottom: 16px;
+			}
+		}
+	}
+}

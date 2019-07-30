@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import Layout from "./Layout.js";
 
-const NotFound = (props) => {
+const NotFound = () => {
 	useEffect(() => {
 		document.title = "404 Not Found - Shoutout"
 	}, [])
