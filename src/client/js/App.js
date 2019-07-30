@@ -1,5 +1,6 @@
 import React from "react";
 import UserContext from "./contexts/user.context.js";
+import ThemeContext from "./contexts/theme.context.js";
 import api from "api";
 import Header from "./components/Header.js";
 import MainRouter from "./MainRouter.js";
@@ -14,13 +15,24 @@ class App extends React.Component {
 			1 = Not logged in / Failed login
 			2 = Successfully logged in
 		*/
-		loginStatus: 0
+		loginStatus: 0,
+
+		// Colour theme
+		isDark: false
 	}
 
 	componentDidMount() {
 		this.authUser();
+		this.getThemeInit();
 	}
 
+	componentDidUpdate() {
+		this.setThemeClass();
+	}
+
+	/*
+		User management
+	*/
 	// Set the currently logged in user
 	setUser = (user) => {
 		let loginStatus = 1;
@@ -41,6 +53,44 @@ class App extends React.Component {
 		this.setUser(data.user);
 	}
 
+	/*
+		Theming
+	*/
+	// Get the previously set theme from local storage (if any)
+	// and set the current theme
+	getThemeInit = () => {
+		const initThemeDark = JSON.parse(localStorage.getItem("themeDark"));
+		if (initThemeDark !== null) {
+			this.setTheme(initThemeDark);
+		}
+	}
+
+	setTheme = (shouldDark = false) => {
+		this.setState({
+			isDark: shouldDark
+		});
+	}
+
+	toggleTheme = () => {
+		this.setState({
+			isDark: !this.state.isDark
+		});
+	}
+
+	// Once the component theme update save the theme state in local storage
+	// and add/remove the appropriate class from the root element to activate
+	// the theme
+	setThemeClass = () => {
+		const {isDark} = this.state;
+
+		localStorage.setItem("themeDark", isDark);
+		if (isDark) {
+			document.documentElement.classList.add("theme-dark");
+		} else {
+			document.documentElement.classList.remove("theme-dark");
+		}
+	}
+
 	render() {
 		return (
 			<UserContext.Provider value={{
@@ -49,7 +99,13 @@ class App extends React.Component {
 				setUser: this.setUser,
 				authUser: this.authUser
 			}}>
-				<MainRouter />
+				<ThemeContext.Provider value={{
+					isDark: this.state.isDark,
+					setTheme: this.setTheme,
+					toggleTheme: this.toggleTheme
+				}}>
+					<MainRouter />
+				</ThemeContext.Provider>
 			</UserContext.Provider>
 		);
 	}
