@@ -1,5 +1,5 @@
 // Ensure that the current session contains an authenticated user
-module.exports = (req, res, next) => {
+const controller = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	} else {
@@ -11,3 +11,5 @@ module.exports = (req, res, next) => {
 			});
 	}
 };
+
+module.exports = controller;

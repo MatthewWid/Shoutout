@@ -1,8 +1,10 @@
 // Log the user out
-module.exports = (req, res) => {
+const controller = (req, res) => {
 	req.logout();
 	
 	res.json({
 		success: true
 	});
 };
+
+module.exports = controller;
