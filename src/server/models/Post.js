@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const constants = require("../constants.js");
+const {PROJECTION_USER} = require("../constants.js");
 const randomstring = require("randomstring");
 
 // Schema
@@ -41,7 +41,7 @@ const PostSchema = new mongoose.Schema({
 // Middleware
 function autopopulate(next) {
 	this
-		.populate("author", constants.PROJECTION_USER)
+		.populate("author", PROJECTION_USER)
 		.populate("totalLikes");
 	next();
 }

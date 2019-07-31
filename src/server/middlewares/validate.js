@@ -10,7 +10,11 @@ const checkValidationErrors = require("../helpers/checkValidationErrors.js");
 	Eg,
 		UserController.validate("createUser") -> validate(UserController, "createUser")
 */
-module.exports = (controller, validator) => {
-	return controller.validate(validator)
+module.exports = (controller) => {
+	if (!controller.validate) {
+		return [];
+	}
+
+	return controller.validate
 		.concat([checkValidationErrors]);
 };
