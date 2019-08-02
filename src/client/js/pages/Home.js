@@ -12,7 +12,9 @@ const Home = (props) => {
 	return (
 		<Layout page="home">
 			<PanelUser />
-			<PanelFeed />
+			<PanelFeed query={{
+				sort: "new"
+			}} />
 			<PanelSiteInfo />
 		</Layout>
 	);

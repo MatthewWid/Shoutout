@@ -74,7 +74,7 @@ router.delete("/post/:postId",
 	wrap(post.ensurePostAuthor),
 	wrap(post.deletePost)
 );
-// Get an array of all existing posts
+// Get many posts with optional filtering, sorting and pagination
 router.get("/posts",
 	validate(user.findUserByName),
 	validate(post.getManyPosts),
