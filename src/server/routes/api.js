@@ -48,6 +48,10 @@ router.post("/user/login",
 router.post("/user/logout",
 	auth.logout
 );
+// Follow a single user
+router.post("/user/:userId/follow",
+	user.followUser
+);
 
 // Create a new post
 router.post("/post",

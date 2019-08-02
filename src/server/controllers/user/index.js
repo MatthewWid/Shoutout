@@ -5,5 +5,6 @@ module.exports = {
 	createUser: require("./createUser.js"),
 	editUser: require("./editUser.js"),
 	getLoggedInUser: require("./getLoggedInUser.js"),
-	ensureOwnUser: require("./ensureOwnUser.js")
+	ensureOwnUser: require("./ensureOwnUser.js"),
+	followUser: require("./followUser.js")
 };
