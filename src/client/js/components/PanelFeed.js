@@ -1,6 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import {POSTS_PER_PAGE} from "constants";
 import FormPost from "./FormPost.js";
 import PostList from "./PostList.js";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
@@ -15,6 +16,7 @@ import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 class PanelFeed extends React.Component {
 	state = {
 		posts: [],
+		page: 0
 	}
 
 	componentDidMount() {
@@ -40,18 +42,22 @@ class PanelFeed extends React.Component {
 		}
 	}
 
-	// Retrieve array of all posts from the server
-	fetchPosts = () => {
-		this.setState({
-			posts: []
-		}, async () => {
-			let request = "/posts";
-			const {query} = this.props;
+	// Retrieve an array of posts
+	fetchPosts = (isMore = false) => {
+		/*
+			If fetching posts for a new page preserve the existing posts,
+			bump the page number one (1) and fetch new posts.
 
-			if (query) {
-				const params = serializeObjectToUri(query);
-				request = `${request}?${params}`;
-			}
+			Else, clear the existing posts and stay on the same page.
+		*/
+		this.setState({
+			posts: isMore ? this.state.posts : [],
+			page: isMore ? ++this.state.page : this.state.page
+		}, async () => {
+			const {query = {}} = this.props;
+
+			const params = serializeObjectToUri(query);
+			const request = `/posts${params && `?${params}`}`;
 
 			const {data} = await api.get(request);
 			this.addPosts(data.posts);
@@ -90,8 +96,19 @@ class PanelFeed extends React.Component {
 
 	render() {
 		let form = null;
+		// If the user is logged in and the parent component allows it
+		// render the form to create a new post
 		if (this.props.UserContext.user && this.props.hasForm !== false) {
 			form = <FormPost addPosts={this.addPosts} />;
+		}
+
+		// Click to load more button
+		// Only render if the amount of loaded posts is a multiple of
+		// the maximum posts per page, implying more posts could be available.
+		const loadedPosts = this.state.posts.length;
+		let buttonMore = null;
+		if (loadedPosts !== 0 && loadedPosts % POSTS_PER_PAGE === 0) {
+			buttonMore = <p>Button More</p>;
 		}
 
 		return (
@@ -102,6 +119,7 @@ class PanelFeed extends React.Component {
 					updatePost={this.updatePost}
 					removePost={this.removePost}
 				/>
+				{buttonMore}
 			</main>
 		);
 	}
