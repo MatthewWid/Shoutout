@@ -108,6 +108,7 @@ class SettingsForm extends React.Component {
 				className="settings-form"
 				onSubmit={this.handleSubmit}
 			>
+				<h1 className="settings-form__header">Profile Settings</h1>
 				<label className="input-label">
 					Nickname
 					<input
