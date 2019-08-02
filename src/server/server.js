@@ -33,6 +33,7 @@ const {connection: db} = mongoose;
 require("./models/User.js");
 require("./models/Post.js");
 require("./models/Like.js");
+require("./models/Follow.js");
 
 // Sessions
 const maxAge = 1000 * 60 * 60 * 24 * 30 * 3; // 3 Months
