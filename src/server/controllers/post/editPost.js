@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {PROJECTION_POST} = require("../../constants.js");
+const {PROJECTION_POST} = require("../../helpers/constants.js");
 const Post = mongoose.model("Post");
 
 // Update a single post

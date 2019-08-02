@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {POSTS_PER_PAGE} = require("../../constants.js");
+const {POSTS_PER_PAGE} = require("../../helpers/constants.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 

@@ -19,7 +19,7 @@ const controller = async (req, res, next) => {
 
 // Validation
 const validator = require("express-validator");
-const {FORBIDDEN_NAMES} = require("../../constants.js");
+const {FORBIDDEN_NAMES} = require("../../helpers/constants.js");
 const valErrMsg = require("../../helpers/validationErrorMsg.js");
 controller.validate = [
 	validator.body("nick", valErrMsg.notExists("Nickname"))

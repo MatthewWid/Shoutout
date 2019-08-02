@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {PROJECTION_USER} = require("../../constants.js");
+const {PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
 
 // Get a single user by their ID
