@@ -50,7 +50,13 @@ router.post("/user/logout",
 );
 // Follow a single user
 router.post("/user/:userId/follow",
-	user.followUser
+	auth.ensureLoggedIn,
+	wrap(user.followUser)
+);
+// Unfollow a single user
+router.delete("/user/:userId/follow",
+	auth.ensureLoggedIn,
+	wrap(user.unfollowUser)
 );
 
 // Create a new post

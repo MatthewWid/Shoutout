@@ -11,12 +11,10 @@ const controller = async (req, res) => {
 		userId
 	});
 
-	res
-		.status(200)
-		.json({
-			success: true,
-			foundLike: deletedCount && true || false
-		});
+	res.json({
+		success: true,
+		foundLike: deletedCount && true || false
+	});
 };
 
 // Validation
