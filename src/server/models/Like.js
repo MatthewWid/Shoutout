@@ -28,8 +28,8 @@ LikeSchema.index({
 });
 
 // Statics
-// If the user is logged in attach a boolean indicating
-// whether they have liked the post or not
+// Attach a boolean indicating whether the
+// logged in user has liked the post or not
 LikeSchema.statics.userLikedPost = async function(post, user) {
 	if (!user) {
 		return false;

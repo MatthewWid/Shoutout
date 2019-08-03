@@ -1,16 +1,20 @@
 const mongoose = require("mongoose");
 const {PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
+const Follow = mongoose.model("Follow");
 
 // Get a single user by their ID
 const controller = async (req, res) => {
 	const {userId} = req.params;
 
-	const foundUser = await User.findById(userId, PROJECTION_USER);
-	const user = await foundUser
+	let user = await User.findById(userId, PROJECTION_USER);
+	user = await user
 		.populate("totalFollowers")
 		.populate("totalFollowing")
 		.execPopulate();
+	user = user.toObject();
+
+	user.isFollowing = await Follow.userFollowsUser(user, req.user);
 
 	if (user === null) {
 		return res

@@ -29,5 +29,24 @@ FollowSchema.index({
 	unique: true
 });
 
+// Statics
+// Attach a boolean indicating whether the current
+// user is following the given user
+// `followee` = User to check
+// `user` = Logged in user
+FollowSchema.statics.userFollowsUser = async function(followee, user) {
+	// If the current user is not logged in then they're obviously not following
+	if (!user) {
+		return false;
+	}
+
+	const isFollowing = await this.countDocuments({
+		followee: followee._id,
+		follower: user._id
+	});
+
+	return isFollowing ? true : false;
+};
+
 // Model
 module.exports = mongoose.model("Follow", FollowSchema);
