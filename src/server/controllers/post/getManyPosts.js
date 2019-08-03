@@ -6,11 +6,13 @@ const Like = mongoose.model("Like");
 
 // Get all posts sorted by date
 const controller = async (req, res) => {
-	// Filter results
-	const findParams = {};
+	// Match documents
+	const find = {};
+	// Sort results
+	const sort = {};
 
-	// If any of 'authorid', 'authorname' or 'authornick' have been
-	// included in the query parameters then search for the user
+	// Filter by information about the author
+	// Either 'authorid', 'authorname' or 'authornick'
 	if (Object.keys(req.query).some((e) => [
 			"authorid",
 			"authorname",
@@ -36,11 +38,28 @@ const controller = async (req, res) => {
 		}
 
 		// Else search posts by the found authors' ID
-		findParams.author = user._id;
+		find.author = user._id;
 	}
 
+	if (req.query.sort) {
+		switch (req.query.sort) {
+			case "new":
+				sort.created = -1;
+				break;
+			case "old":
+				sort.created = 1;
+				break;
+		}
+	} else {
+		sort.created = -1;
+	}
+
+	// Do the actual search and aggregation
 	const posts = await Post.aggregate()
-		.match(findParams);
+		.match(find)
+		.sort(sort);
+
+	console.log(posts);
 
 	res.json({
 		success: true
