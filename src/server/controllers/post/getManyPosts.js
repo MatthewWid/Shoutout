@@ -86,39 +86,18 @@ const controller = async (req, res) => {
 			as: "author"
 		})
 		.unwind("author")
-		.project(project)
-		.lookup({
-			from: "likes",
-			localField: "_id",
-			foreignField: "postId",
-			as: "likes"
-		})
-		.group({
-			_id: "$_id",
-			totalLikes: {
-				$sum: {
-					$size: "$likes"
-				}
-			},
-			post: {
-				"$first": "$$ROOT"
-			}
-		})
-		.project({
-			"post.likes": 0
-		});
+		.project(project);
 
+	// Remove nested `post` object
+	posts.forEach(post => {delete post.post});
+	
+	// Populate `totalLikes` and `isLiked` field
 	posts = await Promise.all(
-		posts.map(async (result) => {
-			// Add nested `post` object to the top-level
-			const post = {...result, ...result.post};
-			// Remove nested `post` object
-			delete post.post;
-			// Add `isLiked` property to each post
-			post.isLiked = await Like.userLikedPost(post, req.user);
-
-			return post;
-		})
+		posts.map(async (post) => ({
+			...post,
+			totalLikes: await Like.countDocuments({postId: post._id}),
+			isLiked: await Like.userLikedPost(post, req.user)
+		}))
 	);
 
 	res.json({
