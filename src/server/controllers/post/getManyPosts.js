@@ -70,7 +70,22 @@ const controller = async (req, res) => {
 		.match(find)
 		.sort(sort)
 		.skip(page.skip)
-		.limit(page.limit);
+		.limit(page.limit)
+		.lookup({
+			from: "users",
+			localField: "author",
+			foreignField: "_id",
+			as: "author"
+		})
+		.unwind("author")
+		.project({
+			"__v": 0,
+			"author.isAdmin": 0,
+			"author.email": 0,
+			"author.salt": 0,
+			"author.hash": 0,
+			"author.__v": 0,
+		});
 
 	res.json({
 		success: true,
