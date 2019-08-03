@@ -74,7 +74,7 @@ const controller = async (req, res) => {
 	delete project.author; // Avoid conflicting fields
 
 	// Aggregation search
-	const posts = await Post.aggregate()
+	let posts = await Post.aggregate()
 		.match(find)
 		.sort(sort)
 		.skip(page.skip)
@@ -86,7 +86,40 @@ const controller = async (req, res) => {
 			as: "author"
 		})
 		.unwind("author")
-		.project(project);
+		.project(project)
+		.lookup({
+			from: "likes",
+			localField: "_id",
+			foreignField: "postId",
+			as: "likes"
+		})
+		.group({
+			_id: "$_id",
+			totalLikes: {
+				$sum: {
+					$size: "$likes"
+				}
+			},
+			post: {
+				"$first": "$$ROOT"
+			}
+		})
+		.project({
+			"post.likes": 0
+		});
+
+	posts = await Promise.all(
+		posts.map(async (result) => {
+			// Add nested `post` object to the top-level
+			const post = {...result, ...result.post};
+			// Remove nested `post` object
+			delete post.post;
+			// Add `isLiked` property to each post
+			post.isLiked = await Like.userLikedPost(post, req.user);
+
+			return post;
+		})
+	);
 
 	res.json({
 		success: true,
