@@ -6,7 +6,7 @@ const User = mongoose.model("User");
 const controller = async (req, res) => {
 	const {userId} = req.params;
 
-	const user = await User.findById(userId, {PROJECTION_USER});
+	const user = await User.findById(userId, PROJECTION_USER);
 
 	if (user === null) {
 		return res
