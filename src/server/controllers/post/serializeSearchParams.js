@@ -10,13 +10,6 @@ const controller = (req, res, next) => {
 		searchParams.author._id = req.query["authorid"];
 	}
 
-	// Filter by author username
-	if (req.query["authorname"]) {
-		searchParams.author = searchParams.author || {};
-
-		searchParams.author.name = req.query["authorname"];
-	}
-
 	// Sort results (Top, trending, new, old, etc.)
 	if (req.query["sort"]) {
 		searchParams.sort = req.query["sort"];
