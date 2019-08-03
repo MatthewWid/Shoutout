@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {POSTS_PER_PAGE, PROJECTION_USER} = require("../../helpers/constants.js");
+const {POSTS_PER_PAGE} = require("../../helpers/constants.js");
 const Post = mongoose.model("Post");
 const User = mongoose.model("User");
 const Like = mongoose.model("Like");
@@ -10,6 +10,11 @@ const controller = async (req, res) => {
 	const find = {};
 	// Sort results
 	const sort = {};
+	// Pagination of results
+	const page = {
+		skip: 0,
+		limit: POSTS_PER_PAGE
+	};
 
 	// Filter by information about the author
 	// Either 'authorid', 'authorname' or 'authornick'
@@ -41,6 +46,7 @@ const controller = async (req, res) => {
 		find.author = user._id;
 	}
 
+	// Set set order
 	if (req.query.sort) {
 		switch (req.query.sort) {
 			case "new":
@@ -54,15 +60,21 @@ const controller = async (req, res) => {
 		sort.created = -1;
 	}
 
-	// Do the actual search and aggregation
+	// Pagination
+	if (req.query.page) {
+		page.skip = req.query.page * POSTS_PER_PAGE;
+	}
+
+	// Aggregation search
 	const posts = await Post.aggregate()
 		.match(find)
-		.sort(sort);
-
-	console.log(posts);
+		.sort(sort)
+		.skip(page.skip)
+		.limit(page.limit);
 
 	res.json({
-		success: true
+		success: true,
+		posts
 	});
 };
 
