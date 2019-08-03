@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const {POSTS_PER_PAGE} = require("../../helpers/constants.js");
+const {POSTS_PER_PAGE, PROJECTION_POST, PROJECTION_USER} = require("../../helpers/constants.js");
+const {mongoose: createProjection} = require("../../helpers/convertProjection.js");
 const Post = mongoose.model("Post");
 const User = mongoose.model("User");
 const Like = mongoose.model("Like");
@@ -65,6 +66,13 @@ const controller = async (req, res) => {
 		page.skip = req.query.page * POSTS_PER_PAGE;
 	}
 
+	// Projection
+	const project = {
+		...createProjection(PROJECTION_POST),
+		...createProjection(PROJECTION_USER, "author")
+	};
+	delete project.author; // Avoid conflicting fields
+
 	// Aggregation search
 	const posts = await Post.aggregate()
 		.match(find)
@@ -78,14 +86,7 @@ const controller = async (req, res) => {
 			as: "author"
 		})
 		.unwind("author")
-		.project({
-			"__v": 0,
-			"author.isAdmin": 0,
-			"author.email": 0,
-			"author.salt": 0,
-			"author.hash": 0,
-			"author.__v": 0,
-		});
+		.project(project);
 
 	res.json({
 		success: true,
