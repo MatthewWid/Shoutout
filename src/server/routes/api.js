@@ -87,7 +87,6 @@ router.delete("/post/:postId",
 );
 // Get many posts with optional filtering, sorting and pagination
 router.get("/posts",
-	validate(user.findUserByName),
 	validate(post.getManyPosts),
 	post.serializeSearchParams,
 	wrap(post.getManyPosts)
