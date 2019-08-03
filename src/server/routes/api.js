@@ -21,7 +21,6 @@ router.get("/user/:userId",
 // Get a single user
 router.get("/user",
 	validate(user.getUser),
-	wrap(user.findUserByName),
 	wrap(user.getUser)
 );
 // Register a new user with a name, email and password
