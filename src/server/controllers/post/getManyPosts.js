@@ -5,28 +5,6 @@ const Like = mongoose.model("Like");
 
 // Get all posts sorted by date
 const controller = async (req, res) => {
-	// Filter results
-	const findParams = {};
-	if ((req.searchParams.author || {})._id) {
-		findParams.author = {
-			_id: req.searchParams.author._id
-		};
-	}
-	// If an author was found by username
-	if (req.foundUser) {
-		findParams.author = {
-			_id: req.foundUser._id
-		};
-	// If an author was searched for but not found
-	} else if (req.foundUser === null) {
-		return res
-			.status(404)
-			.json({
-				success: false,
-				msg: "User not found or does not exist"
-			});
-	}
-
 	// Pagination
 	const pageSkip = POSTS_PER_PAGE * req.searchParams.page;
 
@@ -41,7 +19,7 @@ const controller = async (req, res) => {
 	}
 
 	// Get results
-	let posts = await Post.find(findParams)
+	let posts = await Post.find(req.findParams || {})
 		.skip(pageSkip)
 		.limit(POSTS_PER_PAGE)
 		.sort(sort);
