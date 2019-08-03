@@ -38,6 +38,13 @@ const UserSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	}
+}, {
+	toJSON: {
+		virtuals: true
+	},
+	toObject: {
+		virtuals: true
+	}
 });
 
 // Plugins
@@ -54,6 +61,22 @@ UserSchema.pre("save", function(next) {
 	}
 
 	next();
+});
+
+// Virtuals
+// Total users following this user
+UserSchema.virtual("totalFollowers", {
+	ref: "Follow",
+	localField: "_id",
+	foreignField: "followee",
+	count: true
+});
+// Total users this user is following
+UserSchema.virtual("totalFollowing", {
+	ref: "Follow",
+	localField: "_id",
+	foreignField: "follower",
+	count: true
 });
 
 // Model

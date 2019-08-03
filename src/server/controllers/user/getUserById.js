@@ -6,7 +6,11 @@ const User = mongoose.model("User");
 const controller = async (req, res) => {
 	const {userId} = req.params;
 
-	const user = await User.findById(userId, PROJECTION_USER);
+	const foundUser = await User.findById(userId, PROJECTION_USER);
+	const user = await foundUser
+		.populate("totalFollowers")
+		.populate("totalFollowing")
+		.execPopulate();
 
 	if (user === null) {
 		return res

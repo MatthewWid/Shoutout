@@ -40,7 +40,11 @@ const controller = async (req, res) => {
 			});
 	}
 
-	const user = await User.findOne(findParams, PROJECTION_USER);
+	const foundUser = await User.findOne(findParams, PROJECTION_USER);
+	const user = await foundUser
+		.populate("totalFollowers")
+		.populate("totalFollowing")
+		.execPopulate();
 
 	if (user === null) {
 		return res
