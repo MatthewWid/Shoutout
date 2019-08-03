@@ -8,13 +8,6 @@ const controller = async (req, res) => {
 	const {userId} = req.params;
 
 	let user = await User.findById(userId, PROJECTION_USER);
-	user = await user
-		.populate("totalFollowers")
-		.populate("totalFollowing")
-		.execPopulate();
-	user = user.toObject();
-
-	user.isFollowing = await Follow.userFollowsUser(user, req.user);
 
 	if (user === null) {
 		return res
@@ -24,6 +17,16 @@ const controller = async (req, res) => {
 				msg: "User not found or does not exist."
 			});
 	}
+
+	// Attach virtuals
+	user = await user
+		.populate("totalFollowers")
+		.populate("totalFollowing")
+		.execPopulate();
+	user = user.toObject();
+
+	// Indicate if logged in user is following retrieved user
+	user.isFollowing = await Follow.userFollowsUser(user, req.user);
 
 	res.json({
 		success: true,

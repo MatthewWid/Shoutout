@@ -40,11 +40,7 @@ const controller = async (req, res) => {
 			});
 	}
 
-	const foundUser = await User.findOne(findParams, PROJECTION_USER);
-	const user = await foundUser
-		.populate("totalFollowers")
-		.populate("totalFollowing")
-		.execPopulate();
+	let user = await User.findOne(findParams, PROJECTION_USER);
 
 	if (user === null) {
 		return res
@@ -54,6 +50,16 @@ const controller = async (req, res) => {
 				msg: "User not found or does not exist."
 			});
 	}
+	
+	// Attach virtuals
+	user = await user
+		.populate("totalFollowers")
+		.populate("totalFollowing")
+		.execPopulate();
+	user = user.toObject();
+
+	// Indicate if logged in user is following retrieved user
+	user.isFollowing = await Follow.userFollowsUser(user, req.user);
 
 	res.json({
 		success: true,
