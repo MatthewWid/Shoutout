@@ -7,7 +7,7 @@ const Like = mongoose.model("Like");
 const controller = async (req, res) => {
 	const {postId} = req.params;
 
-	let post = await Post.findById(postId, {PROJECTION_POST});
+	let post = await Post.findById(postId, PROJECTION_POST);
 
 	if (post === null) {
 		return res
