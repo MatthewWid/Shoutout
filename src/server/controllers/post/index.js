@@ -4,7 +4,6 @@ module.exports = {
 	editPost: require("./editPost.js"),
 	deletePost: require("./deletePost.js"),
 	serializeSearchParams: require("./serializeSearchParams.js"),
-	paramsToQuery: require("./paramsToQuery.js"),
 	getManyPosts: require("./getManyPosts.js"),
 	addLike: require("./addLike.js"),
 	removeLike: require("./removeLike.js"),

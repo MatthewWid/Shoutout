@@ -90,8 +90,6 @@ router.get("/posts",
 	validate(user.findUserByName),
 	validate(post.getManyPosts),
 	post.serializeSearchParams,
-	user.findUserByName,
-	post.paramsToQuery,
 	wrap(post.getManyPosts)
 );
 // Add a like to a single post

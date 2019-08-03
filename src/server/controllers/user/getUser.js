@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const {PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
+const Follow = mongoose.model("Follow");
 
 // Get a single user by any given properties
 const controller = async (req, res) => {
