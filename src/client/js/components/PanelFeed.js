@@ -48,19 +48,23 @@ class PanelFeed extends React.Component {
 	fetchPosts = (isMore = false) => {
 		/*
 			If fetching posts for a new page preserve the existing posts,
-			bump the page number one (1) and fetch new posts.
+			bump the page number one (1) and fetch new posts, appending
+			newly fetched posts to the end of the current list.
 
-			Else, clear the existing posts and stay on the same page.
+			Else, clear the existing posts and fetch from the same page.
 		*/
 		this.setState({
 			posts: isMore ? this.state.posts : [],
 			page: isMore ? ++this.state.page : this.state.page
 		}, async () => {
-			const query = serializeObjectToUri(this.props.query || {});
-			const request = `/posts?${query}`;
+			const queryObj = this.props.query || {};
+			queryObj.page = this.state.page;
+
+			const queryStr = serializeObjectToUri(queryObj);
+			const request = `/posts?${queryStr}`;
 
 			const {data} = await api.get(request);
-			this.addPosts(data.posts);
+			this.addPosts(data.posts, !isMore);
 			this.setState({
 				loading: false
 			});
@@ -68,9 +72,13 @@ class PanelFeed extends React.Component {
 	}
 
 	// Add an array of Posts to state
-	addPosts = (newPosts = []) => {
+	addPosts = (newPosts = [], prepend = true) => {
 		const posts = [...this.state.posts];
-		posts.unshift(...newPosts);
+		if (prepend) {
+			posts.unshift(...newPosts);
+		} else {
+			posts.push(...newPosts);
+		}
 		this.setState({
 			posts
 		});
@@ -115,7 +123,12 @@ class PanelFeed extends React.Component {
 		const loadedPosts = this.state.posts.length;
 		let buttonMore = null;
 		if (loadedPosts !== 0 && loadedPosts % POSTS_PER_PAGE === 0) {
-			buttonMore = <p>Button More</p>;
+			buttonMore = (
+				<button
+					className="panel-feed__more"
+					onClick={() => {this.fetchPosts(true)}}
+				>Load More</button>
+			);
 		}
 
 		return (
