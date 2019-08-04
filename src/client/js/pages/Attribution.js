@@ -26,6 +26,9 @@ const Attribution = () => {
 					<li>
 						<a href="https://fontawesome.com/icons/ellipsis-v?style=solid">"ellipsis-v (Solid Style)"</a> by <a href="https://fontawesome.com/license/free">FontAwesome</a> is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC by 4.0</a>
 					</li>
+					<li>
+						<a href="https://loading.io/icon/kbmzeh">"comet" spinner</a> by <a href="https://loading.io/">Loading.io</a>
+					</li>
 				</ul>
 			</div>
 		</Layout>

@@ -3,6 +3,7 @@ import {Redirect} from "react-router-dom";
 import api from "api";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 import ProfileCard from "./ProfileCard.js";
+import LoadingIndicator from "./LoadingIndicator.js";
 
 const ProfileUser = (props) => {
 	const [user, setUser] = useState(null);
@@ -23,6 +24,12 @@ const ProfileUser = (props) => {
 		getUser();
 	}, [props.query.username, props.query.nickname, props.query.id]);
 
+	// Show a loading indicator when waiting for data
+	if (loading) {
+		return <LoadingIndicator />;
+	}
+
+	// Redirect to 404 if received data but no user was found
 	if (!loading && !user) {
 		return <Redirect to="/404" />;
 	}

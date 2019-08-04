@@ -65,6 +65,8 @@ input, textarea, button {
 @import "./components/_Dropdown.scss";
 @import "./components/_Avatar.scss";
 @import "./components/_ErrorList.scss";
+@import "./components/_ThemeToggleButton.scss";
+@import "./components/_LoadingIndicator.scss";
 
 // User entry (Login/Logout)
 @import "./components/_SessionDetails.scss";
@@ -72,7 +74,6 @@ input, textarea, button {
 @import "./components/_FormLogin.scss";
 @import "./components/_FormSignup.scss";
 
-@import "./components/_ThemeToggleButton.scss";
 
 // Users
 @import "./components/_ProfileCard.scss";
