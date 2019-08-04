@@ -26,7 +26,7 @@ const ProfileUser = (props) => {
 
 	// Show a loading indicator when waiting for data
 	if (loading) {
-		return <LoadingIndicator />;
+		return <LoadingIndicator className="card" />;
 	}
 
 	// Redirect to 404 if received data but no user was found

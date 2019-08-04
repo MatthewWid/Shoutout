@@ -4,6 +4,7 @@ import api from "api";
 import {POSTS_PER_PAGE} from "constants";
 import FormPost from "./FormPost.js";
 import PostList from "./PostList.js";
+import LoadingIndicator from "./LoadingIndicator.js";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 
 /*
@@ -16,7 +17,8 @@ import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 class PanelFeed extends React.Component {
 	state = {
 		posts: [],
-		page: 0
+		page: 0,
+		loading: true
 	}
 
 	componentDidMount() {
@@ -59,6 +61,9 @@ class PanelFeed extends React.Component {
 
 			const {data} = await api.get(request);
 			this.addPosts(data.posts);
+			this.setState({
+				loading: false
+			});
 		});
 	}
 
@@ -93,6 +98,10 @@ class PanelFeed extends React.Component {
 	}
 
 	render() {
+		if (this.state.loading) {
+			return <LoadingIndicator className="content__panel card" />;
+		}
+
 		let form = null;
 		// If the user is logged in and the parent component allows it
 		// render the form to create a new post
