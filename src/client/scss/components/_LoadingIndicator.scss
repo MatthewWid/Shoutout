@@ -11,8 +11,13 @@
 		animation: spin 1s linear infinite;
 
 		svg {
+			fill: $accent-pink;
 			width: 100%;
 			height: 100%;
+
+			path {
+				fill: inherit !important;
+			}
 		}
 	}
 	@keyframes spin {
