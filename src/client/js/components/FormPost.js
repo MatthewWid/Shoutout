@@ -51,7 +51,7 @@ class PostForm extends React.Component {
 		});
 
 		// Send data to the server
-		this.postMessage({
+		this.submitPost({
 			text: this.state.text
 		});
 	}
@@ -64,7 +64,7 @@ class PostForm extends React.Component {
 	}
 
 	// Send a new Post to the server
-	postMessage = async ({text}) => {
+	submitPost = async ({text}) => {
 		const {data} = await api.post("/post", {text});
 
 		if (data.success) {
