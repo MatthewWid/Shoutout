@@ -1,7 +1,10 @@
+@import "../mixins/_loading-overlay.scss";
+
 .form-post {
-	position: relative;
 	border-bottom: 1px solid $blue-mid;
 	overflow: auto;
+
+	@include loading-overlay;
 
 	&__author, &__form {
 		margin: 10px;
@@ -55,13 +58,5 @@
 		&--disabled {
 			color: $red;
 		}
-	}
-	&__loading {
-    background-color: transparentize($blue-darkest, .5);
-		position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 	}
 }

@@ -1,5 +1,9 @@
+@import "../mixins/_loading-overlay.scss";
+
 .form-settings {
 	margin: 15px;
+
+	@include loading-overlay;
 	
 	> :not(:last-child) {
 		margin-bottom: 22px;

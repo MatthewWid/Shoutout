@@ -1,16 +1,18 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
+import {DEFAULT_AVATAR_URL, DEFAULT_BANNER_URL} from "constants";
 import api from "api";
 import extractErrors from "../helpers/extractErrors.js";
+import LoadingIndicator from "./LoadingIndicator.js";
 import ErrorList from "./ErrorList.js";
-import {DEFAULT_AVATAR_URL, DEFAULT_BANNER_URL} from "constants";
 
 class SettingsForm extends React.Component {
 	state = {
 		nick: "",
 		avatarUrl: "",
 		bannerUrl: "",
-		errors: []
+		errors: [],
+		loading: false
 	}
 
 	componentDidMount() {
@@ -85,6 +87,10 @@ class SettingsForm extends React.Component {
 			return;
 		}
 
+		this.setState({
+			loading: true
+		});
+
 		const {data} = await api.put(`/user/${user._id}`, body);
 
 		if (data.success) {
@@ -94,6 +100,9 @@ class SettingsForm extends React.Component {
 				errors: extractErrors(data)
 			});
 		}
+		this.setState({
+			loading: false
+		});
 	}
 
 	render() {
@@ -180,6 +189,7 @@ class SettingsForm extends React.Component {
 					type="submit"
 					value="Save Settings"
 				/>
+				{this.state.loading && <LoadingIndicator className="form-settings__loading" />}
 			</form>
 		);
 	}
