@@ -2,6 +2,7 @@ import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
 import extractErrors from "../helpers/extractErrors.js";
+import LoadingIndicator from "./LoadingIndicator.js";
 import ErrorList from "./ErrorList.js";
 
 const defaultState = {
@@ -21,7 +22,8 @@ const defaultState = {
 class PostForm extends React.Component {
 	state = {
 		...defaultState,
-		errors: []
+		errors: [],
+		loading: false
 	}
 
 	canSubmit = () => {
@@ -44,14 +46,13 @@ class PostForm extends React.Component {
 			return;
 		}
 
+		this.setState({
+			loading: true
+		});
+
 		// Send data to the server
 		this.postMessage({
 			text: this.state.text
-		});
-
-		// Clear form fields
-		this.setState({
-			...defaultState
 		});
 	}
 
@@ -67,11 +68,19 @@ class PostForm extends React.Component {
 		const {data} = await api.post("/post", {text});
 
 		if (data.success) {
+			// Clear form fields
+			this.setState({
+				...defaultState
+			});
+
 			const {addPosts} = this.props;
 			addPosts && addPosts([data.post]);
 		} else {
 			this.setState({errors: extractErrors(data)});
 		}
+		this.setState({
+			loading: false
+		});
 	}
 
 	render() {
@@ -105,6 +114,7 @@ class PostForm extends React.Component {
 						/>
 					</div>
 				</form>
+				{this.state.loading && <LoadingIndicator className="post-form__loading" />}
 			</div>
 		);
 	}
