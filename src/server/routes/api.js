@@ -13,11 +13,6 @@ router.get("/ping",
 router.get("/user/auth",
 	user.getLoggedInUser
 );
-// Get a single user by their ID
-router.get("/user/:userId",
-	validate(user.getUserById),
-	wrap(user.getUserById)
-);
 // Get a single user
 router.get("/user",
 	validate(user.getUser),

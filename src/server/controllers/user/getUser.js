@@ -5,16 +5,6 @@ const Follow = mongoose.model("Follow");
 
 // Get a single user by any given properties
 const controller = async (req, res) => {
-	// If the user has been looked up and found by `findUserByName` then immediately
-	// send back the found user instead of doing a second redundant lookup
-	if (req.foundUser) {
-		return res
-			.json({
-				success: true,
-				user: req.foundUser
-			});
-	}
-
 	// Filtering
 	const findParams = {};
 

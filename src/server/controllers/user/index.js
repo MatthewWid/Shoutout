@@ -1,5 +1,4 @@
 module.exports = {
-	getUserById: require("./getUserById.js"),
 	getUser: require("./getUser.js"),
 	createUser: require("./createUser.js"),
 	editUser: require("./editUser.js"),
