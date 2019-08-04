@@ -21,16 +21,6 @@ const controller = async (req, res) => {
 		findParams._id = req.query.id;
 	}
 
-	// If no filters were given abort the operation
-	if (Object.keys(findParams).length === 0) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				msg: "No filter parameters provided to user lookup."
-			});
-	}
-
 	let user = await User.findOne(findParams, PROJECTION_USER);
 
 	if (user === null) {
