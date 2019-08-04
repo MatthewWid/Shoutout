@@ -6,6 +6,7 @@ import ProfileCard from "./ProfileCard.js";
 
 const ProfileUser = (props) => {
 	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	// Fetch the user given the search query
 	async function getUser() {
@@ -15,13 +16,14 @@ const ProfileUser = (props) => {
 		if (success && user) {
 			setUser(user);
 		}
+		setLoading(false);
 	}
 
 	useEffect(() => {
 		getUser();
 	}, [props.query.username, props.query.nickname, props.query.id]);
 
-	if (!user) {
+	if (!loading && !user) {
 		return <Redirect to="/404" />;
 	}
 
