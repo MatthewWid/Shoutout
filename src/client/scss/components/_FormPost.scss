@@ -1,6 +1,7 @@
 .post-form {
 	position: relative;
 	border-bottom: 1px solid $blue-mid;
+	overflow: auto;
 
 	&__author, &__form {
 		margin: 10px;
