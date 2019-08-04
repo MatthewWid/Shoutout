@@ -51,12 +51,12 @@ class LoginForm extends React.Component {
 	render() {
 		return (
 			<form
-				className="login-form"
+				className="form-login"
 				onSubmit={this.handleSubmit}
 			>
 				<p>Log in to your account</p>
 				<input
-					className="input-text login-form__email"
+					className="input-text form-login__email"
 					type="text"
 					name="email"
 					required
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<input
-					className="input-text login-form__password"
+					className="input-text form-login__password"
 					type="password"
 					name="password"
 					required

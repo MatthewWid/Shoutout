@@ -105,14 +105,14 @@ class SettingsForm extends React.Component {
 
 		return (
 			<form
-				className="settings-form"
+				className="form-settings"
 				onSubmit={this.handleSubmit}
 			>
-				<h1 className="settings-form__header">Profile Settings</h1>
+				<h1 className="form-settings__header">Profile Settings</h1>
 				<label className="input-label">
 					Nickname
 					<input
-						className="input-text settings-form__input-text settings-form__nick"
+						className="input-text form-settings__input-text form-settings__nick"
 						type="text"
 						name="nick"
 						placeholder="Nickname"
@@ -125,7 +125,7 @@ class SettingsForm extends React.Component {
 				<label className="input-label">
 					Username
 					<input
-						className="input-text settings-form__input-text settings-form__name"
+						className="input-text form-settings__input-text form-settings__name"
 						type="text"
 						name="name"
 						placeholder="Username"
@@ -138,7 +138,7 @@ class SettingsForm extends React.Component {
 				<label className="input-label">
 					Email
 					<input
-						className="input-text settings-form__input-text settings-form__email"
+						className="input-text form-settings__input-text form-settings__email"
 						type="text"
 						name="email"
 						placeholder="Email Address"
@@ -151,7 +151,7 @@ class SettingsForm extends React.Component {
 				<label className="input-label">
 					Avatar URL
 					<input
-						className="input-text settings-form__input-text settings-form__avatar"
+						className="input-text form-settings__input-text form-settings__avatar"
 						type="text"
 						name="avatarUrl"
 						placeholder="Avatar URL"
@@ -164,7 +164,7 @@ class SettingsForm extends React.Component {
 				<label className="input-label">
 					Banner URL
 					<input
-						className="input-text settings-form__input-text settings-form__banner"
+						className="input-text form-settings__input-text form-settings__banner"
 						type="text"
 						name="bannerUrl"
 						placeholder="Banner URL"

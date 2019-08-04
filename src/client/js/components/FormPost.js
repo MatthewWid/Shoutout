@@ -87,14 +87,14 @@ class PostForm extends React.Component {
 		const charsLeft = 140 - this.state.text.length;
 
 		return (
-			<div className="post-form">
-				<p className="post-form__author">Post as <b>@{this.props.UserContext.user.name}</b></p>
+			<div className="form-post">
+				<p className="form-post__author">Post as <b>@{this.props.UserContext.user.name}</b></p>
 				<form
-					className="post-form__form"
+					className="form-post__form"
 					onSubmit={this.handleSubmit}
 				>
 					<textarea
-						className="post-form__text"
+						className="form-post__text"
 						name="text"
 						required
 						placeholder="News, politics, cats..."
@@ -104,17 +104,17 @@ class PostForm extends React.Component {
 						onKeyPress={this.handleKeyPress}
 					></textarea>
 					<ErrorList errors={this.state.errors} />
-					<div className="post-form__toolbar">
-						<div className={`post-form__length ${charsLeft < 0 ? "post-form__length--disabled" : ""}`}>{charsLeft}</div>
+					<div className="form-post__toolbar">
+						<div className={`form-post__length ${charsLeft < 0 ? "form-post__length--disabled" : ""}`}>{charsLeft}</div>
 						<input
-							className="post-form__submit button button--primary"
+							className="form-post__submit button button--primary"
 							type="submit"
 							value="Post"
 							disabled={!this.canSubmit()}
 						/>
 					</div>
 				</form>
-				{this.state.loading && <LoadingIndicator className="post-form__loading" />}
+				{this.state.loading && <LoadingIndicator className="form-post__loading" />}
 			</div>
 		);
 	}
