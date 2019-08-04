@@ -106,7 +106,7 @@ class PanelFeed extends React.Component {
 	}
 
 	render() {
-		if (this.state.loading) {
+		if (this.state.loading && this.state.posts.length === 0) {
 			return <LoadingIndicator className="content__panel card" />;
 		}
 
