@@ -9,16 +9,6 @@ const links = [
 		text: "Home",
 		page: "home",
 		to: "/"
-	},
-	{
-		text: "Notifications",
-		page: "notifications",
-		to: "/notifications"
-	},
-	{
-		text: "Messages",
-		page: "messages",
-		to: "/messages"
 	}
 ];
 
@@ -27,7 +17,7 @@ const Header = (props) => {
 
 	const linkEls = links.map((link, index) => (
 		<Link
-			className={`header__link ${props.page === link.page ? "header__link--current" : ""}`}
+			className={`header__link${props.page === link.page ? " header__link--current" : ""}`}
 			to={link.to}
 			key={index}
 		>
