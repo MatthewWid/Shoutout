@@ -6,7 +6,7 @@ import extractErrors from "../helpers/extractErrors.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 import ErrorList from "./ErrorList.js";
 
-class SettingsForm extends React.Component {
+class FormSettings extends React.Component {
 	state = {
 		nick: "",
 		avatarUrl: "",
@@ -94,7 +94,13 @@ class SettingsForm extends React.Component {
 		const {data} = await api.put(`/user/${user._id}`, body);
 
 		if (data.success) {
-			setUser(data.user);
+			const {nick, avatarUrl, bannerUrl} = data.user;
+			setUser({
+				...user,
+				nick,
+				avatarUrl,
+				bannerUrl
+			});
 		} else {
 			this.setState({
 				errors: extractErrors(data)
@@ -195,4 +201,4 @@ class SettingsForm extends React.Component {
 	}
 }
 
-export default withUserContext(SettingsForm);
+export default withUserContext(FormSettings);
