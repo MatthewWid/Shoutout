@@ -93,6 +93,10 @@ class FormSettings extends React.Component {
 
 		const {data} = await api.put(`/user/${user._id}`, body);
 
+		this.setState({
+			loading: false
+		});
+
 		if (data.success) {
 			const {nick, avatarUrl, bannerUrl} = data.user;
 			setUser({
@@ -106,9 +110,6 @@ class FormSettings extends React.Component {
 				errors: extractErrors(data)
 			});
 		}
-		this.setState({
-			loading: false
-		});
 	}
 
 	render() {
