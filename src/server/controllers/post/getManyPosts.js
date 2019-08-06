@@ -40,7 +40,7 @@ const controller = async (req, res) => {
 				.status(404)
 				.json({
 					success: false,
-					msg: "User not found or does not exist"
+					msg: "Post author not found or does not exist"
 				});
 		}
 

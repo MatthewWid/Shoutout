@@ -2,12 +2,29 @@ const mongoose = require("mongoose");
 const {POSTS_PER_PAGE, PROJECTION_POST, PROJECTION_USER} = require("../../helpers/constants.js");
 const {mongoose: createProjection} = require("../../helpers/convertProjection.js");
 const Post = mongoose.model("Post");
+const User = mongoose.model("User");
 const Like = mongoose.model("Like");
 
 // Get a list of top posts sorted by total likes
 const controller = async (req, res) => {
 	// Filtering
 	const find = {};
+	if (req.query.authorid) {
+		const {authorid: _id} = req.query;
+
+		const user = await User.findById(_id);
+
+		if (user === null) {
+			return res
+				.status(404)
+				.json({
+					success: false,
+					msg: "User not found or does not exist"
+				});
+		}
+
+		find.author = user._id;
+	}
 	// Pagination
 	const page = {
 		skip: req.query.page ? (req.query.page * POSTS_PER_PAGE) : 0,
