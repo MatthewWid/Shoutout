@@ -5,7 +5,8 @@ const Post = mongoose.model("Post");
 const User = mongoose.model("User");
 const Like = mongoose.model("Like");
 
-// Get all posts sorted by date
+// General controller to get a list of posts with
+// optional filtering, sorting and pagination
 const controller = async (req, res) => {
 	// Match documents
 	const find = {};

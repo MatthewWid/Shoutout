@@ -1,5 +1,7 @@
 /*
-	Convert Mongoose projection string to MongoDB projection object
+	Convert Mongoose projection string to MongoDB projection object.
+	Takes an optional `nest` parameter that prefixes object property keys
+	with the given string.
 
 	Eg,
 	"_id nick name avatarUrl -bannerUrl created"
@@ -7,12 +9,12 @@
 	=>
 
 	{
-		'author._id': 1,
-		'author.nick': 1,
-		'author.name': 1,
-		'author.avatarUrl': 1,
-		'author.bannerUrl': 0,
-		'author.created': 1
+		'_id': 1,
+		'nick': 1,
+		'name': 1,
+		'avatarUrl': 1,
+		'bannerUrl': 0,
+		'created': 1
 	}
 */
 exports.mongoose = (projection, nest = "") => {
