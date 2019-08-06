@@ -58,7 +58,7 @@ class PanelFeed extends React.Component {
 			page: isMore ? ++this.state.page : this.state.page
 		}, async () => {
 			// Optional query parameters
-			const {query: queryObj = {}} = this.props.query;
+			const {query: queryObj = {}} = this.props;
 			queryObj.page = this.state.page;
 			const queryStr = serializeObjectToUri(queryObj);
 
