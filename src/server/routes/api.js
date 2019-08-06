@@ -90,6 +90,11 @@ router.get("/posts/top",
 	validate(post.getTopPosts),
 	wrap(post.getTopPosts)
 );
+// Get personalised post feed
+router.get("/posts/curated",
+	auth.ensureLoggedIn,
+	wrap(post.getCuratedFeed)
+);
 // Add a like to a single post
 router.post("/post/:postId/like",
 	validate(post.addLike),
