@@ -120,7 +120,7 @@ class PanelFeed extends React.Component {
 		let form = null;
 		// If the user is logged in and the parent component allows it
 		// render the form to create a new post
-		if (this.props.UserContext.user && this.props.hasForm !== false) {
+		if (this.props.UserContext.user && this.props.withForm !== false) {
 			form = <FormPost addPosts={this.addPosts} />;
 		}
 

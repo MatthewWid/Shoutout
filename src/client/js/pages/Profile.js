@@ -18,7 +18,7 @@ const Profile = (props) => {
 				}}
 			/>
 			<PanelFeed
-				hasForm={false}
+				withForm={false}
 				query={{
 					username
 				}}
