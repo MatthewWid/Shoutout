@@ -45,12 +45,15 @@ const controller = async (req, res) => {
 
 	let posts = await Post.aggregate()
 		.match(find)
+		// Fetch post likes into an array `likes`
 		.lookup({
 			from: "likes",
 			localField: "_id",
 			foreignField: "postId",
 			as: "likes"
 		})
+		// Create field `totalLikes` that is the sum of
+		// the size of the newly created `likes` array
 		.group({
 			_id: "$_id",
 			totalLikes: {
@@ -65,6 +68,7 @@ const controller = async (req, res) => {
 		.sort(sort)
 		.skip(page.skip)
 		.limit(page.limit)
+		// Populate post author information
 		.lookup({
 			from: "users",
 			localField: "post.author",

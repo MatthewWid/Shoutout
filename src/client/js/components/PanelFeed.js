@@ -57,13 +57,20 @@ class PanelFeed extends React.Component {
 			posts: isMore ? this.state.posts : [],
 			page: isMore ? ++this.state.page : this.state.page
 		}, async () => {
-			const queryObj = this.props.query || {};
+			// Optional query parameters
+			const {query: queryObj = {}} = this.props.query;
 			queryObj.page = this.state.page;
-
 			const queryStr = serializeObjectToUri(queryObj);
-			const request = `/posts?${queryStr}`;
+
+			// Optional URL parameters. Eg, append `/top` to `/posts` => `/posts/top`
+			const {param} = this.props;
+			const paramStr = param ? `/${param}` : "";
+
+			// Construct request URL
+			const request = `/posts${paramStr}?${queryStr}`;
 
 			const {data} = await api.get(request);
+
 			this.addPosts(data.posts, !isMore);
 			this.setState({
 				loading: false
