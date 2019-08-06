@@ -87,6 +87,7 @@ router.get("/posts",
 );
 // Get top posts by total likes
 router.get("/posts/top",
+	validate(post.getTopPosts),
 	wrap(post.getTopPosts)
 );
 // Add a like to a single post

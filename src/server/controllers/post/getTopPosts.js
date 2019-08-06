@@ -93,4 +93,18 @@ const controller = async (req, res) => {
 	});
 };
 
+// Validation
+const validator = require("express-validator");
+const valErrMsg = require("../../helpers/validationErrorMsg.js");
+const ensureValidId = require("../../helpers/ensureValidId.js");
+controller.validate = [
+	validator.query("authorid", valErrMsg.notValid("Author ID"))
+		.optional()
+		.custom(ensureValidId),
+
+	validator.query("page", valErrMsg.notValid("Page number"))
+		.optional()
+		.isInt({min: 0})
+];
+
 module.exports = controller;
