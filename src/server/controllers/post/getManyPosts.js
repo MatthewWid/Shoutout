@@ -94,11 +94,18 @@ const controller = async (req, res) => {
 	
 	// Populate `totalLikes` and `isLiked` field
 	posts = await Promise.all(
-		posts.map(async (post) => ({
-			...post,
-			totalLikes: await Like.countDocuments({postId: post._id}),
-			isLiked: await Like.userLikedPost(post, req.user)
-		}))
+		posts.map(async (post) => {
+			const [totalLikes, isLiked] = await Promise.all([
+				Like.countDocuments({postId: post._id}),
+				Like.userLikedPost(post, req.user)
+			]);
+
+			return {
+				...post,
+				totalLikes,
+				isLiked
+			};
+		})
 	);
 
 	res.json({
