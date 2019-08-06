@@ -9,6 +9,11 @@ const links = [
 		text: "Home",
 		page: "home",
 		to: "/"
+	},
+	{
+		text: "Top",
+		page: "top",
+		to: "/top"
 	}
 ];
 

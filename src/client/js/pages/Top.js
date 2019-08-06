@@ -4,22 +4,21 @@ import PanelUser from "../components/PanelUser.js";
 import PanelFeed from "../components/PanelFeed.js";
 import PanelSiteInfo from "../components/PanelSiteInfo.js";
 
-const Home = (props) => {
+const Top = (props) => {
 	useEffect(() => {
-		document.title = "Shoutout"
+		document.title = "Top Posts - Shoutout";
 	}, []);
 
 	return (
-		<Layout page="home">
+		<Layout page="top">
 			<PanelUser />
 			<PanelFeed
-				query={{
-					sort: "new"
-				}}
+				withForm={false}
+				param="top"
 			/>
 			<PanelSiteInfo />
 		</Layout>
 	);
 };
 
-export default Home;
+export default Top;
