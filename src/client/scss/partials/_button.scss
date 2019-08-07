@@ -13,5 +13,11 @@
 	&--primary {
 		color: $text-bright;
 		background-color: $accent-pink;
+		border: 2px solid transparent;
+	}
+	&--primary-inverted {
+		color: $text-bright !important;
+		background-color: transparent !important;
+		border: 2px solid $accent-pink !important;
 	}
 }

@@ -6,6 +6,8 @@ const controller = async (req, res) => {
 	const {userId: followeeId} = req.params;
 	const {_id: followerId} = req.user;
 
+	console.log(followeeId);
+
 	const {deletedCount} = await Follow.deleteOne({
 		follower: followerId,
 		followee: followeeId
@@ -13,6 +15,7 @@ const controller = async (req, res) => {
 
 	res.json({
 		success: true,
+		followStatus: false,
 		foundFollow: deletedCount && true || false
 	});
 };

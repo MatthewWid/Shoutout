@@ -34,6 +34,7 @@ const controller = async (req, res) => {
 		.status(201)
 		.json({
 			success: true,
+			followStatus: true,
 			followeeId: followeeId
 		});
 };
