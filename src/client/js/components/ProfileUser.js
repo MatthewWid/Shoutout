@@ -1,11 +1,13 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useContext, useRef} from "react";
 import {Redirect} from "react-router-dom";
+import UserContext from "../contexts/user.context.js";
 import api from "api";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 import ProfileCard from "./ProfileCard.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 
 const ProfileUser = (props) => {
+	const loggedUser = useContext(UserContext);
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const loadingFollow = useRef(false);
@@ -58,19 +60,25 @@ const ProfileUser = (props) => {
 		return <Redirect to="/404" />;
 	}
 
-	const {isFollowing} = user;
-
-	return (
-		<ProfileCard
-			user={user}
-			className="content__panel card"
-		>
+	let followButton = null;
+	if (user._id !== loggedUser.user._id) {
+		const {isFollowing} = user;
+		followButton = (
 			<button
 				className={`profile-card__follow button button--primary${isFollowing && " button--primary-inverted" || ""}`}
 				onClick={toggleFollow}
 			>
 				{isFollowing ? "Unfollow" : "Follow"}
 			</button>
+		);
+	}
+
+	return (
+		<ProfileCard
+			user={user}
+			className="content__panel card"
+		>
+			{followButton}
 		</ProfileCard>
 	);
 };
