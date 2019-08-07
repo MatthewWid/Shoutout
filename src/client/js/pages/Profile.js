@@ -20,7 +20,7 @@ const Profile = (props) => {
 			<PanelFeed
 				withForm={false}
 				query={{
-					username
+					authorname: username
 				}}
 			/>
 		</Layout>
