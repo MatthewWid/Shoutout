@@ -11,6 +11,11 @@ const links = [
 		to: "/"
 	},
 	{
+		text: "All",
+		page: "all",
+		to: "/all"
+	},
+	{
 		text: "Top",
 		page: "top",
 		to: "/top"

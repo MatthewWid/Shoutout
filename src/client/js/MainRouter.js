@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import withAuth from "./pages/withAuth.js";
 import Home from "./pages/Home.js";
+import All from "./pages/All.js";
 import Top from "./pages/Top.js";
 import Settings from "./pages/Settings.js";
 import Attribution from "./pages/Attribution.js";
@@ -12,6 +13,7 @@ const MainRouter = () => (
 	<BrowserRouter>
 		<Switch>
 			<Route path="/" component={Home} exact />
+			<Route path="/all" component={All} exact />
 			<Route path="/top" component={Top} exact />
 			<Route path="/settings" component={withAuth(Settings)} exact />
 			<Route path="/attribution" component={Attribution} exact />
