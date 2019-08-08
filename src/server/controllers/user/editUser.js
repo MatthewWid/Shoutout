@@ -10,6 +10,9 @@ const controller = async (req, res) => {
 	if (req.body.nick) {
 		newFields.nick = req.body.nick;
 	}
+	if (req.body.email) {
+		newFields.email = req.body.email;
+	}
 	if (req.body.avatarUrl) {
 		newFields.avatarUrl = req.body.avatarUrl;
 	}
@@ -51,6 +54,11 @@ controller.validate = [
 			max: 50
 		})
 			.withMessage(valErrMsg.len("Nickname", 1, 50)),
+
+	validator.body("email", valErrMsg.notValid("Email"))
+		.optional()
+		.isString()
+		.isEmail(),
 
 	validator.body("avatarUrl", valErrMsg.notValid("Avatar URL"))
 		.optional()
