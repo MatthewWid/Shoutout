@@ -7,7 +7,7 @@ import asyncWait from "../helpers/asyncWait.js";
 import {DROP_ANIM_TIME} from "constants";
 
 const defaultState = {
-	email: "",
+	name: "",
 	password: ""
 };
 
@@ -26,12 +26,12 @@ class LoginForm extends React.Component {
 	}
 
 	handleSubmit = async (evt) => {
-		const {email, password} = this.state;
+		const {name, password} = this.state;
 		const {completedAction} = this.props;
 		evt.preventDefault();
 
 		const {data} = await api.post("/user/login", {
-			email,
+			name,
 			password
 		});
 
@@ -58,12 +58,12 @@ class LoginForm extends React.Component {
 				<input
 					className="input-text form-login__email"
 					type="text"
-					name="email"
+					name="name"
 					required
-					placeholder="Email"
+					placeholder="Username"
 					autoCorrect="off"
 					autoCapitalize="none"
-					value={this.state.email}
+					value={this.state.name}
 					onChange={this.handleChange}
 				/>
 				<input

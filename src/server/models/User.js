@@ -49,7 +49,7 @@ const UserSchema = new mongoose.Schema({
 
 // Plugins
 UserSchema.plugin(passportLocalMongoose, {
-	usernameField: "email"
+	usernameField: "name"
 });
 
 // Hooks

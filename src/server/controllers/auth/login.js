@@ -23,13 +23,11 @@ const controller = (req, res, next) => {
 const validator = require("express-validator");
 const valErrMsg = require("../../helpers/validationErrorMsg.js");
 controller.validate = [
-	validator.body("email")
+	validator.body("name", valErrMsg.notExists("Username"))
 		.exists()
-		.isString()
-		.isEmail()
-			.withMessage(valErrMsg.notValid("Email")),
+		.isString(),
 
-	validator.body("password")
+	validator.body("password", valErrMsg.notExists("Password"))
 		.exists()
 		.isString()
 ];
