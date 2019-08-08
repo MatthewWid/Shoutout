@@ -29,6 +29,7 @@ class Post extends React.Component {
 	state = {
 		dropdownOpen: false
 	}
+	_isLoadingLike = false
 
 	dropdownSetOpen = dropdownSetOpen.bind(this);
 
@@ -45,6 +46,11 @@ class Post extends React.Component {
 	}
 
 	addLike = async () => {
+		if (this._isLoadingLike) {
+			return;
+		}
+		this._isLoadingLike = true;
+
 		const {post, updatePost} = this.props;
 		let didLike = true;
 
@@ -67,9 +73,16 @@ class Post extends React.Component {
 		newPost.totalLikes++;
 
 		updatePost && updatePost(newPost);
+
+		this._isLoadingLike = false;
 	}
 
 	removeLike = async () => {
+		if (this._isLoadingLike) {
+			return;
+		}
+		this._isLoadingLike = true;
+
 		const {post, updatePost} = this.props;
 		let didLike = true;
 
@@ -88,6 +101,7 @@ class Post extends React.Component {
 		}
 
 		updatePost && updatePost(newPost);
+		this._isLoadingLike = false;
 	}
 
 	handleDeleteClick = async () => {
