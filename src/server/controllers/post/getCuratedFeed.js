@@ -32,6 +32,7 @@ const controller = async (req, res) => {
 	following = following.map((follow) => (
 		follow.followee
 	));
+	following.push(req.user._id);
 
 	find.author = {
 		$in: following
