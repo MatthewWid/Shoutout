@@ -11,3 +11,5 @@ exports.len = (name, min = 1, max) => `${name} must be between ${min} - ${max} c
 exports.chars = (name) => `${name} contains disallowed characters.`;
 
 exports.filters = (name) => `No filter parameters provided to or passed ${name.toLowerCase()} lookup validation.`;
+
+exports.disallowed = (name) => `${name} value is disallowed.`;

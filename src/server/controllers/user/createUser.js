@@ -19,7 +19,7 @@ const controller = async (req, res, next) => {
 
 // Validation
 const validator = require("express-validator");
-const {FORBIDDEN_NAMES} = require("../../helpers/constants.js");
+const ensureAllowedName = require("../../helpers/ensureAllowedName.js");
 const valErrMsg = require("../../helpers/validationErrorMsg.js");
 controller.validate = [
 	validator.body("nick", valErrMsg.notExists("Nickname"))
@@ -41,8 +41,8 @@ controller.validate = [
 			max: 50
 		})
 			.withMessage(valErrMsg.len("Username", 3, 50))
-		.custom((name) => !FORBIDDEN_NAMES.includes(name.toLowerCase()))
-			.withMessage(valErrMsg.notValid("Username")),
+		.custom(ensureAllowedName)
+			.withMessage(valErrMsg.disallowed("Username")),
 
 	validator.body("email", valErrMsg.notExists("Email"))
 		.exists()
