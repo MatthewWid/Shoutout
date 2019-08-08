@@ -8,11 +8,21 @@ import LoadingIndicator from "./LoadingIndicator.js";
 import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 
 /*
-	Panel that renders a feed of posts.
+	Panel that fetches a list of posts given a set of options and renders
+	the list of posts and an optional post submission form.
 
 	By default will fetch a list of all posts sorted by newest to oldest.
+
 	An optional `query` object prop can be passed to attach query parameters
 	to the API URL.
+
+	An optional `param` string prop can be passed to append a URL parameter
+	to the API URL.
+		Eg, `param` = "top" => GET `/posts/top`.
+
+	An optional `withForm` boolean prop can be passed that dictates whether
+	the form to create a new post should appear at the top of the component
+	before the post list.
 */
 class PanelFeed extends React.Component {
 	state = {
@@ -48,7 +58,7 @@ class PanelFeed extends React.Component {
 	fetchPosts = (isMore = false) => {
 		/*
 			If fetching posts for a new page preserve the existing posts,
-			bump the page number one (1) and fetch new posts, appending
+			bump the page number by one (1) and fetch new posts, appending
 			newly fetched posts to the end of the current list.
 
 			Else, clear the existing posts and fetch from the same page.
@@ -91,6 +101,7 @@ class PanelFeed extends React.Component {
 		});
 	}
 
+	// Update a single Post in state
 	updatePost = (newPost = {}) => {
 		const posts = [...this.state.posts];
 
@@ -102,6 +113,7 @@ class PanelFeed extends React.Component {
 		});
 	}
 
+	// Remove a single Post from state
 	removePost = (delPost) => {
 		const posts = [...this.state.posts]
 			.filter((post) => post._id !== delPost._id);
@@ -117,9 +129,9 @@ class PanelFeed extends React.Component {
 			return <LoadingIndicator className="content__panel card" />;
 		}
 
-		let form = null;
 		// If the user is logged in and the parent component allows it
 		// render the form to create a new post
+		let form = null;
 		if (this.props.UserContext.user && this.props.withForm !== false) {
 			form = <FormPost addPosts={this.addPosts} />;
 		}
