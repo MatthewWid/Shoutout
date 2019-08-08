@@ -9,6 +9,7 @@ import ErrorList from "./ErrorList.js";
 class FormSettings extends React.Component {
 	state = {
 		nick: "",
+		email: "",
 		avatarUrl: "",
 		bannerUrl: "",
 		errors: [],
@@ -22,10 +23,11 @@ class FormSettings extends React.Component {
 			return;
 		}
 
-		const {nick, avatarUrl, bannerUrl} = user;
+		const {nick, email, avatarUrl, bannerUrl} = user;
 
 		const initialValues = {
-			nick: nick
+			nick,
+			email
 		};
 		// If the users' avatarUrl or bannerUrl is the default
 		// then display nothing.
@@ -55,7 +57,7 @@ class FormSettings extends React.Component {
 		evt.preventDefault();
 
 		const {user, setUser} = this.props.UserContext;
-		const {nick, avatarUrl, bannerUrl} = this.state;
+		const {nick, email, avatarUrl, bannerUrl} = this.state;
 
 		// Send newly edited profile settings if they are added,
 		// they are not the default and they are different from
@@ -68,16 +70,22 @@ class FormSettings extends React.Component {
 			body.nick = nick;
 		}
 		if (
+			email &&
+			email !== user.email
+		) {
+			body.email = email;
+		}
+		if (
 			avatarUrl &&
-			avatarUrl !== DEFAULT_AVATAR_URL &&
-			avatarUrl !== user.avatarUrl
+			avatarUrl !== user.avatarUrl &&
+			avatarUrl !== DEFAULT_AVATAR_URL
 		) {
 			body.avatarUrl = avatarUrl;
 		}
 		if (
 			bannerUrl &&
-			bannerUrl !== DEFAULT_BANNER_URL &&
-			bannerUrl !== user.bannerUrl
+			bannerUrl !== user.bannerUrl &&
+			bannerUrl !== DEFAULT_BANNER_URL
 		) {
 			body.bannerUrl = bannerUrl;
 		}
@@ -98,10 +106,11 @@ class FormSettings extends React.Component {
 		});
 
 		if (data.success) {
-			const {nick, avatarUrl, bannerUrl} = data.user;
+			const {nick, email, avatarUrl, bannerUrl} = data.user;
 			setUser({
 				...user,
 				nick,
+				email,
 				avatarUrl,
 				bannerUrl
 			});
@@ -152,7 +161,7 @@ class FormSettings extends React.Component {
 					/>
 				</label>
 				<label className="input-label">
-					Email
+					Email Address
 					<input
 						className="input-text form-settings__input-text form-settings__email"
 						type="text"
@@ -160,8 +169,8 @@ class FormSettings extends React.Component {
 						placeholder="Email Address"
 						autoCorrect="off"
 						autoCapitalize="none"
-						disabled
-						value={user.email}
+						value={this.state.email}
+						onChange={this.handleChange}
 					/>
 				</label>
 				<label className="input-label">

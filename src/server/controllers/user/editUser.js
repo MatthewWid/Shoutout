@@ -23,7 +23,7 @@ const controller = async (req, res) => {
 	const user = await User.findByIdAndUpdate(userId, {
 		...newFields
 	}, {
-		select: PROJECTION_USER,
+		select: `${PROJECTION_USER} email`,
 		new: true
 	});
 
