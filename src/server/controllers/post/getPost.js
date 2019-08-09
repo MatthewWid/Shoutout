@@ -3,11 +3,21 @@ const {PROJECTION_POST} = require("../../helpers/constants.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 
-// Get a single post by its ID
+// Get a single post by any given properties
 const controller = async (req, res) => {
-	const {postId} = req.params;
+	// Filtering
+	const findParams = {};
 
-	let post = await Post.findById(postId, PROJECTION_POST);
+	// Author ID
+	if (req.query.authorid) {
+		findParams.author = req.query.authorid;
+	}
+	// Unique ID
+	if (req.query.id) {
+		findParams._id = req.query.id;
+	}
+
+	let post = await Post.findOne(findParams, PROJECTION_POST);
 
 	if (post === null) {
 		return res
@@ -18,9 +28,7 @@ const controller = async (req, res) => {
 			});
 	}
 
-	post = post.toObject();
-	post.isLiked = await Like.userLikedPost(post, req.user);
-
+	// Attach virtuals
 	res.json({
 		success: true,
 		post
@@ -32,9 +40,13 @@ const validator = require("express-validator");
 const valErrMsg = require("../../helpers/validationErrorMsg.js");
 const ensureValidId = require("../../helpers/ensureValidId.js");
 controller.validate = [
-	validator.param("postId", valErrMsg.notExists("Post ID"))
-		.exists()
-		.custom(ensureValidId)
+	validator.oneOf([
+		validator.query("authorid", valErrMsg.notValid("Post author ID"))
+			.custom(ensureValidId),
+
+		validator.query("id", valErrMsg.notValid("Post ID"))
+			.custom(ensureValidId)
+	], valErrMsg.filters("Post"))
 ];
 
 module.exports = controller;

@@ -38,20 +38,6 @@ const PostSchema = new mongoose.Schema({
 	}
 });
 
-// Middleware
-function autopopulate(next) {
-	this
-		.populate("author", PROJECTION_USER)
-		.populate("totalLikes");
-	next();
-}
-
-// Hooks
-PostSchema.pre("find", autopopulate);
-PostSchema.pre("findOne", autopopulate);
-PostSchema.pre("findById", autopopulate);
-PostSchema.pre("findOneAndUpdate", autopopulate);
-
 // Virtuals
 /*
 	TODO:

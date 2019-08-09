@@ -62,9 +62,9 @@ router.post("/post",
 	wrap(post.createPost)
 );
 // Get a single post
-router.get("/post/:postId",
-	validate(post.getPostById),
-	wrap(post.getPostById)
+router.get("/post",
+	validate(post.getPost),
+	wrap(post.getPost)
 );
 // Update a single post
 router.put("/post/:postId",
