@@ -19,7 +19,7 @@ export default (data) => {
 		errors.push(data.msg);
 	}
 
-	console.log(errors);
+	console.error(errors);
 
 	return errors;
 };

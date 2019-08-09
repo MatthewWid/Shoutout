@@ -10,6 +10,9 @@ const controller = async (req, res) => {
 	if (req.body.nick) {
 		newFields.nick = req.body.nick;
 	}
+	if (req.body.name) {
+		newFields.name = req.body.name;
+	}
 	if (req.body.email) {
 		newFields.email = req.body.email;
 	}
@@ -44,6 +47,7 @@ const controller = async (req, res) => {
 
 // Validation
 const validator = require("express-validator");
+const ensureAllowedName = require("../../helpers/ensureAllowedName.js");
 const valErrMsg = require("../../helpers/validationErrorMsg.js");
 controller.validate = [
 	validator.body("nick", valErrMsg.notValid("Nickname"))
@@ -54,6 +58,19 @@ controller.validate = [
 			max: 50
 		})
 			.withMessage(valErrMsg.len("Nickname", 1, 50)),
+
+	validator.body("name", valErrMsg.notExists("Username"))
+		.optional()
+		.isString()
+		.isAlphanumeric()
+			.withMessage(valErrMsg.alphaNum("Username"))
+		.isLength({
+			min: 1,
+			max: 50
+		})
+			.withMessage(valErrMsg.len("Username", 3, 50))
+		.custom(ensureAllowedName)
+			.withMessage(valErrMsg.disallowed("Username")),
 
 	validator.body("email", valErrMsg.notValid("Email"))
 		.optional()

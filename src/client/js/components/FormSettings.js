@@ -9,6 +9,7 @@ import ErrorList from "./ErrorList.js";
 class FormSettings extends React.Component {
 	state = {
 		nick: "",
+		name: "",
 		email: "",
 		avatarUrl: "",
 		bannerUrl: "",
@@ -23,10 +24,11 @@ class FormSettings extends React.Component {
 			return;
 		}
 
-		const {nick, email, avatarUrl, bannerUrl} = user;
+		const {nick, name, email, avatarUrl, bannerUrl} = user;
 
 		const initialValues = {
 			nick,
+			name,
 			email
 		};
 		// If the users' avatarUrl or bannerUrl is the default
@@ -57,7 +59,7 @@ class FormSettings extends React.Component {
 		evt.preventDefault();
 
 		const {user, setUser} = this.props.UserContext;
-		const {nick, email, avatarUrl, bannerUrl} = this.state;
+		const {nick, name, email, avatarUrl, bannerUrl} = this.state;
 
 		// Send newly edited profile settings if they are added,
 		// they are not the default and they are different from
@@ -68,6 +70,18 @@ class FormSettings extends React.Component {
 			nick !== user.nick
 		) {
 			body.nick = nick;
+		}
+		if (
+			name &&
+			name !== user.name
+		) {
+			body.name = name;
+
+			const confirmText = `You are changing your unique username to "${name}".\n\nBy continuing your settings will be updated and you will be logged out and have to log back in with your new username.`;
+
+			if (!confirm(confirmText)) {
+				return;
+			}
 		}
 		if (
 			email &&
@@ -106,10 +120,16 @@ class FormSettings extends React.Component {
 		});
 
 		if (data.success) {
-			const {nick, email, avatarUrl, bannerUrl} = data.user;
+			// If the username changed log out
+			if (name !== data.user.name) {
+				setUser(null);
+				return;
+			}
+			const {nick, name, email, avatarUrl, bannerUrl} = data.user;
 			setUser({
 				...user,
 				nick,
+				name,
 				email,
 				avatarUrl,
 				bannerUrl
@@ -156,8 +176,8 @@ class FormSettings extends React.Component {
 						placeholder="Username"
 						autoCorrect="off"
 						autoCapitalize="none"
-						disabled
-						value={user.name}
+						value={this.state.name}
+						onChange={this.handleChange}
 					/>
 				</label>
 				<label className="input-label">
