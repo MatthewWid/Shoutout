@@ -8,7 +8,7 @@ import {DROP_ANIM_TIME} from "constants";
 
 const defaultState = {
 	nick: "",
-	username: "",
+	name: "",
 	email: "",
 	password: ""
 };
@@ -28,12 +28,12 @@ class SignupForm extends React.Component {
 	}
 
 	handleSubmit = async (evt) => {
-		const {nick, username, email, password} = this.state;
+		const {nick, name, email, password} = this.state;
 		const {completedAction} = this.props;
 		evt.preventDefault();
 
 		const body = {
-			username,
+			name,
 			email,
 			password
 		};
@@ -73,16 +73,16 @@ class SignupForm extends React.Component {
 					value={this.state.nick}
 					onChange={this.handleChange}
 				/>
-				<div className="form-signup__username-container">
+				<div className="form-signup__name-container">
 					<input
-						className="input-text form-signup__username"
+						className="input-text form-signup__name"
 						type="text"
-						name="username"
+						name="name"
 						required
 						placeholder="Username"
 						autoCorrect="off"
 						autoCapitalize="none"
-						value={this.state.username}
+						value={this.state.name}
 						onChange={this.handleChange}
 					/>
 				</div>

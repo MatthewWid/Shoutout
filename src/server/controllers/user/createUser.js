@@ -3,11 +3,11 @@ const User = mongoose.model("User");
 
 // Create a single user
 const controller = async (req, res, next) => {
-	const {nick, username, email, password} = req.body;
+	const {nick, name, email, password} = req.body;
 
 	const newUser = new User({
 		nick,
-		name: username,
+		name,
 		email
 	});
 	const registeredUser = await User.register(newUser, password);
@@ -30,8 +30,8 @@ controller.validate = [
 			max: 50
 		})
 			.withMessage(valErrMsg.len("Nickname", 1, 50)),
-	
-	validator.body("username", valErrMsg.notExists("Username"))
+
+	validator.body("name", valErrMsg.notExists("Username"))
 		.exists()
 		.isString()
 		.isAlphanumeric()
