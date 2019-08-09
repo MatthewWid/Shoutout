@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {Link} from "react-router-dom";
+import UserContext from "../contexts/user.context.js";
 import ThemeContext from "../contexts/theme.context.js";
 import SessionDetails from "./SessionDetails.js";
 import ThemeToggleButton from "./ThemeToggleButton.js";
@@ -23,9 +24,14 @@ const links = [
 ];
 
 const Header = (props) => {
+	const {user} = useContext(UserContext);
 	const theme = useContext(ThemeContext);
 
-	const linkEls = links.map((link, index) => (
+	let linkEls = [...links];
+	if (!user) {
+		linkEls = linkEls.filter((link) => link.page !== "all");
+	}
+	linkEls = linkEls.map((link, index) => (
 		<Link
 			className={`header__link${props.page === link.page ? " header__link--current" : ""}`}
 			to={link.to}
