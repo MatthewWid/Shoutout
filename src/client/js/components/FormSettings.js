@@ -1,6 +1,6 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
-import {DEFAULT_AVATAR_URL, DEFAULT_BANNER_URL} from "constants";
+import {IMAGE_MAX_SIZE} from "constants";
 import api from "api";
 import getFileContents from "../helpers/getFileContents.js";
 import extractErrors from "../helpers/extractErrors.js";
@@ -46,12 +46,29 @@ class FormSettings extends React.Component {
 
 	handleFileChange = async ({target}) => {
 		const [file] = target.files;
-		if (!file) return;
+		if (!file) {
+			this.setState({
+				[target.name]: "",
+				errors: []
+			});
+			return;
+		}
+
+		if (file.size > IMAGE_MAX_SIZE) {
+			const {name} = target;
+			this.setState({
+				[target.name]: "",
+				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} image cannot be more than 5MB.`]
+			});
+			target.value = "";
+			return;
+		}
 
 		const contents = await getFileContents(file);
 		
 		this.setState({
-			[target.name]: contents
+			[target.name]: contents,
+			errors: []
 		});
 	}
 
@@ -61,7 +78,7 @@ class FormSettings extends React.Component {
 		const {user, setUser} = this.props.UserContext;
 		const {nick, name, email} = this.state;
 
-		let body = {
+		const body = {
 			nick: nick !== user.nick ? nick : null,
 			name: name !== user.name ? name : null,
 			email: email !== user.email ? email : null
@@ -76,6 +93,7 @@ class FormSettings extends React.Component {
 		}
 
 		this.setState({
+			errors: [],
 			loading: true
 		});
 

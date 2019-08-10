@@ -7,3 +7,6 @@ export const DEFAULT_BANNER_URL = "/images/banner-default.png";
 
 // Maximum posts displayed per page (used for pagination)
 export const POSTS_PER_PAGE = 10;
+
+// Maximum image size in bytes
+export const IMAGE_MAX_SIZE = 5242880;
