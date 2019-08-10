@@ -59,38 +59,19 @@ class FormSettings extends React.Component {
 		evt.preventDefault();
 
 		const {user, setUser} = this.props.UserContext;
-		const {nick, name, email, avatarUrl, bannerUrl} = this.state;
+		const {nick, name, email} = this.state;
 
-		// Send newly edited profile settings only if they
-		// were changed from the existing settings.
-		const body = {};
-		if (
-			nick &&
-			nick !== user.nick
-		) {
-			body.nick = nick;
-		}
-		if (
-			name &&
-			name !== user.name
-		) {
-			body.name = name;
-
-			const confirmText = `You are changing your unique username to "${name}".\n\nBy continuing your settings will be updated and you will be logged out and have to log back in with your new username.`;
-
-			if (!confirm(confirmText)) {
-				return;
-			}
-		}
-		if (
-			email &&
-			email !== user.email
-		) {
-			body.email = email;
+		let body = {
+			nick: nick !== user.nick ? nick : null,
+			name: name !== user.name ? name : null,
+			email: email !== user.email ? email : null
+		};
+		if (body.name && !confirm(`You are changing your unique username to "${name}".\n\nBy continuing your settings will be updated and you will be logged out and have to log back in with your new username.`)) {
+			return;
 		}
 
 		// If no values have been updated abort the operation
-		if (Object.keys(body).length === 0) {
+		if (Object.values(body).every((e) => e === null)) {
 			return;
 		}
 
@@ -107,16 +88,15 @@ class FormSettings extends React.Component {
 		if (data.success) {
 			// If the username changed then log out as the session
 			// will be cancelled because of a failed auth
-			if (name !== data.user.name) {
+			if (body.name !== null && body.name !== data.user.name) {
 				setUser(null);
 				return;
 			}
-			const {nick, name, email} = data.user;
 			setUser({
 				...user,
-				nick,
-				name,
-				email,
+				nick: data.user.nick,
+				name: data.user.name,
+				email: data.user.email
 			});
 		} else {
 			this.setState({

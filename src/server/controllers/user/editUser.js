@@ -51,7 +51,9 @@ const ensureAllowedName = require("../../helpers/ensureAllowedName.js");
 const valErrMsg = require("../../helpers/validationErrorMsg.js");
 controller.validate = [
 	validator.body("nick", valErrMsg.notValid("Nickname"))
-		.optional()
+		.optional({
+			nullable: true
+		})
 		.isString()
 		.isLength({
 			min: 1,
@@ -60,7 +62,9 @@ controller.validate = [
 			.withMessage(valErrMsg.len("Nickname", 1, 50)),
 
 	validator.body("name", valErrMsg.notExists("Username"))
-		.optional()
+		.optional({
+			nullable: true
+		})
 		.isString()
 		.isAlphanumeric()
 			.withMessage(valErrMsg.alphaNum("Username"))
@@ -73,17 +77,11 @@ controller.validate = [
 			.withMessage(valErrMsg.disallowed("Username")),
 
 	validator.body("email", valErrMsg.notValid("Email"))
-		.optional()
+		.optional({
+			nullable: true
+		})
 		.isString()
-		.isEmail(),
-
-	validator.body("avatarUrl", valErrMsg.notValid("Avatar URL"))
-		.optional()
-		.isURL(),
-
-	validator.body("bannerUrl", valErrMsg.notValid("Banner URL"))
-		.optional()
-		.isURL()
+		.isEmail()
 ];
 
 module.exports = controller;
