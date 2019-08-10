@@ -10,3 +10,5 @@ export const POSTS_PER_PAGE = 10;
 
 // Maximum image size in bytes
 export const IMAGE_MAX_SIZE = 5242880;
+// Allowed image types
+export const IMAGE_ALLOWED_TYPES = ["image/jpeg", "image/png"];

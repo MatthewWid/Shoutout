@@ -1,6 +1,6 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
-import {IMAGE_MAX_SIZE} from "constants";
+import {IMAGE_MAX_SIZE, IMAGE_ALLOWED_TYPES} from "constants";
 import api from "api";
 import getFileContents from "../helpers/getFileContents.js";
 import extractErrors from "../helpers/extractErrors.js";
@@ -54,11 +54,22 @@ class FormSettings extends React.Component {
 			return;
 		}
 
+		const {name} = target;
+		// Ensure valid file size
 		if (file.size > IMAGE_MAX_SIZE) {
-			const {name} = target;
 			this.setState({
-				[target.name]: "",
+				[name]: "",
 				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} image cannot be more than 5MB.`]
+			});
+			target.value = "";
+			return;
+		}
+
+		// Ensure valid file type
+		if (!IMAGE_ALLOWED_TYPES.includes(file.type)) {
+			this.setState({
+				[name]: "",
+				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} must be a JPEG or PNG image.`]
 			});
 			target.value = "";
 			return;
@@ -67,7 +78,7 @@ class FormSettings extends React.Component {
 		const contents = await getFileContents(file);
 		
 		this.setState({
-			[target.name]: contents,
+			[name]: contents,
 			errors: []
 		});
 	}
