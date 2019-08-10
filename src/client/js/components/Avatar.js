@@ -15,7 +15,7 @@ const Avatar = (props) => {
 		<img
 			className="avatar__image"
 			src={user.avatarUrl || DEFAULT_AVATAR_URL}
-			alt={user.nick}
+			alt={`${user.nick}'s Avatar`}
 		/>
 	);
 

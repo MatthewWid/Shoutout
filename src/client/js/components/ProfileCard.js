@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Banner from "./Banner.js";
 import Avatar from "./Avatar.js";
 
 /*
@@ -17,11 +18,7 @@ const ProfileCard = (props) => {
 	return (
 		<div className={`${props.className && `${props.className} ` || ""}profile-card`}>
 		{/* If the `className` prop is supplied then add the classNames to this component. */}
-			<img
-				className="profile-card__banner"
-				src={user.bannerUrl}
-				alt={user.nick}
-			/>
+			<Banner user={user} />
 			<div className="profile-card__info">
 				<Avatar user={user} />
 				<div className="profile-card__names">
