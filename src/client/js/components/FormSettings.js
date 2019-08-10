@@ -2,7 +2,10 @@ import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
 import {DEFAULT_AVATAR_URL, DEFAULT_BANNER_URL} from "constants";
 import api from "api";
+import getFileContents from "../helpers/getFileContents.js";
 import extractErrors from "../helpers/extractErrors.js";
+import Avatar from "./Avatar.js";
+import Banner from "./Banner.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 import ErrorList from "./ErrorList.js";
 
@@ -11,8 +14,8 @@ class FormSettings extends React.Component {
 		nick: "",
 		name: "",
 		email: "",
-		avatarUrl: "",
-		bannerUrl: "",
+		avatar: "",
+		banner: "",
 		errors: [],
 		loading: false
 	}
@@ -24,34 +27,31 @@ class FormSettings extends React.Component {
 			return;
 		}
 
-		const {nick, name, email, avatarUrl, bannerUrl} = user;
-
 		const initialValues = {
-			nick,
-			name,
-			email
+			nick: user.nick,
+			name: user.name,
+			email: user.email
 		};
-		// If the users' avatarUrl or bannerUrl is the default
-		// then display nothing.
-		if (avatarUrl && avatarUrl !== DEFAULT_AVATAR_URL) {
-			initialValues.avatarUrl = avatarUrl;
-		} else {
-			initialValues.avatarUrl = "";
-		}
-		if (bannerUrl && bannerUrl !== DEFAULT_BANNER_URL) {
-			initialValues.bannerUrl = bannerUrl;
-		} else {
-			initialValues.bannerUrl = "";
-		}
 
 		this.setState(initialValues);
 	}
 
-	handleChange = ({target}) => {
+	handleTextChange = ({target}) => {
 		const {state} = {...this.state};
 
 		this.setState({
 			[target.name]: target.value
+		});
+	}
+
+	handleFileChange = async ({target}) => {
+		const [file] = target.files;
+		if (!file) return;
+
+		const contents = await getFileContents(file);
+		
+		this.setState({
+			[target.name]: contents
 		});
 	}
 
@@ -61,9 +61,8 @@ class FormSettings extends React.Component {
 		const {user, setUser} = this.props.UserContext;
 		const {nick, name, email, avatarUrl, bannerUrl} = this.state;
 
-		// Send newly edited profile settings if they are added,
-		// they are not the default and they are different from
-		// the existing settings
+		// Send newly edited profile settings only if they
+		// were changed from the existing settings.
 		const body = {};
 		if (
 			nick &&
@@ -89,20 +88,6 @@ class FormSettings extends React.Component {
 		) {
 			body.email = email;
 		}
-		if (
-			avatarUrl &&
-			avatarUrl !== user.avatarUrl &&
-			avatarUrl !== DEFAULT_AVATAR_URL
-		) {
-			body.avatarUrl = avatarUrl;
-		}
-		if (
-			bannerUrl &&
-			bannerUrl !== user.bannerUrl &&
-			bannerUrl !== DEFAULT_BANNER_URL
-		) {
-			body.bannerUrl = bannerUrl;
-		}
 
 		// If no values have been updated abort the operation
 		if (Object.keys(body).length === 0) {
@@ -120,19 +105,18 @@ class FormSettings extends React.Component {
 		});
 
 		if (data.success) {
-			// If the username changed log out
+			// If the username changed then log out as the session
+			// will be cancelled because of a failed auth
 			if (name !== data.user.name) {
 				setUser(null);
 				return;
 			}
-			const {nick, name, email, avatarUrl, bannerUrl} = data.user;
+			const {nick, name, email} = data.user;
 			setUser({
 				...user,
 				nick,
 				name,
 				email,
-				avatarUrl,
-				bannerUrl
 			});
 		} else {
 			this.setState({
@@ -154,6 +138,7 @@ class FormSettings extends React.Component {
 				onSubmit={this.handleSubmit}
 			>
 				<h1 className="form-settings__header">Profile Settings</h1>
+
 				<label className="input-label">
 					Nickname
 					<input
@@ -164,9 +149,10 @@ class FormSettings extends React.Component {
 						autoCorrect="off"
 						autoCapitalize="none"
 						value={this.state.nick}
-						onChange={this.handleChange}
+						onChange={this.handleTextChange}
 					/>
 				</label>
+
 				<label className="input-label">
 					Username
 					<input
@@ -177,9 +163,10 @@ class FormSettings extends React.Component {
 						autoCorrect="off"
 						autoCapitalize="none"
 						value={this.state.name}
-						onChange={this.handleChange}
+						onChange={this.handleTextChange}
 					/>
 				</label>
+
 				<label className="input-label">
 					Email Address
 					<input
@@ -190,41 +177,63 @@ class FormSettings extends React.Component {
 						autoCorrect="off"
 						autoCapitalize="none"
 						value={this.state.email}
-						onChange={this.handleChange}
+						onChange={this.handleTextChange}
 					/>
 				</label>
+
 				<label className="input-label">
-					Avatar URL
+					Avatar Image (Recommended 256x256)
 					<input
-						className="input-text form-settings__input-text form-settings__avatar"
-						type="text"
-						name="avatarUrl"
-						placeholder="Avatar URL"
-						autoCorrect="off"
-						autoCapitalize="none"
-						value={this.state.avatarUrl}
-						onChange={this.handleChange}
+						className="input-file"
+						type="file"
+						name="avatar"
+						onChange={this.handleFileChange}
 					/>
 				</label>
+				{
+					this.state.avatar &&
+					<div className="form-settings__preview form-settings__preview--avatar">
+						<p className="form-settings__preview-text">Avatar Preview</p>
+						<Avatar
+							withLink={false}
+							user={{
+								avatarUrl: this.state.avatar,
+								nick: this.state.nick
+							}}
+						/>
+					</div>
+				}
+
 				<label className="input-label">
-					Banner URL
+					Banner Image (Recommended 1500x500)
 					<input
-						className="input-text form-settings__input-text form-settings__banner"
-						type="text"
-						name="bannerUrl"
-						placeholder="Banner URL"
-						autoCorrect="off"
-						autoCapitalize="none"
-						value={this.state.bannerUrl}
-						onChange={this.handleChange}
+						className="input-file"
+						type="file"
+						name="banner"
+						onChange={this.handleFileChange}
 					/>
 				</label>
+				{
+					this.state.banner &&
+					<div className="form-settings__preview form-settings__preview--banner">
+						<p className="form-settings__preview-text">Banner Preview</p>
+						<Banner
+							user={{
+								bannerUrl: this.state.banner,
+								nick: this.state.nick
+							}}
+						/>
+					</div>
+				}
+
 				<ErrorList errors={this.state.errors} />
+
 				<input
 					className="button button--primary"
 					type="submit"
 					value="Save Settings"
 				/>
+
 				{this.state.loading && <LoadingIndicator className="form-settings__loading" />}
 			</form>
 		);

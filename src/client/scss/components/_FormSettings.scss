@@ -11,7 +11,26 @@
 	&__input-text {
 		min-width: 240px;
 	}
-	&__avatar, &__banner {
-		min-width: 500px;
+	&__preview {
+		display: flex;
+		align-items: center;
+
+		:not(:last-child) {
+			margin-right: 10px;
+		}
+		&-text {
+			color: $text-grey;
+		}
+		&--avatar {
+			.avatar__image {
+				border: none;
+			}
+		}
+		&--banner {
+			.banner {
+				width: 300px;
+				height: 100px;
+			}
+		}
 	}
 }
