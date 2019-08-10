@@ -1,6 +1,11 @@
 import React from "react";
 import {DEFAULT_AVATAR_URL} from "constants";
 
+/*
+	Generic Banner for the given users' profile picture.
+
+	Requires the users' `bannerUrl` and `nick` properties.
+*/
 const Banner = (props) => {
 	const {user} = props;
 
