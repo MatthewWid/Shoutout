@@ -4,7 +4,7 @@
 	with the given string.
 
 	Eg,
-	"_id nick name avatarUrl -bannerUrl created"
+	"_id nick name avatar -avatar created"
 
 	=>
 
@@ -12,8 +12,8 @@
 		'_id': 1,
 		'nick': 1,
 		'name': 1,
-		'avatarUrl': 1,
-		'bannerUrl': 0,
+		'avatar': 1,
+		'banner': 0,
 		'created': 1
 	}
 */

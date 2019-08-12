@@ -16,6 +16,20 @@ const controller = async (req, res) => {
 	if (req.body.email) {
 		newFields.email = req.body.email;
 	}
+	if (req.image.avatar) {
+		const {public_id, url} = req.image.avatar;
+		newFields.avatar = {
+			public_id,
+			url
+		};
+	}
+	if (req.image.banner) {
+		const {public_id, url} = req.image.banner;
+		newFields.banner = {
+			public_id,
+			url
+		};
+	}
 
 	const user = await User.findByIdAndUpdate(userId, {
 		...newFields

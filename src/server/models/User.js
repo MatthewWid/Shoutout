@@ -24,15 +24,25 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		default: Date.now
 	},
-	avatarUrl: {
-		type: String,
-		default: "/images/avatar-default.png",
-		trim: true
+	avatar: {
+		public_id: {
+			type: String,
+			default: null
+		},
+		url: {
+			type: String,
+			default: "/images/avatar-default.png"
+		}
 	},
-	bannerUrl: {
-		type: String,
-		default: "/images/banner-default.png",
-		trim: true
+	banner: {
+		public_id: {
+			type: String,
+			default: null
+		},
+		url: {
+			type: String,
+			default: "/images/banner-default.png"
+		}
 	},
 	isAdmin: {
 		type: Boolean,

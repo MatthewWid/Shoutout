@@ -8,7 +8,7 @@ import {DEFAULT_AVATAR_URL} from "constants";
 	If `withLink` is not `false` then the Avatar can be clicked
 	to go to the given users' profile page.
 
-	Requires the users' `avatarUrl` and `nick` properties and
+	Requires the users' `avatar.url` and `nick` properties and
 	the `name` property if `props.withLink` is `false`.
 */
 const Avatar = (props) => {
@@ -17,7 +17,7 @@ const Avatar = (props) => {
 	let component = (
 		<img
 			className="avatar__image"
-			src={user.avatarUrl || DEFAULT_AVATAR_URL}
+			src={user.avatar.url || DEFAULT_AVATAR_URL}
 			alt={`${user.nick}'s Avatar`}
 		/>
 	);

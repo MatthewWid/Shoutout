@@ -127,7 +127,9 @@ class FormSettings extends React.Component {
 				...user,
 				nick: data.user.nick,
 				name: data.user.name,
-				email: data.user.email
+				email: data.user.email,
+				avatar: data.user.avatar,
+				banner: data.user.banner
 			});
 		} else {
 			this.setState({
@@ -208,7 +210,9 @@ class FormSettings extends React.Component {
 						<Avatar
 							withLink={false}
 							user={{
-								avatarUrl: this.state.avatar,
+								avatar: {
+									url: this.state.avatar
+								},
 								nick: this.state.nick
 							}}
 						/>
@@ -230,7 +234,9 @@ class FormSettings extends React.Component {
 						<p className="form-settings__preview-text">Banner Preview</p>
 						<Banner
 							user={{
-								bannerUrl: this.state.banner,
+								banner: {
+									url: this.state.banner
+								},
 								nick: this.state.nick
 							}}
 						/>

@@ -32,6 +32,7 @@ router.put("/user/:userId",
 	auth.ensureLoggedIn,
 	user.ensureOwnUser,
 	uploadImage("avatar"),
+	uploadImage("banner"),
 	wrap(user.editUser)
 );
 // Log in as a user with a name and password
