@@ -87,12 +87,14 @@ class FormSettings extends React.Component {
 		evt.preventDefault();
 
 		const {user, setUser} = this.props.UserContext;
-		const {nick, name, email} = this.state;
+		const {nick, name, email, avatar, banner} = this.state;
 
 		const body = {
 			nick: nick !== user.nick ? nick : null,
 			name: name !== user.name ? name : null,
-			email: email !== user.email ? email : null
+			email: email !== user.email ? email : null,
+			avatar: avatar || null,
+			banner: banner || null
 		};
 		if (body.name && !confirm(`You are changing your unique username to "${name}".\n\nBy continuing your settings will be updated and you will be logged out and have to log back in with your new username.`)) {
 			return;
