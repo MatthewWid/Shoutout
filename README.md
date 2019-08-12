@@ -2,19 +2,22 @@
   <img src="/public/images/logo/logo-maxres-text-white.png?raw=true" alt="Shoutout Logo" width="600px" />
 </p>
 
-News and social media site.  
-Users post to a central board and can share short messages with eachother.
+News sharing and social media website.  
+Users create posts, follow eachother to view other users' posts, add likes to posts and more.
 
 **Front-End Technologies**
-* React
+* **React** + Hooks and Context API
 * Webpack
+* Babel
 * SASS
+* Axios
 
 **Back-End Technologies**
-* Node.js
-* MongoDB
+* **Node.js**
+* **MongoDB**
 * Mongoose
 * Express
+* Passport.js
 * Pug
 
 This project was started with the objective to learn:
