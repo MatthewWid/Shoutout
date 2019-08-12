@@ -66,7 +66,9 @@ app.use(express.static(PUBDIR));
 app.use(serveFavicon(path.join(PUBDIR, "./images/logo/", "./favicon.ico")));
 
 // Body Parser
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+	limit: "6mb"
+}));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
