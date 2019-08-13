@@ -11,7 +11,8 @@ const controller = async (req, res) => {
 		author: req.user
 	});
 
-	const post = await Post.findById(postId, PROJECTION_POST);
+	const post = await Post.findById(postId, PROJECTION_POST)
+		.populate("author");
 
 	res
 		.status(201)
