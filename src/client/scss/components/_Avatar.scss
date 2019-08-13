@@ -1,9 +1,6 @@
 .avatar {
 	cursor: pointer;
 	
-	&--no-link {
-		cursor: default;
-	}
 	&__image {
 		background-color: $blue-darkest;
 		width: 48px;

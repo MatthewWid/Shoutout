@@ -31,7 +31,7 @@ const Avatar = (props) => {
 	}
 
 	return (
-		<div className={`avatar${props.withLink === false ? " avatar--no-link" : ""}`} onClick={props.onClick}>
+		<div className="avatar" onClick={props.onClick}>
 			{component}
 		</div>
 	);
