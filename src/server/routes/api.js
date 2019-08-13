@@ -42,6 +42,16 @@ router.post("/user/login",
 router.post("/user/logout",
 	auth.logout
 );
+// Get a list of a users' followers
+router.get("/user/:userId/followers",
+	validate(user.getFollowList),
+	wrap(user.getFollowList("followers"))
+);
+// Get a list of users a person followers
+router.get("/user/:userId/following",
+	validate(user.getFollowList),
+	wrap(user.getFollowList("following"))
+);
 // Follow a single user
 router.post("/user/:userId/follow",
 	validate(user.followUser),
