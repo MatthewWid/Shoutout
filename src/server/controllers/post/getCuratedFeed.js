@@ -17,7 +17,7 @@ const controller = async (req, res) => {
 	};
 	// Sorting
 	const sort = {
-		"post.created": -1
+		created: -1
 	};
 	// Projection
 	const project = {
