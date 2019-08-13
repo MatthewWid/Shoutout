@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+const {upload, destroy} = require("../../helpers/cloudinary.interface.js");
 const {PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
 
 // Update profile settings and preferences of a single user
 const controller = async (req, res) => {
-	const {userId} = req.params;
+	const prevUser = await User.findById(req.params.userId);
 
 	const newFields = {};
 	if (req.body.nick) {
@@ -16,22 +17,50 @@ const controller = async (req, res) => {
 	if (req.body.email) {
 		newFields.email = req.body.email;
 	}
-	if (req.image.avatar) {
-		const {public_id, url} = req.image.avatar;
+	if (req.body.avatar) {
+		// Delete the previous avatar image off the CDN
+		if (prevUser.avatar.public_id) {
+			await destroy(prevUser.avatar.public_id);
+		}
+		const image = await upload(
+			req.body.avatar,
+			[
+				prevUser._id,
+				`@${prevUser.name}`,
+				"avatar"
+			]
+		);
+		const {public_id, url, bytes: size} = image;
+
 		newFields.avatar = {
 			public_id,
-			url
+			url,
+			size
 		};
 	}
-	if (req.image.banner) {
-		const {public_id, url} = req.image.banner;
+	if (req.body.banner) {
+		// Delete the previous avatar image off the CDN
+		if (prevUser.banner.public_id) {
+			await destroy(prevUser.banner.public_id);
+		}
+		const image = await upload(
+			req.body.banner,
+			[
+				prevUser._id,
+				`@${prevUser.name}`,
+				"banner"
+			]
+		);
+		const {public_id, url, bytes: size} = image;
+
 		newFields.banner = {
 			public_id,
-			url
+			url,
+			size
 		};
 	}
 
-	const user = await User.findByIdAndUpdate(userId, {
+	const user = await User.findByIdAndUpdate(req.params.userId, {
 		...newFields
 	}, {
 		select: `${PROJECTION_USER} email`,

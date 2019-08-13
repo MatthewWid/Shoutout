@@ -2,7 +2,6 @@ const router = require("express").Router();
 const wrap = require("../helpers/wrapAsync");
 
 const {home, auth, user, post} = require("../controllers/");
-const uploadImage = require("../middlewares/uploadImage.js");
 const validate = require("../middlewares/validate.js");
 
 // Debug API test response
@@ -31,8 +30,6 @@ router.put("/user/:userId",
 	validate(user.editUser),
 	auth.ensureLoggedIn,
 	user.ensureOwnUser,
-	uploadImage("avatar"),
-	uploadImage("banner"),
 	wrap(user.editUser)
 );
 // Log in as a user with a name and password

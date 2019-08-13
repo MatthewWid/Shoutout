@@ -152,6 +152,8 @@ class FormSettings extends React.Component {
 			>
 				<h1 className="form-settings__header">Profile Settings</h1>
 
+				<hr className="divider" />
+
 				<label className="input-label">
 					Nickname
 					<input
@@ -193,6 +195,8 @@ class FormSettings extends React.Component {
 						onChange={this.handleTextChange}
 					/>
 				</label>
+
+				<hr className="divider" />
 
 				<label className="input-label">
 					Avatar Image (Recommended 256x256)
@@ -242,6 +246,8 @@ class FormSettings extends React.Component {
 						/>
 					</div>
 				}
+
+				<hr className="divider" />
 
 				<ErrorList errors={this.state.errors} />
 

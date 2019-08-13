@@ -32,7 +32,8 @@ const UserSchema = new mongoose.Schema({
 		url: {
 			type: String,
 			default: "/images/avatar-default.png"
-		}
+		},
+		size: Number
 	},
 	banner: {
 		public_id: {
@@ -42,7 +43,8 @@ const UserSchema = new mongoose.Schema({
 		url: {
 			type: String,
 			default: "/images/banner-default.png"
-		}
+		},
+		size: Number
 	},
 	isAdmin: {
 		type: Boolean,
