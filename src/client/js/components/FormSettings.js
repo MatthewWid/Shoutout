@@ -119,7 +119,7 @@ class FormSettings extends React.Component {
 		if (data.success) {
 			// If the username changed then log out as the session
 			// will be cancelled because of a failed auth
-			if (body.name !== null && body.name !== data.user.name) {
+			if (body.name !== null) {
 				setUser(null);
 				return;
 			}
