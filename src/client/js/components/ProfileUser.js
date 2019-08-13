@@ -61,7 +61,7 @@ const ProfileUser = (props) => {
 	}
 
 	let followButton = null;
-	if (user._id !== loggedUser.user._id) {
+	if (loggedUser.user && user._id !== loggedUser.user._id) {
 		const {isFollowing} = user;
 		followButton = (
 			<button
