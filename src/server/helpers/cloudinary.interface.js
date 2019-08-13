@@ -12,7 +12,7 @@ const upload = (image, tags = []) => (
 			image,
 			{
 				folder: process.env.CLOUDINARY_FOLDER,
-				tags: ["shoutout", ...tags]
+				tags: [process.env.CLOUDINARY_FOLDER, ...tags]
 			},
 			(err, result) => {
 				if (err) {
