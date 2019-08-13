@@ -6,13 +6,15 @@
 */
 const cloudinary = require("cloudinary").v2;
 
-const upload = (image, tags = []) => (
+const upload = (image, tags = [], transforms = []) => (
 	new Promise((resolve, reject) => {
+		console.log(transforms);
 		cloudinary.uploader.upload(
 			image,
 			{
 				folder: process.env.CLOUDINARY_FOLDER,
-				tags: [process.env.CLOUDINARY_FOLDER, ...tags]
+				tags: [process.env.CLOUDINARY_FOLDER, ...tags],
+				transformation: transforms
 			},
 			(err, result) => {
 				if (err) {

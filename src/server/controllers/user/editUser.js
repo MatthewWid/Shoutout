@@ -28,6 +28,14 @@ const controller = async (req, res) => {
 				prevUser._id,
 				`@${prevUser.name}`,
 				"avatar"
+			],
+			[
+				{
+					width: 256,
+					height: 256,
+					aspect_ratio: "1:1",
+					crop: "limit"
+				}
 			]
 		);
 		const {public_id, url, bytes: size} = image;
@@ -49,6 +57,14 @@ const controller = async (req, res) => {
 				prevUser._id,
 				`@${prevUser.name}`,
 				"banner"
+			],
+			[
+				{
+					width: 1500,
+					height: 500,
+					aspect_ratio: "3:1",
+					crop: "crop"
+				}
 			]
 		);
 		const {public_id, url, bytes: size} = image;
