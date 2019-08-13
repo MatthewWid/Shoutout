@@ -46,6 +46,7 @@ NODE_ENV=production
 PORT=80
 DATABASE_URL=<MONGODB_API_URL>
 CLOUDINARY_URL=<CLOUDINARY_API_URL>
+CLOUDINARY_FOLDER=shoutout
 ```
 3. Ensure your MongoDB server is running (mLab, Atlas or locally with `mongod`).
 4. Ensure your [Cloudinary](https://cloudinary.com/) credentials are correct.

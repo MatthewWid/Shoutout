@@ -6,12 +6,12 @@
 */
 const cloudinary = require("cloudinary").v2;
 
-const upload = (data, tags = []) => {
-	return new Promise((resolve, reject) => {
+const upload = (image, tags = []) => (
+	new Promise((resolve, reject) => {
 		cloudinary.uploader.upload(
-			data,
+			image,
 			{
-				folder: "shoutout",
+				folder: process.env.CLOUDINARY_FOLDER,
 				tags: ["shoutout", ...tags]
 			},
 			(err, result) => {
@@ -20,8 +20,25 @@ const upload = (data, tags = []) => {
 				} else {
 					resolve(result);
 				}
-			})
-	});
-};
+			}
+		);
+	})
+);
+
+const destroy = (public_id) => (
+	new Promise((resolve, reject) => {
+		cloudinary.uploader.destroy(
+			public_id,
+			(err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+			}
+		);
+	})
+);
 
 exports.upload = upload;
+exports.destroy = destroy;
