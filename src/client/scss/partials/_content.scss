@@ -15,4 +15,7 @@
 	&__panel {
 		flex: 1;
 	}
+	@include for-laptop-down {
+		max-width: $content-width-bigger;
+	}
 }

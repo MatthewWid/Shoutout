@@ -42,11 +42,9 @@ input, textarea, button {
 	box-sizing: border-box;
 }
 
-// Pages
-@import "./pages/_Profile.scss";
-@import "./pages/_Settings.scss";
-@import "./pages/_Attribution.scss";
-@import "./pages/_NotFound.scss";
+// Mixins
+@import "./mixins/_media-queries.scss";
+@import "./mixins/_loading-overlay.scss";
 
 // Partials
 @import "./partials/_content.scss";
@@ -54,6 +52,12 @@ input, textarea, button {
 @import "./partials/_button.scss";
 @import "./partials/_divider.scss";
 @import "./partials/_form.scss";
+
+// Pages
+@import "./pages/_Profile.scss";
+@import "./pages/_Settings.scss";
+@import "./pages/_Attribution.scss";
+@import "./pages/_NotFound.scss";
 
 // Components
 // Panels

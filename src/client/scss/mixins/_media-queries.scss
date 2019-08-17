@@ -1,0 +1,7 @@
+// https://itnext.io/writing-media-queries-with-sass-mixins-3ea591ea3ea4
+
+@mixin for-laptop-down {
+	@media screen and (max-width: 1360px) {
+		@content;
+	}
+}
