@@ -37,7 +37,7 @@ const Header = (props) => {
 	}
 	linkEls = linkEls.map((link, index) => (
 		<Link
-			className={`header__link${props.page === link.page ? " header__link--current" : ""}`}
+			className={`header__link${props.page === link.page ? " header__link--current" : ""}${link.page && ` header__link-${link.page}`}`}
 			to={link.to}
 			key={index}
 		>

@@ -90,4 +90,12 @@
 	@include for-laptop-down {
 		max-width: $content-width-bigger;
 	}
+	@include for-mobile-down {
+		&__link-top {
+			display: none;
+		}
+		&__logo {
+			display: none;
+		}
+	}
 }
