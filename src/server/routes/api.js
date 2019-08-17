@@ -47,7 +47,7 @@ router.get("/user/:userId/followers",
 	validate(user.getFollowList),
 	wrap(user.getFollowList("followers"))
 );
-// Get a list of users a person followers
+// Get a list of users a person follows
 router.get("/user/:userId/following",
 	validate(user.getFollowList),
 	wrap(user.getFollowList("following"))

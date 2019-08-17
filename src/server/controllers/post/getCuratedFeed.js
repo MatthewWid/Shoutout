@@ -26,10 +26,9 @@ const controller = async (req, res) => {
 	};
 	delete project.author; // Avoid conflicting fields
 
-	let following = await Follow.find({
+	const following = (await Follow.find({
 		follower: req.user._id
-	});
-	following = following.map((follow) => (
+	})).map((follow) => (
 		follow.followee
 	));
 	following.push(req.user._id);

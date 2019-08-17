@@ -27,6 +27,32 @@ const getFollowList = (field) => {
 			...follow[popField]
 		}));
 
+		followList = await Promise.all(
+			followList.map(async (follow) => {
+				// If the user is not logged in - set to false
+				if (!req.isAuthenticated()) {
+					return {
+						...follow,
+						isFollowing: false
+					};
+				}
+				// If the user is logged in and we are searching the logged in users'
+				// following list we already know they are all `true`
+				if (req.user._id.equals(req.params.userId) && field === "following") {
+					return {
+						...follow,
+						isFollowing: true
+					};
+				}
+				// Else calculate whether the logged in user follows
+				// the given user dynamically
+				return {
+					...follow,
+					isFollowing: await Follow.userFollowsUser(follow, req.user)
+				};
+			})
+		);
+
 		res.json({
 			success: true,
 			followList
