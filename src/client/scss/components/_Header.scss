@@ -35,22 +35,29 @@
 		&:hover:not(&--current) {
 			color: $text-bright;
 		}
+		&:after {
+			content: "";
+			background-color: $accent-pink;
+
+			display: block;
+			position: absolute;
+			height: 0px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+
+			transition: height .1s ease;
+		}
 		&--current {
 			color: $accent-pink;
 
-			&:after {
-				content: "";
-				background-color: $accent-pink;
-
-				display: block;
-				position: absolute;
-				height: 2px;
-				bottom: 0;
-				left: 0;
-				right: 0;
-			}
 			.svg svg {
 				color: $accent-pink;
+			}
+		}
+		&--current, &:hover {
+			&:after {
+				height: 2px;
 			}
 		}
 	}
