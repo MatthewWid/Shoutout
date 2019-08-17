@@ -7,7 +7,7 @@ const LoadingIndicator = (props) => (
 			className="loading__icon svg"
 			src="./images/icons/loading-comet.svg"
 			cacheGetRequests
-		></InlineSvg>
+		/>
 	</div>
 );
 

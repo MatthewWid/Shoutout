@@ -166,7 +166,7 @@ class Post extends React.Component {
 										className="svg post__menu-icon"
 										src="./images/icons/menu-ellipsis.svg"
 										cacheGetRequests
-									></InlineSvg>
+									/>
 								</div>
 								<Dropdown
 									isOpen={this.state.dropdownOpen}
@@ -199,7 +199,7 @@ class Post extends React.Component {
 								className="svg post__button-icon"
 								src={`./images/icons/heart-${post.isLiked ? "solid" : "regular"}.svg`}
 								cacheGetRequests
-							></InlineSvg>
+							/>
 							<span className="post__button-number">{post.totalLikes || "0"}</span>
 						</div>
 					</div>
