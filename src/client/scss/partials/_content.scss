@@ -18,4 +18,12 @@
 	@include for-laptop-down {
 		max-width: $content-width-bigger;
 	}
+	@include for-tablet-down {
+		flex-direction: column;
+		align-items: stretch;
+		
+		.panel-user {
+			display: none;
+		}
+	}
 }

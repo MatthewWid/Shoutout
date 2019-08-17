@@ -30,6 +30,9 @@
 	&__author-nick {
 		color: $text-bright;
 		font-weight: bold;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 	&__spacer {
 		font-weight: bold;
