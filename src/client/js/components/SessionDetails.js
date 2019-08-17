@@ -1,11 +1,11 @@
 import React, {Fragment} from "react";
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withUserContext} from "../contexts/user.context.js";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
+import UserLinks from "./UserLinks.js";
 import UserEntry from "./UserEntry.js";
-import FormLogout from "./FormLogout.js";
 
 /*
 	Displays the users' "session" in the header.
@@ -43,12 +43,9 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<Link to="/settings">
-							<button className="dropdown__link">Settings</button>
-						</Link>
-						<FormLogout
-							className="dropdown__link"
-							completedAction={this.closeAndRedirect}
+						<UserLinks
+							user={user}
+							closeAndRedirect={this.closeAndRedirect}
 						/>
 					</Dropdown>
 				</Fragment>
@@ -63,7 +60,9 @@ class SessionDetails extends React.Component {
 						isOpen={this.state.dropdownOpen}
 						close={this.dropdownSetOpen(false)}
 					>
-						<UserEntry completedAction={this.closeAndRedirect} />
+						<UserEntry
+							completedAction={this.closeAndRedirect}
+						/>
 					</Dropdown>
 				</Fragment>
 			);
