@@ -129,8 +129,8 @@ class PanelFeed extends React.Component {
 			return <LoadingIndicator className="content__panel card" />;
 		}
 
-		// If the user is logged in and the parent component allows it
-		// render the form to create a new post
+		// If the user is logged in and the parent component allow
+		// rendering of the form to create a new post
 		let form = null;
 		if (this.props.UserContext.user && this.props.withForm !== false) {
 			form = <FormPost addPosts={this.addPosts} />;
@@ -138,7 +138,7 @@ class PanelFeed extends React.Component {
 
 		// Click to load more button
 		// Only render if the amount of loaded posts is a multiple of
-		// the maximum posts per page, implying more posts could be available.
+		// the maximum posts per page, implying more posts could be available
 		const loadedPosts = this.state.posts.length;
 		let buttonMore = null;
 		if (loadedPosts !== 0 && loadedPosts % POSTS_PER_PAGE === 0) {
