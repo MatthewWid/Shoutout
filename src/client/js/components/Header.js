@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {Link} from "react-router-dom";
+import InlineSvg from "react-inlinesvg";
 import UserContext from "../contexts/user.context.js";
 import ThemeContext from "../contexts/theme.context.js";
 import SessionDetails from "./SessionDetails.js";
@@ -9,17 +10,20 @@ const links = [
 	{
 		text: "Home",
 		page: "home",
-		to: "/"
+		to: "/",
+		icon: "home-solid"
 	},
 	{
 		text: "All",
 		page: "all",
-		to: "/all"
+		to: "/all",
+		icon: "globe-solid"
 	},
 	{
 		text: "Top",
 		page: "top",
-		to: "/top"
+		to: "/top",
+		icon: "heart-solid"
 	}
 ];
 
@@ -37,7 +41,15 @@ const Header = (props) => {
 			to={link.to}
 			key={index}
 		>
-				{link.text}
+			{
+				link.icon &&
+				<InlineSvg
+					className="svg header__icon"
+					src={`./images/icons/${link.icon}.svg`}
+					cacheGetsRequests
+				/>
+			}
+			{link.text}
 		</Link>
 	));
 

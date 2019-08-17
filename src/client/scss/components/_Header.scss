@@ -49,6 +49,21 @@
 				left: 0;
 				right: 0;
 			}
+			.svg svg {
+				color: $accent-pink;
+			}
+		}
+	}
+	&__icon {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		margin-right: 8px;
+
+		svg {
+			width: 100%;
+			height: 100%;
+			color: $text-grey;
 		}
 	}
 	&__logo {
