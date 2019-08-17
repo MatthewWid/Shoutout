@@ -21,7 +21,10 @@
 	@include for-tablet-down {
 		flex-direction: column;
 		align-items: stretch;
-		
+
+		> :not(:last-child) {
+			margin-right: 0;
+		}
 		.panel-user {
 			display: none;
 		}

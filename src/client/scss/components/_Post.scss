@@ -27,6 +27,11 @@
 			margin-right: 5px;
 		}
 	}
+	&__author {
+		:not(:last-child) {
+			margin-right: 5px;
+		}
+	}
 	&__author-nick {
 		color: $text-bright;
 		font-weight: bold;
@@ -114,6 +119,12 @@
 			svg {
 				color: $red;
 			}
+		}
+	}
+	@include for-tablet-down {
+		&__author-name {
+			display: block;
+			margin-top: 4px;
 		}
 	}
 }

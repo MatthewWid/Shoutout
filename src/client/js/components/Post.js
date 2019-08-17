@@ -136,15 +136,17 @@ class Post extends React.Component {
 				</div>
 				<div className="post__section">
 					<div className="post__info">
-						<span className="post__author-nick">
-							<Link to={`/${author.name}`}>
-								{author.nick}
-							</Link>
-						</span>
-						<span className="post__author-name">
-							<Link to={`/${author.name}`}>
-								@{author.name}
-							</Link>
+						<span className="post__author">
+							<span className="post__author-nick">
+								<Link to={`/${author.name}`}>
+									{author.nick}
+								</Link>
+							</span>
+							<span className="post__author-name">
+								<Link to={`/${author.name}`}>
+									@{author.name}
+								</Link>
+							</span>
 						</span>
 						<span className="post__spacer">
 							&middot;
