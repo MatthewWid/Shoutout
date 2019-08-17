@@ -2,7 +2,7 @@
 	> :not(:last-child) {
 		margin-bottom: 12px;
 	}
-	&__username-container {
+	&__name-container {
 		position: relative;
 
 		&:before {
@@ -24,7 +24,7 @@
 			width: 40px;
 		}
 	}
-	&__username {
+	&__name {
 		padding-left: 45px;
 	}
 }
