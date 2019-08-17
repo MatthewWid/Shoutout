@@ -60,7 +60,9 @@ const Header = (props) => {
 					{linkEls}
 				</nav>
 				<div className="header__section header__logo">
-					<img src={`./images/logo/logo-maxres-text-transparent${theme.isDark ? "-bright" : ""}.png`} alt="Shoutout" />
+					<Link to="/">
+						<img src={`./images/logo/logo-maxres-text-transparent${theme.isDark ? "-bright" : ""}.png`} alt="Shoutout" />
+					</Link>
 				</div>
 				<div className="header__section header__extra">
 					<ThemeToggleButton />
