@@ -3,5 +3,10 @@
 		&.panel-feed {
 			flex: 3;
 		}
+		@include for-tablet-down {
+			&.profile-card {
+				margin-bottom: 10px;
+			}
+		}
 	}
 }
