@@ -24,15 +24,10 @@ router.put("/user/:userId",
 	user.ensureOwnUser,
 	wrap(user.editUser)
 );
-// Get a list of a users' followers
-router.get("/user/:userId/followers",
+// Get a list of users a person follows or is following
+router.get("/user/follow",
 	validate(user.getFollowList),
-	wrap(user.getFollowList("followers"))
-);
-// Get a list of users a person follows
-router.get("/user/:userId/following",
-	validate(user.getFollowList),
-	wrap(user.getFollowList("following"))
+	wrap(user.getFollowList)
 );
 // Follow a single user
 router.post("/user/:userId/follow",
