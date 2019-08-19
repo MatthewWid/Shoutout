@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {Fragment, useContext} from "react";
 import {Link} from "react-router-dom";
 import InlineSvg from "react-inlinesvg";
 import UserContext from "../contexts/user.context.js";
@@ -22,7 +22,7 @@ const UserLinks = (props) => {
 	};
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			<Link to={`/${props.user.name}`}>
 				<button className="dropdown__link">
 					My Profile
@@ -51,7 +51,7 @@ const UserLinks = (props) => {
 					cacheGetsRequests
 				/>
 			</button>
-		</React.Fragment>
+		</Fragment>
 	);
 };
 
