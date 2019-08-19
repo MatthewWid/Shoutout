@@ -63,7 +63,8 @@ const controller = async (req, res) => {
 					width: 1500,
 					height: 500,
 					aspect_ratio: "3:1",
-					crop: "crop"
+					crop: "fill",
+					gravity: "center"
 				}
 			]
 		);
