@@ -19,6 +19,7 @@ const ProfileUser = (props) => {
 
 		if (success && user) {
 			setUser(user);
+			props.foundUser && props.foundUser(user);
 		}
 		setLoading(false);
 	}

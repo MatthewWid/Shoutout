@@ -1,4 +1,12 @@
 .page-profile {
+	> .banner {
+		width: $content-width;
+		margin: 0 auto;
+	}
+	.content {
+		padding: 0;
+		margin-top: -20px;
+	}
 	.content__panel {
 		&.panel-feed {
 			flex: 3;

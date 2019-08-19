@@ -11,11 +11,14 @@ const Banner = (props) => {
 
 	return (
 		<div className="banner">
-			<img
-				className="banner__image"
-				src={user.banner.url || DEFAULT_AVATAR_URL}
-				alt={`${user.nick}'s Banner`}
-			/>
+			{
+				user &&
+				<img
+					className="banner__image"
+					src={user.banner.url || DEFAULT_AVATAR_URL}
+					alt={`${user.nick}'s Banner`}
+				/>
+			}
 		</div>
 	);
 };
