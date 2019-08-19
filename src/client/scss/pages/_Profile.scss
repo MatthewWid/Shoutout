@@ -1,12 +1,4 @@
 .page-profile {
-	> .banner {
-		width: $content-width;
-		margin: 0 auto;
-	}
-	.content {
-		padding: 0;
-		margin-top: -20px;
-	}
 	.content__panel {
 		&.panel-feed {
 			flex: 3;
@@ -15,6 +7,21 @@
 			&.profile-card {
 				margin-bottom: 10px;
 			}
+		}
+	}
+	@include for-tablet-up {
+		> .banner {
+			width: $content-width;
+			margin: 0 auto;
+		}
+		.content {
+			padding: 0;
+			margin-top: -20px;
+		}
+	}
+	@include for-tablet-down {
+		> .banner {
+			display: none;
 		}
 	}
 }
