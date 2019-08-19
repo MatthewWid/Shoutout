@@ -34,7 +34,7 @@ const controller = async (req, res) => {
 					width: 256,
 					height: 256,
 					aspect_ratio: "1:1",
-					crop: "limit"
+					crop: "fill"
 				}
 			]
 		);

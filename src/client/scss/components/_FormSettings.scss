@@ -22,6 +22,7 @@
 		&--avatar {
 			.avatar__image {
 				border: none;
+				object-fit: cover;
 			}
 		}
 		&--banner {
