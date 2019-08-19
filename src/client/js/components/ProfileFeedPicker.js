@@ -26,6 +26,9 @@ const ProfileFeedPicker = (props) => {
 		<div className="content__panel panel-picker">
 			<nav className="picker card nav">
 				<a className="nav__link nav__link--current" href="#">Posts</a>
+				<a className="nav__link" href="#">Likes</a>
+				<a className="nav__link" href="#">Followers</a>
+				<a className="nav__link" href="#">Following</a>
 			</nav>
 			{content}
 		</div>
