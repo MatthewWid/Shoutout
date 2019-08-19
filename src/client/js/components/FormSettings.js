@@ -59,7 +59,7 @@ class FormSettings extends React.Component {
 		if (file.size > IMAGE_MAX_SIZE) {
 			this.setState({
 				[name]: "",
-				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} image cannot be more than 5MB.`]
+				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} image cannot be more than 4MB.`]
 			});
 			target.value = "";
 			return;
