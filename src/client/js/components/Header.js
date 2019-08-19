@@ -37,14 +37,14 @@ const Header = (props) => {
 	}
 	linkEls = linkEls.map((link, index) => (
 		<Link
-			className={`header__link${props.page === link.page ? " header__link--current" : ""}${link.page && ` header__link-${link.page}`}`}
+			className={`nav__link${props.page === link.page ? " nav__link--current" : ""}${link.page && ` nav__link-${link.page}`}`}
 			to={link.to}
 			key={index}
 		>
 			{
 				link.icon &&
 				<InlineSvg
-					className="svg header__icon"
+					className="svg nav__icon"
 					src={`./images/icons/${link.icon}.svg`}
 					cacheGetsRequests
 				/>
@@ -56,7 +56,7 @@ const Header = (props) => {
 	return (
 		<div className="header-container">
 			<header className="header">
-				<nav className="header__section header__nav">
+				<nav className="header__section nav">
 					{linkEls}
 				</nav>
 				<div className="header__section header__logo">

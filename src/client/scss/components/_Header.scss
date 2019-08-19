@@ -19,60 +19,6 @@
 	&__section {
 		flex: 1;
 	}
-	&__nav {
-		display: flex;
-		align-items: stretch;
-		justify-content: flex-start;
-	}
-	&__link {
-		display: flex;
-		align-items: center;
-		position: relative;
-		padding: 0 20px;
-		color: $text-grey;
-		transition: color .1s ease;
-
-		&:hover:not(&--current) {
-			color: $text-bright;
-		}
-		&:after {
-			content: "";
-			background-color: $accent-pink;
-
-			display: block;
-			position: absolute;
-			height: 0px;
-			bottom: 0;
-			left: 0;
-			right: 0;
-
-			transition: height .1s ease;
-		}
-		&--current {
-			color: $accent-pink;
-
-			.svg svg {
-				color: $accent-pink;
-			}
-		}
-		&--current, &:hover {
-			&:after {
-				height: 2px;
-			}
-		}
-	}
-	&__icon {
-		display: inline-block;
-		width: 20px;
-		height: 20px;
-		margin-right: 8px;
-
-		svg {
-			width: 100%;
-			height: 100%;
-			color: $text-grey;
-		}
-	}
 	&__logo {
 		display: flex;
 		align-items: center;
@@ -91,7 +37,7 @@
 		max-width: $content-width-bigger;
 	}
 	@include for-mobile-down {
-		&__link-top {
+		.nav__link-top {
 			display: none;
 		}
 		&__logo {
