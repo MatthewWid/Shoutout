@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import {DEFAULT_BANNER_URL} from "constants";
 import Header from "../components/Header.js";
 import Banner from "../components/Banner.js";
-import PanelFeed from "../components/PanelFeed.js";
+import ProfileFeedPicker from "../components/ProfileFeedPicker.js";
 import ProfileUser from "../components/ProfileUser.js";
 
 const Profile = (props) => {
@@ -25,11 +25,8 @@ const Profile = (props) => {
 						}}
 						foundUser={setUser}
 					/>
-					<PanelFeed
-						withForm={false}
-						query={{
-							authorname: username
-						}}
+					<ProfileFeedPicker
+						username={username}
 					/>
 				</div>
 			</div>
