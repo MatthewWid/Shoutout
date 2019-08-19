@@ -1,3 +1,11 @@
 .panel-picker {
 	flex: 3;
+
+	> .card {
+		border-radius: 0;
+	}
+}
+.picker {
+	height: 46px;
+	border-bottom: none;
 }

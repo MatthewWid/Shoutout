@@ -2,9 +2,13 @@ import React, {Fragment, useState} from "react";
 import PanelFeed from "../components/PanelFeed.js";
 
 const ProfileFeedPicker = (props) => {
+	/*
+		TODO:
+		Use React-Router URL match to make selection instead of state.
+ 	*/
 	const [selection, setSelection] = useState(0); // 0 = PanelFeed
 
-	let content;
+	let content = null;
 	switch (selection) {
 		case 0:
 			content = (
@@ -20,6 +24,9 @@ const ProfileFeedPicker = (props) => {
 
 	return (
 		<div className="content__panel panel-picker">
+			<nav className="picker card nav">
+				<a className="nav__link nav__link--current" href="#">Posts</a>
+			</nav>
 			{content}
 		</div>
 	);
