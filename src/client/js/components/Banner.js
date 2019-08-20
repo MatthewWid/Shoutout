@@ -1,5 +1,5 @@
 import React from "react";
-import {DEFAULT_AVATAR_URL} from "constants";
+import {DEFAULT_BANNER_URL} from "constants";
 
 /*
 	Generic Banner for the given users' profile picture.
@@ -15,8 +15,13 @@ const Banner = (props) => {
 				user &&
 				<img
 					className="banner__image"
-					src={user.banner.url || DEFAULT_AVATAR_URL}
+					src={user.banner.url || DEFAULT_BANNER_URL}
 					alt={`${user.nick}'s Banner`}
+				/> ||
+				<img
+					className="banner__image"
+					src={DEFAULT_BANNER_URL}
+					alt="Banner"
 				/>
 			}
 		</div>
