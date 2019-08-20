@@ -6,6 +6,7 @@ module.exports = {
 	getManyPosts: require("./getManyPosts.js"),
 	getTopPosts: require("./getTopPosts.js"),
 	getCuratedFeed: require("./getCuratedFeed.js"),
+	getLikedPosts: require("./getLikedPosts.js"),
 	addLike: require("./addLike.js"),
 	removeLike: require("./removeLike.js"),
 	ensurePostAuthor: require("./ensurePostAuthor.js")
