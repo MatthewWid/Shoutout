@@ -28,6 +28,12 @@ const controller = async (req, res) => {
 			});
 	}
 
+	/*
+		TODO:
+		Sort by latest liked post.
+		Add 'created' to Like model.
+	*/
+
 	let likedList = await Like.aggregate()
 		.match({
 			userId: user._id
@@ -45,7 +51,6 @@ const controller = async (req, res) => {
 		...post.post
 	}));
 
-	
 	// Populate `totalLikes` and `isLiked` field
 	likedList = await Promise.all(
 		likedList.map(async (post) => {
@@ -67,5 +72,21 @@ const controller = async (req, res) => {
 		posts: likedList
 	});
 };
+
+// Validation
+const validator = require("express-validator");
+const valErrMsg = require("../../helpers/validationErrorMsg.js");
+const ensureValidId = require("../../helpers/ensureValidId.js");
+controller.validate = [
+	validator.oneOf([
+		validator.query("userid", valErrMsg.notValid("User ID"))
+			.exists()
+			.custom(ensureValidId),
+
+		validator.query("username", valErrMsg.notValid("Username"))
+			.exists()
+			.isString()
+	], valErrMsg.filters("User liked posts"))
+];
 
 module.exports = controller;
