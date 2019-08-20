@@ -1,12 +1,25 @@
 const mongoose = require("mongoose");
 const {mongoose: createProjection} = require("../../helpers/convertProjection.js");
-const {PROJECTION_POST} = require("../../helpers/constants.js");
+const {PROJECTION_POST, PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
 const Like = mongoose.model("Like");
 
+/*
+	TODO:
+	Pagination
+*/
 const controller = async (req, res) => {
 	// User filtering
 	const findUser = {};
+	// Sorting
+	const sort = {
+		created: -1
+	};
+	// Projection
+	const project = {
+		...createProjection(PROJECTION_POST, "post"),
+		...createProjection(PROJECTION_USER, "author")
+	};
 
 	// Username
 	if (req.query.username) {
@@ -28,30 +41,30 @@ const controller = async (req, res) => {
 			});
 	}
 
-	/*
-		TODO:
-		Sort by latest liked post.
-		Add 'created' to Like model.
-	*/
-
 	let likedList = await Like.aggregate()
 		.match({
 			userId: user._id
 		})
-		.sort({
-			created: -1
-		})
+		.sort(sort)
 		.lookup({
 			from: "posts",
 			localField: "postId",
 			foreignField: "_id",
 			as: "post"
 		})
+		.lookup({
+			from: "users",
+			localField: "post.author",
+			foreignField: "_id",
+			as: "author"
+		})
 		.unwind("post")
-		.project(createProjection(PROJECTION_POST, "post"));
+		.unwind("author")
+		.project(project);
 
 	likedList = likedList.map((post) => ({
-		...post.post
+		...post.post,
+		author: post.author
 	}));
 
 	// Populate `totalLikes` and `isLiked` field

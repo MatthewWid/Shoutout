@@ -44,7 +44,15 @@ const ProfileFeedPicker = ({username, page}) => {
 			/>
 			<Route
 				path={`${ROUTE_USER}/likes`}
-				render={() => <p>Hello world</p>}
+				render={() => (
+					<PanelFeed
+						withForm={false}
+						param="liked"
+						query={{
+							username
+						}}
+					/>
+				)}
 				exact
 			/>
 		</div>
