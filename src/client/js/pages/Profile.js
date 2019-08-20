@@ -5,9 +5,16 @@ import Banner from "../components/Banner.js";
 import ProfileFeedPicker from "../components/ProfileFeedPicker.js";
 import ProfileUser from "../components/ProfileUser.js";
 
+const getPageName = (path) => {
+	const split = path.split("/");
+	const page = split[split.length - 1];
+	return page;
+};
+
 const Profile = (props) => {
 	const [user, setUser] = useState(null);
 	const {username} = props.match.params;
+	const page = getPageName(props.match.path);
 
 	useEffect(() => {
 		document.title = `@${username} - Shoutout`
@@ -27,6 +34,7 @@ const Profile = (props) => {
 					/>
 					<ProfileFeedPicker
 						username={username}
+						page={page}
 					/>
 				</div>
 			</div>

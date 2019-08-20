@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import {ROUTE_USER} from "constants";
 import withAuth from "./pages/withAuth.js";
 import Home from "./pages/Home.js";
 import All from "./pages/All.js";
@@ -18,7 +19,12 @@ const MainRouter = () => (
 			<Route path="/settings" component={withAuth(Settings)} exact />
 			<Route path="/attribution" component={Attribution} exact />
 			<Route path="/404" component={NotFound} exact />
-			<Route path="/:username" component={Profile} exact />
+			<Route path={[
+				`${ROUTE_USER}`,
+				`${ROUTE_USER}/likes`,
+				`${ROUTE_USER}/followers`,
+				`${ROUTE_USER}/following`
+			]} component={Profile} exact />
 			<Redirect from="*" to="/404" />
 		</Switch>
 	</BrowserRouter>
