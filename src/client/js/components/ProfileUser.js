@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext, useRef} from "react";
 import {Redirect} from "react-router-dom";
 import UserContext from "../contexts/user.context.js";
 import api from "api";
-import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 import ProfileCard from "./ProfileCard.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 
@@ -14,8 +13,10 @@ const ProfileUser = (props) => {
 
 	// Fetch the user given the search query
 	async function getUser() {
-		const params = serializeObjectToUri(props.query);
-		const {data: {success, user}} = await api.get(`/user?${params}`);
+		const {query = {}} = props;
+		const {data: {success, user}} = await api.get("/user", {
+			params: {...query}
+		});
 
 		if (success && user) {
 			setUser(user);

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import api from "api";
-import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 import FollowList from "./FollowList.js";
 

@@ -5,7 +5,6 @@ import {POSTS_PER_PAGE} from "constants";
 import FormPost from "./FormPost.js";
 import PostList from "./PostList.js";
 import LoadingIndicator from "./LoadingIndicator.js";
-import serializeObjectToUri from "../helpers/serializeObjectToUri.js";
 
 /*
 	Panel that fetches a list of posts given a set of options and renders
@@ -70,16 +69,14 @@ class PanelFeed extends React.Component {
 			// Optional query parameters
 			const {query: queryObj = {}} = this.props;
 			queryObj.page = this.state.page;
-			const queryStr = serializeObjectToUri(queryObj);
 
 			// Optional URL parameters. Eg, append `/top` to `/posts` => `/posts/top`
 			const {param} = this.props;
 			const paramStr = param ? `/${param}` : "";
 
-			// Construct request URL
-			const request = `/posts${paramStr}?${queryStr}`;
-
-			const {data} = await api.get(request);
+			const {data} = await api.get(`/posts${paramStr}`, {
+				params: {...queryObj}
+			});
 
 			this.addPosts(data.posts, !isMore);
 			this.setState({
