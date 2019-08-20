@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 // Schema
 const LikeSchema = new mongoose.Schema({
+	created: {
+		type: Date,
+		required: true,
+		default: Date.now
+	},
 	postId: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,

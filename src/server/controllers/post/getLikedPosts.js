@@ -38,6 +38,9 @@ const controller = async (req, res) => {
 		.match({
 			userId: user._id
 		})
+		.sort({
+			created: -1
+		})
 		.lookup({
 			from: "posts",
 			localField: "postId",
