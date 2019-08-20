@@ -2,6 +2,7 @@ import React, {Fragment, useState} from "react";
 import {Route, Link} from "react-router-dom";
 import {ROUTE_USER} from "constants";
 import PanelFeed from "../components/PanelFeed.js";
+import PanelFollow from "../components/PanelFollow.js";
 
 // Attach class names and append the `--selected` modifier if
 // the tab represents the currently opened page.
@@ -51,6 +52,26 @@ const ProfileFeedPicker = ({username, page}) => {
 						query={{
 							username
 						}}
+					/>
+				)}
+				exact
+			/>
+			<Route
+				path={`${ROUTE_USER}/followers`}
+				render={() => (
+					<PanelFollow
+						list="followers"
+						username={username}
+					/>
+				)}
+				exact
+			/>
+			<Route
+				path={`${ROUTE_USER}/following`}
+				render={() => (
+					<PanelFollow
+						list="following"
+						username={username}
 					/>
 				)}
 				exact

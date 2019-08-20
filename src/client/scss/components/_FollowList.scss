@@ -1,0 +1,25 @@
+.follow-list {
+	padding: 10px;
+	text-align: center;
+
+	&__card {
+		display: inline-block;
+		width: 30%;
+		margin: 5px;
+		text-align: initial;
+	}
+	&__empty {
+		margin: 10px;
+		color: $text-grey;
+	}
+	@include for-tablet-down {
+		&__card {
+			width: 45%;
+		}
+	}
+	@include for-mobile-down {
+		&__card {
+			width: 90%;
+		}
+	}
+}

@@ -20,7 +20,8 @@
 		}
 	}
 	&__names {
-		margin: 10px 0;
+		overflow: hidden;
+		margin: 10px 0 10px 0;
 
 		p {
 			line-height: 1.2rem;
@@ -30,6 +31,11 @@
 		color: $text-bright;
 		font-size: 1.2rem;
 		font-weight: bold;
+
+		white-space: nowrap;
+		margin-right: 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	&__name {
 		color: $text-grey;
