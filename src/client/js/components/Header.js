@@ -61,7 +61,7 @@ const Header = (props) => {
 				</nav>
 				<div className="header__section header__logo">
 					<Link to="/">
-						<img src={`./images/logo/logo-maxres-text-transparent${theme.isDark ? "-bright" : ""}.png`} alt="Shoutout" />
+						<img src={`./images/logo/logo-small-text-transparent${theme.isDark ? "-bright" : ""}.png`} alt="Shoutout" />
 					</Link>
 				</div>
 				<div className="header__section header__extra">
