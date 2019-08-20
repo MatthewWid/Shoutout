@@ -45,7 +45,7 @@ const Header = (props) => {
 				link.icon &&
 				<InlineSvg
 					className="svg nav__icon"
-					src={`./images/icons/${link.icon}.svg`}
+					src={`/images/icons/${link.icon}.svg`}
 					cacheGetsRequests
 				/>
 			}

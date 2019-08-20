@@ -5,7 +5,7 @@ const LoadingIndicator = (props) => (
 	<div className={`${props.className && `${props.className} ` || ""}loading`}>
 		<InlineSvg
 			className="loading__icon svg"
-			src="./images/icons/loading-comet.svg"
+			src="/images/icons/loading-comet.svg"
 			cacheGetRequests
 		/>
 	</div>
