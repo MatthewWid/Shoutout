@@ -1,11 +1,13 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import dayjs from "dayjs";
+import Linkify from "react-linkify";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
+import UserLink from "./UserLink.js";
 import Dropdown from "./Dropdown.js";
 import Avatar from "./Avatar.js";
 dayjs.extend(relativeTime);
@@ -185,7 +187,11 @@ class Post extends React.Component {
 						}
 					</div>
 					<div className="post__content">
-						<p className="post__text">{post.text}</p>
+						<p className="post__text">
+							<Linkify componentDecorator={UserLink}>
+								{post.text}
+							</Linkify>
+						</p>
 					</div>
 					<div className="post__toolbar">
 						<div

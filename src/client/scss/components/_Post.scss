@@ -89,9 +89,14 @@
 			}
 		}
 	}
-	&__content {
-		p {
-			font-size: 1rem;
+	&__text {
+		font-size: 1rem;
+	}
+	&__text-link {
+		color: $accent-pink;
+
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 	&__button {
