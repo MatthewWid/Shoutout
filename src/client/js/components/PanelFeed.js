@@ -165,6 +165,10 @@ class PanelFeed extends React.Component {
 					onClick={() => {this.fetchPosts(true)}}
 				>Load More</button>
 			);
+		} else {
+			more = (
+				<p className="panel-feed__end">- The end of the universe -</p>
+			);
 		}
 
 		return (
