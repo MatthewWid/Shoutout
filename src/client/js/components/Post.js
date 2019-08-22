@@ -52,27 +52,18 @@ class Post extends React.Component {
 		this._isLoadingLike = true;
 
 		const {post, updatePost} = this.props;
-		let didLike = true;
 
 		// Send POST request to like post
-		await api.post(`/post/${post._id}/like`)
-		.then(({data: {success}}) => {
-			didLike = success ? true : false;
-		})
-		.catch((err) => {
-			didLike = false;
-		});
+		const {data} = await api.post(`/post/${post._id}/like`);
 
-		// If the attempt like the post failed abort the function
-		if (!didLike) {
-			return;
+		if (data.success) {
+			const newPost = {...post};
+
+			newPost.isLiked = true;
+			newPost.totalLikes++;
+
+			updatePost && updatePost(newPost);
 		}
-
-		const newPost = {...post};
-		newPost.isLiked = didLike;
-		newPost.totalLikes++;
-
-		updatePost && updatePost(newPost);
 
 		this._isLoadingLike = false;
 	}
@@ -89,18 +80,20 @@ class Post extends React.Component {
 		// Send DELETE request to unlike post
 		const {data} = await api.delete(`/post/${post._id}/like`);
 
-		const newPost = {...post};
 		// Set to 'unliked' regardless of if a post was found or not
 		if (data.success) {
+			const newPost = {...post};
+
 			newPost.isLiked = false;
 
 			// If a like existed and was deleted decrement like counts
 			if (data.foundLike) {
 				newPost.totalLikes--;
 			}
+
+			updatePost && updatePost(newPost);
 		}
 
-		updatePost && updatePost(newPost);
 		this._isLoadingLike = false;
 	}
 
