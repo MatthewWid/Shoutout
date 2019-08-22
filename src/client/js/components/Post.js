@@ -104,7 +104,7 @@ class Post extends React.Component {
 			alert("You need to be logged in to do that.");
 			return;
 		}
-		if (user._id !== post.author._id) {
+		if (user._id !== post.author._id && !user.isAdmin) {
 			alert("You cannot delete a post you do not own!");
 			return;
 		}
@@ -118,9 +118,11 @@ class Post extends React.Component {
 	}
 
 	render() {
-		const {post, UserContext: {user}} = this.props;
+		const {post, UserContext: {user: loggedUser}} = this.props;
+		const user = loggedUser || {};
 		const {author} = post;
-		const ownsPost = author._id === (user || {})._id;
+		const ownsPost = author._id === user._id;
+		const canModerate = !ownsPost && user.isAdmin;
 
 		return (
 			<div className={"post"}>
@@ -169,13 +171,13 @@ class Post extends React.Component {
 								>
 									<p className="post__menu-id">{post.shortId}</p>
 									{
-										ownsPost &&
+										(ownsPost || canModerate) &&
 										<Fragment>
 											<hr className="divider" />
 											<button
 												className="dropdown__link"
 												onClick={this.handleDeleteClick}
-											>Delete Post</button>
+											>{ownsPost ? "Delete Post" : "Delete as Admin"}</button>
 										</Fragment>
 									}
 								</Dropdown>
