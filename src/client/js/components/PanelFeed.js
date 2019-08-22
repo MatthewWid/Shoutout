@@ -27,6 +27,7 @@ class PanelFeed extends React.Component {
 	state = {
 		posts: [],
 		page: 0,
+		canMore: false,
 		loading: true
 	}
 
@@ -78,7 +79,27 @@ class PanelFeed extends React.Component {
 				params: {...queryObj}
 			});
 
-			this.addPosts(data.posts, !isMore);
+			if (data.success) {
+				const totalPosts = this.state.posts.length + data.posts.length;
+
+				// If no posts were retrieved after requesting new posts
+				// then hide the 'Load More' button as there are no more posts
+				if (data.posts.length === 0) {
+					this.setState({
+						canMore: false
+					});
+				// Else if posts were retrieved check that they are a multiple of the
+				// maximum posts per page implying there are potentially more posts
+				// past the visible page
+				} else if (totalPosts !== 0 && totalPosts % POSTS_PER_PAGE === 0) {
+					this.setState({
+						canMore: true
+					});
+				}
+
+				this.addPosts(data.posts, !isMore);
+			}
+
 			this.setState({
 				loading: false
 			});
@@ -136,10 +157,9 @@ class PanelFeed extends React.Component {
 		// Click to load more button
 		// Only render if the amount of loaded posts is a multiple of
 		// the maximum posts per page, implying more posts could be available
-		const loadedPosts = this.state.posts.length;
-		let buttonMore = null;
-		if (loadedPosts !== 0 && loadedPosts % POSTS_PER_PAGE === 0) {
-			buttonMore = (
+		let more = null;
+		if (this.state.canMore) {
+			more = (
 				<button
 					className="panel-feed__more"
 					onClick={() => {this.fetchPosts(true)}}
@@ -155,7 +175,7 @@ class PanelFeed extends React.Component {
 					updatePost={this.updatePost}
 					removePost={this.removePost}
 				/>
-				{buttonMore}
+				{more}
 			</main>
 		);
 	}
