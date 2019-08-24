@@ -177,15 +177,17 @@ class Post extends React.Component {
 									close={this.dropdownSetOpen(false)}
 								>
 									<p className="post__menu-id">{post.shortId}</p>
+									<hr className="divider" />
+									<Link
+										className="dropdown__link"
+										to={`/${author.name}/${post.shortId}`}
+									>Share Post</Link>
 									{
 										(ownsPost || canModerate) &&
-										<Fragment>
-											<hr className="divider" />
-											<button
-												className="dropdown__link"
-												onClick={this.handleDeleteClick}
-											>{ownsPost ? "Delete Post" : "Delete as Admin"}</button>
-										</Fragment>
+										<button
+											className="dropdown__link"
+											onClick={this.handleDeleteClick}
+										>{ownsPost ? "Delete Post" : "Delete as Admin"}</button>
 									}
 								</Dropdown>
 							</span>
