@@ -16,6 +16,10 @@ const controller = async (req, res) => {
 	if (req.query.id) {
 		findParams._id = req.query.id;
 	}
+	// Shortlink
+	if (req.query.shortId) {
+		findParams.shortId = req.query.shortId;
+	}
 
 	let post = await Post.findOne(findParams, PROJECTION_POST);
 
@@ -45,7 +49,10 @@ controller.validate = [
 			.custom(ensureValidId),
 
 		validator.query("id", valErrMsg.notValid("Post ID"))
-			.custom(ensureValidId)
+			.custom(ensureValidId),
+
+		validator.query("shortId", valErrMsg.notValid("Shortlink"))
+			.isString()
 	], valErrMsg.filters("Post"))
 ];
 
