@@ -114,8 +114,8 @@ class Post extends React.Component {
 		const {data} = await api.delete(`/post/${post._id}`);
 
 		if (data.success) {
-			removePost && removePost(post);
 			this.dropdownSetOpen(false)();
+			removePost && removePost(post);
 		}
 	}
 

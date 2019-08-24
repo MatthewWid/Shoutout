@@ -1,0 +1,12 @@
+.panel-post {
+	flex: 3;
+
+	.post {
+		&__text {
+			font-size: 1.8rem;
+		}
+		&__toolbar {
+			margin-top: 16px;
+		}
+	}
+}

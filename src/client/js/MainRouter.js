@@ -9,6 +9,7 @@ import Settings from "./pages/Settings.js";
 import Attribution from "./pages/Attribution.js";
 import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
+import Post from "./pages/Post.js";
 
 const MainRouter = () => (
 	<BrowserRouter>
@@ -25,6 +26,7 @@ const MainRouter = () => (
 				`${ROUTE_USER}/followers`,
 				`${ROUTE_USER}/following`
 			]} component={Profile} exact />
+			<Route path={`${ROUTE_USER}/:postId`} component={Post} exact />
 			<Redirect from="*" to="/404" />
 		</Switch>
 	</BrowserRouter>

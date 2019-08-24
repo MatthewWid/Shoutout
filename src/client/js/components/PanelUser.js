@@ -17,9 +17,9 @@ const PanelUser = () => {
 	}
 
 	return (
-		<div className="content__panel card panel-user">
+		<main className="content__panel card panel-user">
 			<ProfileCard user={user} />
-		</div>
+		</main>
 	);
 };
 
