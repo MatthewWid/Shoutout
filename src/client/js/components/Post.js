@@ -122,6 +122,11 @@ class Post extends React.Component {
 	render() {
 		const {post, UserContext: {user: loggedUser}} = this.props;
 		const user = loggedUser || {};
+
+		if (!post) {
+			return null;
+		}
+
 		const {author} = post;
 		const ownsPost = author._id === user._id;
 		const canModerate = !ownsPost && user.isAdmin;
