@@ -1,6 +1,5 @@
 module.exports = {
 	createPost: require("./createPost.js"),
-	getPost: require("./getPost.js"),
 	editPost: require("./editPost.js"),
 	deletePost: require("./deletePost.js"),
 	getManyPosts: require("./getManyPosts.js"),

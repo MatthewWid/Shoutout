@@ -47,6 +47,10 @@ const controller = async (req, res) => {
 		// Else search posts by the found authors' ID
 		find.author = user._id;
 	}
+	// Shortlink
+	if (req.query.shortId) {
+		find.shortId = req.query.shortId;
+	}
 
 	// Set set order
 	if (req.query.sort) {
@@ -128,6 +132,10 @@ controller.validate = [
 		.isString(),
 
 	validator.param("authornick", valErrMsg.notValid("Username paramater"))
+		.optional()
+		.isString(),
+
+	validator.query("shortId", valErrMsg.notValid("Shortlink"))
 		.optional()
 		.isString(),
 
