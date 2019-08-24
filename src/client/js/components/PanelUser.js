@@ -1,5 +1,5 @@
-import React from "react";
-import {withUserContext} from "../contexts/user.context.js";
+import React, {useContext} from "react";
+import UserContext from "../contexts/user.context.js";
 import ProfileCard from "./ProfileCard.js";
 
 /*
@@ -9,10 +9,18 @@ import ProfileCard from "./ProfileCard.js";
 
 	Will not render anything if the user is not logged in.
 */
-const PanelUser = ({UserContext: {user}}) => !user ? null : (
-	<div className="content__panel card panel-user">
-		<ProfileCard user={user} />
-	</div>
-);
+const PanelUser = () => {
+	const {user} = useContext(UserContext);
 
-export default withUserContext(PanelUser);
+	if (!user) {
+		return null;
+	}
+
+	return (
+		<div className="content__panel card panel-user">
+			<ProfileCard user={user} />
+		</div>
+	);
+};
+
+export default PanelUser;
