@@ -7,7 +7,7 @@ const Like = mongoose.model("Like");
 const controller = async (req, res) => {
 	const prevPost = await Post.findById(req.params.postId);
 
-	if (prevPost.image) {
+	if (prevPost.image.public_id) {
 		await destroy(prevPost.image.public_id);
 	}
 
