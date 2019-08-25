@@ -116,7 +116,20 @@
 		overflow: hidden;
 		border: 2px solid $blue-mid;
 		cursor: pointer;
+		
+		&:not(&--expanded):after {
+			content: "";
+			display: block;
+			width: 50px;
+			height: 50px;
 
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			transform: translate(50%, 50%) rotateZ(45deg);
+
+			background-color: $blue-mid;
+		}
 		&--expanded {
 			height: auto;
 		}
