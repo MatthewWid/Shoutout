@@ -21,6 +21,8 @@ const Attribution = () => {
 					<li><a href="https://fontawesome.com/icons/user?style=solid">"user (Solid Style)"</a> by <a href="https://fontawesome.com/license/free">FontAwesome</a> is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
 					<li><a href="https://fontawesome.com/icons/home?style=solid">"home (Solid Style)"</a> by <a href="https://fontawesome.com/license/free">FontAwesome</a> is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
 					<li><a href="https://fontawesome.com/icons/globe-americas?style=solid">"globe-americas (Solid Style)"</a> by <a href="https://fontawesome.com/license/free">FontAwesome</a> is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+					<li><a href="https://fontawesome.com/icons/file-image?style=regular">"file-image (Regular Style)"</a> by <a href="https://fontawesome.com/license/free">FontAwesome</a> is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+					<li><a href="https://fontawesome.com/icons/external-link-alt?style=solid">"external-link-alt (Solid Style)"</a> by <a href="https://fontawesome.com/license/free">FontAwesome</a> is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
 					<li><a href="https://loading.io/icon/kbmzeh">"comet" spinner</a> by <a href="https://loading.io/">loading.io</a>  is licenced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
 				</ul>
 			</div>
