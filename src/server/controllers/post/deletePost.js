@@ -1,9 +1,16 @@
 const mongoose = require("mongoose");
+const {destroy} = require("../../helpers/cloudinary.interface.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 
 // Delete a single post
 const controller = async (req, res) => {
+	const prevPost = await Post.findById(req.params.postId);
+
+	if (prevPost.image) {
+		await destroy(prevPost.image.public_id);
+	}
+
 	const {deletedCount} = await Post.deleteOne({
 		_id: req.params.postId
 	});

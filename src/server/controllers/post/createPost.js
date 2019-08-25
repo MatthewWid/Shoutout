@@ -1,15 +1,42 @@
 const mongoose = require("mongoose");
+const {upload} = require("../../helpers/cloudinary.interface.js");
 const {PROJECTION_POST} = require("../../helpers/constants.js");
 const Post = mongoose.model("Post");
 
 // Create a single new post
 const controller = async (req, res) => {
-	const {text} = req.body;
-
-	const {_id: postId} = await Post.create({
-		text,
+	const newFields = {
+		text: req.body.text,
 		author: req.user
-	});
+	};
+
+	if (req.body.image) {
+		const image = await upload(
+			req.body.image,
+			[
+				req.user._id,
+				`@${req.user.name}`,
+				"post"
+			],
+			[
+				{
+					width: 2000,
+					height: 2000,
+					crop: "limit"
+				}
+			]
+		);
+
+		const {public_id, url, bytes: size} = image;
+
+		newFields.image = {
+			public_id,
+			url,
+			size
+		};
+	}
+
+	const {_id: postId} = await Post.create(newFields);
 
 	const post = await Post.findById(postId, PROJECTION_POST)
 		.populate("author");

@@ -1,6 +1,6 @@
 // Projections to filter/select returned fields from Mongoose documents
 exports.PROJECTION_USER = "_id nick name avatar banner created";
-exports.PROJECTION_POST = "_id text created author shortId";
+exports.PROJECTION_POST = "_id text created author shortId image";
 exports.PROJECTION_LIKE = "_id created postId userId";
 
 // Forbidden names that could conflict with existing page routes
