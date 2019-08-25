@@ -28,6 +28,15 @@ const PostSchema = new mongoose.Schema({
 			length: 6,
 			capitalization: "lowercase"
 		})
+	},
+	image: {
+		public_id: {
+			type: String
+		},
+		url: {
+			type: String
+		},
+		size: Number
 	}
 }, {
 	toJSON: {

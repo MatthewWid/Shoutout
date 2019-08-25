@@ -1,12 +1,15 @@
 import React from "react";
+import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
+import handleFileChange from "../helpers/handleFileChange.js";
 import extractErrors from "../helpers/extractErrors.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 import ErrorList from "./ErrorList.js";
 
 const defaultState = {
-	text: ""
+	text: "",
+	image: ""
 };
 
 /*
@@ -19,7 +22,7 @@ const defaultState = {
 		list of posts as it is submitted instead of needing the page
 		to be refresh.
 */
-class PostForm extends React.Component {
+class FormPost extends React.Component {
 	state = {
 		...defaultState,
 		errors: [],
@@ -46,14 +49,8 @@ class PostForm extends React.Component {
 			return;
 		}
 
-		this.setState({
-			loading: true
-		});
-
 		// Send data to the server
-		this.submitPost({
-			text: this.state.text
-		});
+		this.submitPost();
 	}
 
 	// Submit the form when pressing Enter unless simultaneously holding Shift, too
@@ -63,9 +60,24 @@ class PostForm extends React.Component {
 		}
 	}
 
+	handleFileChange = handleFileChange.bind(this)
+
 	// Send a new Post to the server
-	submitPost = async ({text}) => {
-		const {data} = await api.post("/post", {text});
+	submitPost = async () => {
+		this.setState({
+			loading: true
+		});
+
+		const {text, image} = this.state;
+
+		const body = {
+			text
+		};
+		if (image) {
+			body.image = image;
+		}
+
+		const {data} = await api.post("/post", body);
 
 		if (data.success) {
 			// Clear form fields
@@ -78,6 +90,7 @@ class PostForm extends React.Component {
 		} else {
 			this.setState({errors: extractErrors(data)});
 		}
+
 		this.setState({
 			loading: false
 		});
@@ -105,13 +118,32 @@ class PostForm extends React.Component {
 					></textarea>
 					<ErrorList errors={this.state.errors} />
 					<div className="form-post__toolbar">
-						<div className={`form-post__length ${charsLeft < 0 ? "form-post__length--disabled" : ""}`}>{charsLeft}</div>
-						<input
-							className="form-post__submit button button--primary"
-							type="submit"
-							value="Post"
-							disabled={!this.canSubmit()}
-						/>
+						<div className="form-post__toolbar-section">
+							<div className="form-post__image-container">
+								<label className="input-label">
+									<InlineSvg
+										className="svg form-post__icon"
+										src="/images/icons/file-regular.svg"
+										cacheGetRequests
+									/>
+									<input
+										className="form-post__image"
+										type="file"
+										name="image"
+										onChange={this.handleFileChange}
+									/>
+								</label>
+							</div>
+						</div>
+						<div className="form-post__toolbar-section">
+							<div className={`form-post__length ${charsLeft < 0 ? "form-post__length--disabled" : ""}`}>{charsLeft}</div>
+							<input
+								className="form-post__submit button button--primary"
+								type="submit"
+								value="Post"
+								disabled={!this.canSubmit()}
+							/>
+						</div>
 					</div>
 				</form>
 				{this.state.loading && <LoadingIndicator className="form-post__loading" />}
@@ -120,4 +152,4 @@ class PostForm extends React.Component {
 	}
 }
 
-export default withUserContext(PostForm);
+export default withUserContext(FormPost);
