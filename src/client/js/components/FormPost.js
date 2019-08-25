@@ -119,7 +119,7 @@ class FormPost extends React.Component {
 					<ErrorList errors={this.state.errors} />
 					<div className="form-post__toolbar">
 						<div className="form-post__toolbar-section">
-							<div className="form-post__image-container">
+							<div className="form-post__image-upload-container">
 								<label className="input-label">
 									<InlineSvg
 										className="svg form-post__icon"
@@ -127,7 +127,7 @@ class FormPost extends React.Component {
 										cacheGetRequests
 									/>
 									<input
-										className="form-post__image"
+										className="form-post__image-upload"
 										type="file"
 										name="image"
 										onChange={this.handleFileChange}
@@ -145,6 +145,18 @@ class FormPost extends React.Component {
 							/>
 						</div>
 					</div>
+					{
+						this.state.image &&
+						<div className="form-post__preview">
+							<div className="form-post__image-container">
+								<img
+									className="form-post__image"
+									src={this.state.image}
+									alt="Preview of Image to Upload"
+								/>
+							</div>
+						</div>
+					}
 				</form>
 				{this.state.loading && <LoadingIndicator className="form-post__loading" />}
 			</div>

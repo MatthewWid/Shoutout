@@ -55,7 +55,7 @@
 		}
 	}
 	// hack to hide file input
-	&__image {
+	&__image-upload {
 		width: .1px;
 		height: .1px;
 		opacity: 0;
@@ -85,5 +85,18 @@
 		&--disabled {
 			color: $red;
 		}
+	}
+	&__image-container {
+		width: 100%;
+		height: 160px;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 2px solid $blue-mid;
+	}
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 }
