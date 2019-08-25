@@ -112,9 +112,16 @@
 		height: 30px;
 
 		background: rgba(0, 0, 0, .7);
-		color: #FFF;
+		font-size: .8rem;
+		color: $text-bright;
 		border-radius: 50%;
 
 		cursor: pointer;
+
+		transition: font-size .1s ease;
+
+		&:hover {
+			font-size: 1rem;
+		}
 	}
 }

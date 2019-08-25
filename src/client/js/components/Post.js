@@ -158,6 +158,18 @@ class Post extends React.Component {
 						src={post.image.url}
 						alt={`${author.nick}'s Post Image`}
 					/>
+					<a
+						className="post__open-image"
+						href={post.image.url}
+						target="_blank"
+						title="Open image in a new tab"
+					>
+						<InlineSvg
+							className="svg post__open-image-icon"
+							src="/images/icons/external-link-solid.svg"
+							cacheGetRequests
+						/>
+					</a>
 				</div>
 			);
 		}
