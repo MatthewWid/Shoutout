@@ -1,8 +1,7 @@
 import React from "react";
 import {withUserContext} from "../contexts/user.context.js";
-import {IMAGE_MAX_SIZE, IMAGE_ALLOWED_TYPES} from "constants";
 import api from "api";
-import getFileContents from "../helpers/getFileContents.js";
+import handleFileChange from "../helpers/handleFileChange.js";
 import extractErrors from "../helpers/extractErrors.js";
 import Avatar from "./Avatar.js";
 import Banner from "./Banner.js";
@@ -44,44 +43,7 @@ class FormSettings extends React.Component {
 		});
 	}
 
-	handleFileChange = async ({target}) => {
-		const [file] = target.files;
-		if (!file) {
-			this.setState({
-				[target.name]: "",
-				errors: []
-			});
-			return;
-		}
-
-		const {name} = target;
-		// Ensure valid file size
-		if (file.size > IMAGE_MAX_SIZE) {
-			this.setState({
-				[name]: "",
-				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} image cannot be more than 4MB.`]
-			});
-			target.value = "";
-			return;
-		}
-
-		// Ensure valid file type
-		if (!IMAGE_ALLOWED_TYPES.includes(file.type)) {
-			this.setState({
-				[name]: "",
-				errors: [`${name.charAt(0).toUpperCase() + name.slice(1)} must be a JPEG or PNG image.`]
-			});
-			target.value = "";
-			return;
-		}
-
-		const contents = await getFileContents(file);
-		
-		this.setState({
-			[name]: contents,
-			errors: []
-		});
-	}
+	handleFileChange = handleFileChange.bind(this)
 
 	handleSubmit = async (evt) => {
 		evt.preventDefault();
