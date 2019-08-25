@@ -121,6 +121,7 @@
 		}
 	}
 	&__image {
+		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -156,6 +157,15 @@
 		&__author-name {
 			display: block;
 			margin-top: 4px;
+		}
+	}
+	@include for-mobile-down {
+		&__image-container {
+			height: 100px;
+			
+			&--expanded {
+				height: auto;
+			}
 		}
 	}
 }

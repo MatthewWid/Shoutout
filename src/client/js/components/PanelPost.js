@@ -32,6 +32,7 @@ const PanelPost = (props) => {
 				post={post}
 				updatePost={setPost}
 				removePost={removePost}
+				preExpand={true}
 			/>
 		</main>
 	);

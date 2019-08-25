@@ -30,7 +30,7 @@ dayjs.extend(relativeTime);
 */
 class Post extends React.Component {
 	state = {
-		imageExpanded: false,
+		imageExpanded: this.props.preExpand || false,
 		dropdownOpen: false,
 		loading: false
 	}
