@@ -28,7 +28,7 @@ const UserLinks = (props) => {
 					My Profile
 					<InlineSvg
 						className="svg dropdown__icon"
-						src="/images/icons/profile-solid.svg"
+						src="/images/icons/profile.svg"
 						cacheGetsRequests
 					/>
 				</button>
@@ -38,7 +38,7 @@ const UserLinks = (props) => {
 					Settings
 					<InlineSvg
 						className="svg dropdown__icon"
-						src="/images/icons/cog-solid.svg"
+						src="/images/icons/cog.svg"
 						cacheGetsRequests
 					/>
 				</button>
@@ -47,7 +47,7 @@ const UserLinks = (props) => {
 				Log Out
 				<InlineSvg
 					className="svg dropdown__icon"
-					src="/images/icons/signout-solid.svg"
+					src="/images/icons/signout.svg"
 					cacheGetsRequests
 				/>
 			</button>

@@ -122,7 +122,7 @@ class FormPost extends React.Component {
 							<label className="input-label">
 								<InlineSvg
 									className="svg form-post__icon"
-									src="/images/icons/file-regular.svg"
+									src="/images/icons/file-image.svg"
 									cacheGetRequests
 								/>
 								<input

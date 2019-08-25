@@ -166,7 +166,7 @@ class Post extends React.Component {
 					>
 						<InlineSvg
 							className="svg post__open-image-icon"
-							src="/images/icons/external-link-solid.svg"
+							src="/images/icons/external-link.svg"
 							cacheGetRequests
 						/>
 					</a>
@@ -251,7 +251,7 @@ class Post extends React.Component {
 						>
 							<InlineSvg
 								className="svg post__button-icon"
-								src={`/images/icons/heart-${post.isLiked ? "solid" : "regular"}.svg`}
+								src={`/images/icons/heart${post.isLiked ? "-full" : ""}.svg`}
 								cacheGetRequests
 							/>
 							<span className="post__button-number">{post.totalLikes || "0"}</span>

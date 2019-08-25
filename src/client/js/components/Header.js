@@ -11,19 +11,19 @@ const links = [
 		text: "Home",
 		page: "home",
 		to: "/",
-		icon: "home-solid"
+		icon: "home"
 	},
 	{
 		text: "All",
 		page: "all",
 		to: "/all",
-		icon: "globe-solid"
+		icon: "globe"
 	},
 	{
 		text: "Top",
 		page: "top",
 		to: "/top",
-		icon: "heart-solid"
+		icon: "heart-full"
 	}
 ];
 
