@@ -7,6 +7,7 @@ import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
 import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
+import LoadingIndicator from "./LoadingIndicator.js";
 import UserLink from "./UserLink.js";
 import Dropdown from "./Dropdown.js";
 import Avatar from "./Avatar.js";
@@ -29,9 +30,9 @@ dayjs.extend(relativeTime);
 */
 class Post extends React.Component {
 	state = {
-		dropdownOpen: false
+		dropdownOpen: false,
+		loading: false
 	}
-	_isLoadingLike = false
 
 	dropdownSetOpen = dropdownSetOpen.bind(this);
 
@@ -48,10 +49,9 @@ class Post extends React.Component {
 	}
 
 	addLike = async () => {
-		if (this._isLoadingLike) {
-			return;
-		}
-		this._isLoadingLike = true;
+		this.setState({
+			loading: true
+		});
 
 		const {post, updatePost} = this.props;
 
@@ -67,14 +67,15 @@ class Post extends React.Component {
 			updatePost && updatePost(newPost);
 		}
 
-		this._isLoadingLike = false;
+		this.setState({
+			loading: false
+		});
 	}
 
 	removeLike = async () => {
-		if (this._isLoadingLike) {
-			return;
-		}
-		this._isLoadingLike = true;
+		this.setState({
+			loading: true
+		});
 
 		const {post, updatePost} = this.props;
 		let didLike = true;
@@ -96,7 +97,9 @@ class Post extends React.Component {
 			updatePost && updatePost(newPost);
 		}
 
-		this._isLoadingLike = false;
+		this.setState({
+			loading: false
+		});
 	}
 
 	handleDeleteClick = async () => {
@@ -111,12 +114,21 @@ class Post extends React.Component {
 			return;
 		}
 
+		this.setState({
+			loading: true
+		});
+
+		this.dropdownSetOpen(false)();
+		
 		const {data} = await api.delete(`/post/${post._id}`);
 
 		if (data.success) {
-			this.dropdownSetOpen(false)();
 			removePost && removePost(post);
 		}
+
+		this.setState({
+			loading: false
+		});
 	}
 
 	render() {
@@ -214,6 +226,7 @@ class Post extends React.Component {
 						</div>
 					</div>
 				</div>
+				{this.state.loading && <LoadingIndicator className="post__loading" />}
 			</div>
 		);
 	}

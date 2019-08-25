@@ -8,6 +8,8 @@
 	display: flex;
 	padding: 10px;
 
+	@include loading-overlay;
+
 	> div:last-of-type {
 		flex: 1;
 	}
