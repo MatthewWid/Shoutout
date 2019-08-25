@@ -30,6 +30,7 @@ dayjs.extend(relativeTime);
 */
 class Post extends React.Component {
 	state = {
+		imageExpanded: false,
 		dropdownOpen: false,
 		loading: false
 	}
@@ -143,6 +144,24 @@ class Post extends React.Component {
 		const ownsPost = author._id === user._id;
 		const canModerate = !ownsPost && user.isAdmin;
 
+		let image = null;
+		if (post.image) {
+			const {imageExpanded: exp} = this.state;
+
+			image = (
+				<div
+					className={`post__image-container${exp ? " post__image-container--expanded" : ""}`}
+					onClick={() => {this.setState({imageExpanded: !exp})}}
+				>
+					<img
+						className="post__image"
+						src={post.image.url}
+						alt={`${author.nick}'s Post Image`}
+					/>
+				</div>
+			);
+		}
+
 		return (
 			<div className={"post"}>
 				<div className="post__section">
@@ -211,6 +230,7 @@ class Post extends React.Component {
 								{post.text}
 							</Linkify>
 						</p>
+						{image}
 					</div>
 					<div className="post__toolbar">
 						<div
