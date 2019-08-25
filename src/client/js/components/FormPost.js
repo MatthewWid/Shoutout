@@ -119,21 +119,19 @@ class FormPost extends React.Component {
 					<ErrorList errors={this.state.errors} />
 					<div className="form-post__toolbar">
 						<div className="form-post__toolbar-section">
-							<div className="form-post__image-upload-container">
-								<label className="input-label">
-									<InlineSvg
-										className="svg form-post__icon"
-										src="/images/icons/file-regular.svg"
-										cacheGetRequests
-									/>
-									<input
-										className="form-post__image-upload"
-										type="file"
-										name="image"
-										onChange={this.handleFileChange}
-									/>
-								</label>
-							</div>
+							<label className="input-label">
+								<InlineSvg
+									className="svg form-post__icon"
+									src="/images/icons/file-regular.svg"
+									cacheGetRequests
+								/>
+								<input
+									className="form-post__image-upload"
+									type="file"
+									name="image"
+									onChange={this.handleFileChange}
+								/>
+							</label>
 						</div>
 						<div className="form-post__toolbar-section">
 							<div className={`form-post__length ${charsLeft < 0 ? "form-post__length--disabled" : ""}`}>{charsLeft}</div>
@@ -154,6 +152,11 @@ class FormPost extends React.Component {
 									src={this.state.image}
 									alt="Preview of Image to Upload"
 								/>
+								<button
+									className="form-post__image-remove"
+									onClick={() => {this.setState({image: ""})}}
+									title="Remove image from post"
+								>&#10060;</button>
 							</div>
 						</div>
 					}
