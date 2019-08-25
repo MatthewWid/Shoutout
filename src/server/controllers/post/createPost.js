@@ -22,7 +22,8 @@ const controller = async (req, res) => {
 				{
 					width: 2000,
 					height: 2000,
-					crop: "limit"
+					crop: "limit",
+					quality: "auto:good"
 				}
 			]
 		);

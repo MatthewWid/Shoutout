@@ -34,7 +34,8 @@ const controller = async (req, res) => {
 					width: 256,
 					height: 256,
 					aspect_ratio: "1:1",
-					crop: "fill"
+					crop: "fill",
+					quality: "auto:good"
 				}
 			]
 		);
@@ -64,7 +65,8 @@ const controller = async (req, res) => {
 					height: 500,
 					aspect_ratio: "3:1",
 					crop: "fill",
-					gravity: "center"
+					gravity: "center",
+					quality: "auto:good"
 				}
 			]
 		);
