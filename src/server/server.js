@@ -42,7 +42,7 @@ app.use(session({
 	cookie: {
 		maxAge
 	},
-	secret: "itsfreerealestate",
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true,
 	store: new MongoStore({
