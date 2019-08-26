@@ -1,6 +1,3 @@
-// Dropdown menu animation in/out transition time in ms
-export const DROP_ANIM_TIME = 200;
-
 // Default Avatar URL when the user does not have one set
 export const DEFAULT_AVATAR_URL = "/images/avatar-default.png";
 // Default Banner URL when the user does not have one set

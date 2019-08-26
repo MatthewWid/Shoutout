@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import {withRouter} from "react-router-dom";
 import {withUserContext} from "../contexts/user.context.js";
-import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import Avatar from "./Avatar.js";
 import Dropdown from "./Dropdown.js";
 import UserLinks from "./UserLinks.js";
@@ -21,11 +20,20 @@ class SessionDetails extends React.Component {
 		dropdownOpen: false
 	}
 
-	dropdownSetOpen = dropdownSetOpen.bind(this);
-
 	closeAndRedirect = () => {
-		this.dropdownSetOpen(false)();
+		this.setState({
+			dropdownOpen: false
+		});
 		this.props.history && this.props.history.push("/");
+	}
+
+	setDropdown = (action) => {
+		const change = action;
+		return () => {
+			this.setState({
+				dropdownOpen: change
+			});
+		};
 	}
 
 	render() {
@@ -37,11 +45,12 @@ class SessionDetails extends React.Component {
 					<Avatar
 						user={user}
 						withLink={false}
-						onClick={this.dropdownSetOpen(true)}
+						onClick={this.setDropdown(true)}
 					/>
 					<Dropdown
 						isOpen={this.state.dropdownOpen}
-						close={this.dropdownSetOpen(false)}
+						close={this.setDropdown(false)}
+						key={0}
 					>
 						<UserLinks
 							user={user}
@@ -53,12 +62,13 @@ class SessionDetails extends React.Component {
 		} else {
 			details = (
 				<Fragment>
-					<p className="session__login-link" onClick={this.dropdownSetOpen(true)}>
+					<p className="session__login-link" onClick={() => {this.setState({dropdownOpen: true})}}>
 						Have an account? <b>Log in</b>
 					</p>
 					<Dropdown
 						isOpen={this.state.dropdownOpen}
-						close={this.dropdownSetOpen(false)}
+						close={this.setDropdown(false)}
+						key={1}
 					>
 						<UserEntry
 							completedAction={this.closeAndRedirect}

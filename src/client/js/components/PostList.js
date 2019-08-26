@@ -7,6 +7,7 @@ const PostList = (props) => {
 		props.posts.map((post, index) => (
 			<Post
 				key={index}
+				index={index}
 				post={post}
 				updatePost={props.updatePost}
 				removePost={props.removePost}

@@ -2,11 +2,8 @@
 	position: absolute;
 	background-color: $blue-darker;
 	box-shadow: 0 0 12px 4px $grey-darkest;
-
-	opacity: 0;
-	pointer-events: none;
 	z-index: 1;
-	transform: translateY(-10px);
+
 	transition: opacity .2s ease, transform .2s ease;
 	
 	&:before {
@@ -26,10 +23,22 @@
 
 		pointer-events: none;
 	}
-	&--open {
+	&--entering {
+		transform: translateY(0px);
 		opacity: 1;
+	}
+	&--entered {
 		pointer-events: auto;
 		transform: translateY(0px);
+	}
+	&--exiting {
+		transform: translateY(-10px);
+		opacity: 0;
+	}
+	&--exited {
+		transform: translateY(-10px);
+		pointer-events: none;
+		opacity: 0;
 	}
 	&__link {
 		display: flex;

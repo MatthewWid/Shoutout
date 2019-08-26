@@ -43,6 +43,7 @@
     "react-inlinesvg": "^0.8.4",
     "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^5.0.1",
+    "react-transition-group": "^4.2.2",
     "sass-loader": "^7.1.0",
     "serve-favicon": "^2.5.0",
     "webpack": "^4.32.2",

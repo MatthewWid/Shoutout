@@ -3,8 +3,6 @@ import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
 import extractErrors from "../helpers/extractErrors.js";
 import ErrorList from "./ErrorList.js";
-import asyncWait from "../helpers/asyncWait.js";
-import {DROP_ANIM_TIME} from "constants";
 
 const defaultState = {
 	name: "",
@@ -37,7 +35,6 @@ class LoginForm extends React.Component {
 
 		if (data.success) {
 			completedAction && completedAction();
-			await asyncWait(DROP_ANIM_TIME);
 
 			this.props.UserContext.setUser(data.user);
 		} else {

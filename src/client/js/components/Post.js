@@ -6,7 +6,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
 import api from "api";
-import dropdownSetOpen from "../helpers/dropdownSetOpen.js";
 import LoadingIndicator from "./LoadingIndicator.js";
 import UserLink from "./UserLink.js";
 import Dropdown from "./Dropdown.js";
@@ -34,8 +33,6 @@ class Post extends React.Component {
 		dropdownOpen: false,
 		loading: false
 	}
-
-	dropdownSetOpen = dropdownSetOpen.bind(this);
 
 	handleLikeClick = () => {
 		if (!this.props.UserContext.user) {
@@ -116,11 +113,10 @@ class Post extends React.Component {
 		}
 
 		this.setState({
-			loading: true
+			loading: true,
+			dropdownOpen: false
 		});
 
-		this.dropdownSetOpen(false)();
-		
 		const {data} = await api.delete(`/post/${post._id}`);
 
 		if (data.success) {
@@ -132,8 +128,17 @@ class Post extends React.Component {
 		});
 	}
 
+	setDropdown = (action) => {
+		const change = action;
+		return () => {
+			this.setState({
+				dropdownOpen: change
+			});
+		};
+	}
+
 	render() {
-		const {post, UserContext: {user: loggedUser}} = this.props;
+		const {post, UserContext: {user: loggedUser}, index} = this.props;
 		const user = loggedUser || {};
 
 		if (!post) {
@@ -207,7 +212,7 @@ class Post extends React.Component {
 							<span className="post__menu">
 								<div
 									className="post__menu-icon-container"
-									onClick={this.dropdownSetOpen(true)}
+									onClick={this.setDropdown(true)}
 								>
 									<InlineSvg
 										className="svg post__menu-icon"
@@ -217,7 +222,8 @@ class Post extends React.Component {
 								</div>
 								<Dropdown
 									isOpen={this.state.dropdownOpen}
-									close={this.dropdownSetOpen(false)}
+									close={this.setDropdown(false)}
+									key={index}
 								>
 									<p className="post__menu-id">{post.shortId}</p>
 									<hr className="divider" />
