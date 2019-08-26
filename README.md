@@ -40,14 +40,7 @@ This project was started with the objective to learn:
 Run locally for development:
 
 1. Install dependencies with `npm i` or `yarn`.
-2. Copy and rename `variables.env.sample` to `variables.env` and populate with values:
-```
-NODE_ENV=production
-PORT=80
-DATABASE_URL=<MONGODB_API_URL>
-CLOUDINARY_URL=<CLOUDINARY_API_URL>
-CLOUDINARY_FOLDER=shoutout
-```
+2. Copy and rename `variables.env.sample` to `variables.env` and populate with values.
 3. Ensure your MongoDB server is running (mLab, Atlas or locally with `mongod`).
 4. Ensure your [Cloudinary](https://cloudinary.com/) credentials are correct.
 5. Run with `npm run dev` or `yarn dev`.
