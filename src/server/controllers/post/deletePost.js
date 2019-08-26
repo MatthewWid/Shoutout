@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {destroy} = require("../../helpers/cloudinary.interface.js");
+const {destroy} = require("../../helpers/cloudinaryInterface.js");
 const Post = mongoose.model("Post");
 const Like = mongoose.model("Like");
 

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {upload, destroy} = require("../../helpers/cloudinary.interface.js");
+const {upload, destroy} = require("../../helpers/cloudinaryInterface.js");
 const {PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
 

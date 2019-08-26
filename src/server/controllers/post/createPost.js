@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {upload} = require("../../helpers/cloudinary.interface.js");
+const {upload} = require("../../helpers/cloudinaryInterface.js");
 const {PROJECTION_POST} = require("../../helpers/constants.js");
 const Post = mongoose.model("Post");
 
