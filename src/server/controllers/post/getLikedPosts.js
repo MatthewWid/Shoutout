@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
 const {mongoose: createProjection} = require("../../helpers/convertProjection.js");
-const {PROJECTION_POST, PROJECTION_USER} = require("../../helpers/constants.js");
+const {POSTS_PER_PAGE, PROJECTION_POST, PROJECTION_USER} = require("../../helpers/constants.js");
 const User = mongoose.model("User");
 const Like = mongoose.model("Like");
 
-/*
-	TODO:
-	Pagination
-*/
 const controller = async (req, res) => {
 	// User filtering
 	const findUser = {};
 	// Sorting
 	const sort = {
 		created: -1
+	};
+	// Pagination
+	const page = {
+		skip: req.query.page ? (req.query.page * POSTS_PER_PAGE) : 0,
+		limit: POSTS_PER_PAGE
 	};
 	// Projection
 	const project = {
@@ -46,6 +47,8 @@ const controller = async (req, res) => {
 			userId: user._id
 		})
 		.sort(sort)
+		.skip(page.skip)
+		.limit(page.limit)
 		.lookup({
 			from: "posts",
 			localField: "postId",
@@ -102,7 +105,11 @@ controller.validate = [
 		validator.query("username", valErrMsg.notValid("Username"))
 			.exists()
 			.isString()
-	], valErrMsg.filters("User liked posts"))
+	], valErrMsg.filters("User liked posts")),
+
+	validator.query("page", valErrMsg.notValid("Page number"))
+		.optional()
+		.isInt({min: 0})
 ];
 
 module.exports = controller;

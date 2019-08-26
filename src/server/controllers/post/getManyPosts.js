@@ -92,9 +92,6 @@ const controller = async (req, res) => {
 		})
 		.unwind("author")
 		.project(project);
-
-	// Remove nested `post` object
-	posts.forEach(post => {delete post.post});
 	
 	// Populate `totalLikes` and `isLiked` field
 	posts = await Promise.all(
