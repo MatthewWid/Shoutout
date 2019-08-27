@@ -181,7 +181,17 @@ class Post extends React.Component {
 		}
 
 		let {text} = post;
+		// Escape HTML entities
 		text = escapeHtml(text);
+		// Convert @ tags to <a> tags
+		text = text.replace(/\@[0-9A-Za-z]{1,49}/g, (match) => (
+			`<a
+				class="post__text-link"
+				href="${window.location.origin}/${match.slice(1)}"
+				target="_blank"
+			>${match}</a>`
+		));
+		// Convert text links to <a> tags
 		text = linkifyHtml(text, {
 			className: "post__text-link"
 		});
