@@ -1,7 +1,8 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import dayjs from "dayjs";
-import Linkify from "react-linkify";
+import linkifyHtml from "linkifyjs/html";
+import escapeHtml from "escape-html";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InlineSvg from "react-inlinesvg";
 import {withUserContext} from "../contexts/user.context.js";
@@ -179,8 +180,14 @@ class Post extends React.Component {
 			);
 		}
 
+		let {text} = post;
+		text = escapeHtml(text);
+		text = linkifyHtml(text, {
+			className: "post__text-link"
+		});
+
 		return (
-			<div className={"post"}>
+			<div className="post">
 				<div className="post__section">
 					<Avatar user={author} />
 				</div>
@@ -243,11 +250,7 @@ class Post extends React.Component {
 						}
 					</div>
 					<div className="post__content">
-						<p className="post__text">
-							<Linkify componentDecorator={UserLink}>
-								{post.text}
-							</Linkify>
-						</p>
+						<p className="post__text" dangerouslySetInnerHTML={{__html: text}} />
 						{image}
 					</div>
 					<div className="post__toolbar">
