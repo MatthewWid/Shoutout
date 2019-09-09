@@ -37,6 +37,7 @@ const Dropdown = (props) => {
 			{(state) => (
 				<div
 					className={`dropdown dropdown--${state}`}
+					aria-hidden={props.isOpen}
 					ref={dropdownEl}
 				>
 					{props.children}
