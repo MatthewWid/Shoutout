@@ -7,7 +7,7 @@ import PanelSiteInfo from "../components/PanelSiteInfo.js";
 
 const All = (props) => {
 	useEffect(() => {
-		document.title = "All Posts - Shoutout";
+		document.title = "Latest Posts - Shoutout";
 	}, []);
 
 	return (
