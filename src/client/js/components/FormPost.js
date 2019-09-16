@@ -82,7 +82,8 @@ class FormPost extends React.Component {
 		if (data.success) {
 			// Clear form fields
 			this.setState({
-				...defaultState
+				...defaultState,
+				errors: []
 			});
 
 			const {addPosts} = this.props;
