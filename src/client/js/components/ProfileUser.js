@@ -77,8 +77,9 @@ const ProfileUser = (props) => {
 
 	return (
 		<ProfileCard
-			user={user}
 			className="content__panel card"
+			user={user}
+			withSettings={loggedUser.user && user._id === loggedUser.user._id}
 		>
 			{followButton}
 		</ProfileCard>

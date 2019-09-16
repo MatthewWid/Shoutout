@@ -44,4 +44,41 @@
 		margin: 10px;
 		margin-top: 0;
 	}
+	&--settings & {
+		&__settings {
+			display: block;
+		}
+		&__names {
+			margin-right: 0px !important;
+		}
+	}
+	&__settings {
+		display: none;
+		
+		&-link:hover &-icon svg {
+			transform: rotateZ(180deg);
+		}
+		&-link {
+			width: 50px;
+			height: 50px;
+			margin: 0 auto;
+			
+			a {
+				display: block;
+				padding: 14px;
+			}
+		}
+		&-icon {
+			width: 100%;
+			height: 100%;
+
+			svg {
+				fill: $text-grey;
+				transition: transform .2s ease;
+			}
+			path {
+				fill: inherit;
+			}
+		}
+	}
 }
