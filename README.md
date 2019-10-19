@@ -7,6 +7,10 @@ Users create posts, follow eachother to view other users' posts, add likes to po
 
 **[Live Demo](http://shoutoutsocial.herokuapp.com)**
 
+<p align="center">
+  <img src="https://i.ibb.co/0JM0tdy/image.png" alt="Preview Screenshot of Demo" width="100%" />
+</p>
+
 **Front-End Technologies**
 * **React** + Hooks and Context API
 * Webpack
