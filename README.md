@@ -5,6 +5,8 @@
 News sharing and social media website.  
 Users create posts, follow eachother to view other users' posts, add likes to posts and more.
 
+**[Live Demo](http://shoutoutsocial.herokuapp.com)**
+
 **Front-End Technologies**
 * **React** + Hooks and Context API
 * Webpack
