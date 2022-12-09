@@ -26,7 +26,7 @@
     "dayjs": "^1.8.14",
     "dotenv": "^7.0.0",
     "escape-html": "^1.0.3",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.16.2",
     "express-validator": "^6.1.1",
     "jsonfile": "^5.0.0",
